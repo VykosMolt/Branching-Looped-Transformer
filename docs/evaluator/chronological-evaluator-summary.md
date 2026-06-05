@@ -71,9 +71,8 @@ Most important current result:
 | Hidden-origin status | `PHASE2_HIDDEN_BRANCH_EVALUATOR_STATUS_V3 = STILL_DATA_LIMITED` |
 | Best trajectory-prediction cell | `MIX_CODE_REASONING / 36_mean / AntisymLinear`, reasoning, 256 tokens |
 | Best cell lift / pairwise accuracy | +0.1625 top-1 lift / 0.8537 pairwise |
-| Recommended next step | consolidate Phase 1/1.5 and design Phase 2 training-time integration |
 
-The practical interpretation is: BG is now more than a finished-answer reranker. It can read useful information from partial trajectories. But on the frozen Ouro-RLTT backbone, the readable direction has not become a reliable write/control handle under the tested methods. The next serious work is Phase 2 training-time integration or a branch-native hidden-origin evaluator, not another simple static steering direction.
+The practical interpretation is: BG is now more than a finished-answer reranker. It can read useful information from partial trajectories. But on the frozen Ouro-RLTT backbone, the readable direction has not become a reliable write/control handle under the tested methods. This document treats the current system as read-only branch selection, not as a static steering direction or trained write path.
 
 ## Plain-Language Mental Model
 
@@ -83,7 +82,7 @@ Ouro-RLTT:
 
 A local looped transformer model. It runs several internal loop iterations while producing hidden states. The active local path is:
 
-`/home/moloch/ouro_project/models/ouro_rltt_local`
+`models/ouro_rltt_local`
 
 Candidate or branch:
 
@@ -425,7 +424,7 @@ The Phase-1 architecture is a two-production-head controller with one specialist
 The locked policy was implemented in:
 
 ```text
-src/evaluator/bg_controller.py
+evaluator/bg_controller.py
 ```
 
 Verdicts:
@@ -454,7 +453,7 @@ Next, BG needed to work on live model outputs rather than only cached artifacts.
 Feature extraction was implemented in:
 
 ```text
-src/evaluator/bg_transformer_features.py
+evaluator/bg_transformer_features.py
 ```
 
 The feature extractor takes:
@@ -553,16 +552,18 @@ Text-prefix branch selection:
 
 A small pilot showed `HELPS`, but n was only 8 tasks, so it was promising rather than conclusive.
 
-## 14. May 18: Wrapper Candidate Export and Wrapper-Matched BG
+## 14. May 18: Source-Worktree Candidate Export and Matched BG
 
-The local-agent wrapper can generate tool-using code candidates. The project exposed these candidates via an opt-in trace interface:
+The larger source worktree exposed generated code candidates through an opt-in
+trace interface. Those export helpers are not part of this public repository:
 
 ```text
-src/local_agent/candidate_export.py
-src/local_agent/candidate_capture.py
+source-worktree candidate_export.py
+source-worktree candidate_capture.py
 ```
 
-The wrapper export does not change wrapper behavior by default. It only records candidates for later analysis.
+The export path did not change generation behavior by default. It only recorded
+candidates for later analysis.
 
 The wrapper-matched experiment compared:
 
@@ -1058,20 +1059,18 @@ The steering result says:
 
 The next algorithmic question is how to train a write path or branch-native hidden-origin evaluator so the branch process itself becomes controllable.
 
-## 26. Recommended Next Work
+## 26. Readout/Steering Boundary
 
-The targeted Stage-2 steering-sensitivity probe has been run. Its follow-ups closed the simple frozen-backbone inference-time steering path under the tested methods.
+The targeted Stage-2 steering-sensitivity probe has been run. Its follow-ups
+closed the simple frozen-backbone inference-time steering path under the tested
+methods. The read-only selector remains the supported interpretation here:
+`hh_general`, `objective_mixed`, and `code_specialist_backup` are selection
+heads, not a trained write path.
 
-Current recommended work:
-
-1. Consolidate Phase 1 and Phase 1.5 as read-only BG selection, routing, trajectory prediction, and branch allocation.
-2. Design Phase 2 as training-time integration, not another static frozen-backbone steering sweep.
-3. Keep the readout controller intact: `hh_general`, `objective_mixed`, and `code_specialist_backup` remain useful for selection.
-4. Expand hidden-origin branch outcome data using the V3 recipe before claiming selector readiness.
-5. Build a branch-native evaluator/calibration target for same-prefix hidden-origin branches.
-6. Implement branch-aware Ouro forward/cache support if true hidden-state fork/carry is required.
-
-Backbone regularization is not required for the read-only selector. It becomes relevant only if the goal is action steering: aligning readout and production geometry during training, or training an equivalent write-path adapter as part of Phase 2.
+Backbone regularization is not required for the read-only selector. It becomes
+relevant only if the goal is action steering: aligning readout and production
+geometry during training, or training an equivalent write-path adapter as part
+of a separate integration phase.
 
 ## 27. One-Slide Version
 
@@ -1132,7 +1131,7 @@ Recent reports:
 
 - `artifacts/reports/probes/bg_trajectory_prediction_2026-05-18/summary.md`
 - `artifacts/reports/probes/bg_trajectory_prediction_2026-05-18/predictive_power.md`
-- `artifacts/reports/probes/bg_trajectory_prediction_2026-05-18/stage2_recommendation.md`
+- `artifacts/reports/probes/bg_trajectory_prediction_2026-05-18/stage2_followup_note (source-worktree artifact)`
 - `artifacts/reports/probes/bg_sequence_level_adapter_2026-05-18/summary.md`
 - `artifacts/reports/probes/bg_causal_intervention_adapter_2026-05-18/summary.md`
 - `artifacts/reports/probes/bg_hidden_state_branch_generation_2026-05-18/summary.md`

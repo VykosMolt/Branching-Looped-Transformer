@@ -14,7 +14,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from src.evaluator.bg_causal_adapter import (
+from evaluator.bg_causal_adapter import (
     HIDDEN_DIM,
     LowRankDeltaAdapter,
     Rank1GatedDirectionAdapter,

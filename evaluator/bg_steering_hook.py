@@ -16,7 +16,7 @@ from typing import Any, Iterator
 import torch
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 TAP_LAYERS = (24, 36, 47)
 LAYER_TO_CAPTURE_INDEX = {24: 23, 36: 35}
 NUM_LOOPS = 4

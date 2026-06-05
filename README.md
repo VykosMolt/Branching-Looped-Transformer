@@ -1,5 +1,8 @@
 # Branching Looped Transformer
 
+Evaluator probes and branch-selection scaffolding for reading hidden-state
+signals in Princeton Ouro-RLTT loop states.
+
 > **Current status:** Phase 2a branch survival is ready under DualAnchor with
 > terminal survivor-set handoff. Autoregressive KV/cache branch-carry and
 > partial-cache splice are validated in test harnesses. Steering/model training
@@ -389,6 +392,7 @@ Representative layout:
 .
 ├── README.md
 ├── LICENSE
+├── requirements.txt
 ├── evaluator/
 │   ├── bg_controller.py
 │   ├── bg_transformer_features.py
@@ -450,7 +454,7 @@ python -m venv venv
 source venv/bin/activate
 
 pip install --upgrade pip
-pip install torch transformers datasets accelerate numpy pandas pyarrow scikit-learn tqdm
+pip install -r requirements.txt
 ```
 
 Most probe scripts expect local paths such as:

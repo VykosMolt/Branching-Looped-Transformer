@@ -45,10 +45,10 @@ headline for anatomy). The reasoning half is unchanged.
   science repair (branch generation remained weak). The v3 run below re-tested this
   source-specifically and partially cleared it for anatomy.
 
-No steering, Ouro training, tokenizer/checkpoint edit, tap-registry update, wrapper or
-local-agent execution, Hunter-Seeker execution, ARC action loop, production routing
-change, hard convergence-hair merge, compute-savings claim, or autoregressive
-fork/carry claim was made in this work.
+No steering, Ouro training, tokenizer/checkpoint edit, tap-registry update,
+external wrapper execution, action-loop execution, production routing change,
+hard convergence-hair merge, compute-savings claim, or autoregressive fork/carry
+claim was made in this work.
 
 ## v3 MMLU repair verdicts (2026-06-04)
 
@@ -92,7 +92,7 @@ parse 0.0; `mmlu_high_school_physics` 1 → 0.0 / 0.0 / parse 0.0; `sciq` 1 → 
 | Science recipe calibration | `SCIENCE_RECIPE_FOUND` |
 | Science heldout | `SCIENCE_BRANCH_GENERATION_STILL_WEAK` |
 | Source-specific science | `MMLU_CHEM_ANATOMY_BLOCKED` |
-| Parser recommendation | `ROBUST_DIAGNOSTIC_ONLY` |
+| Parser status | `ROBUST_DIAGNOSTIC_ONLY` |
 | Reasoning terminal handoff | `REASONING_HANDOFF_LOCKED` |
 | Reasoning hard slice | `REASONING_READY_WITH_HANDOFF` |
 | Science L47/layer ablation | `L2_47_HELPS` |

@@ -2,6 +2,11 @@
 
 This folder contains readable historical snapshots moved out of the docs root during the 2026-05-18 readability refactor.
 
+These files intentionally preserve older local context. References to prior
+source paths, wrappers, source-worktree routing, action-loop systems, or other
+non-public components are historical provenance only, not active dependencies or
+current claims of this repository.
+
 The preservation snapshot from the 2026-05-31 DualAnchor documentation cleanup is kept in:
 
 - `pre_docs_consolidation_2026-05-31/`

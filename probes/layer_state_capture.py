@@ -40,7 +40,7 @@ Numerical contract (identical to probe_loop_geometry_hh.py / v10):
   backbones to guarantee identical input IDs.
 
 Path reconciliation: the probe spec's `tests/manual/` + `runs/` wording
-predates the repo reorg; probes live under utilities/evaluator/probes/
+predates the public repo reorg; probes live under the top-level probes/ folder.
 and artifacts under artifacts/reports/evaluator/ (v10 convention). The
 spec's intent is honored, the paths are the current ones.
 """
@@ -58,10 +58,9 @@ import torch
 from datasets import load_dataset
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
-SRC_ROOT = PROJECT_ROOT / "src"
-if str(SRC_ROOT) not in sys.path:
-    sys.path.insert(0, str(SRC_ROOT))
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 NUM_LOOPS = 4
 TAP_LAYERS = (24, 36, 47)            # 1-indexed, spec language

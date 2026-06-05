@@ -299,9 +299,10 @@ For bidirectional comparator use, antisymmetrize or calibrate the score.
 
 ---
 
-## Recommended audit
+## Calibration Audit
 
-To fully settle the calibration concern, run an antisymmetrized HH-RLHF evaluator audit.
+An antisymmetrized HH-RLHF evaluator audit is the clean calibration check for
+this concern.
 
 For each HH-RLHF test pair:
 

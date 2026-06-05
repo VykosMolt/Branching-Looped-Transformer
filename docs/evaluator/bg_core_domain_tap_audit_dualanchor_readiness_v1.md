@@ -159,7 +159,7 @@ here and **no** compute or production-routing claim is made beyond that validate
 
 `BG_CORE_PRE_STEERING_READINESS_VERDICT = READY_FOR_STEERING_CORE_DOMAINS` — coding, reasoning, math,
 logic, and alignment meet the suite minimums with clean labels, DualAnchor confirmed for survival, and
-alignment transfer confirmed. The recommended Phase 2b domain scope is the five core domains under the
+alignment transfer confirmed. The Phase 2b candidate domain scope is the five core domains under the
 locked DualAnchor baseline above, with science/anatomy carried as diagnostics only.
 
 ## Caveats
@@ -170,7 +170,7 @@ locked DualAnchor baseline above, with science/anatomy carried as diagnostics on
   candidate-group retention proxy;
 - the science "selection help" rests on small-n margins (~0.03) and is survival-neutral.
 
-No steering, Ouro training, tokenizer/checkpoint edit, tap-registry mutation, wrapper/local-agent
-execution, Hunter-Seeker execution, ARC/MATH action loop, production-routing change, hard
-convergence-hair merge, or compute-savings/fork-carry claim was made. Constructed transplant taps were
-written only under this run's output root.
+No steering, Ouro training, tokenizer/checkpoint edit, tap-registry mutation,
+external wrapper execution, action-loop execution, production-routing change,
+hard convergence-hair merge, or compute-savings/fork-carry claim was made.
+Constructed transplant taps were written only under this run's output root.

@@ -8,6 +8,13 @@ This directory has three layers:
 2. Source run notes sorted by topic under `history/bg-run-notes/`.
 3. Exact archives under `history/`.
 
+Scope note: these docs preserve research provenance from a larger local worktree.
+The public repository's active code surface is the top-level `evaluator/`,
+`evaluator_core/`, and `probes/` folders. Historical references to older paths,
+external wrappers, source-worktree routing, action-loop systems, or other
+non-public components are provenance notes only; they are not dependencies or
+current claims of this repository.
+
 No source data was intentionally removed during the 2026-05-31 cleanup. A preservation snapshot of the pre-cleanup root Markdown files is kept at:
 
 `history/pre_docs_consolidation_2026-05-31/`

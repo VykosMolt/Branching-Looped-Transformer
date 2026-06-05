@@ -36,7 +36,7 @@ Prompt-only decoder-layer carry equivalence was validated for cumulative-hook re
 This does not prove:
 
 - autoregressive branch-specific KV/cache fork-carry,
-- production Hunter-Seeker execution,
+- production external-system execution,
 - compute savings.
 
 ## Source Notes Moved To History
@@ -46,4 +46,3 @@ Detailed source docs were moved under `history/interfaces-and-tools/`.
 Exact pre-consolidation root copies are also preserved under:
 
 `history/pre_docs_consolidation_2026-05-31/`
-
