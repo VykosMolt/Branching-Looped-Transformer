@@ -1,0 +1,431 @@
+# BG Steering Consolidation — inference-time closure and Phase 2 framing
+
+**Date:** 2026-05-18
+**Status:** Consolidation document. Locks the completed frozen-backbone inference-time steering investigation. Supersedes the standalone `steering-findings.md` by incorporating the final sequence-level adapter result. Feeds the eventual v9 synthesis. Cross-references `phase1-progress-addendum.md`.
+**Parent spec:** `phase1-routing-policy-locked.md` (v8.1, Phase 1 architecture locked, unchanged).
+
+## 0. One-paragraph conclusion
+
+The frozen Ouro-RLTT backbone is BG-readable and mechanically writable, but not BG-steerable at inference time. Seven intervention methods — spanning static directions, calibrated directions, local gradients, and learned adapters trained with both differentiable-proxy and black-box-reward objectives — were tested. None produced reliable adapter-specific action steering at safe intervention magnitudes (alpha/effective-RMS ≤ 0.02). Two independently-trained adapters, optimized against entirely different objectives, converged to the same control direction (cosine 0.95), and that direction does not transfer to free generation. The readout direction, the empirical-success direction, and the controllable-intervention direction are mutually near-orthogonal: reading trajectory quality and writing trajectory control are separate geometries in this architecture. The inference-time steering search is **closed under tested methods**. Action steering — the basal-ganglia-equivalent capability — is not free from a model trained only for prediction; it must be trained in. The project pivots to Phase 2 training-time integration.
+
+## 1. Scope of this document
+
+This locks one specific question: **can the frozen Ouro-RLTT backbone be steered at inference time using BG-readable information?** The answer is no, under tested methods at safe magnitudes.
+
+This does NOT touch:
+- Phase 1 validated capabilities (BG readout, candidate selection, trajectory prediction) — unchanged.
+- Phase 1.5 promising capabilities (text-prefix branch allocation, BG-guided compute routing) — unchanged.
+- The v8.1 locked Phase 1 head architecture and routing — unchanged.
+- The CLT paper's headline (95.2% HH-RLHF readout/selection) — unchanged.
+- Hunter-Seeker ARC agent or Ouro depth expansion — separate tracks, untouched.
+
+The closure is narrow and precisely scoped. It rules out a specific class of methods, not the architecture.
+
+## 2. The seven-method closure
+
+The inference-time steering investigation tested seven methods of increasing sophistication. All failed to produce reliable signed/adapter-specific action steering on the frozen backbone at alpha ≤ 0.02.
+
+| # | Method | Result |
+|---|---|---|
+| 1 | Raw NoNorm readout-vector steering | UNSIGNED_ONLY |
+| 2 | Empirical mean-diff / whitened / logistic success directions | EMPIRICAL_UNSIGNED_ONLY |
+| 3 | RMS-calibrated static directions | RMS_UNSIGNED_ONLY |
+| 4 | Local BG-score gradient | GRADIENT_NO_BETTER_THAN_RANDOM |
+| 5 | Tiny classifier-style adapter | NO_BETTER_THAN_STATIC |
+| 6 | Teacher-forced causal adapter (differentiable logit-margin proxy) | LOCAL_LOGIT_CONTROL_ONLY |
+| 7 | Sequence-level adapter (black-box REINFORCE reward) | NO_FROZEN_BACKBONE_WRITE_PATH |
+
+The progression matters. Each method addressed a hypothesis about *why* the previous one failed:
+
+- Methods 1-3 tested whether the failure was the *choice of static direction* (raw vs empirical vs RMS-calibrated). It was not — all static directions failed.
+- Method 4 tested whether a *task-local* direction exists. It did not (no better than random).
+- Method 5 tested whether a *learned* direction (classifier) helps. It did not.
+- Method 6 tested whether a *differentiable causal objective* (teacher-forced logit margin) finds a write-path. It found only local logit control, no free-generation transfer.
+- Method 7 tested whether a *black-box sequence-reward objective* finds a write-path, removing the teacher-forcing shortcut. It learned validation reward but did not transfer to heldout, and converged to the same direction as method 6.
+
+The hypothesis space for "frozen-backbone inference-time steering, but we just haven't found the right direction/objective yet" is now substantially exhausted.
+
+### Per-method supporting data (preserved in full)
+
+These numbers are retained so this document is self-contained and the closure can be defended without re-opening the underlying reports.
+
+**Method 1 — raw NoNorm (narrowed T1 follow-up, reasoning @ 64, layer 36):**
+```
+BG_LAYERHOOK_SIGNED_CAUSAL_VERDICT = UNSIGNED_EFFECT
+BG_SINGLE_LOOP_POSITION_VERDICT    = L1_BETTER
+BG_MULTILOOP_VERDICT               = MULTILOOP_STRONGER
+MULTILOOP_GAIN_OVER_BEST_SINGLE    = 0.0707
+BEST_SINGLE_LOOP_MODE              = single_loop_L1
+BEST_MULTILOOP_MODE                = multi_loop_decayed
+zero-alpha hook equivalence: pass; loop identity: current_ut; cache: disabled; CUDA/NaN errors: 0
+```
+Movement existed in BG-readable space; positive and negative did not reliably separate from random.
+
+**Methods 2-3 — empirical directions and RMS calibration.** RMS calibration directly addressed the objection that L2-normalized perturbations were microscopic. Effective-RMS comparison:
+```
+L2  alpha 0.01: effective RMS 0.000138
+L2  alpha 0.02: effective RMS 0.000276
+RMS alpha 0.005: effective RMS 0.004063
+RMS alpha 0.01:  effective RMS 0.008125
+RMS alpha 0.02:  effective RMS 0.016250
+```
+RMS scaling raised effective perturbation magnitude by ~60x at alpha 0.02 (0.000276 → 0.0163) and confirmed that meaningfully-sized perturbations are mechanically stable — but still produced no reliable signed steering. The "nudge was too small" objection is therefore closed: the failure persists at perturbation magnitudes two orders larger.
+
+Empirical-direction full sweep: 618 rows, 564 intervention forward passes, 0 CUDA errors, 0 NaN/Inf, 0 empty outputs, cache disabled throughout, loop identity current_ut for all rows. Best RMS signed-looking cell (RMS_NORMALIZED / EMPIRICAL_WHITENED_DIFF / single_loop_L1 / alpha 0.02): positive z +0.0249, negative z −0.4109, random z +0.0046 (random std 0.3849); signed yes, strong-signed false. Overall condition means: positive −0.2400, negative −0.2334, random −0.2425.
+
+Aggregate empirical-vs-raw: `EMPIRICAL_BEATS_RAW`, empirical gain over raw 0.167; `BG_EMPIRICAL_FINAL_LIFT_VERDICT = NEGATIVE_LIFT`.
+
+**Stability caveat on the empirical run.** The formal `BG_EMPIRICAL_STEERING_STABILITY_VERDICT = DESTABILIZING` was driven by a single outlier row, not broad instability:
+```
+row 233: EMPIRICAL_MEAN_DIFF / single_loop_L1 / alpha 0.01 / negative / ARC-Challenge/1
+  reason: parse failure + repetition_rate 0.383
+  CUDA: false, NaN/Inf: false, empty: false
+  effective RMS 0.010006, z-score change -0.9634
+```
+One destabilizing row in ~600 should be read as stable-with-an-isolated-outlier, not broad hook instability:
+```
+Formal analyzer verdict:          DESTABILIZING
+Practical stability interpretation: stable with one isolated output-quality outlier (1 row / ~600)
+```
+The DESTABILIZING label in the method table above is the formal analyzer verdict; the practical reality is stable.
+
+**Method 4 — local BG-score gradient.** `GRADIENT_NO_BETTER_THAN_RANDOM`. 18 rows, positive z −0.1287, negative z −0.1287, random z −0.1534, signed-causal signature false. Notably, the gradient direction had non-trivial alignment to raw NoNorm (cosine 0.30–0.45 across ARC-Challenge tasks: 0.3603, 0.3069, 0.4527) yet still did not beat random — even the *locally-optimal* BG-score-ascent direction is not a steering direction. This is what pushed subsequent objectives away from BG-score optimization toward output/logit and sequence-level targets.
+
+**Method 6 — teacher-forced causal adapter.** `LOCAL_LOGIT_CONTROL_ONLY`. LowRankDeltaAdapter(rank=32), 137,248 params. Best val margin lift +0.0032 (epoch 2, early stopped at epoch 5); teacher-forced heldout `ADAPTER_IMPROVES_LOGIT_MARGIN` with best margin lift +0.0104 (beating random +0.0072, empirical +0.0057, raw +0.0040). Free-gen `TEACHER_FORCED_ONLY`: baseline 0.500 → all interventions 0.625, but the single moved task (ARC-Challenge/11) responded identically to random — i.e. the free-gen eval was effectively a null measurement at n=8 (5/8 tasks invariant). Methodological checks: KL answer-position masked true; intervention applied before FINAL ANSWER suffix, not at the answer token. Adapter geometry: cos to raw NoNorm −0.0006, cos to empirical mean-diff −0.0043.
+
+**Method 7 — sequence-level adapter (final test).** Detailed in §4.
+
+## 3. The geometry finding (central mechanistic result)
+
+The single most important architectural result from the steering investigation is that the relevant directions are mutually near-orthogonal, and the one stable controllable direction is not a steering direction.
+
+### Readout ≠ empirical-success ≠ controllable-intervention
+
+```
+cos(raw NoNorm readout, empirical mean-diff)        = 0.101
+cos(raw NoNorm readout, empirical whitened-diff)    = 0.082
+cos(raw NoNorm readout, logistic success probe)     = 0.012
+cos(sequence adapter delta, raw NoNorm readout)     = 0.006
+cos(teacher-forced adapter delta, raw NoNorm)       ≈ 0.000 (orthogonal)
+cos(teacher-forced adapter delta, empirical mean)   ≈ 0.000 (orthogonal)
+```
+
+The readout direction (what BG reads to discriminate trajectory quality) is near-orthogonal to the empirical-success direction (what separates successful from failed trajectories) which is near-orthogonal to the controllable-intervention direction (what an adapter learns to push).
+
+### The controllable direction is stable across objectives but non-steering
+
+```
+cos(sequence-level adapter delta, teacher-forced adapter proxy) = 0.951
+```
+
+This is the convergent-evidence result. Two adapters trained against completely different objectives —
+- method 6: teacher-forced correct-answer logit margin (differentiable proxy),
+- method 7: black-box sequence-level generation reward (REINFORCE),
+
+converged to essentially the same direction (cosine 0.95). And that shared direction produces only local logit control, not free-generation transfer. The frozen backbone admits a stable, consistent intervention direction across objectives — but that direction is a local-logit-control direction, not an action-steering direction.
+
+### Interpretation
+
+This is a clean instance of the reading-vs-writing asymmetry known in interpretability: the direction along which a feature is linearly *readable* is generally not the direction along which *intervening* changes the feature in the model's own representation. Here the asymmetry is sharp and multi-way:
+- BG can read trajectory quality (readout direction).
+- There exists a direction that empirically separates success/failure (empirical direction).
+- There exists a stable direction an adapter can push for local logit control (controllable direction).
+- None of these three is the same vector, and none produces action steering.
+
+The frozen backbone's hidden states *encode* trajectory quality (readable) but are not *organized* so that any tested intervention converts that encoding into generation control.
+
+## 4. The final experiment (method 7) in detail
+
+The sequence-level adapter run was designed as the final, clean test, with confound-elimination built in.
+
+### Confounds eliminated
+
+- **Parser usable:** parse rate 1.000 on baseline generations.
+- **Reward had variance:** REWARD_SIGNAL_USABLE, 0.25 nonzero-variance rate (REINFORCE/ES had signal to optimize).
+- **Optimizer proven capable:** OPTIMIZER_CAN_LEARN_TRIVIAL_TARGET. On an artificial "always answer A" target, the full training harness moved reward 0.500 → 0.667 with 50 nonzero gradient updates and adapter param delta L2 = 12.3. The optimizer demonstrably works.
+- **GPU throughput feasible:** ~16s per uncached generation, overnight-feasible.
+
+### Training succeeded; transfer failed
+
+- Training: SEQUENCE_REWARD_IMPROVES. Validation reward 0.0875 → 0.4625 (+0.375 lift) over 175 updates, best at update 50.
+- Heldout: NO_ADAPTER_SPECIFIC_TRANSFER. On 12 heldout tasks × 4 samples = 48 samples per method:
+
+| Method | Heldout success |
+|---|---:|
+| no intervention | 0.438 |
+| random same-RMS | 0.458 |
+| raw NoNorm static | 0.375 |
+| teacher-forced adapter | 0.521 |
+| trained sequence adapter | 0.479 |
+
+The trained adapter beat no-intervention by +0.042 but lost to the prior teacher-forced adapter checkpoint (0.479 vs 0.521) and was classified WORSE_THAN_RANDOM on the adapter-specificity analysis (random/static moved 5 tasks; adapter-only moved 2).
+
+### Why the val-vs-heldout gap is itself diagnostic
+
+The +0.375 validation lift collapsing to no heldout transfer is the signature of overfitting val-set-specific behavior, not learning a generalizable write-path. With a proven-capable optimizer and adequate capacity (137K params), a generalizable inference-time write-path would be expected to leave at least some adapter-specific heldout signal. Instead, the adapter learned validation-set-specific behavior that did not generalize. This is consistent with "no generalizable frozen-backbone write-path to find."
+
+### Why the closure is clean
+
+Because the optimizer was proven capable on a trivial target (OPTIMIZER_CAN_LEARN_TRIVIAL_TARGET) AND the adapter learned validation reward (SEQUENCE_REWARD_IMPROVES) AND heldout still showed no adapter-specific transfer, the null result cannot be attributed to optimization failure. The stopping-rule disambiguation fires: NO_FROZEN_BACKBONE_WRITE_PATH with OPTIMIZER_CAN_LEARN licenses the architectural closure claim.
+
+## 5. The closure verdict and its scope
+
+```
+BG_SEQUENCE_LEVEL_ADAPTER_VERDICT       = NO_FROZEN_BACKBONE_WRITE_PATH
+FROZEN_BACKBONE_INFERENCE_STEERING_STATUS = CLOSED_UNDER_TESTED_METHODS
+STOPPING_RULE_APPLIES                   = true
+STOPPING_RULE_SCOPE                     = safe_alpha_leq_0_02_under_tested_optimizers
+RECOMMENDED_NEXT                        = consolidate_phase1_phase1_5_and_design_phase2_training_time_integration
+```
+
+### What is closed
+
+Frozen-backbone inference-time action steering using BG-readable information, via static directions, calibrated directions, local gradients, or learned adapters (differentiable-proxy or black-box-reward), at safe intervention magnitudes (alpha/effective-RMS ≤ 0.02).
+
+### What is NOT closed
+
+- Steerability at larger, destabilizing intervention magnitudes (deliberately not tested; a method requiring destabilizing perturbations would not be useful, but it is not ruled out).
+- Steerability after backbone or controller training (Phase 2).
+- Steerability with a future architecture that explicitly trains a write-path during pretraining.
+
+### Stopping-rule discipline
+
+This was pre-committed: if the final sequence-level test failed with the optimizer proven capable, stop searching for inference-time variants and move to Phase 2. The discipline exists to prevent indefinite search through inference-time method variants. Seven methods is sufficient evidence. The closure should be treated as settled and not re-litigated in future sessions unless a genuinely new mechanism (not a variant of a tested one) is proposed.
+
+## 6. Architectural status after closure
+
+### Phase 1 — validated, unchanged
+
+```
+BG readout                      (CLT: 95.2% HH-RLHF pairwise)
+BG candidate selection          (simulator, controller; replay-exact)
+BG trajectory prediction        (Stage 1: STRONG, 368 strong cells, up to 85% pairwise)
+```
+
+### Phase 1.5 — promising, unchanged
+
+```
+text-prefix branch allocation   (HELPS / PROMISING; deployable without hidden-state writes)
+BG-guided compute routing       (modest but directionally useful)
+```
+
+Text-prefix branch allocation expansion (40 cached non-code tasks):
+```
+BG top1 lift:                +0.04375
+BG top2 lift:                +0.02917
+pairwise branch-ranking acc: 0.5672
+oracle gap:                  0.025
+domain top1 lift: GSM8K +0.100, science +0.033, reasoning +0.017
+```
+Modest but consistently directionally useful, and deployable without any hidden-state writes. This is the steering-adjacent capability that DID work, and it should be preserved as a Phase 1.5 deliverable.
+
+### Inference-time steering — closed
+
+```
+static directions               UNSIGNED_ONLY
+calibrated directions           UNSIGNED_ONLY
+local gradients                 NO_BETTER_THAN_RANDOM
+classifier adapter              NO_BETTER_THAN_STATIC
+differentiable-proxy adapter    LOCAL_LOGIT_CONTROL_ONLY
+black-box-reward adapter        NO_FROZEN_BACKBONE_WRITE_PATH
+```
+
+### Mechanical write surface — alive (this is why Phase 2 is plausible)
+
+```
+layer-hook intervention         mechanically valid, zero-alpha equivalent, stable
+perturbation propagation        PROPAGATES_TO_LATER_STATES, SURVIVES_32_TOKENS
+logit effect                    LOGITS_SHIFT_DIRECTIONALLY
+```
+
+Propagation/decay specifics (280 rows, directions EMPIRICAL_MEAN_DIFF + RAW_NONORM_READOUT, alpha 0.01):
+```
+max hidden delta RMS:   0.06056
+mean cosine to direction: 0.07594
+max logit KL:           0.00209
+```
+
+The write surface is not inert. Perturbations do propagate and do affect logits. The failure is not "writes do nothing" — it is "no tested direction/objective converts the readable signal into reliable control." This distinction is what keeps Phase 2 (training a write-path in) plausible: there is a live surface to train against.
+
+## 7. Phase 2 framing (corrected and sharpened)
+
+### Why v8.1 §7 is insufficient
+
+v8.1 §7 framed Phase 2 as "preserve readable directions during continued pretraining." The steering investigation establishes that this is necessary but not sufficient. Readable ≠ steerable. Preserving the readout direction during training does not make it a control direction — they are near-orthogonal and the orthogonality is the problem.
+
+### What Phase 2 must actually do
+
+Phase 2 must **actively align readout geometry with production/control geometry**, or **train a dedicated write-path into the backbone**. Two non-exclusive routes:
+
+**Route A — Backbone regularization for geometry alignment.** Continued pretraining with an objective that makes the BG-readable direction *become* a causal control direction. The training signal must reward "intervention along the BG-readable axis changes generation in the BG-predicted way," not merely "the BG-readable axis remains readable." This is a more demanding objective than v8.1's "preserve readouts." Expensive (cloud A100/H100, continued pretraining on 20-50B tokens per the original v4 Phase 2 sketch).
+
+**Route B — Trained write-path module integrated during backbone training.** Rather than aligning the whole backbone's geometry, co-train a write-path module *with* the backbone (not frozen, as in the failed inference-time adapters) so the backbone learns to be receptive to the module's interventions. The inference-time adapter experiments failed because the backbone was frozen and not trained to respond to the adapter. Co-training removes that constraint.
+
+The key distinction from the closed inference-time work: in Phase 2, the backbone is NOT frozen. The inference-time investigation established that a frozen backbone has no write-path; Phase 2 tests whether training installs one.
+
+### BG taps must remain frozen evaluation instruments during Phase 2
+
+During Phase 2, the BG readout heads must remain frozen and be used as measurement and preservation instruments, not as trainable targets. Phase 2 training may alter the backbone (Route A) or write-path modules (Route B), but the readout heads should be used to monitor whether BG-readable structure is preserved or made more causally useful — not updated to chase the moving representation.
+
+This matters because otherwise Phase 2 could "succeed" by moving the readout target rather than making the model steerable. If the taps are co-trained with the backbone, the readout direction drifts toward whatever the backbone happens to produce, and "steerability" becomes circular: the model would look steerable because the measuring instrument moved to agree with it. Freezing the taps as fixed instruments keeps the steerability claim honest — a Phase 2 success must be the backbone becoming responsive to a *fixed* BG-readable axis, not the axis relocating to a controllable region.
+
+### Multi-loop and loop-position considerations carried forward
+
+From the Stage 2 secondary findings (which held even under the negative headline):
+- L1 intervention beat L4 among single-loop schedules (early intervention has more loops to propagate through).
+- multi_loop_decayed beat best single-loop (sustained loop-wide modulation shifts refinement more than one-shot).
+
+These were directionally correct but insufficient to reach signed-causal threshold on the frozen backbone. For Phase 2, they suggest the training objective should make the loops receptive to multi-loop steering (the loop-wide modulation hypothesis), and that the backbone should be trained to integrate L1-injected steering through its refinement iterations rather than suppress it. A Phase 2 backbone trained to amplify multi-loop BG-direction modulation (rather than the frozen backbone's tendency to refine perturbations away) is the architecturally-motivated target.
+
+### Head-config note for trajectory-level Phase 2
+
+Stage 1 found that the trajectory-prediction peak config (36_mean / AntisymLinear) differs from the v8.1-locked finished-candidate head (36_L4 / NoNorm). If Phase 2 deploys BG at the trajectory level, the trajectory-level config may be the relevant one. The v8.1 locked architecture remains correct for finished-candidate selection; trajectory-level operation is a separate config question.
+
+### Phase 2 success criterion
+
+A Phase 2 success requires both:
+1. frozen BG taps retain readout/ranking performance (no degradation of the validated Phase 1 capability), and
+2. interventions using BG/controller signals produce heldout behavioral improvement not matched by random/static controls.
+
+Both conditions are necessary. Condition 1 alone is just Phase 1 preserved. Condition 2 without condition 1 is the circular false-success (steerable only because the taps drifted). Only both together demonstrate that a fixed BG-readable axis has been made causally useful.
+
+## 8. The honest project narrative
+
+Where the project stands:
+
+- BG reads trajectory quality well, across domains, at finished-candidate and partial-trajectory levels. **Validated.**
+- BG selects among candidates well (best-of-N). **Validated and deployable.**
+- BG-guided branch allocation is modestly useful and deployable without hidden-state writes. **Promising.**
+- The frozen backbone cannot be steered at inference time by any tested method. **Established.**
+- Making BG an action-steering handle — the basal-ganglia-equivalent capability the brain-ontology framing requires — needs training-time integration. **The path forward.**
+
+The brain-ontology thesis is partially supported and partially open. The "BG taps read cortical state" half is strongly validated. The "BG modulates cortical computation" half is not achievable on the frozen backbone and is the explicit target of Phase 2. The honest current claim is: the project has built a strong evaluator and trajectory-quality readout for Ouro, and has rigorously established that converting that readout into action steering requires training the backbone, not just reading it.
+
+## 9. Paper implications
+
+The steering investigation is a publishable systematic negative/mechanistic result, distinct from and complementary to the CLT readout/selection paper.
+
+Proposed framing: BG-style linear readouts strongly predict trajectory quality in a looped transformer (85% pairwise across a broad operating envelope), but the readout directions are near-orthogonal to any direction that causally steers generation. Seven intervention methods were tested, spanning static directions, calibrated directions, local gradients, and learned adapters trained with both differentiable-proxy and black-box-reward objectives. None produced reliable inference-time action steering at safe magnitudes. Two independently-trained adapters converged to the same non-steering control direction (cosine 0.95). Reading trajectory quality and writing trajectory control are separate geometries in this architecture.
+
+Why it's worth publishing: the reading-vs-writing asymmetry is underreported precisely because clean negative results rarely get written up. The seven-method systematic sweep plus the cross-objective geometry convergence make this a rigorous instance. CLT covers what BG can read; this covers what it cannot write on a frozen backbone.
+
+## 10. What is locked vs open
+
+### Locked (settled, do not re-litigate)
+
+- Frozen-backbone inference-time steering is closed under tested methods at alpha ≤ 0.02.
+- Readout, empirical-success, and controllable-intervention directions are mutually near-orthogonal.
+- The controllable-intervention direction is stable across objectives (cosine 0.95) but non-steering.
+- v8.1 Phase 1 architecture, routing, and CLT result are unchanged by all of this.
+- The mechanical write surface is alive (perturbations propagate and affect logits).
+
+### Open (Phase 2 and beyond)
+
+- Whether backbone regularization (Route A) can align readout/production geometry.
+- Whether a co-trained write-path module (Route B) installs a control handle.
+- Whether Phase 2 can install steerability while preserving BG readout performance — the central danger is making the model steerable but destroying the taps (or, worse, appearing steerable only because the taps drifted to agree with the trained backbone). Readout preservation under fixed taps is a required success criterion, not an afterthought.
+- Whether multi-loop steering training makes the loops receptive to BG modulation.
+- Whether steerability exists at larger destabilizing magnitudes (deliberately untested).
+- Trajectory-level vs finished-candidate head configs for Phase 2 deployment.
+- Latent loop-boundary fork (blocked by resumption implementation, not a negative result; revisit if clean cache/state forking is built).
+
+## 11. Recommended next work
+
+1. **Consolidate Phase 1 / Phase 1.5 as the validated deliverable.** BG readout, selection, trajectory prediction, and branch allocation are the project's validated capabilities. These can anchor the CLT paper and a deployment story independent of steering.
+
+2. **Design Phase 2 training-time integration.** Choose Route A (backbone regularization for geometry alignment) or Route B (co-trained write-path module) or a staged combination. The design must target geometry alignment / write-path installation, not merely readout preservation. Backbone is unfrozen in Phase 2 — this is the key difference from the closed inference-time work.
+
+3. **Optionally, write the steering negative-result paper** using §3 and §9 as the core. The cross-objective geometry convergence is the central figure.
+
+`RECOMMENDED_NEXT = consolidate_phase1_phase1_5_and_design_phase2_training_time_integration`
+
+## 12. File index
+
+**This consolidation:** `docs/evaluator/steering-consolidation.md`
+**Supersedes:** `steering-findings.md` (standalone, pre-final-experiment)
+**Companion:** `phase1-progress-addendum.md`
+**Parent spec:** `phase1-routing-policy-locked.md`
+
+**Experiment reports (steering arc):**
+- Steering suite: `artifacts/reports/probes/bg_steering_suite_2026-05-18/`
+- Stage 1 trajectory prediction: `artifacts/reports/probes/bg_trajectory_prediction_2026-05-18/`
+- Stage 2 layer-hook + followup: `artifacts/reports/probes/bg_stage2_steering_2026-05-18/`, `artifacts/reports/probes/bg_stage2_layerhook_followup_2026-05-18/`
+- Empirical direction + RMS + adapter probes: `artifacts/reports/probes/bg_empirical_steering_direction_2026-05-18/`, `artifacts/reports/probes/bg_preconsolidation_control_probes_2026-05-18/`
+- Teacher-forced causal adapter: `artifacts/reports/probes/bg_causal_intervention_adapter_2026-05-18/`
+- Sequence-level adapter (final): `artifacts/reports/probes/bg_sequence_level_adapter_2026-05-18/`
+
+**Code:**
+- `src/evaluator/bg_steering_hook.py`
+- `src/evaluator/bg_causal_adapter.py`
+- `src/evaluator/bg_sequence_adapter.py`
+- `src/evaluator/bg_controller.py`, `src/evaluator/bg_transformer_features.py`
+
+**Docs:**
+- `docs/evaluator/trajectory-prediction-sweep.md`
+- `docs/evaluator/causal-intervention-adapter.md`
+- `docs/evaluator/sequence-level-adapter.md`
+- `docs/evaluator/current-state.md`, `docs/evaluator/domain-transfer-ledger.md`
+
+## 13. v9 synthesis trigger
+
+This consolidation should be folded into a v9 synthesis when Phase 2 design is chosen and the first Phase 2 experiment is specified. Until then, v8.1 remains the canonical Phase 1 spec, the v8.1 addendum tracks progress since v8.1, and this document locks the inference-time steering closure. v9 should formally incorporate: Phase 1.5 (branch allocation) as a validated tier, the inference-time-steering closure, the geometry findings, and the corrected Phase 2 framing (geometry alignment / write-path installation, backbone unfrozen).
+
+## Same-prefix hidden-state branch generation suite (2026-05-18)
+
+Report: `docs/evaluator/hidden-state-branch-generation.md`
+
+Artifacts: `artifacts/reports/probes/bg_hidden_state_branch_generation_2026-05-18/`
+
+Verdicts:
+
+- `BG_HIDDEN_BRANCH_FEASIBILITY_VERDICT = HOOK_HIDDEN_ORIGIN_READY`
+- `LIVE_BRANCH_METHOD = hook_intervention_per_branch`
+- `BG_HIDDEN_BRANCH_GENERATION_VERDICT = HOOK_HIDDEN_ORIGIN_BRANCHES_GENERATED`
+- `BG_LATENT_BRANCH_PERSISTENCE_VERDICT = LATENT_BRANCHES_PERSIST_TO_47`
+- `BG_HIDDEN_BRANCH_OUTCOME_DATASET_VERDICT = READY`
+- `BG_HIDDEN_ORIGIN_BRANCH_SELECTION_VERDICT = NO_HIDDEN_BRANCH_SELECTION_SIGNAL`
+- `BG_HIDDEN_BRANCH_L30_L42_GATE_VERDICT = NEEDS_STRONGER_BRANCH_GENERATOR`
+- `BG_HIDDEN_BRANCH_ADAPTIVE_THRESHOLD_VERDICT = TOPK_SUFFICIENT`
+- `PHASE2_HIDDEN_BRANCH_READINESS = NEEDS_BETTER_BRANCH_EVALUATOR`
+
+Interpretation:
+
+This suite does not reopen the frozen-backbone action-steering closure. It tests branch generation and selection evidence only. Same-prefix hook-hidden-origin branches can persist geometrically and sometimes produce different outcomes, but frozen BG taps did not select good hidden-origin branches better than random. True fork/carry still needs branch-aware Ouro cache/state handling.
+## Hidden-origin branch taps (2026-05-18)
+
+- PHASE2_HIDDEN_BRANCH_EVALUATOR_STATUS = `DATA_LIMITED`
+- tap_eval_verdict = `INSUFFICIENT`
+- tap_training_verdict = `READY`
+- layer_config_verdict = `INSUFFICIENT`
+- geometry_verdict = `ALIGNS_WITH_OLD_TAPS`
+- report: `artifacts/reports/probes/bg_hidden_origin_taps_2026-05-18/summary.md`
+
+Generate more hidden-origin branch outcome groups.
+
+## Hidden-origin branch diversity v2 and tap reevaluation (2026-05-18)
+
+- PHASE2_HIDDEN_BRANCH_EVALUATOR_STATUS_V2 = `WEAK`
+- generation_verdict = `READY`
+- dataset_verdict = `SMALL_BUT_USABLE`
+- training_verdict = `READY`
+- eval_verdict = `WEAK_SELECTOR`
+- layer_config_verdict = `CONCAT_REQUIRED`
+- geometry_verdict = `OLD_GEOMETRY_CONFIRMED`
+- report: `artifacts/reports/probes/bg_hidden_origin_diversity_v2_2026-05-18/summary.md`
+
+Either expand once more or proceed only to a small selection-only prototype with the caveat locked in.
+
+## Hidden-origin branch diversity v3 and selector reevaluation (2026-05-18)
+
+- PHASE2_HIDDEN_BRANCH_EVALUATOR_STATUS_V3 = `STILL_DATA_LIMITED`
+- HIDDEN_ORIGIN_SELECTOR_BEST_AVAILABLE = `v3_hidden_origin_tap`
+- diversity_ablation_verdict = `DIVERSITY_IMPROVED`
+- driver_verdict = `NON_RANDOM_DIRECTIONS_HELP`
+- dataset_verdict = `STILL_DATA_LIMITED`
+- training_verdict = `WEAK`
+- eval_verdict = `DATA_LIMITED`
+- geometry_verdict = `OLD_GEOMETRY_CONFIRMED`
+- report: `artifacts/reports/probes/bg_hidden_origin_diversity_v3_2026-05-18/summary.md`
+
+Continue targeted data expansion using the v3 recipe before making selector-readiness claims.
+
