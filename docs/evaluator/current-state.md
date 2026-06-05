@@ -128,10 +128,6 @@ Current verdicts:
 - `HIDDEN_ORIGIN_BRANCH_GENERATOR_STATUS_V1 = WEAK_BUT_USABLE`
 - `UNIVERSAL_BRANCH_CONTENT_TAP_STATUS = FUSION_NEEDED`
 
-Recommended next from the latest summary:
-
-- `RECOMMENDED_NEXT = consolidate_phase1_phase1_5_and_design_phase2_training_time_integration`
-
 Engineering interpretation:
 
 - Keep an HH-trained general head for HH/preference-like domains.

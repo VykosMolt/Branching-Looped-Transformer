@@ -11,4 +11,5 @@
   `artifacts/checkpoints/evaluator/pairwise_epoch2.pt`.
 
 Domain-transfer experiments, layer taps, branch-selection probes, and post-RLTT
-diagnostic bundles are owned by `utilities/evaluator/`.
+diagnostic bundles live under `../probes/`; consolidated notes live under
+`../docs/evaluator/`.
