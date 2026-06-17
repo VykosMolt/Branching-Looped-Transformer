@@ -50,6 +50,7 @@ The older 2026-05-18 raw archive is now under:
 - `branch-generation-and-survival.md` — hidden-origin, fixed-composite, and architecture-looped survival.
 - `terminal-selection-and-arbiters.md` — final-arbiter and terminal-confidence work.
 - `kv-cache-branch-carry.md` — generation-time KV/cache branch-carry (v1 ladder) + compute-saving suffix-recompute splice (v2).
+- `s1-branch-carry-reference-loop.md` — S1: full inject->carry->prune->loop-back->terminal reference loop (5-gate validation), and the frozen-model capability result (reachability-neutral / locally closed; two walls -> training is the next lever).
 
 **Historical consolidations**
 

@@ -5,9 +5,13 @@ signals in Princeton Ouro-RLTT loop states.
 
 > **Current status:** Phase 2a branch survival is ready under DualAnchor with
 > terminal survivor-set handoff. Autoregressive KV/cache branch-carry and
-> partial-cache splice are validated in test harnesses. Steering/model training
-> has not started. Broad science is diagnostic; the active core domains are
-> coding, reasoning, math, logic, and alignment/preference.
+> partial-cache splice are validated in test harnesses. The full
+> inject -> carry -> prune -> loop-back -> terminal branch loop has now been
+> assembled and validated as a measurement harness; on the **frozen** model it is
+> correctness-preserving but reachability-neutral (locally closed under tested
+> perturbation regimes), which scopes training as the next lever. Steering/model
+> training has not started. Broad science is diagnostic; the active core domains
+> are coding, reasoning, math, logic, and alignment/preference.
 
 Branching Looped Transformer is a research repository for evaluator and
 branch-selection work on **Princeton Ouro-RLTT**, a looped transformer whose
@@ -359,6 +363,59 @@ PARTIAL_CACHE_SPLICE_V2_STATUS = PARTIAL_SPLICE_COMPUTE_SAVING_VALID
 This enables a test-harness claim of amortized compute-saving branch-carry for
 multiple branches sharing a prompt. It does not imply production readiness.
 
+### S1 branch-carry reference loop (frozen model)
+
+The full inject -> carry -> prune -> loop-back -> terminal loop was assembled as a
+correctness reference and validated with a five-gate ladder:
+
+```text
+gate 1  alpha=0 re-derive plumbing                    bit-exact (logit maxabs 0.0)
+gate 2  alpha>0 multi-locus chaining                  bit-exact
+          (2a splice fork == hook replay;
+           2b re-derive-through-ancestor == all-hooks-live)
+gate 3  live DualAnchor + CoreContent tap prune        pass (gibberish bottomed)
+gate 4  no-original-root-reuse (lineage invariant)     held across 12 loci x 4 tasks
+gate 5  lineage/splice-stack schedule sanity           held across 12 loci x 4 tasks
+```
+
+The per-survivor branch-specific re-derivation uses the single fork primitive
+`LayerOutputPerturbHook(token_range)` at the canonical last-token suffix
+(causal-suffix-safe), with each lineage perturbation reproduced exactly on replay.
+The 12-locus reference loop runs end to end with **zero correctness loss**
+(`oracle_over_survivors == base_acc`).
+
+Frozen-model capability result (single-locus fork-parameter screen across
+alpha {.02,.05,.10} x token_range {last, last-8, second-half} x decode
+{greedy, sample}, loop-1 loci + a loop-4 sentinel, plus a K-matched plain-sampling
+baseline):
+
+```text
+greedy / deterministic fork:   0.0 new-correct on base-missed tasks (every cell)
+fork + sampling:               0.611 oracle
+K-matched plain sampling:      0.75  oracle   (>= fork+sampling)
+```
+
+Two cleanly separated walls (mapping to two distinct future training jobs):
+
+```text
+Wall A  generation / reachability:
+  deterministic frozen injection/carry creates no new correct branches;
+  sampling creates some; fork+sampling does NOT beat K-matched plain sampling.
+
+Wall B  selection / conversion:
+  even when correct candidates exist, the current content tap does not reliably
+  rank them first for GENERATED branch candidates (not a global tap failure).
+```
+
+Scope: this is a **local** verdict under tested perturbation regimes, not a claim
+that no frozen branch regime can ever work. The positive deliverable is the
+validated measurement harness itself; it converts the branch-carry idea from an
+architectural sketch into an instrument ready to test whether training makes
+branches outcome-distinct and selector-readable. Probes:
+`probes/mpn_s1_4_reference_loop.py`, `probes/mpn_s1_5_divergence_ablation.py`,
+`probes/mpn_s1_4b_kmatched_sampling.py`, and the gate probes; full write-up in
+`docs/evaluator/s1-branch-carry-reference-loop.md`.
+
 ## Current Project State
 
 ```text
@@ -379,6 +436,13 @@ Science:
 
 Cache substrate:
   autoregressive branch-carry and compute-saving splice validated in test harnesses
+
+Branch loop:
+  full inject->carry->prune->loop-back->terminal reference loop validated (5 gates);
+  frozen-model capability is reachability-neutral, locally closed under tested regimes
+
+Next lever:
+  training-time integration (outcome-distinct branches + correctness-readable selector)
 
 Steering:
   not started
@@ -412,6 +476,10 @@ Representative layout:
 │   ├── probe_loop_geometry_hh.py
 │   ├── probe_bipartite_layers_24_36.py
 │   ├── probe_cross_backbone_layers.py
+│   ├── mpn_s1_4_reference_loop.py        # S1 branch-carry reference loop
+│   ├── mpn_s1_5_divergence_ablation.py   # S1.4a fork-parameter screen
+│   ├── mpn_s1_4b_kmatched_sampling.py    # S1.4b K-matched sampling baseline
+│   ├── mpn_s1_4_*.py                     # gate ladder (re-derive / chaining / prune)
 │   └── README.md
 └── docs/evaluator/
     ├── README.md
@@ -422,6 +490,7 @@ Representative layout:
     ├── branch-generation-and-survival.md
     ├── terminal-selection-and-arbiters.md
     ├── kv-cache-branch-carry.md
+    ├── s1-branch-carry-reference-loop.md
     ├── science-reasoning-repair.md
     ├── bg_core_domain_tap_audit_dualanchor_readiness_v1.md
     ├── flip-test-interpretation.md
@@ -437,6 +506,7 @@ Representative layout:
 | `docs/evaluator/dualanchor-architecture-baseline.md` | Active branch/prune baseline |
 | `docs/evaluator/bg_core_domain_tap_audit_dualanchor_readiness_v1.md` | Core-domain readiness audit |
 | `docs/evaluator/kv-cache-branch-carry.md` | Autoregressive cache and splice validation |
+| `docs/evaluator/s1-branch-carry-reference-loop.md` | S1 full branch loop: gates, reference loop, frozen-model fork screen + sampling baseline |
 | `docs/evaluator/flip-test-interpretation.md` | HH evaluator flip-test interpretation |
 | `docs/evaluator/science-reasoning-repair.md` | Science/reasoning domain decision |
 | `docs/evaluator/terminal-selection-and-arbiters.md` | Terminal handoff and final-arbiter history |
@@ -494,6 +564,9 @@ scripts are archived research probes and expect local checkpoints or reports.
 | `probes/probe_loop_geometry_hh.py` | Loop geometry diagnostic |
 | `probes/probe_bipartite_layers_24_36.py` | Layer 24/36/47 loop geometry probe |
 | `probes/probe_cross_backbone_layers.py` | Cross-backbone layer comparison probe |
+| `probes/mpn_s1_4_reference_loop.py` | S1 full inject->carry->prune->loop-back->terminal reference loop |
+| `probes/mpn_s1_5_divergence_ablation.py` | S1.4a single-locus fork-parameter screen |
+| `probes/mpn_s1_4b_kmatched_sampling.py` | S1.4b K-matched plain-sampling baseline |
 
 ## Glossary
 
