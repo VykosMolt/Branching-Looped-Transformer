@@ -1,0 +1,146 @@
+[
+ {
+  "task_id": "coding_00715d44da",
+  "domain": "coding",
+  "n": 10,
+  "n_pos": 0,
+  "auroc": NaN,
+  "pairwise": NaN,
+  "sel_oracle": NaN
+ },
+ {
+  "task_id": "coding_007b833f21",
+  "domain": "coding",
+  "n": 10,
+  "n_pos": 0,
+  "auroc": NaN,
+  "pairwise": NaN,
+  "sel_oracle": NaN
+ },
+ {
+  "task_id": "coding_06bd4a1597",
+  "domain": "coding",
+  "n": 10,
+  "n_pos": 0,
+  "auroc": NaN,
+  "pairwise": NaN,
+  "sel_oracle": NaN
+ },
+ {
+  "task_id": "coding_08e8397e8f",
+  "domain": "coding",
+  "n": 10,
+  "n_pos": 0,
+  "auroc": NaN,
+  "pairwise": NaN,
+  "sel_oracle": NaN
+ },
+ {
+  "task_id": "logic_00013d9d03",
+  "domain": "logic",
+  "n": 10,
+  "n_pos": 2,
+  "auroc": 0.9375,
+  "pairwise": 0.9375,
+  "sel_oracle": 1.0
+ },
+ {
+  "task_id": "logic_000f384418",
+  "domain": "logic",
+  "n": 10,
+  "n_pos": 0,
+  "auroc": NaN,
+  "pairwise": NaN,
+  "sel_oracle": NaN
+ },
+ {
+  "task_id": "logic_00158d8d9c",
+  "domain": "logic",
+  "n": 10,
+  "n_pos": 8,
+  "auroc": 0.875,
+  "pairwise": 0.875,
+  "sel_oracle": 1.0
+ },
+ {
+  "task_id": "logic_0016af0d6f",
+  "domain": "logic",
+  "n": 10,
+  "n_pos": 0,
+  "auroc": NaN,
+  "pairwise": NaN,
+  "sel_oracle": NaN
+ },
+ {
+  "task_id": "math_0313a1abc4",
+  "domain": "math",
+  "n": 10,
+  "n_pos": 7,
+  "auroc": 0.047619047619047616,
+  "pairwise": 0.047619047619047616,
+  "sel_oracle": 0.0
+ },
+ {
+  "task_id": "math_0490949b5c",
+  "domain": "math",
+  "n": 10,
+  "n_pos": 0,
+  "auroc": NaN,
+  "pairwise": NaN,
+  "sel_oracle": NaN
+ },
+ {
+  "task_id": "math_06d0ca6d3a",
+  "domain": "math",
+  "n": 10,
+  "n_pos": 0,
+  "auroc": NaN,
+  "pairwise": NaN,
+  "sel_oracle": NaN
+ },
+ {
+  "task_id": "math_075309bae2",
+  "domain": "math",
+  "n": 10,
+  "n_pos": 1,
+  "auroc": 1.0,
+  "pairwise": 1.0,
+  "sel_oracle": 1.0
+ },
+ {
+  "task_id": "reasoning_00bf397683",
+  "domain": "reasoning",
+  "n": 10,
+  "n_pos": 3,
+  "auroc": 0.5238095238095238,
+  "pairwise": 0.5238095238095238,
+  "sel_oracle": 0.0
+ },
+ {
+  "task_id": "reasoning_00ddfcee6a",
+  "domain": "reasoning",
+  "n": 10,
+  "n_pos": 2,
+  "auroc": 0.5,
+  "pairwise": 0.5,
+  "sel_oracle": 0.0
+ },
+ {
+  "task_id": "reasoning_012f9d1412",
+  "domain": "reasoning",
+  "n": 10,
+  "n_pos": 4,
+  "auroc": 0.3333333333333333,
+  "pairwise": 0.3333333333333333,
+  "sel_oracle": 0.0
+ },
+ {
+  "task_id": "reasoning_025b686a87",
+  "domain": "reasoning",
+  "n": 10,
+  "n_pos": 2,
+  "auroc": 0.375,
+  "pairwise": 0.375,
+  "sel_oracle": 0.0
+ }
+]

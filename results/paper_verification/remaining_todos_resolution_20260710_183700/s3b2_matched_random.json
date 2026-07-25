@@ -1,0 +1,82 @@
+{
+  "source": "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_loop_pools.pt",
+  "n_all_groups": 16,
+  "n_all_candidates": 160,
+  "n_oracle_present_groups": 8,
+  "observed_selector_hits": 5,
+  "observed_selector_rate": 0.625,
+  "matched_uniform_random_expectation": 0.3625,
+  "expected_random_hits": 2.9,
+  "exact_null_probability_at_least_observed": 0.08690239999999999,
+  "exact_null_probability_exactly_observed": 0.07166304,
+  "poisson_binomial_pmf": [
+    0.011612160000000002,
+    0.09626112,
+    0.26967168,
+    0.32904544,
+    0.2065072,
+    0.07166304,
+    0.01381408,
+    0.0013715200000000002,
+    5.376000000000001e-05
+  ],
+  "interpretation": "Observed 5/8 exceeds the native matched-random expectation 2.9/8, but the exact one-sided heterogeneous Bernoulli p-value is 0.0869.",
+  "groups": [
+    {
+      "task_id": "math_0313a1abc4",
+      "domain": "math",
+      "n_candidates": 10,
+      "n_positive": 7,
+      "uniform_random_success_probability": 0.7
+    },
+    {
+      "task_id": "math_075309bae2",
+      "domain": "math",
+      "n_candidates": 10,
+      "n_positive": 1,
+      "uniform_random_success_probability": 0.1
+    },
+    {
+      "task_id": "reasoning_00bf397683",
+      "domain": "reasoning",
+      "n_candidates": 10,
+      "n_positive": 3,
+      "uniform_random_success_probability": 0.3
+    },
+    {
+      "task_id": "reasoning_00ddfcee6a",
+      "domain": "reasoning",
+      "n_candidates": 10,
+      "n_positive": 2,
+      "uniform_random_success_probability": 0.2
+    },
+    {
+      "task_id": "reasoning_012f9d1412",
+      "domain": "reasoning",
+      "n_candidates": 10,
+      "n_positive": 4,
+      "uniform_random_success_probability": 0.4
+    },
+    {
+      "task_id": "reasoning_025b686a87",
+      "domain": "reasoning",
+      "n_candidates": 10,
+      "n_positive": 2,
+      "uniform_random_success_probability": 0.2
+    },
+    {
+      "task_id": "logic_00158d8d9c",
+      "domain": "logic",
+      "n_candidates": 10,
+      "n_positive": 8,
+      "uniform_random_success_probability": 0.8
+    },
+    {
+      "task_id": "logic_00013d9d03",
+      "domain": "logic",
+      "n_candidates": 10,
+      "n_positive": 2,
+      "uniform_random_success_probability": 0.2
+    }
+  ]
+}

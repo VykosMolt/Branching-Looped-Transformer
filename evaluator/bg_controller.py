@@ -17,7 +17,7 @@ import torch
 import torch.nn as nn
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_HEAD_REGISTRY_PATH = PROJECT_ROOT / "artifacts/reports/probes/bg_head_registry_2026-05-17.pt"
 DEFAULT_MIXED_HEADS_PATH = PROJECT_ROOT / "artifacts/reports/probes/mixed_domain_tiny_heads_2026-05-17.pt"
 DEFAULT_CONFIG_PATH = PROJECT_ROOT / "artifacts/reports/probes/bg_policy_sim_eval_bundle_2026-05-17.pt"

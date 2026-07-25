@@ -1,0 +1,87 @@
+{
+  "seed": 20260724,
+  "n_tasks": 170,
+  "n_candidates": 680,
+  "base_rate": 0.6676470588235294,
+  "n_malformed": 170,
+  "malformed_rate": 0.25,
+  "n_hit_max_tokens": 212,
+  "hit_max_rate": 0.31176470588235294,
+  "depth_histogram": {
+    "3": 192,
+    "2": 460,
+    "4": 28
+  },
+  "task_split_counts": {
+    "train": 80,
+    "heldout": 59,
+    "val": 31
+  },
+  "n_scorable_candidates": 510,
+  "scorable_rate": 0.75,
+  "scorable_base_rate": 0.8901960849761963,
+  "n_candidates_trainval": 339,
+  "n_candidates_heldout": 171,
+  "malformed_handling": "excluded from the primary shortcut/hidden/combined AUROC label set (no valid verifier label); retained in raw records and in the malformed-rate / hit-max-rate diagnostics above",
+  "hyperparams": {
+    "hidden": {
+      "auroc_cv": 0.5913280830499373,
+      "k_pca": 24,
+      "l2": 4.0
+    },
+    "shortcut": {
+      "auroc_cv": 0.6108376588509039,
+      "k_pca": 16,
+      "l2": 2.0
+    },
+    "combined": {
+      "auroc_cv": 0.5915070699838911,
+      "k_pca": 24,
+      "l2": 2.0
+    }
+  },
+  "heldout": {
+    "n": 171,
+    "n_tasks": 56,
+    "base_rate": 0.8888888955116272,
+    "auroc_shortcut_only": 0.5851800554016621,
+    "auroc_hidden_only": 0.7261080332409973,
+    "auroc_hidden_plus_shortcuts": 0.7261080332409973,
+    "incremental_auroc_combined_minus_shortcut": 0.1409279778393352,
+    "headroom_normalized_increment": 0.33973288814691155,
+    "acc_at_half_combined": 0.8830409646034241
+  },
+  "paired_task_clustered_bootstrap_combined_minus_shortcut": {
+    "n_rounds_used": 2000,
+    "mean_delta": 0.1395318322281882,
+    "ci95": [
+      0.004388714733542298,
+      0.2899408284023669
+    ],
+    "excludes_zero": true
+  },
+  "controls": {
+    "zero_task_crossing": true,
+    "n_crossing_tasks": 0,
+    "answer_region_exclusion_violations": 0,
+    "gold_value_excluded_by_construction": true,
+    "shuffled_label_auroc_combined": 0.5079639889196675,
+    "task_id_permutation_control": "train/val/heldout assignment is a pure function of sha256(task_uid); permuting task_uids does not change per-record split membership by construction",
+    "shortcut_only_auroc": 0.5851800554016621,
+    "max_single_task_influence_on_combined_auroc": 0.028925523805982567,
+    "duplicate_candidate_count": 0,
+    "fixed_heldout_split_deterministic": true,
+    "increment_after_dropping_high_malformed_share_tasks": {
+      "threshold": 0.75,
+      "n_tasks_dropped": 3,
+      "n_candidates_remaining": 168,
+      "auroc_combined": 0.7301306958671847,
+      "auroc_shortcut": 0.5888378664782762,
+      "incremental": 0.14129282938890853,
+      "survives": true
+    },
+    "malformed_vs_clean_hidden_auroc": 0.7125506072874493,
+    "malformed_vs_clean_note": "hidden-state AUROC for predicting malformed(1)/clean(0), a DIFFERENT label than correctness; reported so a reader can check the correctness increment above is not actually just this signal in disguise"
+  },
+  "verdict": "SECOND_DOMAIN_PREANSWER_REPLICATION"
+}

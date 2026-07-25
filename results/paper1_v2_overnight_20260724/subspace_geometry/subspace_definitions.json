@@ -1,0 +1,77 @@
+{
+  "readable_subspace": "bootstrap ensemble (task-level resample, train split, N=40/locus) of standardize->PCA(lowrank)->L2-logistic direction fits, mapped to original feature space, normalized, stacked, SVD -> top-r right singular vectors",
+  "outcome_subspace": "bootstrap ensemble (N=100/locus) of standardized between-class (correct vs incorrect) mean-difference directions, same stack-then-SVD construction",
+  "writable_subspace": "SVD of centered observed injection/perturbation deltas (s1_s3_exact_injection_delta_bundle), late loci only",
+  "ranks_tested": [
+    1,
+    3,
+    5
+  ],
+  "null_random_rankmatched_rounds": 2000,
+  "null_label_permutation_rounds": 25,
+  "loci": {
+    "L1_16": {
+      "n_candidates": 8592,
+      "n_train_candidates": 4963,
+      "base_rate": 0.2502,
+      "n_readable_dirs": 40,
+      "n_outcome_dirs": 100
+    },
+    "L2_16": {
+      "n_candidates": 8592,
+      "n_train_candidates": 4963,
+      "base_rate": 0.2502,
+      "n_readable_dirs": 40,
+      "n_outcome_dirs": 100
+    },
+    "L3_8": {
+      "n_candidates": 8592,
+      "n_train_candidates": 4963,
+      "base_rate": 0.2502,
+      "n_readable_dirs": 40,
+      "n_outcome_dirs": 100
+    },
+    "L3_16": {
+      "n_candidates": 8592,
+      "n_train_candidates": 4963,
+      "base_rate": 0.2502,
+      "n_readable_dirs": 40,
+      "n_outcome_dirs": 100
+    },
+    "L4_8": {
+      "n_candidates": 8592,
+      "n_train_candidates": 4963,
+      "base_rate": 0.2502,
+      "n_readable_dirs": 40,
+      "n_outcome_dirs": 100
+    },
+    "L4_16": {
+      "n_candidates": 8592,
+      "n_train_candidates": 4963,
+      "base_rate": 0.2502,
+      "n_readable_dirs": 40,
+      "n_outcome_dirs": 100
+    },
+    "L4_24": {
+      "n_candidates": 8592,
+      "n_train_candidates": 4963,
+      "base_rate": 0.2502,
+      "n_readable_dirs": 40,
+      "n_outcome_dirs": 100
+    },
+    "L4_36": {
+      "n_candidates": 8592,
+      "n_train_candidates": 4963,
+      "base_rate": 0.2502,
+      "n_readable_dirs": 40,
+      "n_outcome_dirs": 100
+    },
+    "L4_47": {
+      "n_candidates": 8592,
+      "n_train_candidates": 4963,
+      "base_rate": 0.2502,
+      "n_readable_dirs": 40,
+      "n_outcome_dirs": 100
+    }
+  }
+}

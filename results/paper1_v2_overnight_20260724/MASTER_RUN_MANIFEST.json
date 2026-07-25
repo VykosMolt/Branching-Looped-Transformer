@@ -1,0 +1,69 @@
+{
+  "programme": "paper1_v2_overnight_20260724",
+  "status": "COMPLETE",
+  "start_time_utc": "2026-07-24 19:15:40",
+  "end_time_utc": "2026-07-24 ~21:40",
+  "total_wall_clock_seconds_approx": 8500,
+  "hard_ceiling_seconds": 32400,
+  "scripts": {
+    "bg_v2_overnight_horizon_generate.py": "Horizon Logic generation + prompt_only/preanswer feature extraction",
+    "bg_v2_overnight_horizon_analysis.py": "Horizon Logic AUROC analysis (Part I)",
+    "bg_v2_overnight_terminal_prep.py": "adds full-candidate features to the shared pool for Part II",
+    "bg_v2_overnight_terminal_selection.py": "terminal selection evaluation (Part II)",
+    "bg_v2_overnight_geometry_audit.py": "subspace geometry audit (Part III)",
+    "bg_v2_overnight_figures.py": "the 6 minimal figures, from already-written result JSONs",
+    "bg_v2_overnight_tests.py": "targeted tests (Poisson-binomial, principal angles, split integrity)",
+    "bg_v2_overnight_finalize.py": "SHA256SUMS + FINAL_GIT_STATUS.txt generation, run last"
+  },
+  "generation_runs": [
+    {
+      "tag": "pilot", "n_tasks": 24, "k": 4, "max_new_tokens": 320, "budget_seconds": 2400,
+      "elapsed_seconds": 576.2, "n_candidates": 96, "n_success": 44, "n_malformed": 38,
+      "n_hit_max_tokens": 56, "status": "DIAGNOSTIC_ONLY_excluded_from_final_analysis",
+      "note": "revealed 39.6% malformed rate driven by proof_depth 3 (61% malformed); informed the max_new_tokens=448 adjustment for the main run"
+    },
+    {
+      "tag": "main", "n_tasks": 170, "k": 4, "max_new_tokens": 448, "budget_seconds": 7200,
+      "elapsed_seconds": 4368.9, "n_candidates": 680, "n_success": 454, "n_malformed": 170,
+      "n_hit_max_tokens": 212, "n_scorable_for_part1": 510, "status": "USED_FOR_FINAL_ANALYSIS"
+    }
+  ],
+  "engineering_issues": [
+    {
+      "issue": "CUDA OOM after task 1 in first pilot attempt",
+      "cause": "model.generate() output_scores tensors never dereferenced between per-task loop iterations",
+      "fix": "move per-step logits to CPU immediately, del the generate() return value, empty_cache per task",
+      "verified_via": "8-task x 4-candidate smoke test, GPU memory returned to baseline"
+    },
+    {
+      "issue": "apparent multi-minute hang on task 1 in two subsequent launches",
+      "cause": "Python stdout block-buffering under `nohup > logfile` (not an actual stall)",
+      "fix": "python3 -u (unbuffered)",
+      "verified_via": "isolated diagnostic reproducing the exact code path + seed at normal (~15-25s) speed"
+    }
+  ],
+  "verdicts": {
+    "horizon_logic": "SECOND_DOMAIN_PREANSWER_REPLICATION",
+    "terminal_selection": "TERMINAL_SELECTION_ESTABLISHED (with shortcut-comparability caveat, see RESULTS.md)",
+    "subspace_geometry": {
+      "readable_outcome": "present_at_all_loci_not_early_enriched",
+      "late_loci_writable": "READABLE_OUTCOME_OVERLAP_WITHOUT_WRITABLE_ALIGNMENT",
+      "early_vs_late_writable_comparison": "INSUFFICIENT_MATCHED_LOCUS_WRITABLE_DATA"
+    }
+  },
+  "deliverables_written": {
+    "root": ["MASTER_EXPERIMENT_PLAN.md", "ENVIRONMENT.json", "INITIAL_GIT_STATUS.txt",
+             "FINAL_GIT_STATUS.txt", "SHARED_ARTIFACT_AUDIT.md", "MASTER_RUN_MANIFEST.json",
+             "MASTER_RESULTS.md", "PAPER1_V2_INTEGRATION_PLAN.md", "SHA256SUMS", "logs/"],
+    "horizon_logic": ["task_manifest.json", "split_integrity.json", "cut_integrity.json",
+                      "horizon_generation_main_off0.pt", "horizon_generation_main_off0_index.json",
+                      "auroc_results.json", "raw_predictions_heldout.json", "RESULTS.md",
+                      "figures/fig1_auroc_and_increment.png", "pilot_diagnostic_only/"],
+    "terminal_selection": ["group_manifest.json", "terminal_pool.pt", "terminal_results.json",
+                           "RESULTS.md", "figures/fig3_observed_vs_matched_random.png",
+                           "figures/fig4_detection_vs_selection.png"],
+    "subspace_geometry": ["feature_manifest.json", "subspace_definitions.json",
+                          "geometry_results.json", "subspace_bases.pt", "RESULTS.md",
+                          "figures/fig5_alignment_by_locus.png", "figures/fig6_loop_rotation.png"]
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "audit": "s1_s3_injection_outcome_orthogonality",
+  "input_paths": [
+    "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_report_2026-06-17.md",
+    "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4_reference_loop.json",
+    "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4b_kmatched_sampling.json",
+    "artifacts/reports/probes/bg_hidden_origin_branch_generator_v1_2026-05-18/basis_bank_v1.pt",
+    "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_loop_pools.pt",
+    "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_loop_pool_transfer.json"
+  ],
+  "actual_s1_tensors_found": false,
+  "inventory": {
+    "clean_root_hidden_states": "not found for S1 June-17 runs",
+    "injected_or_carried_hidden_states": "not found for S1 June-17 runs",
+    "actual_injection_deltas": "not persisted; curated injection basis bank exists",
+    "generated_branch_features": "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_loop_pools.pt",
+    "verifier_labels": "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_loop_pools.pt",
+    "task_ids_and_domains": "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_pool_texts.json"
+  },
+  "proxy_audit_scope": "Generated-branch correctness outcome direction projected onto the curated S1 injection-basis proxy, not actual h_injected - h_clean deltas.",
+  "counts": {
+    "generated_branch_candidates": 160,
+    "task_groups": 16,
+    "positive_labels": 29,
+    "winner_loser_pairs": 139,
+    "injection_proxy_rank": 48
+  },
+  "metrics": {
+    "projection_fraction_outcome_onto_injection_proxy": 0.004831696323010092,
+    "residual_fraction_outcome_outside_injection_proxy": 0.9951683036769899,
+    "projection_fraction_pairwise_outcome_onto_injection_proxy": 0.0016642564467554929,
+    "projection_fraction_outcome_onto_sampling_span_rank_matched": 0.280281885407955,
+    "projection_fraction_pairwise_outcome_onto_sampling_span_rank_matched": 0.9627273802137231,
+    "random_same_rank_projection_mean": 0.0019265922208363579,
+    "random_same_rank_projection_ci95": [
+      0.0012236199341509797,
+      0.0026755918619527272
+    ],
+    "cosine_outcome_top_injection_proxy_pc_abs": 0.003266263520345092,
+    "cosine_outcome_top_sampling_pc_abs": 0.00955730490386486,
+    "effective_rank_injection_proxy": 25.150551128513918,
+    "effective_rank_sampling_deltas": 24.42240990931946,
+    "principal_cosines_injection_proxy_vs_sampling": {
+      "max": 0.22318828105926514,
+      "mean": 0.023259999230504036,
+      "min": 2.012356162595097e-06
+    },
+    "linear_probe_sanity_grouped_loso": {
+      "full": {
+        "auroc": 0.7496709660436955,
+        "binary_acc_at_zero": 0.6375
+      },
+      "injection_proxy_projected": {
+        "auroc": 0.576993945775204,
+        "binary_acc_at_zero": 0.63125
+      },
+      "injection_proxy_residual": {
+        "auroc": 0.7233482495393524,
+        "binary_acc_at_zero": 0.6
+      },
+      "sampling_projected_rank48": {
+        "auroc": 0.5698868123190314,
+        "binary_acc_at_zero": 0.6
+      },
+      "shuffled_full_control": {
+        "auroc": 0.6325348775993682,
+        "binary_acc_at_zero": 0.63125
+      }
+    }
+  },
+  "INJECTION_OUTCOME_ALIGNMENT_VERDICT": "UNDERPOWERED_OR_ARTIFACTS_MISSING",
+  "SAMPLING_SPAN_COMPARISON_VERDICT": "UNDERPOWERED_OR_ARTIFACTS_MISSING",
+  "S3A_COMPUTE_JUSTIFICATION_VERDICT": "TRAINING_JUSTIFIED_BUT_MECHANISM_AMBIGUOUS",
+  "READOUT_CONTROL_BOUNDARY_UPDATE": "INCONCLUSIVE",
+  "paper_insertion_paragraph": "A limited no-generation audit found that the generated-branch correctness direction is almost entirely outside the saved curated S1 injection-basis proxy (projection fraction 0.0048; residual 0.9952), while rank-matched within-task sampling variation captures substantially more of the outcome direction. Because the actual S1 clean/injected/carried tensors and h_injected - h_clean deltas were not persisted, this is a proxy result rather than a full orthogonality proof. The safe conclusion is that the frozen null remains consistent with subspace mismatch, but the mechanism is not fully measured.",
+  "s3a_compute_pitch_paragraph": "The saved artifacts support the S3A compute pitch as a training-time alignment problem rather than a frozen-control tweak: S1 validates the mechanics and closes the K-matched frozen-fork control, S3B shows generated-branch correctness is not solved by transfer, and the proxy subspace audit suggests the correctness direction is not available through the frozen injection basis. A powered S3A run should therefore learn the write/read geometry jointly instead of relying on static frozen perturbations."
+}

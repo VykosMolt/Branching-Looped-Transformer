@@ -1,0 +1,264 @@
+{
+  "seed": 20260617,
+  "samples_per_task": 4,
+  "meta": {
+    "gsm8k": {
+      "n_tasks": 170,
+      "n_requested": 170,
+      "errors": [],
+      "elapsed_s": 4126.8,
+      "sample_acc": 0.5985,
+      "preanswer_coverage": 1.0
+    },
+    "reasoning": {
+      "n_tasks": 105,
+      "n_requested": 130,
+      "errors": [],
+      "elapsed_s": 2188.4,
+      "sample_acc": 0.4286,
+      "preanswer_coverage": 1.0
+    }
+  },
+  "domains": {
+    "gsm8k": {
+      "n_tasks": 170,
+      "n_groups": 170,
+      "n_sample_examples": 680,
+      "n_pre_tok_dist": {
+        "mean": 154.8,
+        "median": 163.0,
+        "p10": 61.0,
+        "p90": 224.0,
+        "min": 3.0,
+        "max": 224.0
+      },
+      "base_rate": 0.5985,
+      "class_balance": {
+        "pos": 407,
+        "neg": 273
+      },
+      "preanswer": {
+        "random": {
+          "auroc": 0.5,
+          "acc": 0.5985
+        },
+        "shortcut_length": {
+          "label": "shortcut_length",
+          "n": 680,
+          "auroc": 0.6865,
+          "auroc_ci95": [
+            0.6458,
+            0.7301
+          ],
+          "acc": 0.6779,
+          "balanced_acc": 0.6333
+        },
+        "logprob_entropy": {
+          "label": "logprob_entropy",
+          "n": 680,
+          "auroc": 0.5692,
+          "auroc_ci95": [
+            0.5239,
+            0.6144
+          ],
+          "acc": 0.6456,
+          "balanced_acc": 0.5719
+        },
+        "shortcut_plus_logprob": {
+          "label": "shortcut+logprob",
+          "n": 680,
+          "auroc": 0.7312,
+          "auroc_ci95": [
+            0.6908,
+            0.7697
+          ],
+          "acc": 0.7176,
+          "balanced_acc": 0.6863
+        },
+        "hidden": {
+          "label": "hidden",
+          "n": 680,
+          "auroc": 0.7451,
+          "auroc_ci95": [
+            0.7071,
+            0.7829
+          ],
+          "acc": 0.7088,
+          "balanced_acc": 0.6832
+        },
+        "hidden_plus_all": {
+          "label": "hidden+shortcut+logprob",
+          "n": 680,
+          "auroc": 0.797,
+          "auroc_ci95": [
+            0.7618,
+            0.8299
+          ],
+          "acc": 0.7353,
+          "balanced_acc": 0.7143
+        },
+        "best_shortcut_auroc": 0.7312,
+        "deltas": {
+          "hidden_minus_shortcut_len": 0.0586,
+          "hidden_minus_logprob": 0.1759,
+          "hidden_minus_best_shortcut": 0.0139,
+          "hidden_all_minus_shortcut_logprob": 0.0658
+        }
+      },
+      "prompt_only": {
+        "hidden": {
+          "label": "prompt_only_hidden",
+          "n": 170,
+          "auroc": 0.6992,
+          "auroc_ci95": [
+            0.6106,
+            0.7876
+          ],
+          "acc": 0.7118,
+          "balanced_acc": 0.58
+        },
+        "shortcut": {
+          "label": "prompt_only_shortcut",
+          "n": 170,
+          "auroc": 0.6893,
+          "auroc_ci95": [
+            0.6035,
+            0.7832
+          ],
+          "acc": 0.7059,
+          "balanced_acc": 0.535
+        },
+        "delta_hidden_minus_shortcut": 0.0099
+      },
+      "verdict": "PARTIAL",
+      "verdict_inputs": {
+        "powered_ge150_groups": true,
+        "hidden_auroc": 0.7451,
+        "hidden_ci_lo": 0.7071,
+        "above_chance": true,
+        "hidden_minus_best_shortcut": 0.0139,
+        "combined_helps": true
+      }
+    },
+    "reasoning": {
+      "n_tasks": 105,
+      "n_groups": 105,
+      "n_sample_examples": 420,
+      "n_pre_tok_dist": {
+        "mean": 67.6,
+        "median": 14.0,
+        "p10": 6.0,
+        "p90": 192.0,
+        "min": 3.0,
+        "max": 192.0
+      },
+      "base_rate": 0.4286,
+      "class_balance": {
+        "pos": 180,
+        "neg": 240
+      },
+      "preanswer": {
+        "random": {
+          "auroc": 0.5,
+          "acc": 0.4286
+        },
+        "shortcut_length": {
+          "label": "shortcut_length",
+          "n": 420,
+          "auroc": 0.5902,
+          "auroc_ci95": [
+            0.5324,
+            0.6423
+          ],
+          "acc": 0.5619,
+          "balanced_acc": 0.5354
+        },
+        "logprob_entropy": {
+          "label": "logprob_entropy",
+          "n": 420,
+          "auroc": 0.5281,
+          "auroc_ci95": [
+            0.47,
+            0.5835
+          ],
+          "acc": 0.5714,
+          "balanced_acc": 0.5222
+        },
+        "shortcut_plus_logprob": {
+          "label": "shortcut+logprob",
+          "n": 420,
+          "auroc": 0.5969,
+          "auroc_ci95": [
+            0.5389,
+            0.6495
+          ],
+          "acc": 0.55,
+          "balanced_acc": 0.5215
+        },
+        "hidden": {
+          "label": "hidden",
+          "n": 420,
+          "auroc": 0.69,
+          "auroc_ci95": [
+            0.6343,
+            0.7409
+          ],
+          "acc": 0.6333,
+          "balanced_acc": 0.6167
+        },
+        "hidden_plus_all": {
+          "label": "hidden+shortcut+logprob",
+          "n": 420,
+          "auroc": 0.6901,
+          "auroc_ci95": [
+            0.6401,
+            0.7357
+          ],
+          "acc": 0.6333,
+          "balanced_acc": 0.6167
+        },
+        "best_shortcut_auroc": 0.5969,
+        "deltas": {
+          "hidden_minus_shortcut_len": 0.0998,
+          "hidden_minus_logprob": 0.1619,
+          "hidden_minus_best_shortcut": 0.0931,
+          "hidden_all_minus_shortcut_logprob": 0.0932
+        }
+      },
+      "prompt_only": {
+        "hidden": {
+          "label": "prompt_only_hidden",
+          "n": 105,
+          "auroc": 0.6227,
+          "auroc_ci95": [
+            0.5163,
+            0.7273
+          ],
+          "acc": 0.6,
+          "balanced_acc": 0.5986
+        },
+        "shortcut": {
+          "label": "prompt_only_shortcut",
+          "n": 105,
+          "auroc": 0.4357,
+          "auroc_ci95": [
+            0.3169,
+            0.545
+          ],
+          "acc": 0.4381,
+          "balanced_acc": 0.4363
+        },
+        "delta_hidden_minus_shortcut": 0.187
+      },
+      "verdict": "UNDERPOWERED",
+      "verdict_inputs": {
+        "powered_ge150_groups": false,
+        "hidden_auroc": 0.69,
+        "hidden_ci_lo": 0.6343,
+        "above_chance": true,
+        "hidden_minus_best_shortcut": 0.0931,
+        "combined_helps": true
+      }
+    }
+  }
+}

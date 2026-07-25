@@ -1,0 +1,11 @@
+{
+  "split_source": "deterministic sha256(task_uid) hash bucket, computed prospectively before generation",
+  "task_split_counts": {
+    "train": 80,
+    "heldout": 59,
+    "val": 31
+  },
+  "zero_crossing_count": 0,
+  "crossing_examples": [],
+  "total_tasks": 170
+}

@@ -108,10 +108,9 @@ permanent model surgery.
 
 Both runs performed no steering (no vectors, no action steering, no trained corridor,
 no steering as a tested condition, no steering claim), no Ouro training, no
-weight/tokenizer/checkpoint edits, no BG tap or registry changes, no external
-wrapper execution, no external-system imports/instantiation, no git.
-Perturbations are a test harness to create branch-specific caches, not
-behavioural interventions. v2's GPU
+weight/tokenizer/checkpoint edits, no BG tap or registry changes, no wrapper /
+local-agent, no Hunter-Seeker imports/instantiation, no git. Perturbations are a test
+harness to create branch-specific caches, not behavioural interventions. v2's GPU
 guard confirmed the MMLU science-repair process was inactive and left its artifacts
 untouched.
 
@@ -124,6 +123,6 @@ Archived under `history/bg-run-notes/kv-cache/`:
 - `bg_partial_cache_splice_v2.md` (v2 compute-saving report)
 
 Artifacts: `artifacts/reports/probes/bg_autoregressive_kv_branch_carry_v1_2026-06-01/`
-and `artifacts/reports/probes/bg_partial_cache_splice_v2_2026-06-01/`.
-Reusable test-only helpers were kept in the source worktree and are not part of
-this public repository.
+and `artifacts/reports/probes/bg_partial_cache_splice_v2_2026-06-01/`. Reusable
+test-only helpers live in `utilities/tests/manual/bg_autoregressive_cache_{common,helpers}_v1.py`
+and `utilities/tests/manual/bg_partial_cache_splice_v2_common.py`.

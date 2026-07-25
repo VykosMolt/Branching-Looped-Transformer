@@ -1,0 +1,263 @@
+{
+ "n_items": 160,
+ "n_tasks": 16,
+ "labels": "saved verifier correctness (no generation run)",
+ "note": "SMALL-N EXPLORATORY SECONDARY; 16 tasks, 160 branches; coding has 0 positives",
+ "transfer": {
+  "8_L1": {
+   "auroc_pooled": 0.3709,
+   "pairwise_task_mean": 0.577,
+   "sel_oracle_task_mean": 0.375,
+   "pairwise_ci95_task_boot": [
+    0.4144,
+    0.7593
+   ]
+  },
+  "8_L2": {
+   "auroc_pooled": 0.3538,
+   "pairwise_task_mean": 0.5409,
+   "sel_oracle_task_mean": 0.5,
+   "pairwise_ci95_task_boot": [
+    0.3586,
+    0.7441
+   ]
+  },
+  "8_L3": {
+   "auroc_pooled": 0.4306,
+   "pairwise_task_mean": 0.5755,
+   "sel_oracle_task_mean": 0.625,
+   "pairwise_ci95_task_boot": [
+    0.3765,
+    0.7939
+   ]
+  },
+  "8_L4": {
+   "auroc_pooled": 0.4248,
+   "pairwise_task_mean": 0.5134,
+   "sel_oracle_task_mean": 0.375,
+   "pairwise_ci95_task_boot": [
+    0.3036,
+    0.7515
+   ]
+  },
+  "16_L1": {
+   "auroc_pooled": 0.4685,
+   "pairwise_task_mean": 0.574,
+   "sel_oracle_task_mean": 0.375,
+   "pairwise_ci95_task_boot": [
+    0.3638,
+    0.795
+   ]
+  },
+  "16_L2": {
+   "auroc_pooled": 0.4517,
+   "pairwise_task_mean": 0.631,
+   "sel_oracle_task_mean": 0.75,
+   "pairwise_ci95_task_boot": [
+    0.4487,
+    0.8207
+   ]
+  },
+  "16_L3": {
+   "auroc_pooled": 0.4617,
+   "pairwise_task_mean": 0.5547,
+   "sel_oracle_task_mean": 0.5,
+   "pairwise_ci95_task_boot": [
+    0.3374,
+    0.7842
+   ]
+  },
+  "16_L4": {
+   "auroc_pooled": 0.4599,
+   "pairwise_task_mean": 0.5606,
+   "sel_oracle_task_mean": 0.5,
+   "pairwise_ci95_task_boot": [
+    0.346,
+    0.7846
+   ]
+  },
+  "24_L1": {
+   "auroc_pooled": 0.4167,
+   "pairwise_task_mean": 0.5357,
+   "sel_oracle_task_mean": 0.25,
+   "pairwise_ci95_task_boot": [
+    0.3657,
+    0.7266
+   ]
+  },
+  "24_L2": {
+   "auroc_pooled": 0.4583,
+   "pairwise_task_mean": 0.6265,
+   "sel_oracle_task_mean": 0.75,
+   "pairwise_ci95_task_boot": [
+    0.4639,
+    0.8077
+   ]
+  },
+  "24_L3": {
+   "auroc_pooled": 0.4483,
+   "pairwise_task_mean": 0.5852,
+   "sel_oracle_task_mean": 0.625,
+   "pairwise_ci95_task_boot": [
+    0.4155,
+    0.7765
+   ]
+  },
+  "24_L4": {
+   "auroc_pooled": 0.4412,
+   "pairwise_task_mean": 0.5647,
+   "sel_oracle_task_mean": 0.625,
+   "pairwise_ci95_task_boot": [
+    0.3772,
+    0.776
+   ]
+  },
+  "36_L4": {
+   "auroc_pooled": 0.4751,
+   "pairwise_task_mean": 0.551,
+   "sel_oracle_task_mean": 0.5,
+   "pairwise_ci95_task_boot": [
+    0.3545,
+    0.7589
+   ]
+  },
+  "47_L4": {
+   "auroc_pooled": 0.4746,
+   "pairwise_task_mean": 0.4226,
+   "sel_oracle_task_mean": 0.25,
+   "pairwise_ci95_task_boot": [
+    0.2745,
+    0.625
+   ]
+  }
+ },
+ "loto_refit": {
+  "8_L1": {
+   "auroc_pooled": 0.4901,
+   "pairwise_task_mean": 0.2442,
+   "sel_oracle_task_mean": 0.125,
+   "pairwise_ci95_task_boot": [
+    0.1364,
+    0.3508
+   ]
+  },
+  "8_L2": {
+   "auroc_pooled": 0.5341,
+   "pairwise_task_mean": 0.3156,
+   "sel_oracle_task_mean": 0.125,
+   "pairwise_ci95_task_boot": [
+    0.2078,
+    0.428
+   ]
+  },
+  "8_L3": {
+   "auroc_pooled": 0.5765,
+   "pairwise_task_mean": 0.2254,
+   "sel_oracle_task_mean": 0.125,
+   "pairwise_ci95_task_boot": [
+    0.1138,
+    0.3259
+   ]
+  },
+  "8_L4": {
+   "auroc_pooled": 0.5754,
+   "pairwise_task_mean": 0.2879,
+   "sel_oracle_task_mean": 0.125,
+   "pairwise_ci95_task_boot": [
+    0.1362,
+    0.4241
+   ]
+  },
+  "16_L1": {
+   "auroc_pooled": 0.5973,
+   "pairwise_task_mean": 0.3171,
+   "sel_oracle_task_mean": 0.125,
+   "pairwise_ci95_task_boot": [
+    0.199,
+    0.4397
+   ]
+  },
+  "16_L2": {
+   "auroc_pooled": 0.5744,
+   "pairwise_task_mean": 0.3581,
+   "sel_oracle_task_mean": 0.25,
+   "pairwise_ci95_task_boot": [
+    0.2401,
+    0.4781
+   ]
+  },
+  "16_L3": {
+   "auroc_pooled": 0.6536,
+   "pairwise_task_mean": 0.3354,
+   "sel_oracle_task_mean": 0.25,
+   "pairwise_ci95_task_boot": [
+    0.2191,
+    0.4531
+   ]
+  },
+  "16_L4": {
+   "auroc_pooled": 0.6507,
+   "pairwise_task_mean": 0.4311,
+   "sel_oracle_task_mean": 0.125,
+   "pairwise_ci95_task_boot": [
+    0.2789,
+    0.5614
+   ]
+  },
+  "24_L1": {
+   "auroc_pooled": 0.6354,
+   "pairwise_task_mean": 0.2228,
+   "sel_oracle_task_mean": 0.25,
+   "pairwise_ci95_task_boot": [
+    0.1272,
+    0.3144
+   ]
+  },
+  "24_L2": {
+   "auroc_pooled": 0.5601,
+   "pairwise_task_mean": 0.3385,
+   "sel_oracle_task_mean": 0.125,
+   "pairwise_ci95_task_boot": [
+    0.215,
+    0.4792
+   ]
+  },
+  "24_L3": {
+   "auroc_pooled": 0.6391,
+   "pairwise_task_mean": 0.3211,
+   "sel_oracle_task_mean": 0.125,
+   "pairwise_ci95_task_boot": [
+    0.157,
+    0.4896
+   ]
+  },
+  "24_L4": {
+   "auroc_pooled": 0.681,
+   "pairwise_task_mean": 0.3673,
+   "sel_oracle_task_mean": 0.25,
+   "pairwise_ci95_task_boot": [
+    0.1944,
+    0.5476
+   ]
+  },
+  "36_L4": {
+   "auroc_pooled": 0.6417,
+   "pairwise_task_mean": 0.3318,
+   "sel_oracle_task_mean": 0.25,
+   "pairwise_ci95_task_boot": [
+    0.1692,
+    0.5045
+   ]
+  },
+  "47_L4": {
+   "auroc_pooled": 0.7039,
+   "pairwise_task_mean": 0.4194,
+   "sel_oracle_task_mean": 0.25,
+   "pairwise_ci95_task_boot": [
+    0.2776,
+    0.5461
+   ]
+  }
+ },
+ "elapsed_seconds": 39.0
+}

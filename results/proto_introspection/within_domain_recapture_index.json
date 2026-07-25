@@ -1,0 +1,23 @@
+{
+  "tag": "within_domain_preanswer",
+  "meta": {
+    "gsm8k": {
+      "n_tasks": 170,
+      "n_requested": 170,
+      "errors": [],
+      "elapsed_s": 4126.8,
+      "sample_acc": 0.5985,
+      "preanswer_coverage": 1.0
+    },
+    "reasoning": {
+      "n_tasks": 105,
+      "n_requested": 130,
+      "errors": [],
+      "elapsed_s": 2188.4,
+      "sample_acc": 0.4286,
+      "preanswer_coverage": 1.0
+    }
+  },
+  "elapsed_seconds": 6322.3,
+  "samples_per_task": 4
+}

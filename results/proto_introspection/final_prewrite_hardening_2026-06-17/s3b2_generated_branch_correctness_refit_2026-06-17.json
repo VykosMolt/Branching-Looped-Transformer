@@ -1,0 +1,293 @@
+{
+  "audit": "s3b2_generated_branch_correctness_refit",
+  "ran_generation": false,
+  "trained_ouro_or_modified_checkpoints": false,
+  "model": "task-grouped leave-one-task-out L2 logistic probe over saved [3,4,2048] generated-branch features",
+  "input_paths": [
+    "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_loop_pools.pt",
+    "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_pool_texts.json",
+    "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_loop_pool_transfer.json"
+  ],
+  "labels": "verifier/gold/exact correctness only via candidate reward field",
+  "split": "leave-one-task-out grouped by task_id; candidates from a held-out task are never in train",
+  "random_seeds": {
+    "torch_numpy_python": 20260617,
+    "bootstrap": 20260617
+  },
+  "metrics": {
+    "n_candidates": 160,
+    "n_task_groups": 16,
+    "positive_labels": 29,
+    "oracle_present_task_groups": 8,
+    "binary_auroc": 0.7515135561989997,
+    "binary_acc_at_zero": 0.63125,
+    "selected_acc_all_tasks": 0.3125,
+    "sel_at_oracle": 0.625,
+    "sel_at_oracle_ci95_task_bootstrap": [
+      0.25,
+      0.875
+    ],
+    "regret": 0.375,
+    "top2_retention": 0.75,
+    "top4_retention": 0.75,
+    "pairwise_accuracy": 0.6834532374100719,
+    "pairwise_accuracy_ci95_bootstrap": [
+      0.60431654676259,
+      0.762589928057554
+    ],
+    "by_domain": {
+      "coding": {
+        "n_tasks": 4,
+        "oracle_present_tasks": 0,
+        "sel_at_oracle": null,
+        "selected_acc_all_tasks": 0.0,
+        "pairwise_accuracy": null
+      },
+      "logic": {
+        "n_tasks": 4,
+        "oracle_present_tasks": 2,
+        "sel_at_oracle": 1.0,
+        "selected_acc_all_tasks": 0.5,
+        "pairwise_accuracy": 0.625
+      },
+      "math": {
+        "n_tasks": 4,
+        "oracle_present_tasks": 2,
+        "sel_at_oracle": 0.5,
+        "selected_acc_all_tasks": 0.25,
+        "pairwise_accuracy": 0.7
+      },
+      "reasoning": {
+        "n_tasks": 4,
+        "oracle_present_tasks": 4,
+        "sel_at_oracle": 0.5,
+        "selected_acc_all_tasks": 0.5,
+        "pairwise_accuracy": 0.7012987012987013
+      }
+    }
+  },
+  "comparators_from_s3b1_corrected": {
+    "S3B0_pairwise_blockwise": {
+      "sel_at_oracle": 0.5,
+      "separability": 0.5077,
+      "top2_ret": 0.75,
+      "top4_ret": 0.8333,
+      "regret": 0.3333
+    },
+    "S3B0_listwise_blockwise": {
+      "sel_at_oracle": 0.4167,
+      "separability": 0.4998,
+      "top2_ret": 0.75,
+      "top4_ret": 0.8333,
+      "regret": 0.4167
+    },
+    "CoreContent_v2_blockwise": {
+      "sel_at_oracle": 0.4167,
+      "separability": 0.4896,
+      "top2_ret": 0.5833,
+      "top4_ret": 0.8333,
+      "regret": 0.4167
+    },
+    "DualAnchor": {
+      "sel_at_oracle": 0.4167,
+      "separability": 0.5571,
+      "top2_ret": 0.5,
+      "top4_ret": 0.5833,
+      "regret": 0.4167
+    },
+    "mixedhead_MIX_HH_OBJECTIVE": {
+      "sel_at_oracle": 0.6667,
+      "separability": 0.5687,
+      "top2_ret": 0.75,
+      "top4_ret": 0.8333,
+      "regret": 0.25
+    },
+    "MIX_OBJECTIVE_ALL_only": {
+      "sel_at_oracle": 0.5,
+      "separability": 0.5442,
+      "top2_ret": 0.5,
+      "top4_ret": 0.6667,
+      "regret": 0.3333
+    },
+    "RANDOM": {
+      "sel_at_oracle": 0.5833,
+      "separability": 0.4625,
+      "top2_ret": 0.5833,
+      "top4_ret": 0.75,
+      "regret": 0.25
+    },
+    "ORACLE": {
+      "sel_at_oracle": 1.0,
+      "separability": 1.0,
+      "top2_ret": 1.0,
+      "top4_ret": 1.0,
+      "regret": 0.0
+    }
+  },
+  "per_task": [
+    {
+      "task_id": "math_0313a1abc4",
+      "domain": "math",
+      "n_candidates": 10,
+      "oracle_present": true,
+      "n_correct": 7,
+      "selected_correct": 1,
+      "selected_branch_id": "sample9",
+      "selected_score": 296.4346008300781
+    },
+    {
+      "task_id": "math_0490949b5c",
+      "domain": "math",
+      "n_candidates": 10,
+      "oracle_present": false,
+      "n_correct": 0,
+      "selected_correct": 0,
+      "selected_branch_id": "sample7",
+      "selected_score": 204.68028259277344
+    },
+    {
+      "task_id": "math_06d0ca6d3a",
+      "domain": "math",
+      "n_candidates": 10,
+      "oracle_present": false,
+      "n_correct": 0,
+      "selected_correct": 0,
+      "selected_branch_id": "sample7",
+      "selected_score": -28.381011962890625
+    },
+    {
+      "task_id": "math_075309bae2",
+      "domain": "math",
+      "n_candidates": 10,
+      "oracle_present": true,
+      "n_correct": 1,
+      "selected_correct": 0,
+      "selected_branch_id": "fork0",
+      "selected_score": 112.041015625
+    },
+    {
+      "task_id": "reasoning_00bf397683",
+      "domain": "reasoning",
+      "n_candidates": 10,
+      "oracle_present": true,
+      "n_correct": 3,
+      "selected_correct": 0,
+      "selected_branch_id": "fork3",
+      "selected_score": 840.2440185546875
+    },
+    {
+      "task_id": "reasoning_00ddfcee6a",
+      "domain": "reasoning",
+      "n_candidates": 10,
+      "oracle_present": true,
+      "n_correct": 2,
+      "selected_correct": 1,
+      "selected_branch_id": "sample6",
+      "selected_score": 214.0032196044922
+    },
+    {
+      "task_id": "reasoning_012f9d1412",
+      "domain": "reasoning",
+      "n_candidates": 10,
+      "oracle_present": true,
+      "n_correct": 4,
+      "selected_correct": 1,
+      "selected_branch_id": "fork3",
+      "selected_score": 168.38389587402344
+    },
+    {
+      "task_id": "reasoning_025b686a87",
+      "domain": "reasoning",
+      "n_candidates": 10,
+      "oracle_present": true,
+      "n_correct": 2,
+      "selected_correct": 0,
+      "selected_branch_id": "fork3",
+      "selected_score": -89.29912567138672
+    },
+    {
+      "task_id": "logic_0016af0d6f",
+      "domain": "logic",
+      "n_candidates": 10,
+      "oracle_present": false,
+      "n_correct": 0,
+      "selected_correct": 0,
+      "selected_branch_id": "sample7",
+      "selected_score": 82.32405090332031
+    },
+    {
+      "task_id": "logic_00158d8d9c",
+      "domain": "logic",
+      "n_candidates": 10,
+      "oracle_present": true,
+      "n_correct": 8,
+      "selected_correct": 1,
+      "selected_branch_id": "sample5",
+      "selected_score": 91.87187957763672
+    },
+    {
+      "task_id": "logic_000f384418",
+      "domain": "logic",
+      "n_candidates": 10,
+      "oracle_present": false,
+      "n_correct": 0,
+      "selected_correct": 0,
+      "selected_branch_id": "sample6",
+      "selected_score": 78.04220581054688
+    },
+    {
+      "task_id": "logic_00013d9d03",
+      "domain": "logic",
+      "n_candidates": 10,
+      "oracle_present": true,
+      "n_correct": 2,
+      "selected_correct": 1,
+      "selected_branch_id": "sample4",
+      "selected_score": 89.96754455566406
+    },
+    {
+      "task_id": "coding_007b833f21",
+      "domain": "coding",
+      "n_candidates": 10,
+      "oracle_present": false,
+      "n_correct": 0,
+      "selected_correct": 0,
+      "selected_branch_id": "fork0",
+      "selected_score": -118.04798126220703
+    },
+    {
+      "task_id": "coding_00715d44da",
+      "domain": "coding",
+      "n_candidates": 10,
+      "oracle_present": false,
+      "n_correct": 0,
+      "selected_correct": 0,
+      "selected_branch_id": "fork3",
+      "selected_score": -4.65266752243042
+    },
+    {
+      "task_id": "coding_06bd4a1597",
+      "domain": "coding",
+      "n_candidates": 10,
+      "oracle_present": false,
+      "n_correct": 0,
+      "selected_correct": 0,
+      "selected_branch_id": "fork0",
+      "selected_score": -48.328094482421875
+    },
+    {
+      "task_id": "coding_08e8397e8f",
+      "domain": "coding",
+      "n_candidates": 10,
+      "oracle_present": false,
+      "n_correct": 0,
+      "selected_correct": 0,
+      "selected_branch_id": "sample9",
+      "selected_score": -1.3763427734375
+    }
+  ],
+  "S3B2_REFIT_VERDICT": "GENERATED_BRANCH_SELECTOR_PARTIAL",
+  "SELECTION_WALL_VERDICT": "SELECTION_WALL_REMAINS_AFTER_REFIT",
+  "S3A_SELECTION_NEED_VERDICT": "S3B2_SHOWS_SELECTOR_NEEDS_S3A_OR_MORE_DATA",
+  "interpretation": "The generated-branch refit improves binary separability/pairwise ranking on the small saved generated pool, but forced top-1 selection remains weak and does not cleanly beat the best existing S3B1 selector on sel@oracle. The dataset is only 16 task groups / 8 oracle-present groups, so this sharpens the selection-wall diagnosis rather than solving it."
+}

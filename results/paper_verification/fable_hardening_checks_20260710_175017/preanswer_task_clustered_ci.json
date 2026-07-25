@@ -1,0 +1,64 @@
+{
+  "raw_artifact": "/home/moloch/ouro_project/artifacts/reports/proto_introspection/within_domain_recapture.pt",
+  "raw_artifact_sha256": "f0e44d7e859cb08c6423a1422f0899fe62a40ebec13dcb1a457952d5a04fab82",
+  "original_analysis_script": "/home/moloch/ouro_project/utilities/tests/manual/proto_introspection_within_domain_analysis.py",
+  "original_bootstrap_utility": "/home/moloch/ouro_project/utilities/tests/manual/proto_introspection_controls_analysis.py",
+  "n_tasks": 170,
+  "n_examples": 680,
+  "class_balance": {
+    "positive": 407,
+    "negative": 273
+  },
+  "split": "5-fold task-grouped CV; exact existing grouped_folds seed 20260617",
+  "point_estimates": {
+    "hidden_plus_all_auroc": 0.796973296973297,
+    "length_plus_logprob_auroc": 0.7311832311832311,
+    "delta": 0.06579006579006585
+  },
+  "task_clustered_bootstrap": {
+    "method": "paired task-clustered percentile bootstrap; sample 170 tasks with replacement and include all 4 candidates per sampled task",
+    "draws_requested": 10000,
+    "draws_valid": 10000,
+    "draws_skipped_degenerate": 0,
+    "seed": 20260710,
+    "mean": 0.06576964381326739,
+    "std": 0.02346425176504259,
+    "ci95_percentile": [
+      0.020706818478552536,
+      0.1122539274800343
+    ],
+    "excludes_zero": true
+  },
+  "candidate_bootstrap_diagnostic_only": {
+    "method": "paired candidate-level percentile bootstrap (diagnostic only; not primary)",
+    "draws_requested": 10000,
+    "draws_valid": 10000,
+    "draws_skipped_degenerate": 0,
+    "seed": 20260710,
+    "mean": 0.06577318746194728,
+    "std": 0.01758921652951941,
+    "ci95_percentile": [
+      0.031581481276808536,
+      0.10034764954956125
+    ],
+    "excludes_zero": true
+  },
+  "leave_one_task_out": {
+    "min_delta": 0.055999561575769796,
+    "max_delta": 0.07055715001594465,
+    "max_abs_change": 0.009790504214296059,
+    "table": "/home/moloch/ouro_project/artifacts/reports/paper_verification/fable_hardening_checks_20260710_175017/preanswer_leave_one_task_out.csv"
+  },
+  "environment": {
+    "python": "3.14.6 (main, Jun 15 2026, 11:36:54) [GCC 16.1.1 20260430]",
+    "platform": "Linux-7.1.3-2-cachyos-x86_64-with-glibc2.43",
+    "torch": "2.12.0.dev20260407+cu128",
+    "transformers": "4.54.1",
+    "numpy": "2.4.4",
+    "cuda_runtime": "12.8",
+    "cuda_available": true,
+    "device": "NVIDIA GeForce RTX 5070 Ti Laptop GPU",
+    "dtype": "torch.bfloat16 model forward; captured/analysis features torch.float32",
+    "quantization": "none"
+  }
+}

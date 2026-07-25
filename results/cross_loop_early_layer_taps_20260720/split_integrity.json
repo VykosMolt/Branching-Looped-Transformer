@@ -1,0 +1,16 @@
+{
+ "zero_crossing_count": 0,
+ "crossing_examples": [],
+ "groups_by_split": {
+  "heldout": 600,
+  "train": 1250,
+  "val": 300
+ },
+ "tasks_by_split": {
+  "heldout": 600,
+  "train": 1250,
+  "val": 300
+ },
+ "total_candidates": 8592,
+ "split_source": "existing deterministic v2 task/prompt-disjoint split (split_for); no new split constructed"
+}

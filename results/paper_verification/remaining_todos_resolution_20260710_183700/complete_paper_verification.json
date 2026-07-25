@@ -1,0 +1,592 @@
+{
+  "report": "complete_paper_verification_and_remaining_todos",
+  "draft_read_only": "/home/moloch/Downloads/ouro_paper_draft_v3_16.md",
+  "hard_rules": {
+    "ouro_trained": false,
+    "checkpoints_modified": false,
+    "broad_generation_run": false,
+    "paper_draft_modified": false
+  },
+  "prior_fable_checks": {
+    "localization_verdicts": {
+      "ANTISYM_LINEAR_PROBE_STATUS": "RECONSTRUCTED_LINEAR_PROBE",
+      "LOCALIZATION_BACKBONE_STATUS": "ALL_THREE_BACKBONES_EVALUATED",
+      "LOCALIZATION_RESULT_STATUS": "LOCALIZATION_NOT_REPRODUCED",
+      "PAPER_ACTION_LOCALIZATION": "REMOVE_OR_TODO",
+      "PREANSWER_RAW_PREDICTIONS_STATUS": "RAW_PREDICTIONS_FOUND",
+      "PREANSWER_CI_ORIGINAL_STATUS": "ORIGINAL_CI_PROVENANCE_UNKNOWN",
+      "PREANSWER_TASK_CLUSTERED_RESULT": "TASK_CLUSTERED_CI_EXCLUDES_ZERO",
+      "PAPER_ACTION_PREANSWER": "KEEP_PRIMARY_CLAIM_VERIFIED"
+    },
+    "localization_results": [
+      {
+        "backbone": "Base Ouro 2.6B",
+        "n_ordered_eval_rows": 80,
+        "n_unique_source_pairs": 74,
+        "feature_shape": [
+          200,
+          8192
+        ],
+        "strict_antisym_accuracy": 0.8375,
+        "ci95_source_pair_clustered": [
+          0.7349397590361446,
+          0.935064935064935
+        ],
+        "swap_consistency": 1.0,
+        "max_abs_score_ab_plus_score_ba": 0.0,
+        "fixed_order_accuracy": null
+      },
+      {
+        "backbone": "Ouro 2.6B Thinking",
+        "n_ordered_eval_rows": 80,
+        "n_unique_source_pairs": 74,
+        "feature_shape": [
+          200,
+          8192
+        ],
+        "strict_antisym_accuracy": 0.8375,
+        "ci95_source_pair_clustered": [
+          0.7349397590361446,
+          0.935064935064935
+        ],
+        "swap_consistency": 1.0,
+        "max_abs_score_ab_plus_score_ba": 0.0,
+        "fixed_order_accuracy": null
+      },
+      {
+        "backbone": "Ouro RLTT local",
+        "n_ordered_eval_rows": 80,
+        "n_unique_source_pairs": 74,
+        "feature_shape": [
+          200,
+          8192
+        ],
+        "strict_antisym_accuracy": 0.8375,
+        "ci95_source_pair_clustered": [
+          0.7349397590361446,
+          0.935064935064935
+        ],
+        "swap_consistency": 1.0,
+        "max_abs_score_ab_plus_score_ba": 0.0,
+        "fixed_order_accuracy": null
+      }
+    ],
+    "localization_identity_audit": {
+      "base_vs_thinking": {
+        "mean_difference_vector_cosine": 0.8765245079994202,
+        "score_pearson": 0.9117918610572815,
+        "mean_abs_score_delta": 0.5777284502983093,
+        "decision_agreement": 0.9950000047683716,
+        "max_abs_feature_delta": 2.017259120941162
+      },
+      "thinking_vs_rltt": {
+        "mean_difference_vector_cosine": 0.9433804154396057,
+        "score_pearson": 0.9988625049591064,
+        "mean_abs_score_delta": 0.06907793879508972,
+        "decision_agreement": 1.0,
+        "max_abs_feature_delta": 0.5074440240859985
+      },
+      "interpretation": "Features are not accidentally identical, but the reconstructed antisymmetric-linear decision direction transfers almost unchanged to all three backbones."
+    },
+    "fixed_order_decomposition": {
+      "status": "COMPLETED",
+      "head_checkpoint": "/home/moloch/ouro_project/artifacts/checkpoints/evaluator/pairwise_epoch2.pt",
+      "head_checkpoint_sha256": "3630c2092eca8db13239f763bc9c212f4b673866e47f811c3095efc57409ec96",
+      "original_attention_with_norm": {
+        "base": {
+          "canonical_accuracy": 0.95,
+          "swapped_accuracy": 0.11,
+          "antisym_accuracy": 0.58,
+          "symmetric_order_mean": 1.2592063103453257
+        },
+        "thinking": {
+          "canonical_accuracy": 0.95,
+          "swapped_accuracy": 0.13,
+          "antisym_accuracy": 0.595,
+          "symmetric_order_mean": 1.293196572973393
+        },
+        "rltt": {
+          "canonical_accuracy": 0.945,
+          "swapped_accuracy": 0.13,
+          "antisym_accuracy": 0.6,
+          "symmetric_order_mean": 1.2918219679244793
+        }
+      },
+      "ablation_verdicts": {
+        "HISTORICAL_BASE_24_STATUS": "NOT_REPRODUCED_NO_ARTIFACT_FOUND",
+        "FIXED_ORDER_MECHANISM": "SYMMETRIC_ORDER_PRIOR_DOMINATES_ALL_BACKBONES",
+        "POOLING_ABLATION": "ATTENTION_NOT_REQUIRED_FOR_CANONICAL_HIGH_ACCURACY",
+        "NORMALIZATION_ABLATION": "NORMALIZATION_MITIGATES_ORDER_DOMINANCE",
+        "LOCALIZATION_IMPLICATION": "NO_CROSS_BACKBONE_LOCALIZATION_IN_ORIGINAL_OR_LINEAR_UNITS_ON_CONTROLLED_SLICE"
+      },
+      "paths": {
+        "markdown": "/home/moloch/ouro_project/artifacts/reports/paper_verification/fable_hardening_checks_20260710_175017/evaluator_decomposition.md",
+        "json": "/home/moloch/ouro_project/artifacts/reports/paper_verification/fable_hardening_checks_20260710_175017/evaluator_decomposition.json",
+        "rows_csv": "/home/moloch/ouro_project/artifacts/reports/paper_verification/fable_hardening_checks_20260710_175017/evaluator_decomposition_rows.csv",
+        "summary_csv": "/home/moloch/ouro_project/artifacts/reports/paper_verification/fable_hardening_checks_20260710_175017/evaluator_decomposition_summary.csv"
+      }
+    },
+    "preanswer": {
+      "raw_status": "RAW_PREDICTIONS_FOUND",
+      "raw_note": "Raw per-example hidden features, shortcut features, labels, sample IDs, and task IDs were found; OOF predictions were recreated deterministically because they were not saved originally.",
+      "raw_artifact": "/home/moloch/ouro_project/artifacts/reports/proto_introspection/within_domain_recapture.pt",
+      "raw_artifact_sha256": "f0e44d7e859cb08c6423a1422f0899fe62a40ebec13dcb1a457952d5a04fab82",
+      "original_report_md": "/home/moloch/ouro_project/artifacts/reports/proto_introspection/proto_introspection_within_domain_preanswer_specificity_2026-06-17.md",
+      "original_report_json": "/home/moloch/ouro_project/artifacts/reports/proto_introspection/proto_introspection_within_domain_preanswer_specificity_2026-06-17.json",
+      "original_analysis": "/home/moloch/ouro_project/utilities/tests/manual/proto_introspection_within_domain_analysis.py",
+      "original_bootstrap_utility": "/home/moloch/ouro_project/utilities/tests/manual/proto_introspection_controls_analysis.py",
+      "original_ci_provenance": {
+        "status": "ORIGINAL_CI_PROVENANCE_UNKNOWN",
+        "evidence_for_clustered": "The June MD/JSON explicitly label the delta interval group-bootstrap/task-resampled and report [0.0172, 0.1144].",
+        "missing_evidence": "The preserved analysis code has candidate-level bootstrap_auroc_ci for marginal AUROCs but no paired task-clustered delta routine, and original OOF predictions/bootstrap draws were not saved. Therefore the exact historical execution path cannot be code-audited."
+      },
+      "recomputation": {
+        "n_tasks": 170,
+        "n_examples": 680,
+        "candidates_per_task": 4,
+        "class_balance": {
+          "positive": 407,
+          "negative": 273
+        },
+        "cv": "5-fold task-grouped CV using the preserved grouped_folds implementation and seed 20260617",
+        "bootstrap": "Paired percentile cluster bootstrap: sample 170 task IDs with replacement and include all four examples for every sampled task occurrence",
+        "seed": 20260710,
+        "draws": 10000,
+        "skipped_draws": 0,
+        "hidden_plus_all_auroc": 0.796973296973297,
+        "length_plus_logprob_auroc": 0.7311832311832311,
+        "delta": 0.06579006579006585,
+        "bootstrap_mean": 0.06576964381326739,
+        "bootstrap_std": 0.02346425176504259,
+        "ci95": [
+          0.020706818478552536,
+          0.1122539274800343
+        ],
+        "excludes_zero": true
+      },
+      "diagnostics": {
+        "candidate_bootstrap_ci95_not_primary": [
+          0.031581481276808536,
+          0.10034764954956125
+        ],
+        "candidate_bootstrap_std_not_primary": 0.01758921652951941,
+        "leave_one_task_out_delta_range": [
+          0.055999561575769796,
+          0.07055715001594465
+        ],
+        "leave_one_task_out_max_abs_change": 0.009790504214296059
+      },
+      "supporting_paths": {
+        "result": "/home/moloch/ouro_project/artifacts/reports/paper_verification/fable_hardening_checks_20260710_175017/preanswer_task_clustered_ci.json",
+        "oof_predictions": "/home/moloch/ouro_project/artifacts/reports/paper_verification/fable_hardening_checks_20260710_175017/preanswer_oof_predictions.csv",
+        "leave_one_task_out": "/home/moloch/ouro_project/artifacts/reports/paper_verification/fable_hardening_checks_20260710_175017/preanswer_leave_one_task_out.csv"
+      }
+    }
+  },
+  "hh_antisymmetry": {
+    "saved_512_slice": {
+      "audit": "antisymmetrized_hh_pairwise_audit",
+      "ran_generation_or_extraction": false,
+      "input_paths": [
+        "artifacts/reports/probes/bg_pairwise_epoch2_vs_tiny_taps_hh_same_slice_v1_2026-05-30/pairwise_epoch2_vs_tiny_taps_hh_same_slice_v1.pt",
+        "artifacts/reports/probes/bg_pairwise_epoch2_vs_tiny_taps_hh_same_slice_v1_2026-05-30/pairwise_epoch2_rows.csv",
+        "artifacts/checkpoints/evaluator/pairwise_epoch2.pt",
+        "artifacts/reports/evaluator/hh_loop_states_200_thinking.pt",
+        "artifacts/reports/evaluator/hh_loop_states_200_rltt.pt"
+      ],
+      "primary_scored_feature_source": "artifacts/reports/probes/bg_pairwise_epoch2_vs_tiny_taps_hh_same_slice_v1_2026-05-30/pairwise_epoch2_vs_tiny_taps_hh_same_slice_v1.pt",
+      "checkpoint_path": "artifacts/checkpoints/evaluator/pairwise_epoch2.pt",
+      "model_name": "models/ouro_rltt_local for existing 512-pair score artifact; pairwise_epoch2.pt evaluator head",
+      "dataset_split": "Anthropic/hh-rlhf test slice; 512-pair saved same-slice artifact, not full 8552 split",
+      "random_seeds": {
+        "score_artifact_source": "existing artifact",
+        "bootstrap": 20260617
+      },
+      "n_examples": 512,
+      "metrics": {
+        "fixed_order_acc": 0.966796875,
+        "fixed_order_acc_ci95": [
+          0.951171875,
+          0.98046875
+        ],
+        "flipped_direction_acc": 0.15625,
+        "strict_sign_flip_rate": 0.189453125,
+        "flip_correlation": -0.8989218234075901,
+        "antisym_acc": 0.63671875,
+        "antisym_acc_ci95": [
+          0.595703125,
+          0.677734375
+        ],
+        "bias_mean": 1.2421430234589934,
+        "bias_std": 0.198125114227172,
+        "normal_mean": 1.575859473694436,
+        "normal_std": 0.8945801375498256,
+        "normal_margin_quantiles": {
+          "0.05": 0.14134959280490875,
+          "0.25": 0.9626534134149551,
+          "0.5": 1.5680385828018188,
+          "0.75": 2.176785945892334,
+          "0.95": 3.1145962357521055
+        },
+        "antisym_score_mean": 0.3337164502354426,
+        "antisym_score_std": 0.8560855805650256,
+        "antisym_margin_quantiles": {
+          "0.05": -1.031955498829484,
+          "0.25": -0.22465071827173233,
+          "0.5": 0.30815550684928894,
+          "0.75": 0.9426076859235764,
+          "0.95": 1.7908967509865759
+        }
+      },
+      "missing_full_test_inputs": [
+        "Full 8552-pair saved HH-RLHF loop-state feature pack or per-pair normal/flipped score table was not found.",
+        "Only 200-pair state packs and a separate 512-pair same-slice score artifact were found locally."
+      ],
+      "HH_ANTISYM_AUDIT_VERDICT": "FIXED_ORDER_RESULT_PARTLY_ORDER_ARTIFACTED",
+      "HH_952_CLAIM_STATUS": "SAFE_AS_FIXED_ORDER_WITH_ANTISYM_CAVEAT",
+      "interpretation": "On the existing 512-pair HH-RLHF same-slice artifact, fixed-order accuracy is high but antisymmetrized accuracy is much lower. The 95.2% full-test number must remain fixed-order HH-RLHF pairwise accuracy; it should not be described as strict antisymmetrized accuracy."
+    },
+    "full_8552": {
+      "audit": "full_hh_strict_antisymmetry",
+      "status": "COMPLETE",
+      "n_pairs": 8552,
+      "expected_pairs": 8552,
+      "dataset": "Anthropic/hh-rlhf test",
+      "dataset_revision": "cached datasets builder 09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa",
+      "backbone": "/home/moloch/ouro_project/models/ouro_rltt_local",
+      "backbone_revision": "local checkpoint; shard hashes pinned below",
+      "model_shard_sha256": [
+        "9f49e55b0d0ea368f2942cfd3fa256836ea7fa9002c6f860ca2d85ac1de252a1",
+        "97a0d531a2c624dd98e60c0ebc46a7cc0413642f8cba6df7dac8df01a432df19",
+        "0bf3d0c111c876ccc7f7ebaeb7cabc8dfccffde30acb4cd780a4c364d3679aad"
+      ],
+      "evaluator": "/home/moloch/ouro_project/artifacts/checkpoints/evaluator/pairwise_epoch2.pt",
+      "evaluator_sha256": "3630c2092eca8db13239f763bc9c212f4b673866e47f811c3095efc57409ec96",
+      "tokenizer": "/home/moloch/ouro_project/models/ouro_rltt_local",
+      "tokenizer_settings": {
+        "padding_side": "left",
+        "truncation": true
+      },
+      "max_length": 768,
+      "batch_size": 4,
+      "length_bucketed": true,
+      "early_exit_threshold": 1.0,
+      "model_forward_dtype": "bfloat16",
+      "evaluator_dtype": "float32",
+      "quantization": "none",
+      "device": "NVIDIA GeForce RTX 5070 Ti Laptop GPU",
+      "torch_version": "2.12.0.dev20260407+cu128",
+      "transformers_version": "4.54.1",
+      "datasets_version": "4.8.5",
+      "bootstrap_seed": 20260710,
+      "bootstrap_draws": 10000,
+      "metrics": {
+        "fixed_order_accuracy": 0.9478484565014031,
+        "fixed_order_accuracy_ci95": [
+          0.9430542563143124,
+          0.9525257249766137
+        ],
+        "swapped_direction_accuracy": 0.1953928905519177,
+        "strict_antisym_accuracy": 0.6391487371375117,
+        "strict_antisym_accuracy_ci95": [
+          0.6290926099158092,
+          0.6493217960710945
+        ],
+        "strict_sign_flip_rate": 0.2475444340505145,
+        "normal_flipped_pearson": -0.9246817540601061,
+        "normal_mean": 1.6431700132553744,
+        "flipped_mean": 0.8866168683779428,
+        "antisym_mean": 0.37827657243871576,
+        "antisym_std": 0.9683054002902081,
+        "symmetric_order_mean": 1.2648934408166586,
+        "symmetric_order_std": 0.19292348739360676,
+        "symmetric_order_abs_mean": 1.2648934408166586,
+        "antisym_abs_mean": 0.8434599617360442,
+        "symmetric_to_antisym_abs_ratio": 1.4996484696359536,
+        "both_orders_prefer_first_rate": 0.7524555659494855,
+        "both_orders_prefer_second_rate": 0.0
+      },
+      "elapsed_seconds_this_invocation": 3021.4660761356354,
+      "rows_csv": "/home/moloch/ouro_project/artifacts/reports/paper_verification/remaining_todos_resolution_20260710_183700/full_hh_audit/full_hh_antisymmetry_rows.csv",
+      "resume_execution_segments": [
+        {
+          "batch_size": 2,
+          "length_bucketed": false,
+          "rows_completed": 884
+        },
+        {
+          "batch_size": 4,
+          "length_bucketed": false,
+          "rows_completed": 164
+        },
+        {
+          "batch_size": 2,
+          "length_bucketed": false,
+          "rows_completed": 156
+        },
+        {
+          "batch_size": 1,
+          "length_bucketed": false,
+          "rows_completed": 314
+        },
+        {
+          "batch_size": 4,
+          "length_bucketed": true,
+          "rows_completed": 7034
+        }
+      ]
+    }
+  },
+  "remaining_todos": {
+    "draft_read_only": "/home/moloch/Downloads/ouro_paper_draft_v3_16.md",
+    "s3b2_matched_random": {
+      "source": "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_loop_pools.pt",
+      "n_all_groups": 16,
+      "n_all_candidates": 160,
+      "n_oracle_present_groups": 8,
+      "observed_selector_hits": 5,
+      "observed_selector_rate": 0.625,
+      "matched_uniform_random_expectation": 0.3625,
+      "expected_random_hits": 2.9,
+      "exact_null_probability_at_least_observed": 0.08690239999999999,
+      "exact_null_probability_exactly_observed": 0.07166304,
+      "poisson_binomial_pmf": [
+        0.011612160000000002,
+        0.09626112,
+        0.26967168,
+        0.32904544,
+        0.2065072,
+        0.07166304,
+        0.01381408,
+        0.0013715200000000002,
+        5.376000000000001e-05
+      ],
+      "interpretation": "Observed 5/8 exceeds the native matched-random expectation 2.9/8, but the exact one-sided heterogeneous Bernoulli p-value is 0.0869."
+    },
+    "s1_kmatched_spotcheck": {
+      "paths": [
+        "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4_reference_loop.json",
+        "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4a_fork_param_screen.json",
+        "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4b_kmatched_sampling.json"
+      ],
+      "reference_config": {
+        "N_PER": 1,
+        "K": 2,
+        "BUDGET": 4,
+        "alpha": 0.02,
+        "loci": 12,
+        "terminal": "loop4_L47",
+        "mnt_inter": 64,
+        "mnt_term": 160,
+        "token_range": "fixed last-token suffix (plen-1, plen), stored per lineage entry",
+        "validity_threshold": -1000000000.0,
+        "progressive": false,
+        "terminal_confidence": -1000000000.0,
+        "content_thresholds": {
+          "24": -1000000000.0,
+          "36": -1000000000.0,
+          "47": -1000000000.0
+        }
+      },
+      "reference_n_tasks": 4,
+      "reference_aggregate": {
+        "oracle_over_survivors": 0.25,
+        "base_acc": 0.25,
+        "selected_acc": 0.25,
+        "selected_acc_committed": 0.25,
+        "defer_rate": 0.0,
+        "mean_terminal_survivors": 4.0,
+        "mean_survivors_correct": 1.0
+      },
+      "screen_config": {
+        "N_PER": 1,
+        "K": 4,
+        "MNT": 96,
+        "alphas": [
+          0.02,
+          0.05,
+          0.1
+        ],
+        "tr_set": "full",
+        "token_ranges": [
+          "last",
+          "last8",
+          "secondhalf"
+        ],
+        "decodes": [
+          "greedy",
+          "sample"
+        ],
+        "temp": 0.7,
+        "top_p": 0.95,
+        "score_input_mode": "prompt_plus_answer",
+        "grid_loci": "loop1_L24/L36/L47",
+        "sentinel_loci": "loop4_L36/L47 (a=0.10, secondhalf, sample)"
+      },
+      "kmatched_config": {
+        "N_PER": 1,
+        "N_SAMPLES": 12,
+        "mnt": 96,
+        "mnt_long": 160,
+        "temp": 0.7,
+        "top_p": 0.95,
+        "score_input_mode": "prompt_plus_answer"
+      },
+      "kmatched_aggregate": {
+        "base_acc_160": 0.25,
+        "base_acc_96": 0.0,
+        "sampling_oracle": 0.75,
+        "sampling_new_correct_vs_base160": 0.667,
+        "sampling_new_correct_vs_base96": 0.75,
+        "sampling_selected_acc": 0.0,
+        "mean_unique_finals": 11.25,
+        "parse_invalid_rate": 0.0
+      },
+      "kmatched_decision": {
+        "screen_sample_cells": {
+          "sample_oracle_mean": 0.611,
+          "sample_new_correct_mean": 0.611,
+          "greedy_oracle_mean": 0.0,
+          "greedy_new_correct_mean": 0.0
+        },
+        "plain_sampling_oracle": 0.75,
+        "sample_fork_minus_plain_sampling_oracle": -0.139,
+        "greedy_fork_new_correct": 0.0,
+        "verdict": "FROZEN_FORK_CLOSED__SAMPLING_EXPLAINS_SCREEN__S3_IS_LEVER",
+        "note": "greedy/deterministic fork = 0 new-correct AND plain-sampling oracle (0.75) >= sample-fork oracle (0.611): fork does NOT exceed sampling -> fork adds nothing beyond stochastic decoding; the S1.4a win is sampling. Frozen FORK branching closed for local purposes; move to S3/backbone.",
+        "fork_adds_over_sampling": false,
+        "correction_note": "verdict recomputed: prior auto-string mis-fired on abs(diff)<=TOL; negative diff (sampling>=fork) is pro-CLOSED"
+      },
+      "status": "VERIFIED_AGAINST_JSON_ARTIFACTS"
+    },
+    "steering_spotcheck": {
+      "paths": [
+        "docs/evaluator/history/steering-and-adapters/steering-consolidation.md",
+        "artifacts/reports/probes/bg_causal_intervention_adapter_2026-05-18/analysis.json",
+        "artifacts/reports/probes/bg_sequence_level_adapter_2026-05-18/diagnostics.json"
+      ],
+      "method_count": 7,
+      "methods": [
+        {
+          "index": 1,
+          "method": "Raw NoNorm readout-vector steering",
+          "result": "UNSIGNED_ONLY"
+        },
+        {
+          "index": 2,
+          "method": "Empirical mean-diff / whitened / logistic success directions",
+          "result": "EMPIRICAL_UNSIGNED_ONLY"
+        },
+        {
+          "index": 3,
+          "method": "RMS-calibrated static directions",
+          "result": "RMS_UNSIGNED_ONLY"
+        },
+        {
+          "index": 4,
+          "method": "Local BG-score gradient",
+          "result": "GRADIENT_NO_BETTER_THAN_RANDOM"
+        },
+        {
+          "index": 5,
+          "method": "Tiny classifier-style adapter",
+          "result": "NO_BETTER_THAN_STATIC"
+        },
+        {
+          "index": 6,
+          "method": "Teacher-forced causal adapter (differentiable logit-margin proxy)",
+          "result": "LOCAL_LOGIT_CONTROL_ONLY"
+        },
+        {
+          "index": 7,
+          "method": "Sequence-level adapter (black-box REINFORCE reward)",
+          "result": "NO_FROZEN_BACKBONE_WRITE_PATH"
+        }
+      ],
+      "teacher_forced_geometry": {
+        "adapter_proxy_direction_kind": "LowRankDeltaAdapter_up_weight_mean",
+        "cosine_adapter_proxy_empirical_mean_diff": -0.0042940625214685476,
+        "cosine_adapter_proxy_raw_nonorm": -0.0005529620521149163,
+        "cosine_raw_nonorm_empirical_mean_diff": 0.1010015667081813,
+        "geometry_note": "LowRank adapter geometry is input-conditioned; cosine values use a static up-weight proxy, not a full hidden-state average delta."
+      },
+      "two_adapter_cosine": 0.951094388961792,
+      "status": "VERIFIED_AGAINST_SOURCE_ARTIFACTS"
+    },
+    "second_powered_domain": {
+      "path": "artifacts/reports/proto_introspection/proto_introspection_second_domain_preflight_2026-06-17.md",
+      "verdict": "REJECTED_AT_PREFLIGHT_BOTH_CANDIDATES",
+      "cross_domain_verdict": "PARTIAL_NOT_FULLY_ESTABLISHED",
+      "action": "STOP_AND_DOCUMENT",
+      "svamp_reason": "Front-loaded answers and parser/label mismatch made the cut invalid.",
+      "math_reason": "Parseable runs were approximately 21/22 correct; failures were mainly truncations, leaving no clean negative class."
+    },
+    "math_transfer_historical": {
+      "claimed_values": {
+        "selected_correct": "47/100",
+        "single_shot_ratio": "~2.7x lower"
+      },
+      "raw_denominator_table_found": false,
+      "status": "NOT_RECOVERABLE_NON_LOAD_BEARING",
+      "paper_action": "Retain only as explicitly unarchived origin motivation, or remove the exact numbers."
+    },
+    "path_audit": {
+      "draft": "/home/moloch/Downloads/ouro_paper_draft_v3_16.md",
+      "n_explicit_paths": 5,
+      "n_exists_or_glob": 5,
+      "n_missing": 0,
+      "missing": [],
+      "csv": "artifacts/reports/paper_verification/remaining_todos_resolution_20260710_183700/draft_explicit_path_audit.csv",
+      "n_artifact_file_tokens": 23,
+      "n_unresolved_file_tokens": 1,
+      "unresolved_file_tokens": [
+        "changelog.md"
+      ],
+      "token_csv": "artifacts/reports/paper_verification/remaining_todos_resolution_20260710_183700/draft_artifact_token_audit.csv"
+    },
+    "git_state": {
+      "head_at_verification": "e4776dd41a85cad699ac36f309b5986ab48bd171",
+      "dirty_entry_count": 1067,
+      "status_manifest": "artifacts/reports/paper_verification/remaining_todos_resolution_20260710_183700/git_status_short.txt",
+      "reproducibility_commit_status": "NOT_CREATED_DIRTY_SHARED_WORKTREE",
+      "reason": "Creating a publication commit would mix extensive pre-existing user changes; the verification pins HEAD plus a status manifest instead."
+    },
+    "figures": [
+      "artifacts/reports/paper_verification/remaining_todos_resolution_20260710_183700/figures/preanswer_auroc_bars.png",
+      "artifacts/reports/paper_verification/remaining_todos_resolution_20260710_183700/figures/domain_transfer_matrix.png",
+      "artifacts/reports/paper_verification/remaining_todos_resolution_20260710_183700/figures/corecontent_dualanchor_roles.png",
+      "artifacts/reports/paper_verification/remaining_todos_resolution_20260710_183700/figures/cache_branch_schematic.png",
+      "artifacts/reports/paper_verification/remaining_todos_resolution_20260710_183700/figures/s3b2_detection_vs_selection.png",
+      "artifacts/reports/paper_verification/remaining_todos_resolution_20260710_183700/figures/two_null_orthogonality.png"
+    ]
+  },
+  "recommended_paper_patches": {
+    "section_3_4_full_audit": "A strict swap audit on the full 8,552-pair HH-RLHF test set confirms that the original evaluator's high canonical-order accuracy is substantially order-artifacted. Fixed-order accuracy is 0.948, whereas strict antisymmetrized accuracy is 0.639 (95% pair-bootstrap CI [0.629, 0.649]). We therefore report the historical 95.2% only as fixed-order discovery-stage accuracy, not as relational discrimination.",
+    "section_3_7_replace": "In a targeted replication using a bias-free antisymmetric linear difference probe, the same held-out HH accuracy was obtained for base Ouro-2.6B, Ouro-2.6B-Thinking, and Ouro-RLTT (83.75% for each; exact swap consistency 1.0). Thus the earlier 24%/95.2%/95.0% separation is specific to an unrecovered historical fixed-order evaluation and does not establish training-stage localization in clean relational units. We therefore do not claim that reasoning/RL training installs the linearly readable relational preference signal. Because the original probe weights were unavailable and the reconstructed row split permits opposite orientations of a source pair to cross train and evaluation, resolving training-stage localization requires a larger independently pair-split antisymmetric replication.",
+    "section_5": "At the strict pre-answer cut, adding hidden features to the length-and-log-probability baseline raises AUROC from 0.731 to 0.797 (incremental \u0394AUROC +0.066). A paired task-clustered bootstrap over 170 GSM8K problems (10,000 draws; all four candidates retained per sampled problem) gives a 95% CI of [+0.021, +0.112], which excludes zero. The improvement is statistically significant under task-clustered resampling, while remaining a modest incremental effect demonstrated in one powered domain.",
+    "section_6_4_s3b2": "Among the eight oracle-present S3B2 groups, the forced selector succeeds in 5/8 groups (0.625). Under uniform random choice within each group's ten-candidate pool, the group-specific success probabilities imply a matched expectation of 0.3625 (2.9/8 hits), not 0.625. The exact Poisson-binomial probability of at least five random successes is p=0.0869. The selector therefore exceeds the matched-random point expectation, but N=8 does not establish a statistically significant selection advantage; correctness is decodable, while reliable forced selection remains unestablished.",
+    "section_8_1_steering": "Across seven pinned frozen-backbone intervention methods, no method produced reliable signed behavioral steering at safe magnitudes. The teacher-forced adapter proxy is nearly orthogonal to the empirical success direction (\u22120.0043) and raw NoNorm readout (\u22120.0006), while raw and empirical directions have cosine +0.1010. Independently trained teacher-forced and sequence-level adapters converge to cosine 0.951094, but the shared direction does not transfer to adapter-specific held-out free-generation control.",
+    "section_8_2_s1": "In the four-task K-matched control, plain stochastic decoding used 12 samples per task (temperature 0.7, top-p 0.95, 96-token budget) and reached oracle 0.750. Sampled forks reached 0.611 (\u22120.139 versus plain sampling), while deterministic/greedy forks produced zero new-correct tasks. Frozen branch injection therefore adds no demonstrated reachability beyond matched stochastic decoding in this bounded test.",
+    "second_domain_limitation": "Cross-domain pre-answer generality remains partial. A powered second-domain run was rejected at preflight: SVAMP front-loaded answers and failed parser/label checks, while parseable MATH generations were approximately 21/22 correct and the remaining failures were predominantly truncations, leaving no clean negative class. No full second-domain run was performed.",
+    "math_transfer_origin": "The historical 47/100 Hendrycks MATH observation is retained only as explicitly unarchived, non-load-bearing motivation. Its raw denominator table and the exact single-shot baseline underlying the reported ~2.7\u00d7 ratio were not recovered; the exact multiplier should be removed if publication policy requires every number to be artifact-reproducible."
+  },
+  "paper_actions": {
+    "training_stage_localization": "REMOVE_AS_STRONG_RESULT_OR_RECAST_AS_FAILED_REPLICATION",
+    "preanswer_primary": "KEEP_PRIMARY_CLAIM_VERIFIED",
+    "fixed_order_evaluator": "KEEP_ONLY_WITH_FULL_ANTISYMMETRY_CAVEAT",
+    "s3b2_selection": "REPORT_ABOVE_EXPECTATION_BUT_NOT_SIGNIFICANT",
+    "s1_kmatched": "CLOSE_VERIFIED",
+    "steering": "CLOSE_VERIFIED",
+    "second_powered_domain": "CLOSE_AS_DOCUMENTED_PREFLIGHT_REJECTION_AND_LIMITATION",
+    "math_transfer": "NON_LOAD_BEARING_OR_REMOVE_EXACT_MULTIPLIER",
+    "latex_conversion": "DEFER_UNTIL_EVIDENCE_PATCHES_ARE_ACCEPTED"
+  },
+  "blockers": [
+    "Original 84.5% probe weights and historical base=24% evaluation artifact were not recovered.",
+    "The historical math-transfer denominator table and ~2.7x baseline artifact were not recovered.",
+    "The powered second pre-answer domain has no clean accepted dataset after two failed preflights.",
+    "The draft references a missing companion changelog.md.",
+    "A publication commit was not created because the shared worktree contains 1067 pre-existing dirty entries; HEAD and the status manifest are pinned instead.",
+    "Markdown-to-LaTeX conversion is deferred because the no-draft-modification constraint remains active and v3.16 contains claims now requiring evidence patches."
+  ]
+}

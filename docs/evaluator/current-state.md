@@ -1,5 +1,68 @@
 # Current Evaluator / BG State
 
+## Offline Verifier-Backed Branch Generator v2 — Rounds 1–4 (2026-06-13)
+
+`branch_training_offline_verifier_generator_v2` (follow-up to the v1 run below). Goal: train a
+useful branch **generator** (raise positive_oracle@K) offline-first, before paying for online RL.
+DualAnchor still prunes, CoreContent_v2 still ranks; self-selection beating CoreContent not required.
+
+`OFFLINE_BRANCH_GENERATOR_POLICY = KEEP_EXTERNAL_DUALANCHOR_CORECONTENT_BASELINE`
+`K_CANARY_SELECTION_VERDICT = NO_ADAPTER_IMPROVES_ON_CANARY` (10 arms / 4 rounds)
+
+Iterative data-fix rounds against a fixed 610-group canary (paired 30/domain + 110 alignment):
+
+- **r1 (meta-text)** macro −0.244 — rendered "branches" were strategy narrations, not solutions.
+- **r2 (executed logic)** −0.052 — logic repaired (0.000); math/coding still bare.
+- **r3 (rationale math + canonical code)** −0.112 — math recovered to −0.133, but canonical-solution
+  coding **backfired to −0.467** (terse style → confident wrong code).
+- **r4 (train/eval FORMAT ALIGNMENT)** **−0.059** — root cause rounds 1–3 missed: training fed bare
+  prompts under the default "helpful assistant" system line with multi-`Branch i:` completions,
+  while the canary and the real generator render `build_prompt(tok, task, scaffold)` (GEN_SYSTEM
+  posture + chat template + MBPP fn-note) and sample **one single solution**. `train_v5`
+  (`build_eval_aligned_views_v5.py`) renders every row exactly as generation sees it; trainer `_fmt`
+  patched to use pre-rendered prompts verbatim. v5 prompts proven **byte-identical** to the eval-side
+  rendering.
+
+**Round-4 finding:** r4 is the **first C-arm to clear the degeneration alarm** (branch chars 0.70×
+base vs 0.26–0.40× for r1–r3); reasoned-code data cut coding from −0.467 → −0.067 at 0.92× length;
+all gen domains within ~2/30 of base (uniform −0.067, ≈ base within n=30 noise), no collapse. So the
+rounds 1–3 "training degrades the generator" verdict was largely a **format-mismatch + bad-coding-data
+confound** — with it removed, offline SFT+DPO is **reachability-neutral and non-degenerate**, but adds
+no reachability where base is already strong (logic/math/reasoning 0.83–0.87). Still macro-negative →
+external baseline stands. The converged **M (teacher distillation) + N (verifier-reward RL)** run
+inherits a validated, eval-aligned, non-degenerate substrate; its real levers are the low-base domains
+(reasoned coding at scale, verifier-reward RL for coding/alignment), not more SFT on saturated domains.
+Constraints honored (external verifiers only correctness; no Ouro/base/tokenizer overwrite; adapters
+only under the v2 model root; no steering; no git). Detail: `round4_format_alignment_result.md`,
+`round2_executed_data_result.md`, `round3_multidomain_result.md`, `data_flaw_meta_branch_rendering.md`.
+
+## Branch Training + Logic Expansion + Terminal v1 (2026-06-07)
+
+`branch_training_logic_expansion_terminal_v1` completed (Parts A–R):
+
+`BRANCH_TRAINING_LOGIC_EXPANSION_STATUS = LOGIC_EXPANSION_READY_TRAINING_NOT_READY`
+`BRANCH_TRAINING_POLICY_DECISION = KEEP_EXTERNAL_DUALANCHOR_CORECONTENT_BASELINE`
+
+- First step **toward model-internal branching**. Primary deliverable achieved: a logic-expanded (48.5k tasks / 10 verifier-backed families; 33.2k train), externally-labeled **branch-training dataset + evaluation harness + 5 training views** (`TRAINING_DATA_READY`). Correctness from external verifiers only; DualAnchor/CoreContent stay teachers/baselines; science diagnostic-only; steering not run.
+- **Experiment 1 (H):** within real DualAnchor top-5 survivor sets, CoreContent_v2 **0.658** > MIX_HH 0.552 > DualAnchor forced-top1 **0.379** (oracle retention 1.0) → **selection, not survival, is the terminal bottleneck**; the composed external baseline is validated.
+- **Reachability (I, Ouro-RLTT generations @4):** reasoning 0.95 · math 0.83 · logic 0.73 · coding 0.43. Math 0.31→0.83 once given a tool-free answer-forcing prompt + 1400-token budget + early-stop + LaTeX/sympy verifier. All sampled failures hand-audited as genuine (after fixing math-LaTeX, coding-name, and a hendrycks `task_uid` collision).
+- **DualAnchor-as-teacher (J):** useful branch-policy teacher (retention lift over random +0.11 coding/reasoning) but ~random on logic (+0.03) → logic needs verifier reward, not teacher distillation.
+- **Bounded training (L/O, proof-of-capability — 300-step bf16 LoRA on Ouro-RLTT, NOT converged):** changed behavior (branch diversity +0.45, coding parse 0.72→0.94, math 0.75→0.92) but net reachability flat (macro 0.708→0.688) with reasoning/logic regressing → keep the external baseline. M (teacher distillation) + N (verifier-reward RL) at scale are the next, separate run.
+- No Ouro base/tokenizer/checkpoint/registry overwrite; adapters only under `artifacts/models/branch_training_logic_expansion_v1/`; pure/transplanted/CoreContent_v2 untouched. Detail: `branch-training-logic-expansion.md`.
+
+## CoreContent Dataset Expansion + Refit v2 (2026-06-06)
+
+`corecontent_dataset_expansion_refit_v2` completed (Parts A–V + hardening, 0 stage errors):
+
+`CORECONTENT_DATASET_EXPANSION_REFIT_V2_STATUS = V2_CORECONTENT_READY`
+`BG_CORECONTENT_V2_HELDOUT_VERDICT = V2_CORECONTENT_READY`
+`BG_CORECONTENT_V2_PHASE2B_READINESS_VERDICT = READY_FOR_PHASE2B_WITH_V2_CORECONTENT`
+
+- **Content / final selection** is the only thing this run changed; **DualAnchor branch survival unchanged**, terminal survivor-set handoff retained, science/anatomy diagnostic-only.
+- v1 kept the broad-objective baseline because per-domain data was tiny (coding 30, reasoning 5, math 66, logic 80, alignment 200 reward-diverse). v2 expanded these 27–520× (coding 1,733 · reasoning 2,600 · math 3,200 · logic 2,199 · alignment ~26,000), re-extracted frozen features (64 shards, 4.87 GB, 0 errors), and a crafted tap finally beat the baseline on untouched heldout: **CoreContent v2 blockwise 0.6691 [0.645–0.690] vs `mixedhead_MIX_HH_OBJECTIVE` 0.5525 [0.526–0.577]** (core macro top1).
+- **Honest caveats (follow-up stress tests):** the +0.117 is ~half a constructed-negative artifact — on real-negative domains (reasoning/logic/alignment) the edge is **+0.063**; the coding tap is a *corruption detector* (~0.94 vs mutants but **0.58** vs real wrong-problem code), and retraining with relevance negatives did not close that gap (relevance not linearly accessible in pooled L24/36/47). Layer 47 is dead weight.
+- **Re-locked selector:** `CoreContent_v2_blockwise_pruned_24_36` (2-channel tap, layers 24+36; L47 pruned). Fallback `mixedhead_MIX_HH_OBJECTIVE`. No steering, no Ouro training, no registry mutation; pure/transplanted taps untouched. Entry: `content-selection-taps.md`; detail: `corecontent-dataset-expansion-v2.md`.
+
 ## Core-Domain Tap Audit + DualAnchor Readiness v1 (2026-06-04)
 
 `core_domain_tap_audit_dualanchor_readiness_v1` completed (16 parts, 0 errors):
@@ -10,7 +73,7 @@
 
 - Locked **DualAnchor** baseline carried into Phase 2b **unchanged**; core domains coding/reasoning/math/logic/alignment ready (clean verifier/exact/MCQ/preference labels; logic added via pulled LogiQA + bounded encode-only feature extraction).
 - DualAnchor confirmed for branch survival (`DUALANCHOR_SURVIVAL_CONFIRMED`); broad-objective tiny heads marginally lead *pure* content selection (`MIX_OBJECTIVE_DOMINATES`); terminal stays `FULL_HANDOFF_REQUIRED` (confidence-gated top1 else top5/full handoff).
-- Science/anatomy taps: geometrically independent (`SCIENCE_RESIDUAL_INDEPENDENT`) with a marginal, small-n selection edge but **zero** survival benefit (`SCIENCE_ANCHOR_NOT_USEFUL`) → **diagnostic only**. Tiny heads are exactly antisymmetric; the published HH evaluator's ~62% pointwise vs 95.2% pairwise distinction is preserved. No steering run/claimed. Report: `bg_core_domain_tap_audit_dualanchor_readiness_v1.md`.
+- Science/anatomy taps: geometrically independent (`SCIENCE_RESIDUAL_INDEPENDENT`) with a marginal, small-n selection edge but **zero** survival benefit (`SCIENCE_ANCHOR_NOT_USEFUL`) → **diagnostic only**. Tiny heads are exactly antisymmetric; the published HH evaluator's ~62% pointwise vs 95.2% pairwise distinction is preserved. No steering run/claimed. Report: `core-domain-tap-audit.md`.
 
 ## Pre-Steering Domain Update (2026-06-04)
 
@@ -127,6 +190,10 @@ Current verdicts:
 - `PHASE2_HIDDEN_BRANCH_EVALUATOR_STATUS_V4 = STILL_DATA_LIMITED`
 - `HIDDEN_ORIGIN_BRANCH_GENERATOR_STATUS_V1 = WEAK_BUT_USABLE`
 - `UNIVERSAL_BRANCH_CONTENT_TAP_STATUS = FUSION_NEEDED`
+
+Recommended next from the latest summary:
+
+- `RECOMMENDED_NEXT = consolidate_phase1_phase1_5_and_design_phase2_training_time_integration`
 
 Engineering interpretation:
 
@@ -443,9 +510,15 @@ The standalone `CODE_STRICT_CLEAN_OLD6` row in the fixed-config matrix has an an
 
 Some cross-domain aggregate fields are `nan` because HH pair rows do not have tournament cycle values. Use the per-domain rows and verdicts for decisions.
 
-The reasoning pilot was followed by harder natural-distractor validation and
-later DualAnchor/core-domain audits. Treat this block as earlier current-state
-provenance, not as the active project plan.
+The reasoning pilot should be repeated with harder, less filter-easy tasks before being used as a controller-policy target.
+
+## Recommended Next Work
+
+1. Add reasoning as a third objective evaluation domain.
+2. Update BG Phase 1 design for a general HH head plus domain specialists.
+3. Run a harder reasoning validation set.
+4. Build a controller-policy simulator around general/specialist disagreement.
+5. Keep MATH gate-scale and GRU temporal controls deferred unless specifically needed.
 
 ## Current One-Line Handoff
 
@@ -535,7 +608,7 @@ The general HH tap transfers broadly enough to remain useful, but strict-clean c
 - science medicine regret pairwise = -0.083
 - clean GSM8K regret pairwise = 0.074
 - HH regret pairwise = -0.150
-- selected Phase 1 head set = HH_general_plus_code_specialist_plus_objective_mixed_head
+- recommended Phase 1 head set = HH_general_plus_code_specialist_plus_objective_mixed_head
 - full reports: `artifacts/reports/probes/mixed_domain_heads_audit_2026-05-17_summary.md`, `artifacts/reports/probes/mixed_domain_head_evaluation_2026-05-17.json`, `artifacts/reports/probes/mixed_head_controller_implications_2026-05-17.md`
 - interpretation: mixed heads are controller-routing candidates and should complement, not erase, the established HH/general and code-specialist roles unless regret is cleanly positive outside the current small strict-clean sample.
 
@@ -561,7 +634,7 @@ The general HH tap transfers broadly enough to remain useful, but strict-clean c
 - defer policy result: `{'defer_policy_verdict': 'DEFER_NOT_USEFUL', 'best_defer_policy': {'policy': 'ORACLE_POLICY_WITH_DEFER', 'improvement70': 0.02986658580958146, 'improvement80': 0.006450587019319887, 'improvement90': 0.0065386244880666355, 'coverage': 1.0}, 'fallback_adjusted': {'GENERAL_AND_OBJECTIVE_VOTE_defer': {'random_fallback_average': 0.6414534855982225, 'domain_routed_fallback_average': 0.802741845140385, 'by_domain_random': {'CODE_STRICT_CLEAN_ALL16': 0.6833333333333333, 'REASONING_NATURAL_DISTRACTOR': 0.5833333333333333, 'REASONING_TRACE': 0.6363636363636364, 'SCIENCE_OVERALL': 0.6052631578947368, 'SCIENCE_BIOLOGY': 0.625, 'SCIENCE_CHEMISTRY': 0.625, 'SCIENCE_MEDICINE': 0.5, 'SCIENCE_GENERAL': 0.625, 'SCIENCE_OTHER': 0.6666666666666667, 'CODE_RUNNABLE_DIAGNOSTIC': 0.59375, 'CLEAN_GSM8K_EXPANDED': 0.6851851851851852, 'HH_HELDOUT20': 0.8, 'HH_200_DIAGNOSTIC': 0.71}, 'by_domain_domain_routed': {'CODE_STRICT_CLEAN_ALL16': 0.8277777777777777, 'REASONING_NATURAL_DISTRACTOR': 0.6666666666666666, 'REASONING_TRACE': 1.0, 'SCIENCE_OVERALL': 0.7506925207756233, 'SCIENCE_BIOLOGY': 0.875, 'SCIENCE_CHEMISTRY': 0.8125, 'SCIENCE_MEDICINE': 0.4166666666666667, 'SCIENCE_GENERAL': 0.9375, 'SCIENCE_OTHER': 0.6296296296296297, 'CODE_RUNNABLE_DIAGNOSTIC': 0.94921875, 'CLEAN_GSM8K_EXPANDED': 0.808641975308642, 'HH_HELDOUT20': 0.9200000000000002, 'HH_200_DIAGNOSTIC': 0.84135}}, 'THREE_HEAD_VOTE_defer': {'random_fallback_average': 0.5592287074523917, 'domain_routed_fallback_average': 0.7749835455233213, 'by_domain_random': {'CODE_STRICT_CLEAN_ALL16': 0.5666666666666667, 'REASONING_NATURAL_DISTRACTOR': 0.5833333333333334, 'REASONING_TRACE': 0.5, 'SCIENCE_OVERALL': 0.5263157894736843, 'SCIENCE_BIOLOGY': 0.5, 'SCIENCE_CHEMISTRY': 0.5, 'SCIENCE_MEDICINE': 0.5, 'SCIENCE_GENERAL': 0.625, 'SCIENCE_OTHER': 0.5, 'CODE_RUNNABLE_DIAGNOSTIC': 0.59375, 'CLEAN_GSM8K_EXPANDED': 0.6574074074074074, 'HH_HELDOUT20': 0.625, 'HH_200_DIAGNOSTIC': 0.5925}, 'by_domain_domain_routed': {'CODE_STRICT_CLEAN_ALL16': 0.8111111111111111, 'REASONING_NATURAL_DISTRACTOR': 0.7083333333333334, 'REASONING_TRACE': 1.0, 'SCIENCE_OVERALL': 0.7008310249307479, 'SCIENCE_BIOLOGY': 0.8333333333333334, 'SCIENCE_CHEMISTRY': 0.75, 'SCIENCE_MEDICINE': 0.4166666666666667, 'SCIENCE_GENERAL': 0.9375, 'SCIENCE_OTHER': 0.4444444444444444, 'CODE_RUNNABLE_DIAGNOSTIC': 0.94921875, 'CLEAN_GSM8K_EXPANDED': 0.8168724279835391, 'HH_HELDOUT20': 0.885, 'HH_200_DIAGNOSTIC': 0.821475}}, 'CONSENSUS_SELECT_HH_OBJECTIVE': {'random_fallback_average': 0.6414534855982225, 'domain_routed_fallback_average': 0.802741845140385, 'by_domain_random': {'CODE_STRICT_CLEAN_ALL16': 0.6833333333333333, 'REASONING_NATURAL_DISTRACTOR': 0.5833333333333333, 'REASONING_TRACE': 0.6363636363636364, 'SCIENCE_OVERALL': 0.6052631578947368, 'SCIENCE_BIOLOGY': 0.625, 'SCIENCE_CHEMISTRY': 0.625, 'SCIENCE_MEDICINE': 0.5, 'SCIENCE_GENERAL': 0.625, 'SCIENCE_OTHER': 0.6666666666666667, 'CODE_RUNNABLE_DIAGNOSTIC': 0.59375, 'CLEAN_GSM8K_EXPANDED': 0.6851851851851852, 'HH_HELDOUT20': 0.8, 'HH_200_DIAGNOSTIC': 0.71}, 'by_domain_domain_routed': {'CODE_STRICT_CLEAN_ALL16': 0.8277777777777777, 'REASONING_NATURAL_DISTRACTOR': 0.6666666666666666, 'REASONING_TRACE': 1.0, 'SCIENCE_OVERALL': 0.7506925207756233, 'SCIENCE_BIOLOGY': 0.875, 'SCIENCE_CHEMISTRY': 0.8125, 'SCIENCE_MEDICINE': 0.4166666666666667, 'SCIENCE_GENERAL': 0.9375, 'SCIENCE_OTHER': 0.6296296296296297, 'CODE_RUNNABLE_DIAGNOSTIC': 0.94921875, 'CLEAN_GSM8K_EXPANDED': 0.808641975308642, 'HH_HELDOUT20': 0.9200000000000002, 'HH_200_DIAGNOSTIC': 0.84135}}, 'CONSENSUS_SELECT_ALL_THREE': {'random_fallback_average': 0.5592287074523917, 'domain_routed_fallback_average': 0.7749835455233213, 'by_domain_random': {'CODE_STRICT_CLEAN_ALL16': 0.5666666666666667, 'REASONING_NATURAL_DISTRACTOR': 0.5833333333333334, 'REASONING_TRACE': 0.5, 'SCIENCE_OVERALL': 0.5263157894736843, 'SCIENCE_BIOLOGY': 0.5, 'SCIENCE_CHEMISTRY': 0.5, 'SCIENCE_MEDICINE': 0.5, 'SCIENCE_GENERAL': 0.625, 'SCIENCE_OTHER': 0.5, 'CODE_RUNNABLE_DIAGNOSTIC': 0.59375, 'CLEAN_GSM8K_EXPANDED': 0.6574074074074074, 'HH_HELDOUT20': 0.625, 'HH_200_DIAGNOSTIC': 0.5925}, 'by_domain_domain_routed': {'CODE_STRICT_CLEAN_ALL16': 0.8111111111111111, 'REASONING_NATURAL_DISTRACTOR': 0.7083333333333334, 'REASONING_TRACE': 1.0, 'SCIENCE_OVERALL': 0.7008310249307479, 'SCIENCE_BIOLOGY': 0.8333333333333334, 'SCIENCE_CHEMISTRY': 0.75, 'SCIENCE_MEDICINE': 0.4166666666666667, 'SCIENCE_GENERAL': 0.9375, 'SCIENCE_OTHER': 0.4444444444444444, 'CODE_RUNNABLE_DIAGNOSTIC': 0.94921875, 'CLEAN_GSM8K_EXPANDED': 0.8168724279835391, 'HH_HELDOUT20': 0.885, 'HH_200_DIAGNOSTIC': 0.821475}}, 'ORACLE_POLICY_WITH_DEFER': {'random_fallback_average': 0.9050779727095517, 'domain_routed_fallback_average': 0.9050779727095517, 'by_domain_random': {'CODE_STRICT_CLEAN_ALL16': 0.9, 'REASONING_NATURAL_DISTRACTOR': 0.7916666666666666, 'REASONING_TRACE': 1.0, 'SCIENCE_OVERALL': 0.7017543859649122, 'SCIENCE_BIOLOGY': 1.0, 'SCIENCE_CHEMISTRY': 1.0, 'SCIENCE_MEDICINE': 0.8333333333333334, 'SCIENCE_GENERAL': 1.0, 'SCIENCE_OTHER': 0.8888888888888888, 'CODE_RUNNABLE_DIAGNOSTIC': 1.0, 'CLEAN_GSM8K_EXPANDED': 0.8703703703703703, 'HH_HELDOUT20': 0.9, 'HH_200_DIAGNOSTIC': 0.88}, 'by_domain_domain_routed': {'CODE_STRICT_CLEAN_ALL16': 0.9, 'REASONING_NATURAL_DISTRACTOR': 0.7916666666666666, 'REASONING_TRACE': 1.0, 'SCIENCE_OVERALL': 0.7017543859649122, 'SCIENCE_BIOLOGY': 1.0, 'SCIENCE_CHEMISTRY': 1.0, 'SCIENCE_MEDICINE': 0.8333333333333334, 'SCIENCE_GENERAL': 1.0, 'SCIENCE_OTHER': 0.8888888888888888, 'CODE_RUNNABLE_DIAGNOSTIC': 1.0, 'CLEAN_GSM8K_EXPANDED': 0.8703703703703703, 'HH_HELDOUT20': 0.9, 'HH_200_DIAGNOSTIC': 0.88}}, 'MARGIN_DEFER_0.05': {'random_fallback_average': 0.7388607737291948, 'domain_routed_fallback_average': 0.7741764072706132, 'by_domain_random': {'CODE_STRICT_CLEAN_ALL16': 0.6833333333333333, 'REASONING_NATURAL_DISTRACTOR': 0.7291666666666666, 'REASONING_TRACE': 1.0, 'SCIENCE_OVERALL': 0.631578947368421, 'SCIENCE_BIOLOGY': 0.7083333333333334, 'SCIENCE_CHEMISTRY': 0.75, 'SCIENCE_MEDICINE': 0.4166666666666667, 'SCIENCE_GENERAL': 0.7916666666666666, 'SCIENCE_OTHER': 0.4444444444444444, 'CODE_RUNNABLE_DIAGNOSTIC': 0.9375, 'CLEAN_GSM8K_EXPANDED': 0.7499999999999999, 'HH_HELDOUT20': 0.875, 'HH_200_DIAGNOSTIC': 0.8875}, 'by_domain_domain_routed': {'CODE_STRICT_CLEAN_ALL16': 0.8055555555555556, 'REASONING_NATURAL_DISTRACTOR': 0.75, 'REASONING_TRACE': 1.0, 'SCIENCE_OVERALL': 0.6509695290858726, 'SCIENCE_BIOLOGY': 0.7916666666666667, 'SCIENCE_CHEMISTRY': 0.75, 'SCIENCE_MEDICINE': 0.4166666666666667, 'SCIENCE_GENERAL': 0.8958333333333333, 'SCIENCE_OTHER': 0.4444444444444444, 'CODE_RUNNABLE_DIAGNOSTIC': 0.9375, 'CLEAN_GSM8K_EXPANDED': 0.765432098765432, 'HH_HELDOUT20': 0.9349999999999999, 'HH_200_DIAGNOSTIC': 0.921225}}, 'MARGIN_DEFER_0.10': {'random_fallback_average': 0.7237116441063809, 'domain_routed_fallback_average': 0.7740804334930143, 'by_domain_random': {'CODE_STRICT_CLEAN_ALL16': 0.6833333333333333, 'REASONING_NATURAL_DISTRACTOR': 0.7291666666666666, 'REASONING_TRACE': 0.8636363636363636, 'SCIENCE_OVERALL': 0.6052631578947368, 'SCIENCE_BIOLOGY': 0.7083333333333334, 'SCIENCE_CHEMISTRY': 0.75, 'SCIENCE_MEDICINE': 0.4166666666666667, 'SCIENCE_GENERAL': 0.7916666666666666, 'SCIENCE_OTHER': 0.4444444444444444, 'CODE_RUNNABLE_DIAGNOSTIC': 0.9375, 'CLEAN_GSM8K_EXPANDED': 0.7407407407407408, 'HH_HELDOUT20': 0.85, 'HH_200_DIAGNOSTIC': 0.8875}, 'by_domain_domain_routed': {'CODE_STRICT_CLEAN_ALL16': 0.8055555555555556, 'REASONING_NATURAL_DISTRACTOR': 0.75, 'REASONING_TRACE': 1.0, 'SCIENCE_OVERALL': 0.6343490304709142, 'SCIENCE_BIOLOGY': 0.7916666666666667, 'SCIENCE_CHEMISTRY': 0.75, 'SCIENCE_MEDICINE': 0.4166666666666667, 'SCIENCE_GENERAL': 0.8958333333333333, 'SCIENCE_OTHER': 0.4444444444444444, 'CODE_RUNNABLE_DIAGNOSTIC': 0.9375, 'CLEAN_GSM8K_EXPANDED': 0.771604938271605, 'HH_HELDOUT20': 0.9299999999999999, 'HH_200_DIAGNOSTIC': 0.935425}}, 'MARGIN_DEFER_0.20': {'random_fallback_average': 0.7007040717567034, 'domain_routed_fallback_average': 0.7671446459419028, 'by_domain_random': {'CODE_STRICT_CLEAN_ALL16': 0.6833333333333333, 'REASONING_NATURAL_DISTRACTOR': 0.7291666666666666, 'REASONING_TRACE': 0.8636363636363636, 'SCIENCE_OVERALL': 0.6140350877192983, 'SCIENCE_BIOLOGY': 0.7083333333333334, 'SCIENCE_CHEMISTRY': 0.75, 'SCIENCE_MEDICINE': 0.4166666666666667, 'SCIENCE_GENERAL': 0.75, 'SCIENCE_OTHER': 0.2777777777777778, 'CODE_RUNNABLE_DIAGNOSTIC': 0.875, 'CLEAN_GSM8K_EXPANDED': 0.7037037037037037, 'HH_HELDOUT20': 0.85, 'HH_200_DIAGNOSTIC': 0.8875}, 'by_domain_domain_routed': {'CODE_STRICT_CLEAN_ALL16': 0.8055555555555556, 'REASONING_NATURAL_DISTRACTOR': 0.75, 'REASONING_TRACE': 1.0, 'SCIENCE_OVERALL': 0.6528162511542013, 'SCIENCE_BIOLOGY': 0.7916666666666667, 'SCIENCE_CHEMISTRY': 0.75, 'SCIENCE_MEDICINE': 0.4166666666666667, 'SCIENCE_GENERAL': 0.9583333333333333, 'SCIENCE_OTHER': 0.2592592592592593, 'CODE_RUNNABLE_DIAGNOSTIC': 0.9296875, 'CLEAN_GSM8K_EXPANDED': 0.7757201646090535, 'HH_HELDOUT20': 0.9299999999999999, 'HH_200_DIAGNOSTIC': 0.953175}}, 'MARGIN_DEFER_0.30': {'random_fallback_average': 0.7018189315557737, 'domain_routed_fallback_average': 0.7742404131032209, 'by_domain_random': {'CODE_STRICT_CLEAN_ALL16': 0.6333333333333333, 'REASONING_NATURAL_DISTRACTOR': 0.7916666666666666, 'REASONING_TRACE': 0.8636363636363636, 'SCIENCE_OVERALL': 0.5964912280701755, 'SCIENCE_BIOLOGY': 0.7083333333333334, 'SCIENCE_CHEMISTRY': 0.75, 'SCIENCE_MEDICINE': 0.4166666666666667, 'SCIENCE_GENERAL': 0.75, 'SCIENCE_OTHER': 0.33333333333333337, 'CODE_RUNNABLE_DIAGNOSTIC': 0.875, 'CLEAN_GSM8K_EXPANDED': 0.6851851851851852, 'HH_HELDOUT20': 0.85, 'HH_200_DIAGNOSTIC': 0.87}, 'by_domain_domain_routed': {'CODE_STRICT_CLEAN_ALL16': 0.788888888888889, 'REASONING_NATURAL_DISTRACTOR': 0.8333333333333333, 'REASONING_TRACE': 1.0, 'SCIENCE_OVERALL': 0.65466297322253, 'SCIENCE_BIOLOGY': 0.7916666666666667, 'SCIENCE_CHEMISTRY': 0.75, 'SCIENCE_MEDICINE': 0.4166666666666667, 'SCIENCE_GENERAL': 0.9583333333333333, 'SCIENCE_OTHER': 0.29629629629629634, 'CODE_RUNNABLE_DIAGNOSTIC': 0.9296875, 'CLEAN_GSM8K_EXPANDED': 0.7674897119341564, 'HH_HELDOUT20': 0.9299999999999999, 'HH_200_DIAGNOSTIC': 0.9480999999999999}}, 'MARGIN_DEFER_0.50': {'random_fallback_average': 0.68275334314808, 'domain_routed_fallback_average': 0.7896775596633284, 'by_domain_random': {'CODE_STRICT_CLEAN_ALL16': 0.6666666666666666, 'REASONING_NATURAL_DISTRACTOR': 0.7708333333333334, 'REASONING_TRACE': 0.6363636363636364, 'SCIENCE_OVERALL': 0.6052631578947368, 'SCIENCE_BIOLOGY': 0.75, 'SCIENCE_CHEMISTRY': 0.75, 'SCIENCE_MEDICINE': 0.4166666666666667, 'SCIENCE_GENERAL': 0.75, 'SCIENCE_OTHER': 0.33333333333333337, 'CODE_RUNNABLE_DIAGNOSTIC': 0.875, 'CLEAN_GSM8K_EXPANDED': 0.6666666666666667, 'HH_HELDOUT20': 0.825, 'HH_200_DIAGNOSTIC': 0.8300000000000001}, 'by_domain_domain_routed': {'CODE_STRICT_CLEAN_ALL16': 0.8444444444444444, 'REASONING_NATURAL_DISTRACTOR': 0.8333333333333334, 'REASONING_TRACE': 1.0, 'SCIENCE_OVERALL': 0.6925207756232687, 'SCIENCE_BIOLOGY': 0.9166666666666667, 'SCIENCE_CHEMISTRY': 0.75, 'SCIENCE_MEDICINE': 0.4166666666666667, 'SCIENCE_GENERAL': 0.9583333333333333, 'SCIENCE_OTHER': 0.29629629629629634, 'CODE_RUNNABLE_DIAGNOSTIC': 0.9296875, 'CLEAN_GSM8K_EXPANDED': 0.7592592592592593, 'HH_HELDOUT20': 0.9249999999999999, 'HH_200_DIAGNOSTIC': 0.9436}}, 'DISAGREEMENT_DEFER_0.10': {'random_fallback_average': 0.5776632553606238, 'domain_routed_fallback_average': 0.7797329855877198, 'by_domain_random': {'CODE_STRICT_CLEAN_ALL16': 0.65, 'REASONING_NATURAL_DISTRACTOR': 0.5833333333333334, 'REASONING_TRACE': 0.5, 'SCIENCE_OVERALL': 0.5526315789473684, 'SCIENCE_BIOLOGY': 0.625, 'SCIENCE_CHEMISTRY': 0.5, 'SCIENCE_MEDICINE': 0.5, 'SCIENCE_GENERAL': 0.625, 'SCIENCE_OTHER': 0.5, 'CODE_RUNNABLE_DIAGNOSTIC': 0.59375, 'CLEAN_GSM8K_EXPANDED': 0.6574074074074074, 'HH_HELDOUT20': 0.625, 'HH_200_DIAGNOSTIC': 0.5975}, 'by_domain_domain_routed': {'CODE_STRICT_CLEAN_ALL16': 0.8166666666666667, 'REASONING_NATURAL_DISTRACTOR': 0.7083333333333334, 'REASONING_TRACE': 1.0, 'SCIENCE_OVERALL': 0.7174515235457064, 'SCIENCE_BIOLOGY': 0.875, 'SCIENCE_CHEMISTRY': 0.75, 'SCIENCE_MEDICINE': 0.4166666666666667, 'SCIENCE_GENERAL': 0.9375, 'SCIENCE_OTHER': 0.4444444444444444, 'CODE_RUNNABLE_DIAGNOSTIC': 0.94921875, 'CLEAN_GSM8K_EXPANDED': 0.8168724279835391, 'HH_HELDOUT20': 0.885, 'HH_200_DIAGNOSTIC': 0.8193750000000001}}, 'DISAGREEMENT_DEFER_0.20': {'random_fallback_average': 0.5867676938071675, 'domain_routed_fallback_average': 0.7805542946646306, 'by_domain_random': {'CODE_STRICT_CLEAN_ALL16': 0.7166666666666667, 'REASONING_NATURAL_DISTRACTOR': 0.6458333333333333, 'REASONING_TRACE': 0.5, 'SCIENCE_OVERALL': 0.5438596491228069, 'SCIENCE_BIOLOGY': 0.625, 'SCIENCE_CHEMISTRY': 0.5, 'SCIENCE_MEDICINE': 0.5, 'SCIENCE_GENERAL': 0.625, 'SCIENCE_OTHER': 0.4444444444444445, 'CODE_RUNNABLE_DIAGNOSTIC': 0.59375, 'CLEAN_GSM8K_EXPANDED': 0.6759259259259259, 'HH_HELDOUT20': 0.65, 'HH_200_DIAGNOSTIC': 0.6074999999999999}, 'by_domain_domain_routed': {'CODE_STRICT_CLEAN_ALL16': 0.8388888888888889, 'REASONING_NATURAL_DISTRACTOR': 0.75, 'REASONING_TRACE': 1.0, 'SCIENCE_OVERALL': 0.6989843028624192, 'SCIENCE_BIOLOGY': 0.875, 'SCIENCE_CHEMISTRY': 0.75, 'SCIENCE_MEDICINE': 0.4166666666666667, 'SCIENCE_GENERAL': 0.9375, 'SCIENCE_OTHER': 0.40740740740740744, 'CODE_RUNNABLE_DIAGNOSTIC': 0.94921875, 'CLEAN_GSM8K_EXPANDED': 0.8148148148148149, 'HH_HELDOUT20': 0.8900000000000001, 'HH_200_DIAGNOSTIC': 0.8187249999999999}}, 'DISAGREEMENT_DEFER_0.30': {'random_fallback_average': 0.5920312265707003, 'domain_routed_fallback_average': 0.7818001240410155, 'by_domain_random': {'CODE_STRICT_CLEAN_ALL16': 0.7333333333333334, 'REASONING_NATURAL_DISTRACTOR': 0.6458333333333333, 'REASONING_TRACE': 0.5, 'SCIENCE_OVERALL': 0.5438596491228069, 'SCIENCE_BIOLOGY': 0.625, 'SCIENCE_CHEMISTRY': 0.5, 'SCIENCE_MEDICINE': 0.5, 'SCIENCE_GENERAL': 0.625, 'SCIENCE_OTHER': 0.4444444444444445, 'CODE_RUNNABLE_DIAGNOSTIC': 0.59375, 'CLEAN_GSM8K_EXPANDED': 0.6851851851851851, 'HH_HELDOUT20': 0.675, 'HH_200_DIAGNOSTIC': 0.625}, 'by_domain_domain_routed': {'CODE_STRICT_CLEAN_ALL16': 0.8444444444444446, 'REASONING_NATURAL_DISTRACTOR': 0.75, 'REASONING_TRACE': 1.0, 'SCIENCE_OVERALL': 0.6989843028624192, 'SCIENCE_BIOLOGY': 0.875, 'SCIENCE_CHEMISTRY': 0.75, 'SCIENCE_MEDICINE': 0.4166666666666667, 'SCIENCE_GENERAL': 0.9375, 'SCIENCE_OTHER': 0.40740740740740744, 'CODE_RUNNABLE_DIAGNOSTIC': 0.94921875, 'CLEAN_GSM8K_EXPANDED': 0.8189300411522633, 'HH_HELDOUT20': 0.895, 'HH_200_DIAGNOSTIC': 0.82025}}}}`
 - oracle-gap summary: average=0.135, objective=0.061
 - contrast-detector summary: DEPLOYABILITY_WEAK
-- Phase 1 controller design from this run: HH/general for HH and unknown, objective mixed for objective QA/reasoning/science/GSM8K, code specialist backup for strict-clean or high-similarity code, defer on low margin/disagreement.
+- recommended Phase 1 controller design: HH/general for HH and unknown, objective mixed for objective QA/reasoning/science/GSM8K, code specialist backup for strict-clean or high-similarity code, defer on low margin/disagreement.
 - full reports: `artifacts/reports/probes/bg_controller_policy_simulator_2026-05-17_summary.md`, `artifacts/reports/probes/bg_controller_policy_simulation_2026-05-17.json`, `artifacts/reports/probes/bg_candidate_head_comparison_2026-05-17.json`, `artifacts/reports/probes/bg_phase1_controller_design_note_2026-05-17.md`
 - interpretation: deploy a read-only routed controller; current heads are complementary enough to route, but not stable enough to collapse into one universal head.
 
@@ -569,7 +642,7 @@ The general HH tap transfers broadly enough to remain useful, but strict-clean c
 
 - BG_CONTROLLER_ARTIFACT_VERDICT = READY
 - BG_CONTROLLER_REPLAY_VERDICT = PASS
-- module path: `evaluator/bg_controller.py`
+- module path: `src/evaluator/bg_controller.py`
 - supported modes: `conservative`, `experimental_vote`, `code_backup`, `diagnostic_all`
 - conservative routing: `hh`/`preference`/`unknown` use `hh_general`; `code`/`strict_clean_code`/`reasoning`/`science`/`math`/`gsm8k`/`objective` use `objective_mixed`.
 - experimental vote caveat: exposed for validation only; it uses label-free normalized margins and is not the default controller route.
@@ -585,7 +658,7 @@ The general HH tap transfers broadly enough to remain useful, but strict-clean c
 - BG_DEVIL_TASK_INVENTORY_VERDICT = READY
 - BG_DEVIL_BEST_OF_N_VERDICT = PASS
 - BG_TRANSFORMER_UNIT_TEST_VERDICT = PASS
-- module path: `evaluator/bg_transformer_features.py`; original manual smoke script was kept in the source worktree and is not part of this public repository.
+- module paths: `src/evaluator/bg_transformer_features.py`, `utilities/tests/manual/run_bg_transformer_best_of_n_smoke.py`
 - smoke report paths: `artifacts/reports/probes/bg_transformer_best_of_n_smoke_all_2026-05-18.md`, `artifacts/reports/probes/bg_transformer_capture_inspection_2026-05-18.md`
 - devil task report path: `artifacts/reports/probes/bg_devil_task_inventory_2026-05-18.md`
 - interpretation: live read-only Ouro-RLTT generation, hook capture, BG feature pooling, and conservative BG candidate selection now work mechanically; devil code correctness remains diagnostic and the generated candidates did not pass the local tests.
@@ -608,18 +681,18 @@ The general HH tap transfers broadly enough to remain useful, but strict-clean c
 - full report paths: `artifacts/reports/probes/bg_steering_suite_2026-05-18/summary.md`, `artifacts/reports/probes/bg_steering_suite_2026-05-18/analysis.md`, `docs/evaluator/steering-and-routing-suite.md`
 - interpretation: BG partial routing shows a positive but sub-threshold signal (+0.043 top1/top2 lift over random), so the deployable conclusion is neutral pending better candidate generation or calibration.
 
-## Source-worktree candidate export interface (2026-05-18)
+## Local-agent candidate export interface (2026-05-18)
 
 - WRAPPER_CANDIDATE_PATH_INVENTORY_VERDICT = READY
 - WRAPPER_CANDIDATE_EXPORT_UNIT_VERDICT = PASS
 - WRAPPER_CANDIDATE_EXPORT_SMOKE_VERDICT = SKIPPED
 - WRAPPER_CANDIDATE_EXPOSURE_VERDICT = READY
-- source-worktree files modified: candidate export, candidate capture, and direct generation helpers not included in this public repository.
-- API path: source-worktree candidate capture helper, not included in this public repository.
-- docs/report paths: source-worktree candidate export and exposure reports, not included in this public repository.
-- interpretation: the source worktree exposed direct and tool/repair candidate artifacts through an explicit opt-in trace path while preserving default generation outputs.
+- files modified: `src/local_agent/candidate_export.py`, `src/local_agent/candidate_capture.py`, `src/local_agent/ouro_direct.py`, `src/local_agent/ouro_agent_improved.py`
+- API path: `src/local_agent/candidate_capture.py`
+- docs/report paths: `docs/evaluator/local-agent-candidate-export.md`, `artifacts/reports/probes/local_agent_candidate_exposure_2026-05-18_summary.md`
+- interpretation: the wrapper now exposes direct and tool/repair candidate artifacts through an explicit opt-in trace path while preserving default wrapper outputs.
 
-## Source-worktree-matched BG candidate selection (2026-05-18)
+## Wrapper-matched BG candidate selection (2026-05-18)
 
 - WRAPPER_TRACE_GENERATION_VERDICT = READY
 - WRAPPER_CANDIDATE_EVAL_VERDICT = READY
@@ -629,9 +702,9 @@ The general HH tap transfers broadly enough to remain useful, but strict-clean c
 - BG_VS_RANDOM_VERDICT = NEUTRAL
 - BG_VS_STAGE_HEURISTIC_VERDICT = NEUTRAL
 - WRAPPER_MATCHED_EXPERIMENT_VERDICT = READY
-- devil result: both source-worktree traces produced only `wrong_code`; neither the source-worktree baseline nor BG solved them.
-- report paths: source-worktree matched-BG reports, not included in this public repository.
-- interpretation: exported candidates made code reachability viable, but BG tied the source-worktree final/random/stage baselines because the matched pools rarely contained a missed correct branch.
+- devil result: both devil traces produced only `wrong_code`; neither wrapper nor BG solved them.
+- report paths: `artifacts/reports/probes/wrapper_bg_matched_2026-05-18/summary.md`, `artifacts/reports/probes/wrapper_bg_matched_2026-05-18/analysis.md`, `docs/evaluator/wrapper-matched-bg-selection.md`
+- interpretation: wrapper-quality candidates made code reachability viable, but BG tied wrapper final/random/stage baselines because the matched pools rarely contained a missed correct branch.
 ## BG trajectory prediction sweep (2026-05-18)
 
 BG_TRAJECTORY_PREFLIGHT_VERDICT = `READY`.
@@ -645,7 +718,7 @@ BEST_PREDICTIVE_CELL = `{'domain': 'reasoning', 'prefix_length': 256, 'head_id':
 RECOMMENDED_STEERING_TARGET = `{'domain': 'reasoning', 'prefix_length': 256, 'head_id': 'mixed::MIX_CODE_REASONING::36_mean::AntisymLinear', 'head_config': '36_mean', 'architecture': 'AntisymLinear', 'top1_lift': 0.16249999999999998, 'top2_lift': 0.04166666666666663, 'pairwise_accuracy': 0.8536585365853658, 'oracle_success': 0.9}`.
 GENERATOR_REACHABILITY_LIMITED = `false`.
 Interpretation: Run a targeted Stage 2 steering-sensitivity probe at the best predictive cell. Measure state movement in the BG-readable direction, output stability, final correctness, and positive-vs-negative-vs-random controls.
-Full reports: `artifacts/reports/probes/bg_trajectory_prediction_2026-05-18/summary.md`, `artifacts/reports/probes/bg_trajectory_prediction_2026-05-18/predictive_power.md`, `artifacts/reports/probes/bg_trajectory_prediction_2026-05-18/stage2_followup_note (source-worktree artifact)`.
+Full reports: `artifacts/reports/probes/bg_trajectory_prediction_2026-05-18/summary.md`, `artifacts/reports/probes/bg_trajectory_prediction_2026-05-18/predictive_power.md`, `artifacts/reports/probes/bg_trajectory_prediction_2026-05-18/stage2_recommendation.md`.
 
 ## BG Stage 2 layer-hook follow-up (2026-05-18)
 
@@ -663,6 +736,7 @@ BG_LAYERHOOK_FOLLOWUP_VERDICT = READ_ONLY_BG_FOR_NOW
 BEST_SINGLE_LOOP_MODE = single_loop_L1
 BEST_MULTILOOP_MODE = multi_loop_decayed
 MULTILOOP_GAIN_OVER_BEST_SINGLE = 0.0706979167497257
+RECOMMENDED_NEXT = keep_BG_as_readout_selector_and_revisit_steering_with_empirical_success_direction_or_training
 
 Interpretation: BG remains more reliable as a readout selector than as an inference-time steering vector under this protocol.
 
@@ -748,6 +822,7 @@ Full reports: `artifacts/reports/probes/bg_causal_intervention_adapter_2026-05-1
 - FROZEN_BACKBONE_INFERENCE_STEERING_STATUS: `CLOSED_UNDER_TESTED_METHODS`
 - STOPPING_RULE_APPLIES: `True`
 - STOPPING_RULE_SCOPE: `safe_alpha_leq_0_02_under_tested_optimizers`
+- RECOMMENDED_NEXT: `consolidate_phase1_phase1_5_and_design_phase2_training_time_integration`
 - STOPPING_RULE_SCOPE: `safe_alpha_leq_0_02_under_tested_optimizers`
 - report paths:
   - `artifacts/reports/probes/bg_sequence_adapter_quick_preflight_2026-05-18/summary.md`
@@ -882,14 +957,14 @@ HIDDEN_ORIGIN_SELECTOR_BEST_AVAILABLE_AFTER_GENERATOR_V1 = v4_hidden_origin_tap
 
 - quota_progress_by_split: `{'all_minimums_met': False, 'heldout': {'behaviorally_diverse_groups': 43, 'behaviorally_diverse_groups_per_100_rows': 6.554878048780488, 'candidate_pairs': 2296, 'groups': 82, 'minimum_met': True, 'non_tie_pairs': 419, 'non_tie_pairs_per_100_rows': 63.8719512195122, 'parse_rate': 0.8262195121951219, 'quota_minimums': {'behaviorally_diverse_groups': 20, 'non_tie_pairs': 120, 'task_ids': 8}, 'reward_diverse_groups': 38, 'stability_rate': 1.0, 'stable_primary_rows': 656, 'task_ids': 10, 'task_ids_with_non_tie_pair_list': ['OpenBookQA/14', 'mmlu/anatomy/12', 'mmlu/anatomy/7', 'mmlu/anatomy/8', 'mmlu/high_school_chemistry/1', 'mmlu/high_school_chemistry/10', 'mmlu/high_school_physics/11', 'sciq/sciq/22'], 'task_ids_with_non_tie_pairs': 8, 'tie_pairs': 1877, 'tie_rate': 0.8175087108013938}, 'train': {'behaviorally_diverse_groups': 35, 'behaviorally_diverse_groups_per_100_rows': 1.4583333333333333, 'candidate_pairs': 8400, 'groups': 300, 'minimum_met': False, 'non_tie_pairs': 473, 'non_tie_pairs_per_100_rows': 19.708333333333332, 'parse_rate': 0.6891666666666667, 'quota_minimums': {'behaviorally_diverse_groups': 60, 'non_tie_pairs': 250, 'task_ids': 24}, 'reward_diverse_groups': 34, 'stability_rate': 1.0, 'stable_primary_rows': 2400, 'task_ids': 40, 'task_ids_with_non_tie_pair_list': ['ARC-Challenge/1', 'ARC-Challenge/17', 'ARC-Challenge/19', 'ARC-Challenge/2', 'OpenBookQA/3'], 'task_ids_with_non_tie_pairs': 5, 'tie_pairs': 7927, 'tie_rate': 0.9436904761904762}, 'val': {'behaviorally_diverse_groups': 1, 'behaviorally_diverse_groups_per_100_rows': 0.1, 'candidate_pairs': 3452, 'groups': 127, 'minimum_met': False, 'non_tie_pairs': 7, 'non_tie_pairs_per_100_rows': 0.7, 'parse_rate': 0.874, 'quota_minimums': {'behaviorally_diverse_groups': 15, 'non_tie_pairs': 60, 'task_ids': 6}, 'reward_diverse_groups': 1, 'stability_rate': 1.0, 'stable_primary_rows': 1000, 'task_ids': 8, 'task_ids_with_non_tie_pair_list': ['mmlu/high_school_chemistry/16'], 'task_ids_with_non_tie_pairs': 1, 'tie_pairs': 3445, 'tie_rate': 0.9979721900347625}}`
 - diversity_questions: `{'CEM_or_ES_improved_over_HS': False, 'K6_yield': 0.0, 'K8_remained_useful': True, 'K8_yield': 1.971057884231537, 'L24_remained_better_than_L36': True, 'L24_yield': 1.9863013698630136, 'L36_yield': 1.8485915492957747, 'alpha_0_005_remained_best': False, 'alpha_0_005_yield': 1.8851508120649652, 'alpha_0_01_yield': 2.3026315789473686, 'beat_static_v4_recipe': True, 'cem_yield': 1.957070707070707, 'hs_yield': 2.217741935483871, 'learned_proposer_helped': True, 'non_random_directions_remained_useful': True, 'non_random_yield': 3.75, 'random_yield': 2.1169354838709675, 'static_yield': 1.8333333333333333, 'structured_low_rank_coefficients_helped': False, 'true_behavioral_diversity_not_instability': True, 'true_fork_carry_changed_persistence': False}`
-- source_run_followup_note: `Either run a small selection-only prototype with caveat or run targeted generator v1.1 if one recipe clearly remains.`
+- recommended_next: `Either run a small selection-only prototype with caveat or run targeted generator v1.1 if one recipe clearly remains.`
 
 Selector readiness, if claimed, uses only primary-safe deterministic alpha <= 0.01 heldout rows. Diagnostic alpha 0.02, sampled labels, L47 branches, old-context replay, and auxiliary diagnostics are not readiness support.
 
 
 ## Universal branch-content taps v1 (2026-05-18)
 
-Universal Branch-Content Taps v1 tested whether one tiny hidden-state pairwise evaluator can cover both old content/candidate selection and same-prefix hidden-origin branch survival. It trained only new standalone tap heads and did not alter Ouro, existing BG taps, registries, external routing, or production behavior.
+Universal Branch-Content Taps v1 tested whether one tiny hidden-state pairwise evaluator can cover both old content/candidate selection and same-prefix hidden-origin branch survival. It trained only new standalone tap heads and did not alter Ouro, existing BG taps, registries, wrapper/local-agent routing, or production behavior.
 
 BG_UNIVERSAL_TAP_INVENTORY_VERDICT = READY
 BG_UNIVERSAL_OLD_CONTENT_DATASET_VERDICT = READY
@@ -909,7 +984,7 @@ UNIVERSAL_BRANCH_CONTENT_TAP_STATUS = FUSION_NEEDED
 - old_content_counts: `{'feature_config_counts': {'24_L4': 462, '24_mean': 462, '30_L4': 0, '36_L4': 462, '36_mean': 462, '42_L4': 0, '47_L4': 462, '47_mean': 462, 'concat_24_30_36': 0, 'concat_24_36': 462, 'concat_24_36_47': 462, 'concat_36_42_47': 0, 'concat_36_47': 462}, 'pairs': 462, 'pairs_by_domain': {'math_simple_arithmetic': 143, 'reasoning': 183, 'science': 136}, 'pairs_by_split': {'heldout': 73, 'train': 295, 'val': 94}, 'pairs_by_type': {'old_content': 462}, 'tasks_by_split': {'heldout': ['ARC-Challenge/0', 'ARC-Challenge/19', 'gsm8k/1', 'gsm8k/12', 'gsm8k/5', 'mmlu/high_school_biology/10', 'mmlu/high_school_biology/12', 'mmlu/high_school_biology/17', 'mmlu/high_school_biology/9'], 'train': ['ARC-Challenge/1', 'ARC-Challenge/11', 'ARC-Challenge/12', 'ARC-Challenge/13', 'ARC-Challenge/14', 'ARC-Challenge/15', 'ARC-Challenge/16', 'ARC-Challenge/17', 'ARC-Challenge/18', 'ARC-Challenge/6', 'ARC-Challenge/8', 'gsm8k/0', 'gsm8k/10', 'gsm8k/11', 'gsm8k/13', 'gsm8k/14', 'gsm8k/16', 'gsm8k/17', 'gsm8k/19', 'gsm8k/2', 'gsm8k/3', 'gsm8k/7', 'gsm8k/8', 'mmlu/high_school_biology/1', 'mmlu/high_school_biology/11', 'mmlu/high_school_biology/15', 'mmlu/high_school_biology/19', 'mmlu/high_school_biology/2', 'mmlu/high_school_biology/3', 'mmlu/high_school_biology/4', 'mmlu/high_school_biology/5', 'mmlu/high_school_biology/7', 'mmlu/high_school_biology/8'], 'val': ['ARC-Challenge/10', 'ARC-Challenge/2', 'ARC-Challenge/3', 'ARC-Challenge/4', 'ARC-Challenge/5', 'ARC-Challenge/7', 'ARC-Challenge/9', 'gsm8k/15', 'gsm8k/9', 'mmlu/high_school_biology/14', 'mmlu/high_school_biology/18']}}`
 - hidden_branch_counts: `{'feature_config_counts': {'24_L4': 1753, '24_mean': 1753, '30_L4': 1753, '36_L4': 1753, '36_mean': 1753, '42_L4': 1753, '47_L4': 1753, '47_mean': 1753, 'concat_24_30_36': 1753, 'concat_24_36': 1753, 'concat_24_36_47': 1753, 'concat_36_42_47': 1753, 'concat_36_47': 1753}, 'pairs': 1753, 'pairs_by_domain': {'reasoning': 1074, 'science': 679}, 'pairs_by_split': {'heldout': 483, 'train': 1090, 'val': 180}, 'pairs_by_type': {'hidden_branch': 1753}, 'tasks_by_split': {'heldout': ['OpenBookQA/14', 'OpenBookQA/18', 'mmlu/anatomy/12', 'mmlu/anatomy/7', 'mmlu/anatomy/8', 'mmlu/high_school_chemistry/1', 'mmlu/high_school_chemistry/10', 'mmlu/high_school_physics/11', 'sciq/sciq/22'], 'train': ['ARC-Challenge/1', 'ARC-Challenge/17', 'ARC-Challenge/19', 'ARC-Challenge/2', 'OpenBookQA/3', 'mmlu/anatomy/12', 'mmlu/anatomy/8', 'mmlu/high_school_chemistry/10', 'mmlu/high_school_physics/11', 'sciq/sciq/22'], 'val': ['ARC-Challenge/17', 'mmlu/high_school_chemistry/16']}}`
 - bridge_counts: `{'feature_config_counts': {'24_L4': 2142, '24_mean': 2142, '30_L4': 2142, '36_L4': 2142, '36_mean': 2142, '42_L4': 2142, '47_L4': 2142, '47_mean': 2142, 'concat_24_30_36': 2142, 'concat_24_36': 2142, 'concat_24_36_47': 2142, 'concat_36_42_47': 2142, 'concat_36_47': 2142}, 'pairs': 2142, 'pairs_by_domain': {'reasoning': 1316, 'science': 826}, 'pairs_by_split': {'heldout': 580, 'train': 1342, 'val': 220}, 'pairs_by_type': {'bridge': 2142}, 'tasks_by_split': {'heldout': ['OpenBookQA/14', 'OpenBookQA/18', 'mmlu/anatomy/12', 'mmlu/anatomy/7', 'mmlu/anatomy/8', 'mmlu/high_school_chemistry/1', 'mmlu/high_school_chemistry/10', 'mmlu/high_school_physics/11', 'sciq/sciq/22'], 'train': ['ARC-Challenge/1', 'ARC-Challenge/17', 'ARC-Challenge/19', 'ARC-Challenge/2', 'OpenBookQA/3', 'mmlu/anatomy/12', 'mmlu/anatomy/8', 'mmlu/high_school_chemistry/10', 'mmlu/high_school_physics/11', 'sciq/sciq/22'], 'val': ['ARC-Challenge/17', 'mmlu/high_school_chemistry/16']}}`
-- source-run interpretation: `Build an explicit composite selector rather than forcing a single universal head.`
+- recommendation: `Build an explicit composite selector rather than forcing a single universal head.`
 
 Readiness requires old-context, hidden-branch, and bridge support. Cached coding features were inspected but had no non-tie within-task labels, so coding remains coverage-limited.
 
@@ -932,8 +1007,8 @@ BG_GATED_GEOMETRY_VERDICT = OLD_GEOMETRY_DOMINATES
 BG_GATED_AS_OLD_TAP_REPLACEMENT_VERDICT = SAFE_REPLACEMENT_CANDIDATE
 GATED_BRANCH_CONTENT_SELECTOR_STATUS = OLD_NEW_COMPOSITE_SUFFICIENT
 
-- source-run interpretation: `Prefer the simpler old+branch+bridge composite over the learned gate for now; keep top-k survival and do not change production routing.`
-- no Ouro weights, tokenizer files, checkpoints, old taps, tap registries, external routing, or production routing were modified.
+- recommendation: `Prefer the simpler old+branch+bridge composite over the learned gate for now; keep top-k survival and do not change production routing.`
+- no Ouro weights, tokenizer files, checkpoints, old taps, tap registries, wrapper/local-agent routing, or production routing were modified.
 - expert/tap scores were used only as input features, not as labels.
 
 ## Fixed-composite branch survival policy v1 (2026-05-18)
@@ -956,9 +1031,9 @@ BG_FIXED_COMPOSITE_SELECTION_ONLY_READINESS_VERDICT = READY
 FIXED_COMPOSITE_BRANCH_SURVIVAL_POLICY_STATUS = SURVIVAL_READY
 
 - selected policy: `selected_policy = fixed_composite_conservative_top4; oracle_retention = 0.931; false_prune_rate = 0.069; avg_survivors = 3.873`
-- source-run interpretation: `Proceed to a small selection-only Phase 2 prototype using BGV1 branches, the fixed old+branch+bridge composite, the selected conservative top-k survival operating point, and missing/OOD fallback. Keep veto/rescue as a guardrail, not as a replacement for the selected heldout-ready operating point. selected_policy = fixed_composite_conservative_top4; oracle_retention = 0.931; false_prune_rate = 0.069; avg_survivors = 3.873. Do not claim action steering.`
+- recommendation: `Proceed to a small selection-only Phase 2 prototype using BGV1 branches, the fixed old+branch+bridge composite, the selected conservative top-k survival operating point, and missing/OOD fallback. Keep veto/rescue as a guardrail, not as a replacement for the selected heldout-ready operating point. selected_policy = fixed_composite_conservative_top4; oracle_retention = 0.931; false_prune_rate = 0.069; avg_survivors = 3.873. Do not claim action steering.`
 - learned gated selector remains diagnostic; it is not the primary pruning selector.
-- no Ouro weights, tokenizer files, checkpoints, old tap registries, external routes, or production routing were modified.
+- no Ouro weights, tokenizer files, checkpoints, old tap registries, wrapper/local-agent routes, or production routing were modified.
 
 ## Selection-only Phase 2 prototype v1 (2026-05-18)
 
@@ -968,7 +1043,7 @@ SELECTION_ONLY_PHASE2_PROTOTYPE_STATUS = SURVIVAL_READY_FINAL_ARBITER_WEAK
 - live/counterfactual prototype: `SURVIVAL_POSITIVE_FINAL_SELECTION_WEAK`
 - final arbiter: `FINAL_SELECTION_WEAK`
 - steering readiness: `NEEDS_FINAL_ARBITER_FIRST`
-- source-run interpretation: Train or evaluate a stronger final arbiter among top4 survivors before steering.
+- recommendation: Train or evaluate a stronger final arbiter among top4 survivors before steering.
 - no action steering was tested; no production routing changed.
 
 ## Final arbiter among top4 survivors v1 (2026-05-18)
@@ -979,7 +1054,7 @@ SELECTION_ONLY_PHASE2A_STATUS_AFTER_FINAL_ARBITER = NEEDS_MORE_FINAL_ARBITER_WOR
 - heldout eval: `FINAL_ARBITER_WEAK`
 - selected model: `listwise_softmax`
 - readiness: `FINAL_ARBITER_WEAK_BUT_IMPROVED`
-- source-run interpretation: Run a small improved-arbiter v1.1 or proceed only with explicit weak-baseline caveat.
+- recommendation: Run a small improved-arbiter v1.1 or proceed only with explicit weak-baseline caveat.
 - no action steering was tested.
 
 ## Final arbiter among top4 survivors v1.1 (2026-05-18)
@@ -991,7 +1066,7 @@ SELECTION_ONLY_PHASE2A_STATUS_AFTER_FINAL_ARBITER_V1_1 = NEEDS_DOMAIN_SPECIALIZA
 - selected model: `tie_aware_rank_listwise`
 - heldout eval: `NO_IMPROVEMENT`
 - readiness: `NEEDS_REASONING_ARBITER`
-- source-run interpretation: Return to expert/bridge signal quality; v1.1 did not improve final selection.
+- recommendation: Return to expert/bridge signal quality; v1.1 did not improve final selection.
 - no action steering was tested.
 
 ## Weight-space merged taps proposal (2026-05-18)
@@ -1047,13 +1122,13 @@ Report: `docs/evaluator/history/bg-run-notes/dualanchor-two-tap/bg_two_tap_gap_t
 
 ## Layer-native two-tap readiness v1 (2026-05-30)
 
-`BG_LAYER_NATIVE_TWO_TAP_READINESS_VERDICT = LAYER_NATIVE_TWO_TAP_PARTIAL_NOT_READY`. Re-tested `MIX_CODE_REASONING` and `MIX_OBJECTIVE_ALL` as native `24_L4`, `36_L4`, and `47_L4` tap bundles instead of concat-only taps. Domain ok `False`; branch ok `False`. No Ouro training, old registry update, steering, external wrapper execution, or routing change was performed.
+`BG_LAYER_NATIVE_TWO_TAP_READINESS_VERDICT = LAYER_NATIVE_TWO_TAP_PARTIAL_NOT_READY`. Re-tested `MIX_CODE_REASONING` and `MIX_OBJECTIVE_ALL` as native `24_L4`, `36_L4`, and `47_L4` tap bundles instead of concat-only taps. Domain ok `False`; branch ok `False`. No Ouro training, old registry update, steering, wrapper/local-agent execution, or routing change was performed.
 
 Report: `docs/evaluator/history/bg-run-notes/dualanchor-two-tap/bg_layer_native_two_tap_readiness_v1.md`.
 
 ## Layer-native two-tap constrained training v1 (2026-05-30)
 
-`BG_LAYER_NATIVE_TWO_TAP_CONSTRAINED_TRAINING_VERDICT = CONSTRAINED_TWO_TAP_NOT_READY`; readiness verdict `LAYER_NATIVE_TWO_TAP_PARTIAL_NOT_READY`. Trained copied `MIX_CODE_REASONING` and `MIX_OBJECTIVE_ALL` layer-local taps at `24_L4`, `36_L4`, and `47_L4` on train-split old-domain plus branch/bridge labels with anchor preservation. Domain ok `False`; branch ok `False`. No Ouro training, old registry update, steering, external wrapper execution, or routing change was performed.
+`BG_LAYER_NATIVE_TWO_TAP_CONSTRAINED_TRAINING_VERDICT = CONSTRAINED_TWO_TAP_NOT_READY`; readiness verdict `LAYER_NATIVE_TWO_TAP_PARTIAL_NOT_READY`. Trained copied `MIX_CODE_REASONING` and `MIX_OBJECTIVE_ALL` layer-local taps at `24_L4`, `36_L4`, and `47_L4` on train-split old-domain plus branch/bridge labels with anchor preservation. Domain ok `False`; branch ok `False`. No Ouro training, old registry update, steering, wrapper/local-agent execution, or routing change was performed.
 
 Report: `docs/evaluator/history/bg-run-notes/dualanchor-two-tap/bg_layer_native_two_tap_constrained_train_v1.md`.
 
@@ -1077,7 +1152,7 @@ Report: `docs/evaluator/history/bg-run-notes/dualanchor-two-tap/bg_two_tap_hh_rl
 
 ## DualAnchor branch-gap repair v1 (2026-05-30)
 
-`BG_DUALANCHOR_BRANCH_GAP_REPAIR_VERDICT = DUALANCHOR_BRANCH_NOT_READY`; readiness verdict `LAYER_NATIVE_TWO_TAP_PARTIAL_NOT_READY`. Targeted copied `MIX_CODE_REASONING` and `MIX_OBJECTIVE_ALL` layer-native heads at `24_L4`, `36_L4`, and `47_L4` on train-split branch-gap examples with old-domain preservation. Best-candidate domain ok `False`; best-candidate branch ok `False`; selected-bundle branch ok `False`. No Ouro training, old registry update, steering, external wrapper execution, or routing change was performed.
+`BG_DUALANCHOR_BRANCH_GAP_REPAIR_VERDICT = DUALANCHOR_BRANCH_NOT_READY`; readiness verdict `LAYER_NATIVE_TWO_TAP_PARTIAL_NOT_READY`. Targeted copied `MIX_CODE_REASONING` and `MIX_OBJECTIVE_ALL` layer-native heads at `24_L4`, `36_L4`, and `47_L4` on train-split branch-gap examples with old-domain preservation. Best-candidate domain ok `False`; best-candidate branch ok `False`; selected-bundle branch ok `False`. No Ouro training, old registry update, steering, wrapper/local-agent execution, or routing change was performed.
 
 Report: `docs/evaluator/history/bg-run-notes/dualanchor-two-tap/bg_dualanchor_branch_gap_repair_v1.md`.
 

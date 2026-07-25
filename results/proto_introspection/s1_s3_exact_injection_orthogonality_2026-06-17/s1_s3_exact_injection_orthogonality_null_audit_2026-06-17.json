@@ -1,0 +1,618 @@
+{
+  "audit": "s1_s3_exact_injection_orthogonality_null_audit",
+  "audit_generated_at": "2026-07-02T16:52:46",
+  "ran_generation": false,
+  "trained_or_modified_checkpoints": false,
+  "bundle_path": "artifacts/reports/proto_introspection/s1_s3_exact_injection_orthogonality_2026-06-17/s1_s3_exact_injection_delta_bundle_2026-06-17.pt",
+  "bundle_inspection": {
+    "top_level": {
+      "branch_features": {
+        "type": "tensor",
+        "shape": [
+          344,
+          3,
+          4,
+          2048
+        ],
+        "dtype": "float16",
+        "min": -7.140625,
+        "max": 4.8125,
+        "norm": 895.3653564453125
+      },
+      "branch_rows": {
+        "type": "list",
+        "len": 344,
+        "first_keys": [
+          "alpha",
+          "base_correct",
+          "branch_id",
+          "candidate_group_id",
+          "cc_score_for_prune",
+          "correct",
+          "da_score_for_prune",
+          "delta_norm",
+          "direction_index",
+          "domain",
+          "is_terminal_locus",
+          "kept_after_prune",
+          "label_type",
+          "layer",
+          "lineage_depth",
+          "locus",
+          "locus_index",
+          "loop",
+          "loop_1indexed",
+          "max_new_tokens",
+          "parent_branch_id",
+          "parsed_answer",
+          "perturb_rms",
+          "reward",
+          "row_index",
+          "score_group_id",
+          "selected_terminal",
+          "task_id",
+          "terminal_survivor",
+          "text",
+          "text_snippet",
+          "token_range",
+          "token_range_name"
+        ]
+      },
+      "created_at": {
+        "type": "str",
+        "repr": "'2026-07-02T15:57:35'"
+      },
+      "delta_locus": {
+        "type": "tensor",
+        "shape": [
+          344,
+          2048
+        ],
+        "dtype": "float16",
+        "min": -0.019775390625,
+        "max": 0.0198974609375,
+        "norm": 4.739236354827881
+      },
+      "elapsed_seconds": {
+        "type": "float",
+        "repr": "3363.4"
+      },
+      "h_clean_locus": {
+        "type": "tensor",
+        "shape": [
+          344,
+          2048
+        ],
+        "dtype": "float16",
+        "min": -2.453125,
+        "max": 9.5625,
+        "norm": 236.26177978515625
+      },
+      "h_injected_locus": {
+        "type": "tensor",
+        "shape": [
+          344,
+          2048
+        ],
+        "dtype": "float16",
+        "min": -2.4375,
+        "max": 9.5625,
+        "norm": 236.29420471191406
+      },
+      "model_info": {
+        "type": "dict",
+        "len": 17,
+        "keys": [
+          "attn_implementation",
+          "device",
+          "dtype",
+          "early_exit_threshold",
+          "expected_cache_slots",
+          "head_dim",
+          "hidden_size",
+          "load_seconds",
+          "model_class",
+          "model_path",
+          "num_attention_heads",
+          "num_hidden_layers",
+          "num_key_value_heads",
+          "torch_version",
+          "total_ut_steps",
+          "transformers_version",
+          "vocab_size"
+        ]
+      },
+      "protocol": {
+        "type": "dict",
+        "len": 18,
+        "keys": [
+          "BUDGET",
+          "K",
+          "N_PER",
+          "alpha",
+          "correctness_labels",
+          "delta_status",
+          "domains",
+          "historical_tensors_found",
+          "loci",
+          "mnt_inter",
+          "mnt_term",
+          "protocol_recovery",
+          "prune_mode",
+          "s1_reference_paths",
+          "sampling_control",
+          "score_input_mode",
+          "tasks",
+          "token_range"
+        ]
+      },
+      "sample_features": {
+        "type": "tensor",
+        "shape": [
+          48,
+          3,
+          4,
+          2048
+        ],
+        "dtype": "float16",
+        "min": -6.3671875,
+        "max": 9.625,
+        "norm": 335.9839782714844
+      },
+      "sample_rows": {
+        "type": "list",
+        "len": 48,
+        "first_keys": [
+          "branch_id",
+          "capture_seed",
+          "correct",
+          "domain",
+          "max_new_tokens",
+          "parsed_answer",
+          "reward",
+          "sample_index",
+          "task_id",
+          "temperature",
+          "text",
+          "text_snippet",
+          "top_p"
+        ]
+      },
+      "task_summaries": {
+        "type": "list",
+        "len": 4,
+        "first_keys": [
+          "base_correct",
+          "base_parsed_answer",
+          "base_text",
+          "domain",
+          "elapsed_seconds",
+          "n_generated_branches",
+          "n_terminal_correct",
+          "n_terminal_survivors",
+          "oracle_over_terminal_survivors",
+          "prompt",
+          "prompt_tokens",
+          "selected_branch_id",
+          "selected_correct",
+          "task_id",
+          "trace"
+        ]
+      },
+      "tensor_shapes": {
+        "type": "dict",
+        "len": 7,
+        "keys": [
+          "branch_features",
+          "delta_locus",
+          "feature_basis",
+          "h_clean_locus",
+          "h_injected_locus",
+          "locus_delta_basis",
+          "sample_features"
+        ]
+      }
+    },
+    "identified_injection_delta_tensors": {
+      "h_clean_locus": "clean last-token boundary states; shape [344,2048]",
+      "h_injected_locus": "injected last-token boundary states; shape [344,2048]",
+      "delta_locus": "h_injected_locus - h_clean_locus; embedded into the [3,4,2048] audit feature basis"
+    },
+    "identified_outcome_direction": {
+      "saved_explicit_outcome_direction": false,
+      "recomputed_from": "branch_features mean(correct) - mean(incorrect), using branch_rows.correct"
+    },
+    "identified_candidate_features_labels": {
+      "branch_features": [
+        344,
+        3,
+        4,
+        2048
+      ],
+      "branch_label_key": "branch_rows[].correct",
+      "sample_features": [
+        48,
+        3,
+        4,
+        2048
+      ],
+      "sample_label_key": "sample_rows[].correct"
+    },
+    "branch_label_counts": {
+      "False": 336,
+      "True": 8
+    },
+    "sample_label_counts": {
+      "False": 44,
+      "True": 4
+    },
+    "branch_domain_counts": {
+      "logic": 86,
+      "math": 86,
+      "reasoning": 86,
+      "coding": 86
+    }
+  },
+  "geometry_basis": {
+    "feature_basis": "[3,4,2048] flattened; layer slots 24/36/47 x loops 1..4",
+    "injection_delta_basis": "[2048] last-token boundary vector; embedded into [3,4,2048] at row locus for span audit",
+    "main_projection_centering": "uncentered, matching tools/s1_s3_exact_injection_orthogonality_2026_06_17.py",
+    "same_as_prior_projection": true,
+    "same_as_s1_prune_scoring_feature_basis": true,
+    "same_as_taps_preanswer_readouts": "Same saved [3,4,2048] branch rollout feature basis as the prior S1/S3 projection. This bundle does not contain separate historical pre-answer readout tensors, so claims tying this exact geometry to other readout artifacts remain caveated unless those artifacts used the same extractor."
+  },
+  "counts": {
+    "branches": 344,
+    "positive_labels": 8,
+    "negative_labels": 336,
+    "domains": {
+      "logic": 86,
+      "math": 86,
+      "reasoning": 86,
+      "coding": 86
+    },
+    "candidate_groups": 172,
+    "score_groups": 48
+  },
+  "main_uncentered_injection_span": {
+    "matrix_shape": [
+      344,
+      24576
+    ],
+    "ambient_dimension_D": 24576,
+    "singular_value_max": 2.2986605167388916,
+    "singular_value_min": 0.0010404305066913366,
+    "rank_thresholds": {
+      "raw_positive_singular_values": 344,
+      "torch_default_matrix_rank": 144,
+      "legacy_main_audit_rel_1e-6": 344,
+      "absolute_gt_1e-3": 344,
+      "absolute_gt_1e-4": 344,
+      "absolute_gt_1e-5": 344,
+      "relative_gt_1e-3_of_max": 246
+    },
+    "effective_rank_entropy": 6.427472172839128,
+    "participation_ratio": 5.06249430523809,
+    "pca_energy_counts": {
+      "pcs_50pct": 3,
+      "pcs_80pct": 4,
+      "pcs_90pct": 5,
+      "pcs_95pct": 8,
+      "pcs_99pct": 13
+    },
+    "top_singular_values": [
+      2.2986605167388916,
+      2.29819917678833,
+      2.214676856994629,
+      2.0849497318267822,
+      0.6989719867706299,
+      0.6828545928001404,
+      0.6781508326530457,
+      0.5160052180290222,
+      0.49225831031799316,
+      0.4730713367462158,
+      0.4472694396972656,
+      0.23018530011177063,
+      0.19281011819839478,
+      0.18949899077415466,
+      0.18894849717617035,
+      0.17943711578845978,
+      0.10107313841581345,
+      0.09946724027395248,
+      0.09811609238386154,
+      0.07458589971065521
+    ],
+    "tail_singular_values": [
+      0.0012766335858032107,
+      0.0012560952454805374,
+      0.0012541280593723059,
+      0.0012396166566759348,
+      0.0012222274672240019,
+      0.0012161476770415902,
+      0.001208553439937532,
+      0.0011762023204937577,
+      0.0011689934181049466,
+      0.0010404305066913366
+    ],
+    "projection_by_rank_name": {
+      "raw_positive_singular_values": 0.018296247348189354,
+      "torch_default_matrix_rank": 0.01352015696465969,
+      "legacy_main_audit_rel_1e-6": 0.018296247348189354,
+      "absolute_gt_1e-3": 0.018296247348189354,
+      "absolute_gt_1e-4": 0.018296247348189354,
+      "absolute_gt_1e-5": 0.018296247348189354,
+      "relative_gt_1e-3_of_max": 0.018150031566619873
+    }
+  },
+  "secondary_centered_injection_span": {
+    "matrix_shape": [
+      344,
+      24576
+    ],
+    "ambient_dimension_D": 24576,
+    "singular_value_max": 2.2984302043914795,
+    "singular_value_min": 1.5075414694365463e-07,
+    "rank_thresholds": {
+      "raw_positive_singular_values": 344,
+      "torch_default_matrix_rank": 143,
+      "legacy_main_audit_rel_1e-6": 343,
+      "absolute_gt_1e-3": 343,
+      "absolute_gt_1e-4": 343,
+      "absolute_gt_1e-5": 343,
+      "relative_gt_1e-3_of_max": 245
+    },
+    "effective_rank_entropy": 6.21432659863908,
+    "participation_ratio": 4.882622782840152,
+    "pca_energy_counts": {
+      "pcs_50pct": 2,
+      "pcs_80pct": 4,
+      "pcs_90pct": 5,
+      "pcs_95pct": 7,
+      "pcs_99pct": 13
+    },
+    "top_singular_values": [
+      2.2984302043914795,
+      2.250237226486206,
+      2.1397547721862793,
+      1.781943678855896,
+      0.6934486627578735,
+      0.6804168820381165,
+      0.6003329753875732,
+      0.5102928280830383,
+      0.48289045691490173,
+      0.4568488597869873,
+      0.2479262799024582,
+      0.1928102970123291,
+      0.18949896097183228,
+      0.18894857168197632,
+      0.17943698167800903,
+      0.10107316076755524,
+      0.09946726262569427,
+      0.09811607003211975,
+      0.07458554208278656,
+      0.06226922944188118
+    ],
+    "tail_singular_values": [
+      0.0012561061885207891,
+      0.0012541282922029495,
+      0.0012396296951919794,
+      0.0012223139638081193,
+      0.0012163080973550677,
+      0.0012085861526429653,
+      0.0011762103531509638,
+      0.0011692479019984603,
+      0.0010404317872598767,
+      1.5075414694365463e-07
+    ],
+    "projection_by_rank_name": {
+      "raw_positive_singular_values": 0.018303390592336655,
+      "torch_default_matrix_rank": 0.013514486141502857,
+      "legacy_main_audit_rel_1e-6": 0.018289504572749138,
+      "absolute_gt_1e-3": 0.018289504572749138,
+      "absolute_gt_1e-4": 0.018289504572749138,
+      "absolute_gt_1e-5": 0.018289504572749138,
+      "relative_gt_1e-3_of_max": 0.01814306154847145
+    }
+  },
+  "chance_baselines": [
+    {
+      "rank_name": "raw_positive_singular_values",
+      "k": 344,
+      "expected_random_projection_k_over_D": 0.013997395833333334,
+      "observed_projection_at_rank": 0.018296247348189354,
+      "observed_over_expected": 1.3071179500845975,
+      "chance_relation": "above chance"
+    },
+    {
+      "rank_name": "torch_default_matrix_rank",
+      "k": 144,
+      "expected_random_projection_k_over_D": 0.005859375,
+      "observed_projection_at_rank": 0.01352015696465969,
+      "observed_over_expected": 2.3074401219685874,
+      "chance_relation": "above chance"
+    },
+    {
+      "rank_name": "legacy_main_audit_rel_1e-6",
+      "k": 344,
+      "expected_random_projection_k_over_D": 0.013997395833333334,
+      "observed_projection_at_rank": 0.018296247348189354,
+      "observed_over_expected": 1.3071179500845975,
+      "chance_relation": "above chance"
+    },
+    {
+      "rank_name": "absolute_gt_1e-3",
+      "k": 344,
+      "expected_random_projection_k_over_D": 0.013997395833333334,
+      "observed_projection_at_rank": 0.018296247348189354,
+      "observed_over_expected": 1.3071179500845975,
+      "chance_relation": "above chance"
+    },
+    {
+      "rank_name": "absolute_gt_1e-4",
+      "k": 344,
+      "expected_random_projection_k_over_D": 0.013997395833333334,
+      "observed_projection_at_rank": 0.018296247348189354,
+      "observed_over_expected": 1.3071179500845975,
+      "chance_relation": "above chance"
+    },
+    {
+      "rank_name": "absolute_gt_1e-5",
+      "k": 344,
+      "expected_random_projection_k_over_D": 0.013997395833333334,
+      "observed_projection_at_rank": 0.018296247348189354,
+      "observed_over_expected": 1.3071179500845975,
+      "chance_relation": "above chance"
+    },
+    {
+      "rank_name": "relative_gt_1e-3_of_max",
+      "k": 246,
+      "expected_random_projection_k_over_D": 0.010009765625,
+      "observed_projection_at_rank": 0.018150031566619873,
+      "observed_over_expected": 1.813232421875,
+      "chance_relation": "above chance"
+    }
+  ],
+  "empirical_random_direction_null": {
+    "draws": 1000000,
+    "method": "chi-square equivalent to projecting random unit vectors onto a fixed k-dimensional orthonormal span",
+    "rank_k": 344,
+    "ambient_dimension_D": 24576,
+    "expected_k_over_D": 0.013997395833333334,
+    "observed_projection": 0.018296247348189354,
+    "null_mean": 0.013997029166149085,
+    "null_std": 0.0010606726228165827,
+    "quantiles": {
+      "q01": 0.011645217520017175,
+      "q05": 0.012297469964086889,
+      "q50": 0.013970607972466622,
+      "q95": 0.015786847752825243,
+      "q99": 0.01658235155058102
+    },
+    "observed_percentile": 99.9907,
+    "p_left_fraction_null_le_observed": 0.999907,
+    "p_right_fraction_null_ge_observed": 9.3e-05
+  },
+  "shuffled_label_null": {
+    "global_count_preserving": {
+      "draws": 10000,
+      "rank_k": 344,
+      "label_shuffle": "global_count_preserving",
+      "null_mean": 0.022989927837763408,
+      "null_std": 0.0026194952289265334,
+      "quantiles": {
+        "q01": 0.016986495549915385,
+        "q05": 0.018708181188270168,
+        "q50": 0.02304504449040062,
+        "q95": 0.02741061694481296,
+        "q99": 0.028650791121583453
+      },
+      "observed_projection": 0.018296247348189354,
+      "observed_percentile": 3.44,
+      "p_left_fraction_null_le_observed": 0.0344,
+      "p_right_fraction_null_ge_observed": 0.9656
+    },
+    "domain_stratified_count_preserving": {
+      "draws": 10000,
+      "rank_k": 344,
+      "label_shuffle": "group_stratified_count_preserving",
+      "null_mean": 0.022701990863774082,
+      "null_std": 0.0007821990390995757,
+      "quantiles": {
+        "q01": 0.020509120573917707,
+        "q05": 0.021437279165263404,
+        "q50": 0.022438862105953267,
+        "q95": 0.02345627903567977,
+        "q99": 0.02345910449640722
+      },
+      "observed_projection": 0.018296247348189354,
+      "observed_percentile": 0.0,
+      "p_left_fraction_null_le_observed": 0.0,
+      "p_right_fraction_null_ge_observed": 1.0
+    }
+  },
+  "principal_angle_outcome_subspace_extension": {
+    "group_direction_availability": {
+      "candidate_group_id": {
+        "mixed": 0,
+        "all_positive": 4,
+        "all_negative": 168,
+        "total": 172
+      },
+      "score_group_id": {
+        "mixed": 0,
+        "all_positive": 1,
+        "all_negative": 47,
+        "total": 48
+      }
+    },
+    "domain_direction_availability": [
+      {
+        "name": "domain:coding",
+        "n": 86,
+        "positives": 0,
+        "negatives": 86
+      },
+      {
+        "name": "domain:logic",
+        "n": 86,
+        "positives": 0,
+        "negatives": 86
+      },
+      {
+        "name": "domain:math",
+        "n": 86,
+        "positives": 8,
+        "negatives": 78
+      },
+      {
+        "name": "domain:reasoning",
+        "n": 86,
+        "positives": 0,
+        "negatives": 86
+      }
+    ],
+    "individual_outcome_directions": [
+      {
+        "name": "global_correct_minus_incorrect",
+        "projection_fraction": 0.018296247348189354,
+        "cosine_to_injection_span": 0.13526362167334333,
+        "expected_random_projection_k_over_D": 0.013997395833333334,
+        "observed_over_expected": 1.3071179500845975,
+        "chance_relation": "above chance"
+      },
+      {
+        "name": "domain:math_correct_minus_incorrect",
+        "projection_fraction": 0.02802048623561859,
+        "cosine_to_injection_span": 0.16739320845129468,
+        "expected_random_projection_k_over_D": 0.013997395833333334,
+        "observed_over_expected": 2.001835667809775,
+        "chance_relation": "above chance"
+      }
+    ],
+    "outcome_subspace": {
+      "status": "computed",
+      "outcome_subspace_rank": 2,
+      "construction": "global correct-minus-incorrect plus any mixed-label domain correct-minus-incorrect directions; no classifier training",
+      "principal_cosines": [
+        0.17280669510364532,
+        0.1352633684873581
+      ],
+      "principal_angles_degrees": [
+        80.04895782470703,
+        82.22615051269531
+      ],
+      "mean_projected_energy_per_outcome_dimension": 0.02407916635274887,
+      "expected_random_projection_k_over_D": 0.013997395833333334,
+      "observed_over_expected": 1.7202604426894077,
+      "chance_relation": "above chance"
+    }
+  },
+  "observed_projection_fraction": 0.018296247348189354,
+  "observed_residual_fraction": 0.9817037526518106,
+  "rank_null_interpretation": "The absolute residual is high, but after accounting for the 344-dimensional injection span inside D=24576, the observed projection is above the k/D random-subspace baseline and in the right tail of the random-direction null. The prior orthogonality claim should therefore not be used as load-bearing evidence for subspace misalignment.",
+  "verdict_constants": {
+    "INJECTION_SPAN_RANK_NULL_VERDICT": "OBSERVED_PROJECTION_ABOVE_RANDOM_SUBSPACE_CHANCE",
+    "ORTHOGONALITY_LOAD_BEARING_STATUS": "DO_NOT_USE_AS_ORTHOGONALITY_EVIDENCE",
+    "READOUT_CONTROL_BOUNDARY_UPDATE": "SUBSPACE_MISALIGNMENT_NOT_SUPPORTED"
+  }
+}

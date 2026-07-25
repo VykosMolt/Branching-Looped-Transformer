@@ -1,0 +1,92 @@
+{
+ "run": "cross_loop_early_layer_taps_20260720",
+ "date": "2026-07-20",
+ "verdict": "READABILITY_SHIFTS_EARLIER_WITH_RECURRENT_REFINEMENT",
+ "sub_verdicts": {
+  "L2plus_sources": "EARLY_READABLE_DIRECTION_STABLE",
+  "L1_sources": "EARLY_READABLE_DIRECTION_ROTATES"
+ },
+ "model": {
+  "path": "models/ouro_rltt_local",
+  "config_sha16": "7d6764dbc8210d02",
+  "transformers": "4.54.1",
+  "layers": 48,
+  "ut_steps": 4
+ },
+ "git_head_at_start": "e4776dd41a85cad699ac36f309b5986ab48bd171",
+ "wall_clock": {
+  "start_unix": 1784561230,
+  "pause_unix": 1784564059,
+  "resume_unix": 1784582926,
+  "report_unix": 1784584740,
+  "active_seconds": 4643,
+  "active_hours": 1.29,
+  "budget_hours": 8
+ },
+ "dataset": "CoreContent v2 corrected/deduped; 5 core domains; existing task-disjoint split",
+ "split": {
+  "heldout": 600,
+  "train": 1250,
+  "val": 300
+ },
+ "zero_crossings": 0,
+ "features_reused_or_recaptured": "recaptured (layers 8/16 never previously captured); 24/36/47 recaptured for path validation",
+ "extraction_seconds": 1148.5,
+ "candidates_encoded": 8592,
+ "extraction_control_verdict": "EXTRACTION_PATH_VALIDATED",
+ "train_eval_seconds": 54.8,
+ "tests": {
+  "passed": 20,
+  "failed": 0
+ },
+ "matrix_cells_completed": {
+  "local_refit": [
+   "8_L1",
+   "8_L2",
+   "8_L3",
+   "8_L4",
+   "16_L1",
+   "16_L2",
+   "16_L3",
+   "16_L4",
+   "24_L1",
+   "24_L2",
+   "24_L3",
+   "24_L4",
+   "36_L4",
+   "47_L4"
+  ],
+  "transfers": [
+   "8:L1->L2",
+   "8:L1->L3",
+   "8:L1->L4",
+   "8:L2->L3",
+   "8:L2->L4",
+   "8:L3->L4",
+   "16:L1->L2",
+   "16:L1->L3",
+   "16:L1->L4",
+   "16:L2->L3",
+   "16:L2->L4",
+   "16:L3->L4",
+   "24:L1->L2",
+   "24:L1->L3",
+   "24:L1->L4",
+   "24:L2->L3",
+   "24:L2->L4",
+   "24:L3->L4"
+  ]
+ },
+ "best_late_loop_early_cell": "8_L3",
+ "secondary_readouts_run": [
+  "S3B2 (Tier 3, small-n exploratory)"
+ ],
+ "secondary_omitted": [
+  "DualAnchor survival",
+  "strict pre-answer",
+  "HH-RLHF 40k (all out of budget/no early-layer features)"
+ ],
+ "paper_files_touched": "none",
+ "existing_artifacts_overwritten": "none",
+ "artifact_root": "artifacts/reports/cross_loop_early_layer_taps_20260720"
+}

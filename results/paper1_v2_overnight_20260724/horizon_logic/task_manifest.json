@@ -1,0 +1,868 @@
+{
+  "n_tasks": 170,
+  "n_candidates": 680,
+  "category": "synthetic_propositional",
+  "depth_range": [
+    2,
+    4
+  ],
+  "generation_config": {
+    "k": 4,
+    "max_new_tokens": 448,
+    "temperature": 0.7,
+    "top_p": 0.95,
+    "seed": 20260724
+  },
+  "tasks": {
+    "synthlogic::synthetic_propositional::140": {
+      "proof_depth": 3,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5720": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4848": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::6163": {
+      "proof_depth": 2,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::2247": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5842": {
+      "proof_depth": 3,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::3604": {
+      "proof_depth": 3,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::2829": {
+      "proof_depth": 2,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1390": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1728": {
+      "proof_depth": 3,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4893": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1100": {
+      "proof_depth": 3,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4577": {
+      "proof_depth": 3,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5081": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::6377": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::290": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::3744": {
+      "proof_depth": 3,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1952": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1076": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::6857": {
+      "proof_depth": 3,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::3496": {
+      "proof_depth": 2,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::3777": {
+      "proof_depth": 2,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1771": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::3822": {
+      "proof_depth": 3,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1931": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::851": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::3610": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1363": {
+      "proof_depth": 2,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5096": {
+      "proof_depth": 4,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::6095": {
+      "proof_depth": 2,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::3609": {
+      "proof_depth": 3,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::353": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4969": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1998": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::6433": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::2517": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::6308": {
+      "proof_depth": 2,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::2492": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::575": {
+      "proof_depth": 3,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::949": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4783": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5909": {
+      "proof_depth": 3,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1156": {
+      "proof_depth": 3,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4323": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5944": {
+      "proof_depth": 3,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4743": {
+      "proof_depth": 2,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5248": {
+      "proof_depth": 3,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5665": {
+      "proof_depth": 2,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::6253": {
+      "proof_depth": 3,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4797": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5008": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4652": {
+      "proof_depth": 3,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::3809": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5426": {
+      "proof_depth": 3,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1645": {
+      "proof_depth": 2,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::238": {
+      "proof_depth": 2,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5123": {
+      "proof_depth": 2,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5473": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4428": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1227": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::6854": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::2869": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::3167": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4330": {
+      "proof_depth": 4,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::2913": {
+      "proof_depth": 4,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::6852": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::50": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1725": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::37": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4086": {
+      "proof_depth": 2,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::2133": {
+      "proof_depth": 3,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5950": {
+      "proof_depth": 3,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::6517": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::2835": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1051": {
+      "proof_depth": 2,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::3586": {
+      "proof_depth": 3,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::3730": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5576": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4936": {
+      "proof_depth": 3,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1031": {
+      "proof_depth": 2,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::29": {
+      "proof_depth": 3,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4713": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5438": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5397": {
+      "proof_depth": 3,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::3552": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4183": {
+      "proof_depth": 3,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::2077": {
+      "proof_depth": 3,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1202": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::3265": {
+      "proof_depth": 3,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5247": {
+      "proof_depth": 3,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::2431": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5655": {
+      "proof_depth": 2,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::284": {
+      "proof_depth": 3,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5494": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::142": {
+      "proof_depth": 3,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::3041": {
+      "proof_depth": 3,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1911": {
+      "proof_depth": 4,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::3663": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::3831": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4469": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4491": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1483": {
+      "proof_depth": 2,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::2866": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5751": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4793": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4858": {
+      "proof_depth": 4,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::3475": {
+      "proof_depth": 4,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::3369": {
+      "proof_depth": 3,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::6667": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1838": {
+      "proof_depth": 3,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::2708": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5452": {
+      "proof_depth": 3,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::3588": {
+      "proof_depth": 3,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::6733": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::6837": {
+      "proof_depth": 2,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1103": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::876": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1820": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1503": {
+      "proof_depth": 2,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5605": {
+      "proof_depth": 3,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::159": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::2858": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4922": {
+      "proof_depth": 3,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4651": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4403": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5196": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::229": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1520": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::160": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::435": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::3128": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4167": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::677": {
+      "proof_depth": 3,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5955": {
+      "proof_depth": 3,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::782": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::6345": {
+      "proof_depth": 3,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::478": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::6235": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::2948": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::2393": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::2261": {
+      "proof_depth": 2,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::6624": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1835": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::679": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::2590": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5315": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::2565": {
+      "proof_depth": 3,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::6760": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::6478": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4876": {
+      "proof_depth": 3,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::6089": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1499": {
+      "proof_depth": 4,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5801": {
+      "proof_depth": 2,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::2148": {
+      "proof_depth": 3,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::6210": {
+      "proof_depth": 3,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::42": {
+      "proof_depth": 2,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::2441": {
+      "proof_depth": 3,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::299": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::6240": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::3047": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::6811": {
+      "proof_depth": 3,
+      "split": "val",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::5522": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::2931": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4518": {
+      "proof_depth": 2,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::4286": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1866": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::134": {
+      "proof_depth": 3,
+      "split": "heldout",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1135": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::828": {
+      "proof_depth": 2,
+      "split": "train",
+      "n_candidates": 4
+    },
+    "synthlogic::synthetic_propositional::1069": {
+      "proof_depth": 3,
+      "split": "heldout",
+      "n_candidates": 4
+    }
+  }
+}

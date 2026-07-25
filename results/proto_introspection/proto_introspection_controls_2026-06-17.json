@@ -1,0 +1,117 @@
+{
+  "report": "proto_introspection_targeted_controls",
+  "date": "2026-06-17",
+  "run": "2026-06-22",
+  "scope": "read-only on model weights; one bounded GPU recapture; external verifier labels only; no checkpoint changes; no S3A/backbone training",
+  "final_verdict_constants": {
+    "PROTO_INTROSPECTION_WEAK_CLAIM_VERDICT": "SUBSTANTIALLY_SUPPORTED_REQUIRES_MORE_CONTROLS",
+    "PREDICTION_EVIDENCE_VERDICT": "HIDDEN_STATES_PREDICT_PROCESS_QUALITY",
+    "TIMING_EVIDENCE_VERDICT": "PREANSWER_TIMING_CONTROL_PARTIAL",
+    "SPECIFICITY_EVIDENCE_VERDICT": "SHORTCUT_BASELINE_CONTROL_PARTIAL",
+    "GROUPED_HELDOUT_VERDICT": "GROUPED_HELDOUT_CONTROL_PARTIAL",
+    "UTILITY_EVIDENCE_VERDICT": "WEAK_UTILITY_SUPPORTED_STRONG_CAPABILITY_UTILITY_NOT_PROVEN",
+    "ROLE_SEPARATION_VERDICT": "VALIDITY_CONTENT_CORRECTNESS_SEPARATED",
+    "CONTROL_BOUNDARY_VERDICT": "READOUT_SUPPORTED_CONTROL_NOT_SOLVED",
+    "BARBADOS_REPLICATION_VERDICT": "BARBADOS_PROTO_INTROSPECTION_NOT_RUN",
+    "NEXT_STEP_VERDICT": "RETURN_TO_EVIDENCE_MATRIX"
+  },
+  "pillar_status_updated": {
+    "P1_prediction": {"prior": "STRONG", "updated": "PARTIAL", "note": "preference (HH 95.2%) unaffected/strong; own-computation success leg leakage+memorization-inflated, clean pre-answer AUROC ~0.69 pooled / 0.55-0.58 within-domain"},
+    "P2_timing": {"prior": "PARTIAL", "updated": "PARTIAL", "note": "sharpened: leakage quantified; clean pre-answer signal present (preanswer 0.690 ~= full ceiling 0.698; leaked subsets at chance) but modest/shortcut-confounded"},
+    "P3_specificity": {"prior": "PARTIAL", "updated": "PARTIAL_WEAK", "note": "hidden does not beat domain/length shortcuts on clean states; beats only via leakage"},
+    "P4_utility": {"prior": "WEAK_YES_STRONG_NO", "updated": "WEAK_YES_STRONG_NO", "note": "unchanged; trajectory top-1 lift cited earlier was leakage-affected; survivor-set retention separate and intact"},
+    "P5_role_separation": {"prior": "STRONG", "updated": "STRONG", "note": "unchanged"},
+    "P6_cross_domain": {"prior": "PARTIAL", "updated": "PARTIAL", "note": "weak but directionally consistent pre-answer signal across all 3 domains (0.55-0.58)"},
+    "P7_control_boundary": {"prior": "STRONG", "updated": "STRONG", "note": "unchanged"}
+  },
+  "recapture": {
+    "artifact": "artifacts/reports/proto_introspection/preanswer_recapture.pt",
+    "index": "artifacts/reports/proto_introspection/preanswer_recapture_index.json",
+    "script": "utilities/tests/manual/proto_introspection_preanswer_recapture.py",
+    "model": "models/ouro_rltt_local", "tap_layers": [24, 36, 47], "num_loops": 4, "force_all_loops": true,
+    "feature_shape": [3, 4, 2048], "samples_per_task": 4, "seed": 20260617,
+    "temperature": 0.7, "top_p": 0.95, "max_new_tokens": {"reasoning": 192, "science": 192, "gsm8k": 224},
+    "n_tasks": 120, "counts_by_domain": {"reasoning": 40, "science": 50, "gsm8k": 30},
+    "elapsed_seconds": 2508.1, "errors": 0,
+    "maj_correct_rate_by_domain": {"reasoning": 0.65, "science": 0.42, "gsm8k": 0.767},
+    "labels": "EXTERNAL verifier (gold answer key / numeric_exact / mcq_letter); tap scores never used as labels"
+  },
+  "control_a_preanswer_leakage": {
+    "verdict": "PREANSWER_TIMING_CONTROL_PARTIAL",
+    "a1_recapture_cuts": {
+      "cut_leak_rate": {"prompt_only": 0.0, "gen16": 0.4, "gen32": 0.4583, "preanswer": 0.0, "full": 0.6917},
+      "prompt_only": {"clean": true, "auroc": 0.5743, "ci95": [0.4726, 0.6797], "n": 120, "base": 0.5833, "per_domain": {"reasoning": 0.4286, "science": 0.5123, "gsm8k": 0.4224}, "label": "maj_correct"},
+      "gen16": {"clean": false, "auroc": 0.5846, "ci95": [0.4739, 0.6907], "n": 120, "base": 0.375, "label": "s0_correct"},
+      "gen32": {"clean": false, "auroc": 0.6027, "ci95": [0.4977, 0.7015], "n": 120, "base": 0.375, "label": "s0_correct"},
+      "preanswer": {"clean": true, "auroc": 0.69, "ci95": [0.5744, 0.7889], "n": 113, "base": 0.3628, "per_domain": {"reasoning": 0.5543, "science": 0.5789, "gsm8k": 0.5646}, "per_domain_ci95": {"reasoning": [0.3601, 0.75], "science": [0.3727, 0.7604], "gsm8k": [0.34, 0.7841]}, "label": "s0_correct"},
+      "full_ceiling": {"clean": false, "auroc": 0.6975, "ci95": [0.5948, 0.7977], "n": 120, "base": 0.375, "per_domain": {"reasoning": 0.5742, "science": 0.5702, "gsm8k": 0.7656}, "label": "s0_correct"},
+      "interpretation": "preanswer (leak 0.0) ~= full ceiling -> signal fully present before answer token; prompt_only at chance within-domain (domain-base-rate artifact pooled)"
+    },
+    "a2_existing_leakage_stratification": {
+      "prefix_32": {"leak_rate": 0.4625, "clean": {"auroc": 0.6541, "ci95": [0.5498, 0.7587], "n": 129}, "leaked": {"auroc": 0.4798, "ci95": [0.3671, 0.5917], "n": 111}},
+      "prefix_64": {"leak_rate": 0.5375, "clean": {"auroc": 0.7259, "ci95": [0.6176, 0.8196], "n": 111}, "leaked": {"auroc": 0.5028, "ci95": [0.3837, 0.6258], "n": 129}},
+      "prefix_128": {"leak_rate": 0.7083, "clean": {"auroc": 0.5233, "ci95": [0.3642, 0.6704], "n": 70}, "leaked": {"auroc": 0.5478, "ci95": [0.4431, 0.6524], "n": 170}},
+      "prefix_256": {"leak_rate": 0.9542, "clean": {"note": "underpowered", "n": 11}, "leaked": {"auroc": 0.6929, "ci95": [0.6186, 0.7652], "n": 229}},
+      "interpretation": "predictive signal concentrated in pre-answer subsets (p32 0.654, p64 0.726); leaked subsets at chance (0.48-0.50) -> signal is pre-answer, not from committed answer"
+    }
+  },
+  "control_b_shortcut_baselines": {
+    "verdict": "SHORTCUT_BASELINE_CONTROL_PARTIAL",
+    "note": "leans negative/underpowered: on clean pre-answer states hidden does not outperform domain/length shortcuts; combined adds ~0; hidden beats shortcut only via leakage",
+    "recapture_prompt_only": {"hidden": 0.5743, "shortcut": 0.6583, "combined": 0.5654, "delta_hidden_minus_shortcut": -0.084, "delta_combined_minus_shortcut": -0.0929},
+    "recapture_preanswer": {"hidden": 0.69, "shortcut": 0.7019, "combined": 0.689, "delta_hidden_minus_shortcut": -0.0119, "delta_combined_minus_shortcut": -0.0129},
+    "existing_p32_clean": {"hidden": 0.6541, "shortcut": 0.6981, "combined": 0.693, "delta_hidden_minus_shortcut": -0.044, "delta_combined_minus_shortcut": -0.0051},
+    "existing_p32_all": {"hidden": 0.6058, "shortcut": 0.6566, "combined": 0.735, "delta_combined_minus_shortcut": 0.0784},
+    "existing_all_prefixes": {"hidden": 0.6243, "shortcut": 0.6373, "combined": 0.7608, "delta_combined_minus_shortcut": 0.1235, "note": "combined gain dominated by 95%-leaked p256 -> leakage artifact, not pre-answer signal"},
+    "shortcut_features": {"recapture": ["domain_onehot", "question_chars", "prompt_tok"], "existing": ["domain_onehot", "prefix_length", "prefix_tok", "prefix_chars", "parse_failed", "leak_flag"]}
+  },
+  "control_c_grouped_heldout": {
+    "verdict": "GROUPED_HELDOUT_CONTROL_PARTIAL",
+    "n": 960, "n_groups": 60,
+    "random_split": {"auroc": 0.7321, "ci95": [0.6987, 0.7657], "acc": 0.7323},
+    "task_grouped_split": {"auroc": 0.6243, "ci95": [0.5855, 0.6624], "acc": 0.7094},
+    "delta_random_minus_grouped": 0.1077,
+    "pairwise_acc_grouped_by_prefix": {"prefix_32": 0.4735, "prefix_64": 0.5093, "prefix_128": 0.5528, "prefix_256": 0.7373},
+    "interpretation": "signal survives grouping above chance (0.624) but random overstated by +0.108; under grouping hidden ~= shortcut (0.637); pairwise ranking strong only at 95%-leaked p256"
+  },
+  "control_d_barbados": {"verdict": "BARBADOS_PROTO_INTROSPECTION_NOT_RUN", "reason": "not instrumented for loop-state dumps; out of bounded scope; not invented"},
+  "paper_readiness": [
+    {"claim": "weak proto-introspection exists in Ouro-RLTT hidden states", "readiness": "READY_WITH_CAVEAT"},
+    {"claim": "hidden states predict process quality", "readiness": "READY_WITH_CAVEAT"},
+    {"claim": "signal appears before final-answer leakage", "readiness": "READY_WITH_CAVEAT"},
+    {"claim": "signal is not reducible to trivial shortcuts", "readiness": "NOT_READY"},
+    {"claim": "signal transfers at least partially across domains", "readiness": "READY_WITH_CAVEAT"},
+    {"claim": "signal is useful for external readout/scaffolding", "readiness": "READY_WITH_CAVEAT"},
+    {"claim": "readout does not imply control", "readiness": "READY"},
+    {"claim": "training-time integration is required for control", "readiness": "READY_WITH_CAVEAT"}
+  ],
+  "datasets_used": [
+    "artifacts/reports/probes/bg_trajectory_prediction_2026-05-18/prefix_features.pt",
+    "artifacts/reports/probes/bg_trajectory_prediction_2026-05-18/continued_prefixes.json",
+    "artifacts/reports/probes/bg_trajectory_prediction_2026-05-18/task_suite.json",
+    "artifacts/reports/proto_introspection/preanswer_recapture.pt (new)",
+    "ai2_arc_challenge (reasoning)", "mmlu (science)", "gsm8k (math) via load_*_tasks"
+  ],
+  "missing_artifacts": [
+    "MISSING: Barbados loop-state predictability -- consequence: no second-architecture cross-check; not instrumented; NOT_RUN; not invented",
+    "MISSING: powered within-domain pre-answer probe (>=150 tasks/domain + logprob baseline) -- consequence: within-domain pre-answer AUROC 0.55-0.58 cannot be declared significant; the one control that could move specificity off PARTIAL"
+  ],
+  "next_recommendation": {
+    "primary": "RETURN_TO_EVIDENCE_MATRIX: revise P1 (split preference vs success), P2 (sharpened PARTIAL), P3 (WEAK); write a deliberately narrow paper",
+    "optional_powered_control": "one within-domain pre-answer probe at >=150 tasks/domain with per-domain CIs and a logprob/entropy baseline; locally feasible (scaled version of this recapture)",
+    "writable_now": ["clean pre-answer signal exists (preanswer ~= full ceiling; leaked at chance) with modest effect size", "role separation", "control boundary readout!=control", "HH relational preference 95.2% as preference (not pre-answer introspection)"],
+    "must_not_claim": ["signal beyond trivial shortcuts on clean states", "trajectory pairwise 0.854 as evidence (leakage)", "consciousness", "self_awareness", "autonomous_self_control", "capability_gain"],
+    "further_gpu_needed": "only for the optional powered within-domain control; not required to revise the matrix or write the narrow claim"
+  },
+  "hard_rules_honored": [
+    "external verifier/gold labels only; tap/evaluator scores never used as labels",
+    "no training on test/heldout groups; task-grouped splits enforced (group=task_id)",
+    "no model checkpoint modified; no S3A/backbone training",
+    "every conclusion marked PASS/PARTIAL/FAIL/UNDERPOWERED/NOT_RUN",
+    "no consciousness/self-awareness/autonomous-control/capability-gain claims",
+    "validity/content/preference/correctness not conflated; DualAnchor not called a correctness selector; CoreContent not called globally broken",
+    "ORACLE/RANDOM excluded from best-real-selector",
+    "Barbados not invented (NOT_RUN)",
+    "leakage and underpowered results disclosed, not hidden"
+  ]
+}

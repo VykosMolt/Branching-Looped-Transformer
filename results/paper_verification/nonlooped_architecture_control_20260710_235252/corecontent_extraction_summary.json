@@ -1,0 +1,24 @@
+{
+  "status": "PARTIAL",
+  "model_id": "openbmb/MiniCPM-2B-sft-bf16",
+  "revision": "4ec16344ac13e6ef5010aeecaa533369ac8eb53c",
+  "source_groups": 36279,
+  "source_candidates": 98228,
+  "encoded_this_invocation": 98132,
+  "errors": 0,
+  "elapsed_seconds": 4141.074296474457,
+  "loci": {
+    "24_L4": "physical post-block layer 24",
+    "36_L4": "physical post-block layer 36"
+  },
+  "pooling": "mask-valid token mean",
+  "input": "raw candidate_text, matching CoreContent-v2",
+  "environment": {
+    "torch": "2.12.0.dev20260407+cu128",
+    "transformers": "4.54.1",
+    "datasets": "4.8.5",
+    "device": "NVIDIA GeForce RTX 5070 Ti Laptop GPU",
+    "dtype": "bfloat16",
+    "quantization": "none"
+  }
+}

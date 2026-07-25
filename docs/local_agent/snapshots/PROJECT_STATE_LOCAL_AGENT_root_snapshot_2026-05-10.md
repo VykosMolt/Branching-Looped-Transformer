@@ -1,0 +1,3561 @@
+# Ouro Project — Local Agent State
+
+Split from the former combined `PROJECT_STATE.md` on 2026-05-07. This file is for the local-agent wrapper around Ouro/RLTT: CLI/UI/server, web/search/browse, wrapper memory/self-model, hard-code harness, local oracles, runtime guards, and wrapper refactors.
+
+The local agent source lives mainly under `/home/moloch/local_agent`; its project-side tests and harnesses live under `/home/moloch/ouro_project/tools` and `/home/moloch/ouro_project/tests`.
+
+## Extracted Wrapper Migration / Context / UI History
+
+Local agent wrapper:
+
+- Renamed `/home/moloch/arafel_project` to `/home/moloch/local_agent`.
+- Patched active source files:
+  - `/home/moloch/local_agent/ouro_backend.py`;
+  - `/home/moloch/local_agent/ouro_agent_improved.py`.
+- RLTT changes:
+  - primary backend name is `ouro-rltt-local`;
+  - default local model path is `/home/moloch/ouro_project/models/ouro_rltt_local`;
+  - old aliases remain accepted for compatibility: `ouro`, `deepthink`, `ouro-2.6b-thinking`, `rltt`, `ouro-rltt`, `primary`;
+  - `transformers==4.54.1` is enforced by default;
+  - `local_files_only=True` by default so the wrapper does not silently fetch a remote model;
+  - RLTT output strips `<think>...</think>` by default.
+- Wrapper speed/VRAM changes:
+  - lazy-imports the RLTT backend, so CLI startup does not import transformers;
+  - lazy-loads RLTT only on the first primary model call;
+  - does not keep primary RLTT and secondary Qwen resident together by default (`LOCAL_AGENT_KEEP_BACKENDS_LOADED=0`);
+  - added `unload` command;
+  - Qwen path is now script-relative rather than cwd-relative;
+  - Qwen GPU layers configurable via `LOCAL_AGENT_QWEN_GPU_LAYERS`;
+  - RLTT generation uses `torch.inference_mode()`;
+  - `LOCAL_AGENT_OURO_USE_CACHE` defaults to `False`.
+- The `use_cache=False` default is required for the current local wrapper:
+  - a smoke generate with explicit cache hit Ouro RLTT's custom `UniversalTransformerCache` crash: `property 'key_cache' of 'UniversalTransformerCache' object has no setter`;
+  - disabling cache avoids that path and also reduces VRAM pressure.
+- Added a small domain-agnostic wrapper engram:
+  - stored under `PROJECTS_DIR / "engram_memory.jsonl"`;
+  - records task/outcome/action/unresolved requirements/summary;
+  - recalls similar past wrapper episodes by lexical similarity;
+  - injects them only as advisory context;
+  - no action blacklist, game/domain rules, or policy override.
+- Wrapper verification:
+  - `py_compile` passed for both Python files;
+  - import/config validation passed;
+  - empty engram recall returns no records;
+  - lazy primary diagnostics report `imported=False` before use;
+  - CLI startup and `config` command work and show an unloaded lazy RLTT backend.
+
+Local agent web/search upgrade (2026-05-06):
+
+- Active file patched: `/home/moloch/local_agent/ouro_agent_improved.py`.
+- Search is now provider-chain based instead of a single brittle text scrape:
+  - `LOCAL_AGENT_SEARCH_PROVIDER=auto` builds a composite chain;
+  - optional keyed providers: SerpAPI, Brave Search API, Tavily API, Exa API, Bing Web Search API;
+  - no-key fallbacks: DuckDuckGo HTML, then Bing HTML;
+  - forced provider names are supported for `serpapi`, `brave`, `tavily`, `exa`, `bing-api`, `duckduckgo-html`, and `bing-html`.
+- Search input now supports:
+  - `<query>`;
+  - `<query>|<max_results>`;
+  - `<query>|<max_results>|site=<domain>`;
+  - `<query>|<max_results>|recency=<day/week/month/year>`.
+- Search results are structured and cached:
+  - each result gets a stable `Source ID`;
+  - the latest search can be browsed by rank with `browse 1`, `browse result:1`, etc.;
+  - older cached sources can be browsed with `browse source:N`;
+  - a new `sources` tool/REPL command prints latest search results and recently browsed sources.
+- Browsing is richer:
+  - direct HTTP fetch keeps final URL/status/content type/title diagnostics;
+  - 403 or failed direct fetches fall back to `r.jina.ai` reader when enabled;
+  - PDFs try optional local extraction through `pypdf`/`PyPDF2`;
+  - if no local PDF extractor is installed or it returns no text, PDFs also fall back to the reader path.
+- Research routing/prompting:
+  - current-fact/source/citation/web tasks are classified as `research`;
+  - research tasks get `search`, `browse`, and `sources` as likely tools;
+  - the system prompt now tells the wrapper to search first, browse relevant sources, cite URLs, and compare at least two independent sources for contested/high-stakes claims when possible.
+- Verification:
+  - `py_compile` passed for `/home/moloch/local_agent/ouro_agent_improved.py`;
+  - in-process search for `OpenAI official website|2|site=openai.com` succeeded through DuckDuckGo HTML;
+  - `browse 1` and `browse source:1` both resolved the cached OpenAI result;
+  - OpenAI direct fetch hit 403 and successfully fell back through reader mode;
+  - arXiv PDF browse for `https://arxiv.org/pdf/1706.03762` successfully returned reader-extracted paper text after the local PDF extractor path was unavailable;
+  - empty source cache and invalid numeric browse paths return clean diagnostics rather than pretending to browse.
+
+Local agent Ouro context/memory patch (2026-05-06):
+
+- Active files patched:
+  - `/home/moloch/local_agent/ouro_backend.py`;
+  - `/home/moloch/local_agent/ouro_agent_improved.py`.
+- Scope intentionally limited to Ouro/RLTT-facing context and wrapper memory. Qwen/GGUF `LOCAL_AGENT_PROFILE`/`n_ctx` behavior was not changed.
+- Ouro RLTT backend changes:
+  - default `LOCAL_AGENT_OURO_MAX_INPUT_TOKENS` increased from `6144` to `12288`;
+  - added `LOCAL_AGENT_OURO_CONTEXT_MARGIN_TOKENS`, default `256`;
+  - `LOCAL_AGENT_OURO_USE_CACHE` now defaults to `False`, matching the known RLTT cache-crash constraint;
+  - backend now computes an effective safe input limit from configured input cap, model context limit, requested generation tokens, and margin;
+  - backend diagnostics now expose configured/effective input limit, model context limit when loaded, margin, cache setting, and last prompt truncation metadata.
+- Wrapper memory changes:
+  - `LOCAL_AGENT_OURO_HISTORY_CHAR_BUDGET`, default `36000`;
+  - `LOCAL_AGENT_OURO_PROJECT_FILE_SIZE_CAP`, default `12000`;
+  - `LOCAL_AGENT_OURO_PROJECT_TOTAL_CTX_CAP`, default `36000`;
+  - `LOCAL_AGENT_OURO_ENGRAM_MAX_RECORDS`, default `600`;
+  - `LOCAL_AGENT_OURO_ENGRAM_MIN_SIMILARITY`, default `0.18`;
+  - runtime audit/config now reports the Ouro prompt-memory caps.
+- Verification:
+  - `py_compile` passed for both patched files;
+  - import diagnostics report history budget `36000`, project caps `12000/36000`, engram max records `600`;
+  - backend import diagnostics report configured input cap `12288`, context margin `256`, and `use_cache=False` without loading the model.
+
+Local agent self-model context-governor patch (2026-05-06):
+
+- Active file patched: `/home/moloch/local_agent/ouro_agent_improved.py`.
+- The local wrapper self-model is no longer only a diagnostic string:
+  - it now owns construction of the prompt context sent to Ouro;
+  - it selects self continuity, project memory, relevant recent interaction history, and engram context under `LOCAL_AGENT_OURO_SELF_CONTEXT_BUDGET`;
+  - raw project/history caps remain fallback limits, not the main continuity mechanism.
+- New environment knobs:
+  - `LOCAL_AGENT_OURO_SELF_CONTEXT_BUDGET`, default `18000`;
+  - `LOCAL_AGENT_OURO_SELF_SIGNATURE_LIMIT`, default `400`;
+  - `LOCAL_AGENT_OURO_SELF_HISTORY_ITEMS`, default `10`.
+- Signatures now carried across turns:
+  - `thinking`: task/profile/UT steps/react budget/current phase/current step/repair pressure/plan/task terms;
+  - `choice`: candidate-selection action, score, reason, and compact input;
+  - `tool`: action, success/error, compact input, compact observation;
+  - `verifier`: verdict and unresolved requirements;
+  - `loop`: optional RLTT/backend loop metadata from diagnostics, including `total_ut_steps`, cache setting, input limits, passes used, prompt/total tokens, generation time, and prompt truncation state;
+  - `context`: how the self-model assembled the prompt context.
+- Hook points:
+  - planning records thinking and loop signatures;
+  - candidate selection uses self-model-built context, then records choice and loop signatures;
+  - ordinary agent model calls use self-model-built context and record loop signatures;
+  - tool execution records tool signatures;
+  - verification records verifier and loop signatures;
+  - outcomes persist the current thinking/choice/tool/verifier/loop signatures into recent memory.
+- Verification:
+  - `py_compile` passed for `ouro_agent_improved.py`;
+  - focused smoke confirmed self-model-built messages include continuity context, choice signature, loop signature, and budgeted selected memory.
+
+Self-model boundary note:
+
+- Hunter-Seeker self-model wiring notes were moved to `PROJECT_STATE_HUNTER_SEEKER.md`.
+- This local-agent state keeps only the wrapper-side continuity/self-model details.
+
+Local agent hard-technical direct-mode patch (2026-05-06):
+
+- Active file patched: `/home/moloch/local_agent/ouro_agent_improved.py`.
+- Motivation:
+  - hard direct-mode RLTT tests showed fluent but unreliable behavior under tight budgets;
+  - non-code direct mode previously accepted any non-empty response after `_finalize_direct_output()` prepended `FINAL ANSWER:`, so truncated derivations could be treated as complete;
+  - a bead-on-rotating-hoop physics probe exposed both truncation and a real mechanics error.
+- Implemented:
+  - default task-profile recurrent depth is now cheaper: low/medium/high difficulty map to `ut_steps=1/2/4` instead of `2/4/6`;
+  - default direct-mode output cap is now `1536` tokens via `LOCAL_AGENT_DIRECT_MAX_TOKENS`, up from `1024`, while the large runtime profile still has a global `MAX_NEW_TOKENS=3072`;
+  - hard technical tasks use a compact `RESULT` / `DERIVATION` / `CHECK` direct prompt capped to one short generation by default;
+  - hard technical first-pass generation cap is now `768` tokens, up from `384`, so derivations have room to finish without defaulting to the full `1536`;
+  - expensive repair generation is only entered after a structural/sanity rejection and a sufficient direct budget;
+  - hard technical answers can be rejected for missing `CHECK`, dimensionally invalid `cos(theta)=omega^2`-style physics claims, wrong vertical-axis horizontal-radius use, or wrong-sign rotating-frame centrifugal potential;
+  - unverified hard-technical answers now preserve an explicit `[unverified hard-technical answer: ...]` marker through `extract_final_answer()`.
+- Verification:
+  - `py_compile` passes for `ouro_agent_improved.py`;
+  - focused non-GPU sanity checks catch the observed physics dimension/radius failures;
+  - fake-backend direct-output smoke confirms the unverified marker survives `extract_final_answer()`;
+  - GPU direct smoke at `ut_steps=2`, `max_tokens=256` uses CUDA and the compact output shape, but still fails the rotating-hoop task scientifically.
+- Current conclusion:
+  - the wrapper formatting/truncation bug is fixed;
+  - direct-mode RLTT is still not trustworthy for hard physics under tight budgets;
+  - hard STEM should route through verifier/debate/agent mode when correctness matters, rather than relying on single-pass direct generation.
+
+Local agent hard-STEM routing update (2026-05-06):
+
+- Active file patched: `/home/moloch/local_agent/ouro_agent_improved.py`.
+- Qwen is no longer the intended default escalation path for hard STEM:
+  - Qwen remains useful as an optional external critic, security reviewer, fallback, and route classifier;
+  - it is not treated as the required hard-reasoning verifier for RLTT.
+- Added `LOCAL_AGENT_AUTO_ESCALATE_DIRECT`, default `1`.
+- Hard direct-mode tasks now route to RLTT-only self-verification:
+  - first pass: RLTT direct answer with the existing hard-technical scaffold and cheap sanity checks;
+  - verifier pass: same RLTT backend checks the candidate for missing cases, invalid dimensions, sign errors, proof gaps, wrong assumptions, and truncation;
+  - revision pass: same RLTT backend repairs the answer if the verifier says `REVISE` or the cheap sanity checks marked the first pass unverified.
+- The old `debate`/`crosscheck` commands remain available for explicit use, but automatic `direct`/`auto` hard-STEM escalation now prefers RLTT self-verification rather than Qwen debate/crosscheck.
+- Config/audit now reports:
+  - `auto_escalate_direct`;
+  - `direct_max_tokens`;
+  - hard-STEM escalation mode as `RLTT self-verification; Qwen remains optional/fallback`.
+- Verification:
+  - `py_compile` passes for `ouro_agent_improved.py`;
+  - fake-backend route smoke confirms `mode=direct` on a hard theorem enters `[Direct mode: RLTT self-verify]`;
+  - fake-backend smoke confirms the path calls only the primary `ouro-rltt-local` backend and returns the revised answer when the verifier reports `REVISE`.
+
+Follow-up live testing / compute correction:
+
+- Initial live hard-STEM self-verification was too slow:
+  - rotating-hoop physics and group-order proof runs pinned the GPU for many minutes;
+  - cause: the new hard-STEM path did sequential RLTT calls with too much token/UT budget, unlike the optimized code path.
+- Self-verification defaults were reduced to a practical guardrail:
+  - `LOCAL_AGENT_SELF_VERIFY_FIRST_PASS_TOKENS=256`;
+  - `LOCAL_AGENT_SELF_VERIFY_CHECK_TOKENS=96`;
+  - `LOCAL_AGENT_SELF_VERIFY_REVISE_TOKENS=384`;
+  - `LOCAL_AGENT_SELF_VERIFY_MAX_UT_STEPS=1`.
+- Easy-STEM guard:
+  - low-difficulty explanation/math tasks do not self-verify;
+  - live Newton's-second-law direct test bypassed self-verification and returned a clean one-sentence answer.
+- Coding guard:
+  - low-difficulty code tasks do not use the concise prose shortcut or hard-STEM self-verification;
+  - live `two_sum(nums, target)` direct test produced complete Python code;
+  - sample verifier executed the sample and reported `[0, 1]`.
+- Hard-STEM live result after budget reduction:
+  - `Prove every group of order p^2 is abelian` finished in about `53s`;
+  - output remained scientifically weak and was correctly surfaced as `[unverified hard-technical answer: ...]`;
+  - current conclusion: the wrapper now avoids false confidence and unacceptable latency, but RLTT direct/self-verify is still not a reliable hard-STEM theorem prover.
+
+## Extracted Hard-Code / Audit / Refactor History
+
+Local agent hard-code speed/correctness patch (2026-05-06):
+
+- File changed:
+  - `/home/moloch/local_agent/ouro_agent_improved.py`.
+- Goal:
+  - keep RLTT coding capability intact;
+  - avoid 80-100s hard-code runs when the wrapper already has a verified oracle/reference route;
+  - avoid returning polished but wrong hard-code answers when no verification evidence exists.
+- New controls:
+  - `LOCAL_AGENT_CODE_FAST_PREFILL` default `true`;
+  - `LOCAL_AGENT_CODE_FIRST_PASS_TOKENS=512`;
+  - `LOCAL_AGENT_CODE_REPAIR_TOKENS=384`;
+  - `LOCAL_AGENT_CODE_FIRST_PASS_UT_STEPS=2`;
+  - `LOCAL_AGENT_CODE_REPAIR_UT_STEPS=2`;
+  - `LOCAL_AGENT_CODE_REFERENCE_FASTPATH=true`;
+  - `LOCAL_AGENT_REQUIRE_HARD_CODE_VERIFICATION=true`.
+- Direct-mode routing fix:
+  - `--model rltt` no longer eagerly loads RLTT before `direct_answer`;
+  - primary aliases stay lazy, so verified local reference fast paths can return without importing/loading the transformers backend;
+  - explicit non-primary models such as Qwen still load normally.
+- Python code generation fix:
+  - code-prefill now uses `FINAL ANSWER:\n```python\n`;
+  - model-backed Python code attempts stop on the closing code fence as well as `<END_FINAL>`, preventing long post-code narration tails;
+  - unclosed generated code fences are normalized back into a valid fenced code block before validation.
+- Hard-code verification behavior:
+  - high-difficulty Python code with neither sample inputs nor a recognized hidden-test oracle fails closed instead of being accepted silently;
+  - recognized references are labeled in output as `verified local reference fast path` or `verified reference fallback`, so local reference use is explicit.
+- Added recognized benchmark routes:
+  - `count_subarrays_with_median_k(nums, k)`;
+  - `min_cost_k_edge_disjoint_paths(n, edges, s, t, k)`.
+- Validation:
+  - `count_subarrays_with_median_k` has 7 hidden tests and a prefix-balance reference solution;
+  - `min_cost_k_edge_disjoint_paths` has 5 hidden tests; hidden expectations come from an independent brute-force edge-disjoint simple-path enumerator, while the reference solution uses min-cost max-flow with unit edge capacities;
+  - structural dummy-manager tests confirm both recognized tasks return through the fast path without calling the model.
+- Measured timings:
+  - median-k verified fast path through full CLI with `--model rltt`: `real 0.13s`, no model load;
+  - min-cost k edge-disjoint paths verified fast path through full CLI with `--model rltt`: `real 0.14s`, no model load;
+  - model-backed two-sum, cold CLI, direct project venv Python, no forced UT override: about `13.4s`, GPU-backed, sample verified;
+  - model-backed two-sum with forced `--ut-steps 2`: about `17s`, GPU-backed, sample verified.
+- Earlier failure mode now fixed:
+  - median-k and min-cost graph prompts previously spent roughly 80-100s or more generating weak candidates before falling back;
+  - they now return verified code immediately when the task is recognized.
+- Remaining limitation:
+  - genuinely novel hard-code tasks without samples or recognized oracles still require model generation and cannot be safely accepted without execution evidence;
+  - the current policy is intentionally conservative: generate/verify where possible, but fail closed when correctness cannot be checked.
+
+Local agent Ouro backend telemetry/audit patch (2026-05-06):
+
+- Files changed:
+  - `/home/moloch/local_agent/ouro_backend.py`;
+  - `/home/moloch/local_agent/ouro_agent_improved.py`.
+- Claude audit items addressed:
+  - adaptive-exit telemetry is no longer hardcoded to `False`;
+  - `kl_history` is no longer reported as an always-empty list;
+  - local DeepSeek-R1 GGUF is now wired as optional model aliases;
+  - path separation is now explicit in runtime audit diagnostics.
+- Adaptive-exit telemetry implementation:
+  - added `LOCAL_AGENT_OURO_CAPTURE_EXIT_TELEMETRY`, default `true`;
+  - backend passes `return_exit_pdf=True` to local `modeling_ouro.py` during generation when telemetry capture is enabled;
+  - a forward hook records the exit distribution exposed by `OuroForCausalLM.forward`;
+  - `DeepThinkResult.exit_telemetry` now reports:
+    - configured total recurrent depth;
+    - early-exit threshold;
+    - observed token positions / forward calls;
+    - selected-pass counts;
+    - mean/min/max selected passes;
+    - final-token selected pass and exit PDF;
+    - whether semantic early exit was observed.
+- Important interpretation:
+  - the local `modeling_ouro.py` implementation computes every configured recurrent loop, builds an exit distribution, then selects logits from the selected loop;
+  - therefore the new telemetry reports semantic exit selection, not compute short-circuiting;
+  - diagnostics explicitly set `compute_short_circuit_observed=False` and `semantic_only=True`.
+- KL telemetry:
+  - `DeepThinkResult.kl_history` is now optional and defaults to `None`;
+  - diagnostics report `kl_telemetry.available=False` with reason: the HF generation path does not compute or expose RLTT KL history.
+- Optional DeepSeek reviewer:
+  - added model names:
+    - `deepseek-r1-14b`;
+    - `deepseek`;
+    - `r1`;
+  - all point to `/home/moloch/local_agent/models/deepseek-r1-14b/DeepSeek-R1-Distill-Qwen-14B-Q4_K_M.gguf`;
+  - default critic/security roles remain Qwen.
+- Path diagnostics:
+  - runtime audit now includes `path_policy` with model root, agent script dir, and project-memory dir;
+  - no migration was performed because existing local project memory may already live under the legacy/default path.
+- `use_cache` audit:
+  - `LOCAL_AGENT_OURO_USE_CACHE=1` was smoke-tested and works with telemetry;
+  - cold two-sum with cache enabled took about `15.8s`, not faster than the previous default-cache-disabled smoke;
+  - default remains `false` until a broader quality/speed A/B says otherwise.
+- Verification:
+  - `py_compile` passed for both local agent files;
+  - default threshold `1.0`, `total_ut_steps=2`, `max_new_tokens=8`:
+    - output: `The answer is 4.`;
+    - telemetry available;
+    - `selected_pass_counts={"2": 8}`;
+    - `early_exit_observed=False`;
+    - generation time about `1.74s`.
+  - low threshold `0.2`, `total_ut_steps=4`, `max_new_tokens=4`:
+    - telemetry available;
+    - `selected_pass_counts={"2": 2, "1": 2}`;
+    - `early_exit_observed=True`;
+    - confirms the hook detects semantic early exits when the threshold permits them.
+
+Local agent bounded self-continuity and chat interface patch (2026-05-06):
+
+- Files changed:
+  - `/home/moloch/local_agent/ouro_agent_improved.py`;
+  - `/home/moloch/local_agent/ouro_backend.py` was recompiled and left compatible with the previous telemetry patch.
+- Goal:
+  - let Ouro be used as a normal conversational model, not only as a tool agent;
+  - give direct chat the same low-bandwidth self-model continuity that agent/tool mode already carries;
+  - keep the continuity bounded, diagnostic, and explicitly fallible rather than pretending it is unlimited exact context.
+- New self-model controls:
+  - `LOCAL_AGENT_OURO_SELF_CONTINUITY_BUDGET`, default `2200`;
+  - `LOCAL_AGENT_OURO_SELF_DIRECT_CONTEXT_BUDGET`, default `1400`;
+  - `LOCAL_AGENT_OURO_SELF_MAX_SELECTED_MEMORIES`, default `4`;
+  - `LOCAL_AGENT_OURO_SELF_DIRECT_CONTEXT`, default `true`.
+- Direct-chat self-model behavior:
+  - bare interactive input now routes to `direct` chat with Ouro/RLTT by default;
+  - `/agent <task>` remains the explicit tool-using plan/execute/verify path;
+  - direct mode builds a bounded local self-context containing:
+    - current task profile and recommended UT depth;
+    - observed wrapper success/outcome statistics;
+    - last context/thinking/loop/verifier signatures;
+    - up to a small number of similar memories;
+    - recent history selected by lexical relevance/recency;
+    - a `memory_conflict_flag` when selected positive and negative memories disagree.
+  - direct answers now record self-model loop signatures and direct-turn outcomes after completion.
+- Agent-mode context behavior:
+  - self-model continuity context is capped separately from the larger project/history budget;
+  - selected-memory diagnostics are persisted in `last_selected_memory_keys` and `last_self_context_diagnostics`;
+  - context signatures record whether they came from direct chat or agent mode.
+- RLTT loop continuity:
+  - local self-model loop signatures now include adaptive-exit telemetry when available:
+    - configured total UT steps;
+    - final-token selected recurrent pass;
+    - semantic early-exit fraction when observed.
+  - This is diagnostic continuity only. It does not create a hard route override.
+- Terminal interface:
+  - REPL banner now presents the wrapper as `Ouro local chat ready`;
+  - prompt is `You (model)>`;
+  - outputs are printed as `You` / `Ouro` chat blocks;
+  - `/review` still applies to the last Ouro/assistant output and reports clearly if no last output exists;
+  - `/chat` aliases to `/direct`, and `/tool` / `/tools` alias to `/agent`.
+- Browser interface:
+  - existing `--server` mode now serves a dependency-free local chat UI at:
+    - `http://127.0.0.1:8765/`;
+    - `/chat`;
+    - `/ui`.
+  - The page has a ChatGPT-like transcript surface, mode selector, optional model field, multiline composer, Enter-to-send, Shift+Enter newline, and clear button.
+  - The JSON API is still present:
+    - `GET /health`;
+    - `GET /config`;
+    - `GET /routes`;
+    - `GET /selfstate`;
+    - `POST /task`.
+  - The browser client defaults to `direct` mode; API callers that omit `mode` still get the existing server default path.
+- Verification:
+  - `py_compile` passed for:
+    - `/home/moloch/local_agent/ouro_agent_improved.py`;
+    - `/home/moloch/local_agent/ouro_backend.py`.
+  - no-model REPL smoke passed:
+    - `/help` displays the new chat-oriented commands;
+    - `/quit` exits.
+  - no-model server smoke passed on port `8777`:
+    - `GET /` returned the HTML UI with status `200`;
+    - `GET /health` returned `{"ok": true, "backend": "ouro-rltt-local"}`.
+  - fast-path direct coding smoke still returns immediately without loading RLTT:
+    - `count_subarrays_with_median_k` returned the verified local reference and passed 7 hidden tests.
+- Current interpretation:
+  - the local agent now has persistent, bounded, self-model-mediated conversational continuity;
+  - this is not unlimited context in the literal transformer-window sense;
+  - it is the intended practical form: compressed signatures of what it was doing, what it chose, which tools/loops/verifiers were involved, and how recent outcomes went.
+
+Self-model implementation status clarification (2026-05-06):
+
+- Local agent wrapper:
+  - The planned wrapper-level self-model is implemented in the intended practical form.
+  - It is symbolic/compressed continuity, not a learned neural module.
+  - Implemented capabilities:
+    - persistent recent memory and outcomes;
+    - selected similar memories;
+    - conflict flag when selected memories disagree;
+    - direct-chat self-context injection;
+    - thought/choice/tool/verifier/context signatures;
+    - loop/UT/adaptive-exit telemetry signatures;
+    - direct chat records its turns and outcomes back into the wrapper self-state;
+    - terminal and browser chat interfaces use the continuity path.
+  - Current interpretation:
+    - this is sufficient for the local wrapper to feel continuous across conversations and tool use;
+    - it is not a substitute for literal unlimited transformer context;
+    - it is the correct low-bandwidth external self-model for a local assistant wrapper.
+- Hunter-Seeker neural self-model status was moved to `PROJECT_STATE_HUNTER_SEEKER.md`.
+
+Local agent Codex-style interface patch (2026-05-06):
+
+- File changed:
+  - `/home/moloch/local_agent/ouro_agent_improved.py`.
+- Clarification:
+  - The browser surface target is Codex-style engineering work, not a generic ChatGPT clone.
+  - The UI now presents Ouro as a local Codex workspace for tasks, code, tools, sources, diagnostics, and review.
+- Browser UI changes:
+  - title changed to `Ouro Codex Workspace`;
+  - sidebar now exposes:
+    - new chat;
+    - self state;
+    - runtime audit;
+    - routes;
+    - sources;
+    - available actions;
+    - health;
+    - switch to Agent;
+    - switch to Direct;
+    - review last output;
+    - copy last output;
+    - clear transcript.
+  - top bar exposes direct diagnostic panels for self state, audit, and sources.
+  - composer now has Codex-style task controls:
+    - Direct;
+    - Agent;
+    - Auto;
+    - Crosscheck;
+    - Review;
+    - Plan prefix;
+    - Implement prefix;
+    - Review prefix;
+    - Search prefix.
+  - advanced controls expose:
+    - UT steps;
+    - max tokens;
+    - react steps.
+  - transcript rendering now supports:
+    - assistant/user task blocks;
+    - copy-message buttons;
+    - review-message buttons on Ouro outputs;
+    - reuse-message buttons on user prompts;
+    - metadata badges for mode/tool/final/source/verified-reference signals;
+    - markdown-ish headings/lists/inline code;
+    - fenced code blocks with line numbers;
+    - copy-code buttons;
+    - diff-style highlighting for added, removed, and hunk lines.
+- Server/API changes:
+  - added `GET /sources`, returning the existing local source-cache report;
+  - added `GET /actions`, returning available UI actions, task modes, server endpoints, and code/diff rendering capabilities;
+  - existing routes remain:
+    - `GET /`;
+    - `GET /health`;
+    - `GET /config`;
+    - `GET /routes`;
+    - `GET /selfstate`;
+    - `POST /task`.
+- Verification:
+  - `py_compile` passed for:
+    - `/home/moloch/local_agent/ouro_agent_improved.py`;
+    - `/home/moloch/local_agent/ouro_backend.py`.
+  - temporary localhost server smoke on port `8777` passed:
+    - `GET /` returned status `200` and the `Ouro Codex Workspace` HTML;
+    - `GET /actions` returned status `200` with modes `direct`, `agent`, `auto`, `crosscheck`, `review`;
+    - `GET /sources` returned status `200` with the source-cache report.
+  - temporary server process was terminated after the smoke test.
+
+Local agent UI full Brave test and launch alias (2026-05-06):
+
+- Added reusable UI interaction test:
+  - `tools/test_local_agent_ui_cdp.py`.
+  - It drives Brave/Chromium through Chrome DevTools Protocol without Playwright/Selenium dependencies.
+  - It expects a browser already running with `--remote-debugging-port=9224`.
+- Brave availability:
+  - detected `/usr/bin/brave-browser`;
+  - version observed: `Brave Browser 147.1.89.143`.
+- Brave render testing:
+  - sandboxed Brave launch crashed at crashpad/seccomp setup, so the real browser render was run outside the Codex sandbox;
+  - `brave-browser --headless=new ... --dump-dom http://127.0.0.1:8777/` succeeded;
+  - `--screenshot=/tmp/ouro_codex_ui.png` succeeded and visually showed:
+    - Codex-style sidebar;
+    - top bar;
+    - workspace/action panels;
+    - Direct/Agent/Auto/Crosscheck/Review controls;
+    - Plan/Implement/Review/Search action prefixes;
+    - composer and advanced controls.
+- Full UI interaction test:
+  - launched local UI server on port `8777`;
+  - launched Brave headless with `--remote-debugging-port=9224`;
+  - CDP script navigated to the UI and executed the real page JavaScript:
+    - filled the composer with a verified coding prompt;
+    - called the UI's `runTask(..., "direct")`;
+    - browser performed `POST /task`;
+    - server returned the verified local reference fast path;
+    - UI rendered the response.
+  - Observed browser-side result:
+    - `messages=2`;
+    - `codeBlocks=1`;
+    - `lineNumbers=17`;
+    - badges: `direct`, `verified reference`;
+    - `lastOutputContainsVerified=true`;
+    - empty status/error line.
+  - Post-interaction screenshot written to:
+    - `/tmp/ouro_codex_ui_interaction.png`.
+  - Note:
+    - Chrome full-page capture places fixed composer UI at viewport position inside the long screenshot; the initial viewport screenshot renders normally.
+- Added launch helper:
+  - `tools/launch_ouro_ui.sh`.
+  - Behavior:
+    - uses `OURO_LOCAL_AGENT_HOST`, default `127.0.0.1`;
+    - uses `OURO_LOCAL_AGENT_PORT`, default `8765`;
+    - if the server is already healthy, opens Brave/xdg-open to the UI and exits;
+    - if not running, opens Brave after a short delay and execs the local agent server in the current terminal.
+- Added Bash alias:
+  - `/home/moloch/.bash_aliases`;
+  - `alias Ouro='/home/moloch/ouro_project/tools/launch_ouro_ui.sh'`.
+  - `bash -ic 'type Ouro'` confirms the alias is visible to new interactive Bash shells.
+- Cleanup:
+  - temporary port-`8777` server was stopped;
+  - temporary Brave `--remote-debugging-port=9224` processes were terminated;
+  - `py_compile` passed for:
+    - `/home/moloch/local_agent/ouro_agent_improved.py`;
+    - `/home/moloch/local_agent/ouro_backend.py`;
+    - `tools/test_local_agent_ui_cdp.py`.
+
+Local agent audit patch after Claude review (2026-05-06):
+
+- Backend state:
+  - `/home/moloch/local_agent/ouro_backend.py` remains pinned to `transformers==4.54.1`.
+  - `_strip_think_blocks()` now uses a regex with `IGNORECASE | DOTALL` instead of manual case-sensitive splicing.
+  - `LOCAL_AGENT_OURO_USE_CACHE` now defaults to `1`.
+    - Calibration showed cache-on is materially faster on RLTT generation:
+      - arithmetic 48-token run: about `6.5s` cache-on vs `11.1s` cache-off;
+      - loop-invariant 96-token run: about `12.1s` cache-on vs `24.5s` cache-off.
+  - Exit telemetry now distinguishes:
+    - `selection_only_early_exit_observed`;
+    - `selection_only_early_exit_token_fraction`;
+    - `compute_short_circuit_observed`;
+    - `early_exit_semantics`.
+  - `DeepThinkResult.early_exit` is no longer used to imply compute savings.
+    - The explicit field is now `selection_only_early_exit`.
+  - Optional loop trajectory telemetry exists behind `LOCAL_AGENT_OURO_CAPTURE_LOOP_TELEMETRY=1`.
+    - When enabled, it can report final-vs-first loop KL, top-1 change fraction, and final entropy.
+    - It is diagnostic only because returning per-loop logits is expensive.
+- Opt-in adaptive compute:
+  - `/home/moloch/ouro_project/models/ouro_rltt_local/modeling_ouro.py` now has an inference-only adaptive compute path.
+  - It is controlled through model config and the backend runtime snapshot/restore path, not by passing unsupported kwargs through HF `generate()`.
+  - Default is still off:
+    - `LOCAL_AGENT_OURO_ADAPTIVE_COMPUTE=0`.
+  - Adaptive compute only activates when:
+    - config/runtime adaptive flag is true;
+    - model is not training;
+    - `early_exit_threshold < 1.0`;
+    - `total_ut_steps > 1`.
+  - Calibration with thresholds `0.95`, `0.90`, `0.85` found almost no real early exits:
+    - `0.95` and `0.90`: no short-circuit observed;
+    - `0.85`: one arithmetic token exited at pass 3, all other tested tokens still used pass 4.
+  - Current policy:
+    - keep adaptive compute off by default;
+    - use fixed-depth RLTT for honest evaluation and hard coding;
+    - only revisit adaptive compute after a broader quality/speed calibration, possibly with lower thresholds.
+- Local agent safety/honesty fixes:
+  - `/home/moloch/local_agent/ouro_agent_improved.py` now has `LOCAL_AGENT_ORACLE_LOOKUPS_ENABLED`.
+  - CLI now has `--no-oracles`.
+  - Local reference fallback and recognized hidden-test tables return no-op when oracle lookups are disabled.
+  - Lookup-derived answers are explicitly tagged with:
+    - `from_lookup: true`;
+    - `source: local_oracle`.
+  - The browser UI now displays a `lookup` badge when the output contains `from_lookup: true`.
+  - `CODE_REFERENCE_FASTPATH` is gated by `ORACLE_LOOKUPS_ENABLED`.
+- Server hardening:
+  - Local JSON/UI server now uses `ThreadingHTTPServer`.
+  - Non-health API routes require a bearer token when `LOCAL_AGENT_SERVER_AUTH_ENABLED=1`.
+  - If `LOCAL_AGENT_SERVER_TOKEN` is not set, the server generates and prints a one-shot token at startup.
+  - The UI embeds that token and sends it in `Authorization: Bearer ...` for task/panel requests.
+  - Host header is restricted to localhost-style hosts by default, with `LOCAL_AGENT_SERVER_ALLOWED_HOSTS` for explicit additions.
+  - Request body size is capped by `LOCAL_AGENT_SERVER_MAX_BODY_BYTES`.
+- Runtime/architecture cleanup:
+  - `ModelManager`, `LazyPrimaryModelManager`, and `MultiBackendModelManager` now declare `accepts_runtime_overrides = True`.
+  - `MultiBackendModelManager.chat()` no longer catches broad `TypeError` to retry without runtime overrides.
+  - `LazyPrimaryModelManager.diagnostics()` reports `loaded: False` on import/diagnostic error instead of `loaded: None`.
+  - DeepSeek/R1 GGUF aliases now receive GPU-layer config through `LOCAL_AGENT_R1_GPU_LAYERS`, defaulting to the Qwen layer setting.
+  - Off-task detection now only reanchors when there are at least three task keywords.
+  - History trimming now has an approximate token budget (`LOCAL_AGENT_OURO_HISTORY_TOKEN_BUDGET`) in addition to the old character budget.
+- Bug found by hard-code repair testing:
+  - `_find_sample_assignments()` used to scan fenced code blocks inside prompts.
+  - In repair prompts, previous generated code such as `rank = [1] * n` could be mistaken for user sample input.
+  - This caused bogus "sample execution failed" rejections.
+  - Fix:
+    - sample-assignment extraction now strips fenced code blocks before scanning.
+- New test tools:
+  - `tools/test_local_agent_adaptive_compute.py`
+    - fixed-depth vs adaptive-depth RLTT calibration;
+    - reports latency and exit telemetry.
+  - `tools/test_local_agent_hard_coding.py`
+    - disables local oracles;
+    - asks two hard algorithmic coding tasks;
+    - extracts returned code;
+    - runs deterministic and randomized local hidden tests;
+    - gives the model two structured repair rounds.
+- Verification completed:
+  - `py_compile` passed for:
+    - `/home/moloch/local_agent/ouro_agent_improved.py`;
+    - `/home/moloch/local_agent/ouro_backend.py`;
+    - `/home/moloch/ouro_project/models/ouro_rltt_local/modeling_ouro.py`;
+    - `tools/test_local_agent_adaptive_compute.py`;
+    - `tools/test_local_agent_hard_coding.py`.
+  - Oracle honesty smoke:
+    - lookup enabled returns a tagged answer;
+    - lookup disabled returns no fallback and no recognized hidden tests.
+  - UI JavaScript `node --check` passed after auth-token header changes.
+  - Server auth smoke on port `8779` passed:
+    - unauthenticated `/config` returns `401`;
+    - authenticated `/config` returns `200`;
+    - `/actions` reports `POST /task`;
+    - UI route embeds the expected token.
+- Hard coding result:
+  - No-oracle direct RLTT failed both extreme tasks even after two repair rounds:
+    - offline dynamic connectivity with rollback DSU;
+    - minimum XOR walk path with cycle-basis reduction.
+  - Failures were honest:
+    - `has_lookup: false`;
+    - code blocks were returned;
+    - randomized tests ran locally.
+  - Interpretation:
+    - direct code-first mode is not enough for these tasks;
+    - the wrapper should route this class of task into tool-tested agent mode or require executable tests instead of accepting plausible unverified code.
+
+Future local-agent work now visible:
+
+- Do not enable adaptive compute by default.
+- Add a hard-code policy:
+  - for high-difficulty algorithmic code with no samples and no local oracle, prefer agent/tool-tested mode over direct mode;
+  - or return clearly marked unverified code instead of silently treating syntax-valid code as solved.
+- Add a generic repair harness that can feed real test failures back into the agent loop, not just the standalone test script.
+- Consider making the hard-code prompt explicitly prohibit path compression for rollback DSU and require local brute-force randomized testing when the task asks for advanced data structures.
+- Keep the big `ouro_agent_improved.py` split deferred until topology and observational learning are finished.
+
+Local agent hard-code route/engram patch after DeepSeek-style audit (2026-05-06):
+
+- Scope:
+  - local wrapper only: `/home/moloch/local_agent/ouro_agent_improved.py`;
+  - no Hunter-Seeker topology changes;
+  - no game/domain-specific hardcoding;
+  - `transformers` remains pinned at `4.54.1`.
+- Hard-code routing:
+  - added `LOCAL_AGENT_HARD_CODE_TOOL_MODE`, default on;
+  - high-risk Python algorithmic code with no user samples and no local oracle now reroutes from Direct into Agent/tool mode;
+  - forced tool mode is conservative:
+    - no broad problem blacklist;
+    - no named LeetCode/task lookup;
+    - based on task type, difficulty, algorithmic signals, missing samples/oracles, and engram risk.
+  - explicit CLI overrides are now respected after strengthening:
+    - `--ut-steps`;
+    - `--max-tokens`;
+    - `--react-steps`.
+- Speed/correctness fixes from GPU smoke:
+  - forced hard-code tasks skip the model planning generation and use a deterministic tool-tested plan;
+  - forced hard-code tasks skip expensive candidate selection by default;
+  - candidate generation now has bounded token controls:
+    - `LOCAL_AGENT_CANDIDATE_SELECTION_MAX_TOKENS`;
+    - `LOCAL_AGENT_HARD_CODE_CANDIDATE_MAX_TOKENS`;
+    - `LOCAL_AGENT_HARD_CODE_CANDIDATE_SELECTION`.
+  - hard-code agent generation now has bounded controls:
+    - `LOCAL_AGENT_HARD_CODE_AGENT_MAX_TOKENS`;
+    - `LOCAL_AGENT_HARD_CODE_FIRST_ACTION_TOKENS`.
+  - the hard-code action step is prefilled as:
+    - `[Action]: python`
+    - `[Input]:`
+    which makes the model produce an executable tool payload instead of spending the first response on format choice.
+  - parser now accepts both colon and no-colon tool syntax:
+    - `[Action]: python` and `[Action] python`;
+    - `[Input]:` and `[Input]`.
+  - if a model output begins with an action and later says `FINAL ANSWER:`, the wrapper treats it as a tool action first.
+  - Python/C++ tool input sanitation now extracts the first fenced code block and drops trailing `FINAL ANSWER`/system/verifier chatter before execution.
+  - when the agent loop ends immediately after a tool action, the result is marked incomplete/max-steps instead of treating the raw action text as final.
+- Engram/self-model behavior:
+  - `EngramMemory` records richer metadata:
+    - `task_type`;
+    - `difficulty`;
+    - `route`;
+    - tool/debug/verify counts;
+    - `failure_pattern`;
+    - `fix_pattern`;
+    - `code_signature`;
+    - tags.
+  - recall now separates positive, negative, and neutral support and emits `memory_conflict_flag` when similar successes and failures both exist.
+  - similar negative direct-route memories can conservatively force future matching code tasks into tool mode via `LOCAL_AGENT_ENGRAM_ROUTE_RISK_MIN_SIMILARITY`, default `0.45`.
+  - self-model continuity now carries route/failure/fix signatures and warns on similar unverified/failed memories.
+- Runtime visibility:
+  - `/audit` and `/config` now expose the hard-code routing/candidate/engram-risk knobs.
+- GPU smoke:
+  - command shape beginning with `/home/moloch/ouro_project/venv/bin/python` sees CUDA correctly.
+  - a direct-mode hard-code prompt rerouted into tool-tested Agent mode.
+  - after planner/candidate/parser fixes, a one-step graph `has_path` smoke:
+    - printed the deterministic plan immediately;
+    - used RLTT on GPU;
+    - executed the generated Python tool call;
+    - completed in about 32 seconds for `ut_steps=2`, `max_tokens=512`, `react_steps=1`.
+  - observed GPU peak during this smoke was about `74 C`, with memory around `6.9 GB`.
+- Verification:
+  - `py_compile` passed for:
+    - `/home/moloch/local_agent/ouro_agent_improved.py`;
+    - `/home/moloch/local_agent/ouro_backend.py`.
+  - new focused tests:
+    - `tests/unit/test_local_agent_wrapper.py`.
+  - test result:
+    - `5 passed`.
+  - backend import smoke confirmed:
+    - expected transformer version is `4.54.1`;
+    - `OURO_USE_CACHE=True`;
+    - adaptive compute remains default-off;
+    - think-block stripping works.
+- Current caveats:
+  - full no-oracle hard-coding harness was not rerun after this patch because the prior version exposed multi-minute per-step behavior and the patch first needed correctness/speed validation;
+  - hard algorithmic coding may still need more work on stopping/finalization and test synthesis quality;
+  - `llama-cpp-python` is still unavailable in the current environment, so Qwen/GGUF security review is skipped unless that dependency is installed.
+- Next local-agent work:
+  - rerun `tools/test_local_agent_hard_coding.py` with the patched hard-code route and measure per-task runtime;
+  - if runtime is still high, tune hard-code first-action budget and/or add stronger stop conditions around completed code blocks;
+  - add a finalization path that converts a successful tool-tested code artifact into a clean final answer without another long model call;
+  - keep the large file split deferred until topology and observational learning are finished.
+
+Local agent hard-code harness + first split pass (2026-05-07):
+
+- Scope:
+  - local wrapper work only;
+  - no Hunter-Seeker topology changes;
+  - no game/domain hardcoding;
+  - `transformers` remains pinned at `4.54.1`;
+  - oracles were kept disabled for honest harness measurements unless explicitly allowed.
+- Files changed:
+  - `/home/moloch/local_agent/ouro_agent_improved.py`;
+  - `/home/moloch/local_agent/ouro_config.py`;
+  - `/home/moloch/local_agent/ouro_prompts.py`;
+  - `/home/moloch/local_agent/ouro_webtools.py`;
+  - `/home/moloch/local_agent/ouro_ui.py`;
+  - `tools/test_local_agent_hard_coding.py`;
+  - `tests/unit/test_local_agent_wrapper.py`.
+- Harness changes:
+  - hard-coding harness now sets RLTT/no-oracle environment before importing the wrapper;
+  - added CLI controls:
+    - `--task`;
+    - `--repair-rounds`;
+    - `--ut-steps`;
+    - `--max-tokens`;
+    - `--react-steps`;
+    - `--full-capability`;
+    - `--allow-oracles`;
+    - `--output`.
+  - results are written as JSON under `runs/local_agent_hard_coding/`;
+  - full-capability mode enables candidate selection and hard-code verification, while still leaving local lookup-table oracles off unless `--allow-oracles` is used.
+- Runtime hard-code patch:
+  - forced hard-code tool prompts now explicitly require implementation plus deterministic assertions/checkers in the same tool call;
+  - candidate generation for forced hard-code tasks now uses the same `[Action]: python\n[Input]:` prefill and stop strings as the non-candidate path;
+  - candidate scoring now rewards assertion-style executable checks and penalizes definition-only tool calls;
+  - executor now rejects definition-only hard-code tool calls as incomplete evidence;
+  - after the full run exposed weak smoke tests, the runtime-check detector was tightened again:
+    - `print(...)` alone no longer counts as verification;
+    - assertion/explicit-failure style checks are required.
+- Harness results:
+  - restricted no-oracle pass:
+    - command: `tools/test_local_agent_hard_coding.py --ut-steps 2 --max-tokens 768 --react-steps 3 --repair-rounds 2`;
+    - output: `runs/local_agent_hard_coding/hard_coding_20260507_013344.json`;
+    - `offline_dynamic_connectivity`: failed, `433.039s`;
+    - `minimum_xor_paths`: failed, `343.773s`;
+    - `has_lookup=false` for both.
+  - full-capability no-oracle pass:
+    - command: `tools/test_local_agent_hard_coding.py --full-capability --ut-steps 3 --max-tokens 1536 --react-steps 5 --repair-rounds 2`;
+    - output: `runs/local_agent_hard_coding/hard_coding_20260507_015018.json`;
+    - `offline_dynamic_connectivity`: failed, `1008.605s`;
+    - `minimum_xor_paths`: failed, `835.683s`;
+    - `has_lookup=false` for both.
+  - post-split smoke:
+    - command: `tools/test_local_agent_hard_coding.py --task minimum_xor_paths --full-capability --ut-steps 1 --max-tokens 128 --react-steps 1 --repair-rounds 0 --output runs/local_agent_hard_coding/post_split_smoke.json`;
+    - failed as expected because the budget was intentionally tiny, but verified import/split/harness wiring;
+    - runtime-check guard fired on definition-only code;
+    - runtime `10.179s`.
+- GPU/thermal notes:
+  - full-capability pass ran on GPU;
+  - observed peak during polling was about `80 C`;
+  - observed VRAM reached about `11372 / 12227 MB`;
+  - post-split smoke returned to idle afterward.
+- Interpretation:
+  - the wrapper is now stricter about executable evidence, but the model still gets these extreme algorithmic tasks wrong;
+  - the dominant failure is no longer "it did not use a tool";
+  - the dominant failure is poor differential feedback and repeated bad algorithm families:
+    - dynamic connectivity keeps producing online/temporal DSU variants rather than correct segment-tree-over-time rollback DSU;
+    - XOR walks keep producing broken DSU/xor-basis variants and weak print-only checks;
+    - outer harness failures arrive too late, after a full expensive agent attempt.
+- First split pass:
+  - extracted prompt templates into `ouro_prompts.py`;
+  - extracted environment/config defaults into `ouro_config.py`;
+  - extracted search/browse providers and source cache into `ouro_webtools.py`;
+  - extracted the browser UI template into `ouro_ui.py`;
+  - reduced `ouro_agent_improved.py` from roughly `10.4k` lines to roughly `7.9k` lines without changing the public wrapper surface.
+- Verification:
+  - `py_compile` passed for:
+    - `/home/moloch/local_agent/ouro_agent_improved.py`;
+    - `/home/moloch/local_agent/ouro_config.py`;
+    - `/home/moloch/local_agent/ouro_prompts.py`;
+    - `/home/moloch/local_agent/ouro_webtools.py`;
+    - `/home/moloch/local_agent/ouro_ui.py`;
+    - `/home/moloch/local_agent/ouro_backend.py`;
+    - `tools/test_local_agent_hard_coding.py`;
+    - `tests/unit/test_local_agent_wrapper.py`.
+  - focused wrapper tests now pass:
+    - `7 passed`;
+    - new coverage checks split-module wiring and rejects definition-only/print-only hard-code evidence.
+  - import smoke confirmed:
+    - prompt import works;
+    - source-cache report works through `ouro_webtools`;
+    - route report still sees `ouro-rltt-local`;
+    - UI template import works.
+- Post-split audit:
+  - split mechanics are sound so far;
+  - remaining large/risky regions in `ouro_agent_improved.py`:
+    - memory/self-model classes;
+    - model managers and route/profile logic;
+    - evidence, parsing, and hard-code policy helpers;
+    - local oracle/reference/hidden-test table;
+    - direct-answer verification;
+    - agent run loop;
+    - server/CLI shell.
+  - next safe split candidates:
+    - move oracle/reference/hidden-test code into an explicit `ouro_oracles.py` registry and keep every lookup tagged;
+    - move code parsing/execution/evidence helpers into an `ouro_tools.py` or `ouro_code_tools.py`;
+    - move agent loop policy into an `ouro_runner.py` once tests cover it.
+- Next local-agent fixes:
+  - add a generic differential-feedback interface so harness-provided tests can feed failures into the agent loop before a full attempt is exhausted;
+  - add repeated-failure/stagnation detection for near-identical bad tool calls to prevent 15-30 minute loops;
+  - make hard-code verification require assertion-style checks, not output-only smoke tests;
+  - keep local oracle lookup disabled for honest evals and clearly tagged whenever enabled.
+
+Local agent differential-feedback/stagnation patch (2026-05-07):
+
+- Implemented the two wrapper patches identified by the hard-code harness:
+  - generic external evaluator callback;
+  - repeated-failure/stagnation detection.
+- External evaluator interface:
+  - added `ExternalEvaluator = Callable[[action, tool_input, ExecutionResult], Optional[ExecutionResult]]`;
+  - `run_task_mode(...)` and `run_agent_task(...)` now accept `external_evaluator`;
+  - after a successful Python/C++ tool execution, the wrapper can call the external evaluator and merge its result into the observation;
+  - external failure is represented as a normal `ExecutionResult` failure with `error_kind="external_eval_failed"` or `external_eval_error`;
+  - this is domain-general and does not know about any specific problem/game.
+- Hard-code harness wiring:
+  - `tools/test_local_agent_hard_coding.py` now builds an external evaluator from each task's existing hidden/randomized test function;
+  - successful generated Python tool code is immediately re-executed against the harness tests inside the same agent attempt;
+  - failures are fed back as:
+    - `EXTERNAL_EVAL: FAIL`;
+    - exception type and exact failure message.
+  - This removes the previous problem where hidden/randomized failures arrived only after a full expensive agent attempt.
+- Stagnation detection:
+  - `AgentState` now tracks:
+    - code attempt signatures;
+    - failure signatures;
+    - repeated failure counts;
+    - stalled failure state.
+  - Python code signatures use AST canonicalization when parseable, falling back to whitespace-normalized source;
+  - repeated near-identical code/failure causes the agent to receive a first-class stagnation message:
+    - abandon the repeated implementation family;
+    - restate the invariant;
+    - switch algorithms or rebuild from the task invariant;
+    - run assertion-style differential tests.
+  - The same signal is included in structured state/feedback so the model sees it on the next turn.
+- Interaction with previous runtime-check patch:
+  - when an external evaluator is supplied, the old definition-only hard-code guard is skipped because the external evaluator itself checks whether the code defines the requested callable and passes tests;
+  - without an external evaluator, definition-only and print-only hard-code evidence remains rejected.
+- Verification:
+  - `py_compile` passed for:
+    - `/home/moloch/local_agent/ouro_agent_improved.py`;
+    - `tools/test_local_agent_hard_coding.py`;
+    - `tests/unit/test_local_agent_wrapper.py`.
+  - focused wrapper tests now pass:
+    - `9 passed`.
+  - new tests cover:
+    - external evaluator failure overriding a successful tool execution;
+    - repeated similar code/failure triggering stagnation;
+    - split module imports and hard-code runtime-check behavior.
+- Smoke results:
+  - non-GPU harness-hook smoke confirmed the evaluator returns:
+    - `EXTERNAL_EVAL: FAIL`;
+    - `external_eval_failed`;
+    - exact hidden-test mismatch for `minimum_xor_paths`.
+  - tiny GPU RLTT smoke:
+    - command: `tools/test_local_agent_hard_coding.py --task minimum_xor_paths --full-capability --ut-steps 1 --max-tokens 256 --react-steps 2 --repair-rounds 0 --output runs/local_agent_hard_coding/external_eval_smoke.json`;
+    - completed in `22.63s`;
+    - code failed at Python runtime before the external evaluator could run, but stagnation detection fired on the repeated failure path;
+    - GPU returned to idle afterward.
+- Current state:
+  - all planned patches from this batch are implemented;
+  - the only unproven part in a full RLTT run is whether the external evaluator improves final success rate on these two extreme tasks once generation reaches executable-but-wrong code;
+  - next optional empirical step is a longer full-capability no-oracle harness rerun with the new evaluator/stagnation patch, but the previous full run showed this can be expensive.
+
+Local agent architecture audit cleanup patch (2026-05-07):
+
+- Patched the audit findings from the local-agent wrapper review.
+- Local oracle/reference containment:
+  - `LOCAL_AGENT_ORACLE_LOOKUPS_ENABLED` now defaults to `False`;
+  - `LOCAL_AGENT_CODE_REFERENCE_FASTPATH` now defaults to `False`;
+  - direct hard-code acceptance no longer treats "oracle disabled" as a pass for unverified high-difficulty Python code;
+  - local reference/oracle tables were initially left in `ouro_agent_improved.py`, but the follow-up split below moved them into `ouro_oracles.py`;
+- File policy:
+  - added `LOCAL_AGENT_WRITABLE_ROOT`, defaulting to `/home/moloch/local_agent`;
+  - `PROJECTS_DIR` now defaults under the local-agent writable root as `projects`;
+  - raw `write_file` resolves symlinks/absolute paths and rejects writes outside `LOCAL_AGENT_WRITABLE_ROOT`;
+  - raw `read_file` is intentionally global and can read any local file/directory the process can access;
+  - directory reads now return a bounded listing.
+- Self-model prompt wiring:
+  - `LocalSelfModel.live_diagnostics()` is now static/pure;
+  - `build_role_prompt()` no longer reloads `local_self_model.json` on every prompt.
+- Step diagnostics:
+  - agent loop step display/state now increments up to the configured `max_steps`, not a hard cap of `5`.
+- Backend retention:
+  - `LOCAL_AGENT_KEEP_BACKENDS_LOADED` now defaults to `auto`;
+  - runtime retention checks `nvidia-smi` and keeps backends loaded only when the GPU has enough headroom;
+  - diagnostics expose `mode`, `effective`, and reason.
+- Search/browse:
+  - search providers are now lazy and rebuild when relevant runtime environment variables change;
+  - fixed a latent PDF-path bug by importing `io` in `ouro_webtools.py`.
+- Observation summarization:
+  - Python/C++ tool output and external-evaluator output are now locally compressed instead of spending another model call to summarize them.
+- Verification:
+  - `py_compile` passed for local-agent wrapper files, hard-code harness, and focused tests;
+  - `pytest tests/unit/test_local_agent_wrapper.py -q` passed with `15 passed`.
+- Line counts after this patch:
+  - `ouro_agent_improved.py`: `8108`;
+  - `ouro_backend.py`: `794`;
+  - `ouro_config.py`: `281`;
+  - `ouro_prompts.py`: `253`;
+  - `ouro_ui.py`: `1187`;
+  - `ouro_webtools.py`: `910`;
+  - `tools/test_local_agent_hard_coding.py`: `468`;
+  - `tests/unit/test_local_agent_wrapper.py`: `266`;
+  - total across these files: `12267`.
+
+Local agent oracle/reference split (2026-05-07):
+
+- Extracted the local oracle/reference/hidden-test machinery from `ouro_agent_improved.py` into `/home/moloch/local_agent/ouro_oracles.py`.
+- New `ouro_oracles.py` owns:
+  - direct arithmetic fast-path evaluation;
+  - Python code-block/sample extraction helpers;
+  - guarded direct sample execution helpers;
+  - deterministic `_oracle_*` implementations;
+  - recognized Python hidden-test registry;
+  - reference-solution generation;
+  - recognized class hidden tests;
+  - ML-theory canonical answer validators.
+- `ouro_agent_improved.py` now imports the needed helper surface and keeps only thin policy wrappers:
+  - `_recognized_python_hidden_tests(...)`;
+  - `_run_recognized_python_hidden_tests(...)`;
+  - `_run_recognized_python_class_hidden_tests(...)`;
+  - `_direct_output_acceptance(...)`;
+  - `_verified_reference_for_task(...)`.
+- The thin wrappers synchronize the current `ORACLE_LOOKUPS_ENABLED` flag into `ouro_oracles.py` before any hidden-test lookup.
+  - This preserves runtime behavior when CLI/harness code toggles local oracle use.
+  - Honest eval remains default because `ORACLE_LOOKUPS_ENABLED=False` and `CODE_REFERENCE_FASTPATH=False`.
+- Verification:
+  - `py_compile` passed for local-agent wrapper files, `ouro_oracles.py`, hard-code harness, and focused tests;
+  - `pytest tests/unit/test_local_agent_wrapper.py -q` passed with `16 passed`;
+  - added a focused policy-sync test proving hidden-test lookup is empty when oracle lookup is disabled and nonempty when enabled.
+- Line counts after the split:
+  - `ouro_agent_improved.py`: `5657`;
+  - `ouro_oracles.py`: `2524`;
+  - `ouro_backend.py`: `794`;
+  - `ouro_config.py`: `281`;
+  - `ouro_prompts.py`: `253`;
+  - `ouro_ui.py`: `1187`;
+  - `ouro_webtools.py`: `910`;
+  - `tools/test_local_agent_hard_coding.py`: `468`;
+  - `tests/unit/test_local_agent_wrapper.py`: `276`;
+  - total across these files: `12350`.
+
+Local agent structured failure/self-model patch (2026-05-07):
+
+- Re-audited the local-agent wrapper after the oracle split and patched the issues exposed by the hard-coding harness.
+- Wrapper-side failure diagnosis:
+  - `AgentState` now carries:
+    - `last_failure_diagnosis`;
+    - `failure_diagnosis_history`;
+    - `stagnation_event_count`;
+    - `abort_reason`;
+    - `known_bad_code_signatures`.
+  - code attempts are canonically signed with AST-based signatures where possible;
+  - external-evaluator failures are classified separately from runtime/compiler failures;
+  - repeated same-code/same-failure families can now abort the current attempt instead of spending all remaining steps.
+- Self-model wiring:
+  - `LocalSelfModel` now stores `last_failure_diagnosis` and `recent_diagnoses`;
+  - diagnosis signatures are recorded as `last_diagnosis_signature`;
+  - self-model context now carries the latest failure kind, external evaluator feedback, repeat counts, and wrapper decision;
+  - failed code signatures are exposed back into new attempts so exact known-bad code families can be rejected without rerunning.
+- External evaluator feedback:
+  - `apply_external_evaluator()` now puts `[external evaluator]` before `[tool execution]`;
+  - local observation compression preserves evaluator failure text first;
+  - the hard-code harness now includes concrete failing inputs in assertion messages, not only `got/expected`.
+- Max-step behavior:
+  - when the agent reaches max steps after a Python/C++ tool action, it now returns the last attempted code under an explicit unverified max-step header;
+  - this keeps the outcome incomplete while making the candidate inspectable by the harness.
+- Repair/parser bug fix:
+  - `_task_wants_python_class()` in `ouro_oracles.py` now strips fenced previous code and only treats a task as class-based when the instruction actually asks for a class or matches a known class-style problem;
+  - this fixes false `missing top-level Python class` failures caused by embedded previous code containing `class DSU`.
+- Harness behavior after patch:
+  - command:
+    - `/home/moloch/ouro_project/venv/bin/python -u tools/test_local_agent_hard_coding.py --full-capability --ut-steps 2 --max-tokens 768 --react-steps 3 --repair-rounds 2 --output runs/local_agent_hard_coding/post_oracle_split_harness.json`
+  - run was confirmed on GPU via `nvidia-smi`;
+  - GPU memory during runs was roughly `5.3-8.7 GiB`;
+  - CPU package temperature spiked to `101-102C`, so the harness was paused with `SIGSTOP` and resumed with `SIGCONT` after cooling;
+  - final output path:
+    - `runs/local_agent_hard_coding/post_oracle_split_harness.json`.
+- Final harness result:
+  - `offline_dynamic_connectivity`: failed;
+    - total seconds: `311.203`;
+    - final error: `NameError: name 'i' is not defined`;
+    - known-failed-code gating triggered on the repeated repair attempt;
+    - failure remained inspectable with returned attempted code.
+  - `minimum_xor_paths`: failed;
+    - total seconds: `118.563`;
+    - final error: fixed counterexample:
+      - `n=5`;
+      - `edges=[(0, 1, 7), (1, 2, 3), (0, 2, 6), (2, 3, 4)]`;
+      - `queries=[(0, 2), (0, 3), (3, 1), (0, 4)]`;
+      - got `[6, 6, 6, -1]`, expected `[4, 0, 5, -1]`;
+    - known-failed-code gating reduced the repeated repair path to `21.683s` in the prior run and `118.563s` total in the final post-parser-fix run.
+- Verification:
+  - `py_compile` passed for:
+    - `/home/moloch/local_agent/ouro_agent_improved.py`;
+    - `/home/moloch/local_agent/ouro_oracles.py`;
+    - `tools/test_local_agent_hard_coding.py`;
+    - `tests/unit/test_local_agent_wrapper.py`.
+  - focused wrapper tests pass:
+    - `pytest tests/unit/test_local_agent_wrapper.py -q`;
+    - `20 passed`.
+- Current architecture read:
+  - the wrapper now has honest no-oracle failure visibility and self-model memory of failed code families;
+  - the model still repeatedly falls into wrong DSU-family algorithms on these two extreme tasks;
+  - the next useful wrapper-side target is not stronger wording, but cheaper attempt control:
+    - wallclock budgets per task/attempt;
+    - runtime-side thermal/budget awareness in the wrapper or launch layer, not in the harness;
+    - optional candidate-level rejection before full generation when loop telemetry or self-model memory predicts a repeated family.
+- Current line counts:
+  - `ouro_agent_improved.py`: `5981`;
+  - `ouro_oracles.py`: `2526`;
+  - `tools/test_local_agent_hard_coding.py`: `521`;
+  - `tests/unit/test_local_agent_wrapper.py`: `358`;
+  - total across these four files: `9386`.
+
+Local agent runtime guard patch (2026-05-07):
+
+- Implemented the follow-up as wrapper/runtime behavior, not harness behavior.
+- Config additions in `/home/moloch/local_agent/ouro_config.py`:
+  - `LOCAL_AGENT_AGENT_TASK_WALLCLOCK_SEC`, default `900s`;
+  - `LOCAL_AGENT_HARD_CODE_TASK_WALLCLOCK_SEC`, default `420s`;
+  - low-budget generation throttles:
+    - `LOCAL_AGENT_LOW_BUDGET_SECONDS`, default `90s`;
+    - `LOCAL_AGENT_LOW_BUDGET_MAX_TOKENS`, default `384`;
+    - `LOCAL_AGENT_LOW_BUDGET_UT_STEPS`, default `1`;
+  - thermal guard controls:
+    - `LOCAL_AGENT_THERMAL_GUARD_ENABLED`, default on;
+    - CPU pause/resume thresholds `100.0C` / `82.5C`;
+    - GPU pause/resume thresholds `85.0C` / `72.5C`;
+    - check interval `20s`;
+    - max pause `1800s`.
+- `AgentState` now carries runtime guard state:
+  - `task_started_at`;
+  - `task_deadline_at`;
+  - `task_budget_seconds`;
+  - `thermal_pause_count`;
+  - `thermal_pause_seconds`;
+  - `last_thermal_snapshot`;
+  - `runtime_guard_events`.
+- `LocalSelfModel` now persists runtime guard awareness:
+  - `last_runtime_guard`;
+  - `recent_runtime_guards`;
+  - runtime guard signatures are available in self-model continuity context and diagnostics.
+- Runtime behavior:
+  - `run_agent_task()` configures a task wallclock budget before planning, so planning time counts;
+  - before planning, each step, generation, verification, and tool execution, the wrapper checks budget/thermal state;
+  - when remaining budget is low, generation is throttled by reducing max tokens and recurrent UT steps;
+  - when thermal thresholds are exceeded, the wrapper waits between calls until temperatures drop below resume thresholds;
+  - if a thermal pause exceeds the configured max pause, the wrapper records a thermal abort rather than continuing blindly;
+  - candidate scoring now penalizes known failed code signatures before selecting which candidate to execute.
+- The `config` command now prints the runtime budget and thermal guard knobs so the active guard policy is visible from the CLI.
+- This deliberately does not add thermal/budget logic to `tools/test_local_agent_hard_coding.py`; the harness remains a testing/evaluation surface.
+- Verification:
+  - `py_compile` passed for:
+    - `/home/moloch/local_agent/ouro_config.py`;
+    - `/home/moloch/local_agent/ouro_agent_improved.py`.
+  - focused wrapper tests pass:
+    - `pytest tests/unit/test_local_agent_wrapper.py -q`;
+    - `24 passed`.
+  - Added tests for:
+    - budget abort/self-model recording;
+    - low-budget generation throttling;
+    - thermal pause/resume behavior;
+    - candidate scoring penalty for known failed code signatures.
+  - A fake-model wrapper-path smoke executed `run_agent_task()` end to end and produced the expected Python-tool result `391`.
+  - A tiny real RLTT smoke was attempted but stayed CPU-bound without reaching visible GPU execution or model output after multiple minutes; it was killed to avoid wasting heat/time. This is a loader/runtime smoke issue, not a harness behavior change.
+- Current line counts:
+  - `ouro_agent_improved.py`: `6465`;
+  - `ouro_oracles.py`: `2526`;
+  - `ouro_config.py`: `293`;
+  - `tools/test_local_agent_hard_coding.py`: `521`;
+  - `tests/unit/test_local_agent_wrapper.py`: `452`;
+  - total across these five files: `10257`.
+
+Local agent wrapper split pass 2 (2026-05-07):
+
+- Split the local-agent wrapper further without changing the agent decision loop semantics.
+- New modules:
+  - `/home/moloch/local_agent/ouro_memory.py`:
+    - `ProjectMemory`;
+    - `EngramMemory`;
+    - memory tokenization/similarity/signature helpers.
+  - `/home/moloch/local_agent/ouro_tooling.py`:
+    - raw `write_file` / `read_file`;
+    - project list/grep/read/symbol tools;
+    - local Python execution tool;
+    - local C++ compile/run tool;
+    - C++ error detection.
+  - `/home/moloch/local_agent/ouro_types.py`:
+    - `AgentState`;
+    - `TaskProfile`;
+    - `ExecutionResult`;
+    - `ExternalEvaluator`.
+  - `/home/moloch/local_agent/ouro_runtime_guard.py`:
+    - wallclock budget configuration/enforcement;
+    - low-budget generation throttling;
+    - CPU/GPU thermal probes;
+    - thermal pause/resume/abort handling.
+  - `/home/moloch/local_agent/ouro_model_managers.py`:
+    - `ModelManager`;
+    - `LazyPrimaryModelManager`;
+    - `MultiBackendModelManager`;
+    - backend retention policy;
+    - route report helpers.
+  - `/home/moloch/local_agent/ouro_task_profile.py`:
+    - heuristic task profile generation;
+    - router prompt classifier;
+    - task profile parsing/description helpers.
+- `ouro_agent_improved.py` remains the compatibility facade, CLI/server entrypoint, direct-answer logic, self-model, and agent loop.
+  - It is still large because `LocalSelfModel`, direct answer/self-verification, and `run_agent_task()` remain in place.
+  - Next safe split, if desired, is `ouro_self_model.py`, but that needs a more deliberate callback/interface pass because `LocalSelfModel` currently references agent-loop helpers such as code signatures, hard-code policy, observation compression, and memory failure/fix inference.
+- Verification:
+  - `py_compile` passed for:
+    - `ouro_agent_improved.py`;
+    - `ouro_memory.py`;
+    - `ouro_tooling.py`;
+    - `ouro_types.py`;
+    - `ouro_runtime_guard.py`;
+    - `ouro_model_managers.py`;
+    - `ouro_task_profile.py`;
+    - `tests/unit/test_local_agent_wrapper.py`.
+  - focused wrapper tests pass:
+    - `pytest tests/unit/test_local_agent_wrapper.py -q`;
+    - `24 passed`.
+  - CLI import/help smoke passed:
+    - `ouro_agent_improved.py --help`.
+  - fake-model wrapper-path smoke passed through `run_agent_task()` and produced Python-tool result `391`.
+- Current line counts:
+  - `ouro_agent_improved.py`: `4959`;
+  - `ouro_memory.py`: `272`;
+  - `ouro_tooling.py`: `456`;
+  - `ouro_types.py`: `76`;
+  - `ouro_runtime_guard.py`: `299`;
+  - `ouro_model_managers.py`: `380`;
+  - `ouro_task_profile.py`: `201`;
+  - `ouro_oracles.py`: `2526`;
+  - `ouro_backend.py`: `794`;
+  - `ouro_config.py`: `293`;
+  - `ouro_prompts.py`: `253`;
+  - `ouro_webtools.py`: `910`;
+  - `ouro_ui.py`: `1187`;
+  - `tests/unit/test_local_agent_wrapper.py`: `455`.
+
+Local agent wrapper audit/repair/self-model extraction (2026-05-07):
+
+- Completed the follow-up sequence requested after split pass 2.
+- RLTT runtime diagnosis:
+  - default Codex sandbox cannot see CUDA:
+    - `torch.cuda.is_available() == False`;
+    - `torch.cuda.device_count() == 0`;
+    - this explains the earlier CPU-bound local-agent smoke.
+  - host-side escalated Python can see the GPU:
+    - `torch.cuda.is_available() == True`;
+    - device: `NVIDIA GeForce RTX 5070 Ti Laptop GPU`.
+  - host-side backend diagnostics after loading RLTT:
+    - device map: `auto`;
+    - `use_cache=True`;
+    - approximate CUDA memory after load: `1638 MiB` allocated, `2490 MiB` reserved;
+    - generation telemetry captured;
+    - `total_ut_steps=1` selected pass counts were all pass 1 for the diagnostic probe.
+  - final host-side CLI smoke after self-model extraction exited cleanly:
+    - command shape: `ouro_agent_improved.py --mode direct --model rltt --ut-steps 1 --max-tokens 24`;
+    - prompt: `What is 12+7?`;
+    - output included `19`;
+    - GPU was visible on the host path.
+  - note: the tiny direct arithmetic prompts still show the model can ignore the requested `FINAL ANSWER only` style and can be over-verbose; that is a prompting/output-control issue, not a CPU fallback or loader failure.
+- Boundary audit:
+  - no extracted module imports `ouro_agent_improved.py`;
+  - only `ouro_agent_improved.py` imports `ouro_self_model.py`;
+  - stale imports left by the split were removed where safe;
+  - one stale cleanup miss (`contextlib`) was caught by the post-extraction CLI smoke and restored.
+- Added no-GPU integration tests:
+  - fake-model end-to-end wrapper path:
+    - task profile;
+    - runtime budget start;
+    - fake model planning/generation;
+    - Python tool execution;
+    - self-model outcome recording;
+    - engram file creation.
+  - split module facade path:
+    - `execute_tool("write_file")`;
+    - `execute_tool("read_file")`;
+    - task profile generation;
+    - route report generation.
+- Repair-loop behavior patch:
+  - `AgentState` now carries:
+    - `external_eval_constraints`;
+    - `rejected_hypotheses`.
+  - added `extract_evaluator_hypothesis_constraints(...)` and `record_evaluator_hypothesis_constraints(...)`;
+  - external evaluator failures now become structured constraints such as counterexamples, expected/got mismatches, failed cases, and rejected code signatures;
+  - `format_agent_state(...)` and `build_structured_feedback(...)` now include:
+    - `Evaluator-derived constraints`;
+    - `Rejected hypotheses`;
+  - on the next repair prompt, these constraints are present in working memory, not only buried in raw observation text;
+  - self-model recent outcome records now persist recent `external_eval_constraints`.
+- Local self-model extraction:
+  - created `/home/moloch/local_agent/ouro_self_model.py`;
+  - moved `LocalSelfModel` out of `ouro_agent_improved.py`;
+  - added `configure_self_model_helpers(...)` so `LocalSelfModel` can call agent-loop policy helpers without importing the main agent file back;
+  - registered helpers from `ouro_agent_improved.py`:
+    - observation compression;
+    - tool-input sanitation;
+    - hard-code tool policy;
+    - memory failure/fix inference;
+    - code attempt signatures;
+    - memory tags;
+    - final-answer extraction.
+- Verification:
+  - `py_compile` passed for:
+    - `ouro_agent_improved.py`;
+    - `ouro_self_model.py`;
+    - `ouro_memory.py`;
+    - `ouro_tooling.py`;
+    - `ouro_types.py`;
+    - `ouro_runtime_guard.py`;
+    - `ouro_model_managers.py`;
+    - `ouro_task_profile.py`;
+    - `ouro_oracles.py`;
+    - `ouro_backend.py`;
+    - `ouro_config.py`;
+    - `ouro_prompts.py`;
+    - `ouro_webtools.py`;
+    - `ouro_ui.py`;
+    - `tests/unit/test_local_agent_wrapper.py`.
+  - focused wrapper tests pass:
+    - `pytest tests/unit/test_local_agent_wrapper.py -q`;
+    - `28 passed`.
+- Current line counts:
+  - `ouro_agent_improved.py`: `4235`;
+  - `ouro_self_model.py`: `882`;
+  - `ouro_memory.py`: `272`;
+  - `ouro_tooling.py`: `456`;
+  - `ouro_types.py`: `78`;
+  - `ouro_runtime_guard.py`: `299`;
+  - `ouro_model_managers.py`: `380`;
+  - `ouro_task_profile.py`: `201`;
+  - `ouro_oracles.py`: `2526`;
+  - `ouro_backend.py`: `794`;
+  - `ouro_config.py`: `293`;
+  - `ouro_prompts.py`: `253`;
+  - `ouro_webtools.py`: `910`;
+  - `ouro_ui.py`: `1187`;
+  - `tests/unit/test_local_agent_wrapper.py`: `596`.
+
+Local agent architecture cleanup after Claude review (2026-05-07):
+
+- Scope:
+  - local-agent wrapper only;
+  - no Hunter-Seeker topology changes;
+  - no RLTT checkpoint/model changes;
+  - `transformers` pin remains `4.54.1`.
+- Implemented:
+  - created `/home/moloch/local_agent/ouro_policies.py` as a leaf policy-helper module;
+  - removed the `configure_self_model_helpers(...)` / `_HELPERS` injection path from `ouro_self_model.py`;
+  - `LocalSelfModel` now imports canonical helper behavior directly from `ouro_policies.py`, so new entrypoints cannot silently skip helper registration;
+  - deduplicated the matching helper bodies out of `ouro_agent_improved.py`; the main agent now imports the policy helpers instead of keeping local copies;
+  - replaced `from ouro_config import *` in local-agent modules with explicit config imports;
+  - added `SERVER_PUBLIC_BIND` / `LOCAL_AGENT_SERVER_PUBLIC`;
+  - `start_json_server()` now rejects non-loopback binds unless `--public` or `LOCAL_AGENT_SERVER_PUBLIC=1` is explicitly set;
+  - non-loopback host headers are still not implicitly trusted just because the server bound to `0.0.0.0`;
+  - added a local warning next to `_BLOCKED_MODULES` that the Python tool denylist is a guardrail, not a sandbox boundary;
+  - clarified model-manager runtime override semantics with `forwards_runtime_overrides`;
+  - added `/home/moloch/local_agent/README.md` with the RLTT runtime deviation note:
+    - 4-bit NF4 is a 12 GB VRAM compromise;
+    - adaptive compute is default-off because calibration showed almost no real short-circuiting at useful thresholds;
+    - exit telemetry is still used for semantic-depth measurement;
+    - local oracle/reference lookup remains disabled by default for honest eval.
+- Tests added:
+  - self-model uses the leaf policy helpers without entrypoint injection;
+  - server rejects `0.0.0.0` bind without explicit public mode before creating runtime;
+  - loopback host classifier accepts local hosts and rejects `0.0.0.0`.
+- Verification:
+  - `py_compile` passed for all local-agent modules, including `ouro_policies.py`;
+  - focused wrapper tests pass:
+    - `pytest tests/unit/test_local_agent_wrapper.py -q`;
+    - `31 passed`.
+- Current line counts:
+  - `ouro_agent_improved.py`: `4169`;
+  - `ouro_policies.py`: `301`;
+  - `ouro_self_model.py`: `843`;
+  - `ouro_model_managers.py`: `407`;
+  - `ouro_tooling.py`: `468`;
+  - `README.md`: `8`;
+  - `tests/unit/test_local_agent_wrapper.py`: `627`.
+- Deferred from Claude's audit:
+  - do not split `run_agent_task()` / `direct_answer()` / server handler in this cleanup batch; that should be the next deliberate structural split, not a quick regex move;
+  - shared typed episode schema across `EngramMemory` and `LocalSelfModel` is still desirable but needs a migration plan for existing JSONL/JSON stores;
+  - engram similarity calibration remains unmeasured; the route-risk gate should be logged/measured before making it stronger.
+
+Local agent bf16 default + deferred audit cleanup (2026-05-07):
+
+- Precision/runtime decision:
+  - local-agent RLTT now defaults to bf16, not 4-bit NF4;
+  - `LOCAL_AGENT_OURO_LOAD_IN_4BIT=1` remains available as an explicit low-VRAM fallback;
+  - `LOCAL_AGENT_OURO_MAX_INPUT_TOKENS` default lowered from `12288` to `8192`;
+  - intended architecture direction: bridge long-session continuity through the wrapper self-model, recent signatures, and engram memory instead of raw-context stuffing.
+- Measured default bf16 load:
+  - idle GPU before load: about `859 MiB` used;
+  - bf16 RLTT load allocated about `5088.8 MiB`;
+  - bf16 RLTT load reserved about `5110.0 MiB`;
+  - diagnostics reported `precision_mode=bf16`, `torch_dtype=bfloat16`, `load_in_4bit=false`, and effective input limit `8192`.
+- Deferred Claude-audit cleanup implemented:
+  - created `/home/moloch/local_agent/ouro_server.py`;
+  - moved the HTTP/UI handler out of `ouro_agent_improved.py`;
+  - `ouro_agent_improved.py` now keeps only a thin `start_json_server(...)` wrapper that passes callbacks/dependencies into `ouro_server.py`;
+  - created `/home/moloch/local_agent/ouro_episode.py`;
+  - added shared `EpisodeRecord` schema for both `EngramMemory` and `LocalSelfModel`;
+  - `EngramMemory.record(...)` now writes version-3 episode records through `EpisodeRecord`;
+  - `LocalSelfModel.record_outcome(...)` now writes the same episode schema into its recent-memory store, with extra signatures/runtime fields preserved;
+  - existing older records remain readable because recall/self-context code still consumes plain dicts;
+  - added engram route-risk decision auditing:
+    - config knob `LOCAL_AGENT_ENGRAM_ROUTE_RISK_AUDIT`, default on;
+    - audit path `projects/engram_route_risk_audit.jsonl`;
+    - records decision, threshold, top similarity, polarity, route, failure pattern, and matched task preview;
+    - runtime audit now exposes `engram_route_risk_audit` summary with fire rate/latest decisions.
+- Verification:
+  - `py_compile` passed for all local-agent modules, including `ouro_server.py` and `ouro_episode.py`;
+  - focused wrapper tests pass:
+    - `pytest tests/unit/test_local_agent_wrapper.py -q`;
+    - `33 passed`;
+  - CLI help smoke passed and shows `--public`;
+  - import smoke confirmed backend defaults:
+    - `OURO_LOAD_IN_4BIT=False`;
+    - `OURO_MAX_INPUT_TOKENS=8192`;
+    - loopback guard accepts `127.0.0.1` and rejects `0.0.0.0`.
+- Current line counts:
+  - `ouro_agent_improved.py`: `3991`;
+  - `ouro_server.py`: `218`;
+  - `ouro_episode.py`: `174`;
+  - `ouro_policies.py`: `315`;
+  - `ouro_self_model.py`: `845`;
+  - `ouro_memory.py`: `334`;
+  - `ouro_backend.py`: `796`;
+  - `ouro_config.py`: `295`;
+  - `README.md`: `13`;
+  - `tests/unit/test_local_agent_wrapper.py`: `680`.
+- Remaining architecture cleanup:
+  - `run_agent_task()` and `direct_answer()` are still in `ouro_agent_improved.py`;
+  - next safe split is probably `ouro_direct.py` first, then a smaller `ouro_agent_loop.py` once direct-mode dependencies are separated;
+  - self-model development should build on the new `EpisodeRecord` schema and bf16/default-8192 context policy.
+
+Local agent direct-mode split + Claude deferred cleanup continuation (2026-05-07):
+
+- Scope:
+  - local-agent wrapper only;
+  - no Hunter-Seeker changes;
+  - no prompt-only performance tuning;
+  - `transformers==4.54.1` remains pinned;
+  - RLTT remains the primary backend and bf16 remains the default precision.
+- Implemented:
+  - created `/home/moloch/local_agent/ouro_direct.py`;
+  - moved direct answer generation, direct self-verification, direct code-output acceptance, local-oracle reference fallback tagging, and direct repair prompting out of `ouro_agent_improved.py`;
+  - kept thin compatibility wrappers in `ouro_agent_improved.py` for existing tests/callers:
+    - `direct_answer(...)`;
+    - `self_verified_direct_answer(...)`;
+    - `_direct_output_acceptance(...)`;
+    - `_finalize_direct_output(...)`;
+    - `_verified_reference_for_task(...)`;
+  - wrappers synchronize the runtime direct-mode config flags into `ouro_direct.py`, preserving old monkeypatch/CLI behavior such as `--no-oracles`;
+  - moved hard-technical sanity helpers into `ouro_policies.py`:
+    - `looks_like_hard_technical_task(...)`;
+    - `hard_technical_rejection_reason(...)`;
+    - `missing_explicit_final(...)`;
+    - `merge_assistant_prefill(...)`;
+  - `ouro_agent_improved.py` is now primarily orchestration, CLI/REPL routing, tool-loop control, and compatibility exports;
+  - restored and verified the ReAct/tool loop surface after extraction:
+    - `run_agent_task(...)`;
+    - `execute_tool(...)`;
+    - `apply_external_evaluator(...)`;
+    - `observation_indicates_success(...)`;
+    - `planning_phase(...)`;
+    - `build_messages(...)`;
+    - `verify_completion(...)`;
+  - `run_agent_task(...)` still records runtime budget start into `LocalSelfModel.record_runtime_guard_event(...)`, preserving the self-model diagnostic signal.
+- Current line counts:
+  - `ouro_agent_improved.py`: `3142`;
+  - `ouro_direct.py`: `617`;
+  - `ouro_server.py`: `218`;
+  - `ouro_episode.py`: `174`;
+  - `ouro_policies.py`: `395`;
+  - `ouro_self_model.py`: `845`;
+  - `ouro_memory.py`: `334`;
+  - `ouro_backend.py`: `796`;
+  - `ouro_model_managers.py`: `407`;
+  - `ouro_tooling.py`: `468`;
+  - `ouro_webtools.py`: `924`;
+  - `ouro_oracles.py`: `2526`.
+- Verification:
+  - `py_compile` passed for all local-agent modules and the focused wrapper test file;
+  - focused wrapper tests pass:
+    - `pytest tests/unit/test_local_agent_wrapper.py -q`;
+    - `33 passed`;
+  - CLI help smoke passed and still exposes `--public`;
+  - import smoke confirms `run_agent_task`, `direct_answer`, and `execute_tool` are present on `ouro_agent_improved.py`;
+  - no `from ouro_config import *` remains in local-agent modules.
+- Remaining architecture cleanup:
+  - the largest remaining split is `run_agent_task(...)` into a dedicated `ouro_agent_loop.py`;
+  - this should be done after the self-model work unless the loop body starts blocking changes again;
+  - the local oracle file is still intentionally separate and disabled by default, but it remains large by design;
+  - engram route-risk calibration now has logging, but the similarity metric itself is still bag-of-words and should be measured before strengthening.
+
+Local agent self-model continuity wiring (2026-05-07):
+
+- Scope:
+  - local-agent wrapper self-model only;
+  - no model/checkpoint changes;
+  - no prompt-only tuning;
+  - no Hunter-Seeker changes.
+- Implemented:
+  - `run_agent_task(...)` now records actual tool events into `LocalSelfModel.record_tool_event(...)`;
+  - verifier verdicts now flow into `LocalSelfModel.record_verifier_event(...)`;
+  - failure/stagnation diagnoses now flow into `LocalSelfModel.record_diagnosis_event(...)`;
+  - the self-model episode record now receives live thinking/choice/tool/verifier/loop signatures instead of mostly empty tool/verifier fields;
+  - added deterministic long-horizon continuity summary in `LocalSelfModel`:
+    - state keys: `continuity_summary`, `continuity_summary_updated_at`, `continuity_episode_count`;
+    - refreshed after every `record_outcome(...)`;
+    - summarizes episode count, success rate, latest task/action/outcome, latest summary, recurring failure/fix patterns, active diagnosis, and latest internal signatures;
+    - included in direct context, agent continuity context, and `format_for_task(...)`;
+    - exposed through diagnostics as `continuity_summary_chars` and `continuity_episode_count`.
+- Intended behavior:
+  - the wrapper now gives Ouro a compact persistent account of what it has been doing, what failed, what fixed prior tasks, and which internal signatures were active;
+  - this is still diagnostic/compressed memory, not ground truth;
+  - raw context stays bounded while continuity can keep accumulating through summarized state.
+- Verification:
+  - focused wrapper tests pass:
+    - `pytest tests/unit/test_local_agent_wrapper.py -q`;
+    - `34 passed`;
+  - `py_compile` passed for all local-agent modules and the focused wrapper test file.
+- Current line counts:
+  - `ouro_agent_improved.py`: `3147`;
+  - `ouro_self_model.py`: `928`;
+  - `tests/unit/test_local_agent_wrapper.py`: `711`.
+- Remaining self-model work:
+  - make memory selection less bag-of-words by adding IDF or embedding-style scoring;
+  - consider a small learned or model-generated continuity compressor later, but keep the current deterministic summary as the safe baseline.
+
+Local agent self-model loop calibration (2026-05-07):
+
+- Implemented:
+  - `LocalSelfModel.record_loop_signature(...)` now records both the compact loop signature and structured loop telemetry;
+  - added self-model state:
+    - `last_loop_telemetry`;
+    - `recent_loop_telemetry`;
+    - `loop_calibration_summary`;
+  - loop telemetry captures:
+    - configured/observed UT depth;
+    - cache setting;
+    - prompt/total token counts;
+    - generation seconds;
+    - selected pass/depth when adaptive exit telemetry is available;
+    - loop KL final-vs-first;
+    - loop top-1 change fraction;
+  - rolling calibration summary now reports:
+    - call count;
+    - average generation seconds;
+    - average token counts;
+    - average passes/selected passes;
+    - average loop KL;
+    - average top-1 change fraction;
+    - high loop-disagreement rate.
+- Context behavior:
+  - loop calibration appears in direct context, agent continuity context, and `format_for_task(...)`;
+  - calibration can surface even before a completed episode exists, so fresh sessions can still report loop behavior after a model call.
+- Verification:
+  - focused wrapper tests pass:
+    - `pytest tests/unit/test_local_agent_wrapper.py -q`;
+    - `35 passed`;
+  - `py_compile` passed for all local-agent modules and the focused wrapper test file.
+- Current line counts:
+  - `ouro_self_model.py`: `1051`;
+  - `tests/unit/test_local_agent_wrapper.py`: `748`.
+- Remaining self-model work:
+  - make memory selection less bag-of-words by adding IDF or embedding-style scoring;
+  - consider a small learned or model-generated continuity compressor later, but keep the current deterministic summary as the safe baseline;
+  - after enough real local-agent episodes, inspect whether loop disagreement correlates with wrong answers or repair cycles.
+
+Local agent weighted memory recall + loop/outcome audit (2026-05-07):
+
+- Implemented the later two deferred self-model points:
+  - replaced plain overlap-only episodic matching with dependency-free IDF-style weighted cosine recall;
+  - added a loop/outcome audit that checks whether high loop disagreement correlates with incomplete/failed outcomes or repair cycles.
+- Weighted memory details:
+  - added `_engram_corpus_weights(...)` and `_weighted_engram_similarity(...)` in `ouro_memory.py`;
+  - `EngramMemory.recall(...)` now uses weighted similarity;
+  - `LocalSelfModel._similar_recent(...)` now uses weighted similarity;
+  - `LocalSelfModel.failed_code_signatures_for_task(...)` now uses weighted similarity;
+  - project-memory and history-context selection now use weighted similarity too;
+  - this remains domain-agnostic and dependency-free: common terms across the local memory corpus become weaker, rarer task/mechanism terms carry more retrieval weight.
+- Loop/outcome audit details:
+  - added self-model state key `loop_outcome_audit_summary`;
+  - audit matches recent episodes with the latest preceding loop telemetry;
+  - disagreement score uses loop KL final-vs-first and loop top-1 change fraction;
+  - summary reports matched count, average disagreement, negative-vs-success disagreement, high-disagreement negative rate, and high-disagreement repair rate;
+  - loop/outcome audit appears in direct context, agent continuity context, and `format_for_task(...)`.
+- Existing-state migration:
+  - `LocalSelfModel.__init__` now builds `continuity_summary` from existing stored episodes if it is missing;
+  - live stored state currently has 25 episodes and 0 loop telemetry records from pre-wiring runs;
+  - current live audit therefore reports:
+    - `loop_outcome_audit_summary.status=insufficient_data`;
+    - `episodes=25`;
+    - `loop_records=0`;
+  - continuity summary migrated successfully for existing episodes:
+    - `continuity_summary_chars=1579`;
+    - `continuity_episode_count=25`.
+- Verification:
+  - focused wrapper tests pass:
+    - `pytest tests/unit/test_local_agent_wrapper.py -q`;
+    - `37 passed`;
+  - `py_compile` passed for all local-agent modules and the focused wrapper test file.
+- Current line counts:
+  - `ouro_memory.py`: `373`;
+  - `ouro_self_model.py`: `1175`;
+  - `tests/unit/test_local_agent_wrapper.py`: `824`.
+- Remaining self-model work:
+  - real loop/outcome correlation needs new local-agent runs because previous stored episodes predate loop telemetry recording;
+  - consider a small learned or model-generated continuity compressor later, but deterministic continuity remains the baseline.
+
+Local agent self-model policy decision layer (2026-05-07):
+
+- Scope:
+  - local-agent wrapper self-model only;
+  - no Hunter-Seeker changes;
+  - no checkpoint/model changes;
+  - this is structural wrapper control, not prompt-only tuning.
+- Implemented:
+  - added `SelfModelDecision` as an explicit typed decision surface in `ouro_types.py`;
+  - `AgentState` now carries `self_model_decision` so the live ReAct loop can see the current route/tool/verifier decision;
+  - `LocalSelfModel.decide(...)` now emits an auditable policy decision from:
+    - current task profile;
+    - weighted similar recent memories;
+    - negative direct-route memory;
+    - memory conflict;
+    - hard-code/tool policy;
+    - loop-disagreement calibration/audit risk;
+  - decisions include:
+    - route: `direct`, `self_verify`, or `agent`;
+    - risk level;
+    - recommended UT steps, max tokens, and ReAct steps;
+    - `requires_tool`;
+    - `requires_verifier`;
+    - `memory_conflict`;
+    - `loop_disagreement_risk`;
+    - expected failure mode;
+    - confidence and compact diagnostics.
+- Wiring details:
+  - `run_task_mode(...)` asks the self-model for a decision before routing;
+  - explicit CLI overrides for UT steps, max tokens, and ReAct steps still win;
+  - direct mode now reroutes to agent/tool mode when the self-model finds a similar failed/unverified direct-code memory;
+  - direct mode now uses RLTT self-verification when the self-model marks direct output as verifier-required but not tool-required;
+  - agent mode's direct-generation shortcut also respects self-model self-verification decisions;
+  - `run_agent_task(...)` accepts the already-computed decision and records it into live state;
+  - if called directly without a decision, `run_agent_task(...)` asks the self-model itself and applies the decision;
+  - self-model tool decisions force first tool-action prefill and runtime-check enforcement even when the older hard-code heuristic would not have fired.
+- Context/diagnostics:
+  - decisions persist as `last_policy_decision` and `recent_policy_decisions`;
+  - decisions are recorded as `last_policy_signature`;
+  - `format_policy_decision(...)` exposes the current decision in direct context, agent continuity context, and `format_for_task(...)`;
+  - removed a duplicate `last_policy_decision` block in the continuity summary.
+- Online calibration:
+  - added `policy_calibration` state to `LocalSelfModel`;
+  - every completed episode updates route/task-type calibration from the live `self_model_decision`;
+  - calibration stores count, successes, negative outcomes, failure rate, last task, and last outcome;
+  - decisions consult exact and broad route/task-type calibration;
+  - if a route/task-type pattern has at least 3 samples and failure rate is at least `0.67`, the self-model raises risk and requires verification;
+  - for direct non-tool tasks, learned route failure escalates to `self_verify` with `expected_failure_mode=learned_policy_failure_risk`;
+  - this is a lightweight online learned policy layer, not a neural learned self-model.
+- Verification:
+  - focused wrapper tests pass:
+    - `pytest tests/unit/test_local_agent_wrapper.py -q`;
+    - `41 passed`;
+  - `py_compile` passed for all local-agent modules and the focused wrapper test file.
+- Current line counts:
+  - `ouro_agent_improved.py`: `3241`;
+  - `ouro_self_model.py`: `1455`;
+  - `ouro_types.py`: `121`;
+  - `tests/unit/test_local_agent_wrapper.py`: `965`.
+- Remaining self-model work:
+  - collect real post-wiring episodes so loop/outcome audit has actual paired data;
+  - consider a model-generated or learned continuity compressor after the deterministic baseline has enough data;
+  - eventually add a real embedding/vector memory backend if weighted lexical recall starts misrouting similar-but-wrong tasks.
+
+Local agent Claude cleanup batch + architecture audit (2026-05-07):
+
+- Implemented all three remaining Claude points:
+  - centralized oracle policy sync/dispatch in `ouro_policies.py`;
+  - memoized engram recall record terms and IDF-style weights in `ouro_memory.py`;
+  - split `LocalSelfModel` internals into separate mixins:
+    - `ouro_self_store.py` for persistence, signatures, runtime/diagnosis event recording, and diagnostics;
+    - `ouro_self_context.py` for direct/agent context construction and continuity summaries;
+    - `ouro_self_model.py` now keeps the decision, telemetry, recall, calibration, and outcome core.
+- Oracle wrapper details:
+  - `ouro_policies.py` now owns:
+    - `sync_oracle_lookup_policy(...)`;
+    - `recognized_python_hidden_tests(...)`;
+    - `run_recognized_python_hidden_tests(...)`;
+    - `run_recognized_python_class_hidden_tests(...)`;
+  - `ouro_agent_improved.py` and `ouro_direct.py` keep only tiny compatibility wrappers so runtime monkeypatches/CLI flags still flow through `ORACLE_LOOKUPS_ENABLED`;
+  - no `_sync_oracle_lookup_policy` duplicate remains.
+- Engram recall cache details:
+  - added `_ENGRAM_RECORD_TERMS_CACHE`;
+  - added `_ENGRAM_WEIGHT_CACHE`;
+  - cache keys include resolved path, file mtime, file size, and max-record cap;
+  - task-specific weights are cached by sorted task terms;
+  - cache is bounded/pruned and remains dependency-free.
+- Self-model split details:
+  - `LocalSelfModel` remains the public class/API;
+  - `LocalSelfModel` now inherits `SelfModelContextBuilderMixin` and `SelfModelStoreMixin`;
+  - tests assert the split surfaces are present;
+  - no behavior change intended.
+- Extra cleanup:
+  - simplified one no-op router branch in `run_task_mode(...)` into a `force_agent_tool_route` guard.
+- Verification:
+  - focused wrapper tests pass:
+    - `pytest tests/unit/test_local_agent_wrapper.py -q`;
+    - `43 passed`;
+  - full project tests pass:
+    - `pytest -q`;
+    - `510 passed, 1 skipped`;
+  - `py_compile` passed for all local-agent modules and the focused wrapper test file;
+  - import smoke passed for the local-agent module surface:
+    - config/types/episode/memory/policies/task-profile/self-store/self-context/self-model/direct/tooling/webtools/runtime/model-managers/server/agent.
+- Current local-agent line counts:
+  - `ouro_agent_improved.py`: `3233`;
+  - `ouro_direct.py`: `609`;
+  - `ouro_memory.py`: `411`;
+  - `ouro_policies.py`: `434`;
+  - `ouro_self_context.py`: `489`;
+  - `ouro_self_model.py`: `778`;
+  - `ouro_self_store.py`: `231`;
+  - `ouro_oracles.py`: `2526`;
+  - total local-agent Python: `14076`;
+  - focused wrapper tests: `996`.
+- Architecture audit result:
+  - no remaining `from ouro_config import *`;
+  - no remaining `configure_self_model_helpers` injection path;
+  - no remaining duplicated `_sync_oracle_lookup_policy`;
+  - server/public-bind/auth policy remains explicit;
+  - write tools remain confined to `LOCAL_AGENT_WRITABLE_ROOT`, while read tools remain globally readable as requested;
+  - local oracles/reference fast path remain disabled by default;
+  - bf16 remains the default RLTT precision, with 4-bit available only by opt-in env.
+- Remaining architecture observations:
+  - `ouro_agent_improved.py` is still the largest live orchestrator file at `3233` lines and should eventually be split into a true agent-loop module, but it is no longer blocking the current self-model work;
+  - `ouro_oracles.py` is large by design and disabled by default, but should stay disclosed in any benchmark-style report;
+  - broad best-effort `except Exception: pass` handlers remain in cache/logging/unload/browser-adapter paths; they are acceptable for local wrapper robustness, but would need structured logging if this became multi-user service code.
+
+Local agent self-model vector/predictor/latent-readout patch (2026-05-07):
+
+- Implemented the next self-model layer without changing RLTT weights or replacing Ouro's reasoning.
+- Added `ouro_vector_memory.py`:
+  - deterministic dependency-free feature-hashed vectors;
+  - bounded persistent cache at `projects/local_self_vectors.json`;
+  - token, stem, camel/snake split, and character n-gram features;
+  - cosine retrieval is hybridized with the existing weighted lexical recall.
+- Updated `LocalSelfModel` recall:
+  - `_similar_recent(...)` now records `similarity`, `lexical_similarity`, and `vector_similarity`;
+  - unrelated memories remain filtered by conservative lexical/vector thresholds;
+  - `failed_code_signatures_for_task(...)` uses the same hybrid similarity surface;
+  - `last_vector_memory_diagnostics` is persisted and shown in direct/agent self-context.
+- Added `ouro_self_predictor.py`:
+  - small online bucketed outcome predictor over task type, difficulty, route, tool/verifier flags, memory conflict, loop risk, and expected failure mode;
+  - stores bounded `outcome_predictor` buckets in the self-model state;
+  - predicts failure probability with smoothing and confidence, then only raises caution;
+  - it can require verification or route direct answers to `self_verify`, but it does not suppress tools, lower safety, or override Ouro's generated reasoning.
+- Updated `LocalSelfModel.decide(...)`:
+  - predictor output is stored in `last_self_predictor_prediction` and `recent_self_predictor_predictions`;
+  - predictor metadata separates `predicted_route` from final `decision_route`, so reroutes such as direct -> `self_verify` remain auditable;
+  - predictor diagnostics are included in `SelfModelDecision.diagnostics`;
+  - policy context now exposes `pred_fail=...` and `self_model_outcome_prediction=...`.
+- Added bounded latent-loop readout:
+  - `ouro_backend.py` now summarizes per-loop-logit refinement when `return_per_loop_logits` is available:
+    - `loop_entropy_delta_mean`;
+    - `loop_confidence_gain_mean`;
+    - `loop_margin_delta_mean`;
+    - `loop_latent_refinement_score`;
+  - `LocalSelfModel.loop_telemetry_from_model(...)` carries those fields into persistent loop telemetry and loop signatures;
+  - this is a compact loop-logit latent signature, not a heavy hidden-state dump.
+- Runtime telemetry wiring:
+  - `MultiBackendModelManager.chat(...)` requests loop telemetry for the primary RLTT backend when `SELF_MODEL_LATENT_TELEMETRY=1` and the generation is within `SELF_MODEL_LATENT_TELEMETRY_MAX_TOKENS`;
+  - default max telemetry generation is `768` tokens to keep the cost bounded.
+- New config knobs:
+  - `LOCAL_AGENT_OURO_SELF_VECTOR_MEMORY`;
+  - `LOCAL_AGENT_OURO_SELF_VECTOR_DIM`;
+  - `LOCAL_AGENT_OURO_SELF_VECTOR_CACHE_MAX`;
+  - `LOCAL_AGENT_OURO_SELF_VECTOR_MIN_SIMILARITY`;
+  - `LOCAL_AGENT_OURO_SELF_PREDICTOR`;
+  - `LOCAL_AGENT_OURO_SELF_PREDICTOR_MIN_EVIDENCE`;
+  - `LOCAL_AGENT_OURO_SELF_PREDICTOR_RISK_THRESHOLD`;
+  - `LOCAL_AGENT_SELF_MODEL_LATENT_TELEMETRY`;
+  - `LOCAL_AGENT_SELF_MODEL_LATENT_TELEMETRY_MAX_TOKENS`;
+  - `LOCAL_AGENT_OURO_CAPTURE_LATENT_SIGNATURES`.
+- Verification so far:
+  - focused wrapper tests pass:
+    - `pytest tests/unit/test_local_agent_wrapper.py -q`;
+    - `48 passed`;
+  - full project tests pass:
+    - `pytest -q`;
+    - `515 passed, 1 skipped`;
+  - `py_compile` passed for:
+    - `ouro_vector_memory.py`;
+    - `ouro_self_predictor.py`;
+    - `ouro_self_model.py`;
+    - `ouro_self_store.py`;
+    - `ouro_self_context.py`;
+    - `ouro_backend.py`;
+    - `ouro_model_managers.py`.
+- Current local-agent line counts:
+  - `ouro_agent_improved.py`: `3233`;
+  - `ouro_backend.py`: `841`;
+  - `ouro_model_managers.py`: `411`;
+  - `ouro_self_context.py`: `513`;
+  - `ouro_self_model.py`: `928`;
+  - `ouro_self_predictor.py`: `219`;
+  - `ouro_self_store.py`: `257`;
+  - `ouro_vector_memory.py`: `195`;
+  - focused wrapper tests: `1167`.
+- Remaining self-model work:
+  - collect real post-patch episodes so vector recall, outcome predictor, and latent signatures can be calibrated against actual local-agent successes/failures;
+  - consider a true neural self-model only after enough episodes exist to train it without turning it into hand-tuned noise;
+  - if hidden activations are needed, add an opt-in compact hidden-state hook in the RLTT backend rather than dumping full tensors.
+
+Hard-coding harness / budget-control patch (2026-05-07):
+
+- Ran the actual extreme hard-coding harness:
+  - `tools/test_local_agent_hard_coding.py`;
+  - tasks: `offline_dynamic_connectivity`, `minimum_xor_paths`;
+  - RLTT bf16, no 4-bit, no oracle lookup, no code-reference fastpath;
+  - external evaluator enabled;
+  - requested `ut_steps=2`, `max_tokens=768`, `react_steps=3`, `repair_rounds=2`.
+- First run exposed an OOM in self-model latent telemetry:
+  - long hard-code generations with `return_per_loop_logits` could push bf16 RLTT near the 12 GB card limit;
+  - patched `SELF_MODEL_LATENT_TELEMETRY_MAX_TOKENS` default from `768` to `384`;
+  - added `SELF_MODEL_LATENT_TELEMETRY_MAX_WORK=1024`;
+  - `MultiBackendModelManager.chat(...)` now requests per-loop latent telemetry only when `max_tokens * total_ut_steps` stays inside that work budget.
+- Second run exposed an external-evaluator gating bug:
+  - definition-only Python functions were rejected as `missing_runtime_checks` before the harness evaluator could test them;
+  - patched hard-code runtime evidence so an external evaluator is allowed to provide the executable evidence;
+  - the wrapper now executes definition-only functions, then lets the external evaluator pass/fail them.
+- Full harness result after those two fixes:
+  - `offline_dynamic_connectivity`: failed, `903.346s`;
+    - failure sequence included one wrong rollback-DSU/interval implementation, one no-code repair, and one syntax-truncated repair;
+  - `minimum_xor_paths`: failed, `217.885s`;
+    - failure was repeated syntax/indentation-broken code, stopped by the stagnation detector;
+  - important: this full run was later diagnosed as contaminated by a budget-control bug, because explicit `react_steps=3` and `ut_steps=2` were silently strengthened upward inside the hard-code profile path.
+- Current patch from the harness diagnosis:
+  - `TaskProfile` now carries explicit override flags:
+    - `explicit_ut_steps`;
+    - `explicit_max_tokens`;
+    - `explicit_react_steps`;
+  - `apply_task_profile_overrides(...)` sets those flags;
+  - `strengthen_hard_code_tool_profile(...)` no longer raises user/harness-specified budgets;
+  - `run_agent_task(...)` and `apply_self_model_decision(...)` also respect those explicit flags when applying self-model decisions;
+  - verifier parsing now accepts common wrappers such as `FINAL ANSWER: COMPLETE` and line-prefixed `INCOMPLETE: ...`, reducing invalid-format false negatives.
+- Verification:
+  - `py_compile` passed for:
+    - `ouro_types.py`;
+    - `ouro_agent_improved.py`;
+  - focused wrapper tests pass:
+    - `pytest tests/unit/test_local_agent_wrapper.py -q`;
+    - `52 passed`;
+  - GPU hard-coding smoke passed the wrapper-level objective:
+    - command used bf16 RLTT, no oracles, `--task minimum_xor_paths --full-capability --ut-steps 2 --max-tokens 384 --react-steps 1 --repair-rounds 0`;
+    - console showed `Generating... steps=2`, confirming explicit UT budget is now respected;
+    - runtime was `21.717s`;
+    - model still failed the algorithm (`TypeError: cannot unpack non-iterable int object`), which is now a model/repair-quality issue rather than a wrapper budget-escalation issue.
+- Current state:
+  - the hard-code wrapper now reaches real executable/evaluator feedback without the previous OOM and without silently expanding requested step budgets;
+  - the remaining weakness is that RLTT still repeats bad algorithm families or returns incomplete/syntax-broken implementations on the two extreme harness tasks;
+  - next useful local-agent work is wrapper-level repair quality, not more harness changes:
+    - make syntax/truncation failures generate a shorter targeted repair step instead of another full attempt;
+    - make external-evaluator counterexamples produce persistent, compact invariants in the self-model memory;
+    - measure whether larger token budgets solve syntax truncation without reintroducing unacceptable wallclock/thermal cost.
+
+Looped-SSA memo / route-reuse local-agent patch (2026-05-07):
+
+- New file reviewed:
+  - `/home/moloch/ouro_project/looped_ssa_research_memo.md`;
+  - status: useful, but mostly as research direction and diagnostics, not as an immediate replacement for current wrapper work.
+- Most useful idea from the memo:
+  - recurrent systems should not simply rerun the same route;
+  - retrieval/route selection should be front-loaded, then refined with bounded top-ups;
+  - route IoU/reuse is the key diagnostic: high reuse after failure means the loop is not really exploring a different route.
+- Direct local-agent translation:
+  - code attempts now have a domain-agnostic structural route signature;
+  - the signature is built from code shape, imports, calls, helper names, control-flow buckets, operators, and data-structure use;
+  - this is intentionally not a task/benchmark-specific algorithm blacklist.
+- Implemented in local-agent code:
+  - `ouro_policies.py`:
+    - `code_route_features(...)`;
+    - `code_route_signature(...)`;
+    - `code_route_similarity(...)`;
+  - `AgentState`:
+    - `best_candidate_route_signature`;
+    - `best_candidate_route_similarity`;
+    - `best_candidate_route_features`;
+    - `code_route_attempt_counts`;
+    - `failed_route_history`;
+  - candidate scoring:
+    - `route_repeat_penalty`;
+    - `repair_route_similarity_penalty`;
+    - route diagnostics are included in candidate history and repair traces;
+  - tool transitions:
+    - record `route_signature`, `route_similarity`, `route_reuse_flag`, and route features;
+  - failure diagnosis:
+    - records `repair_route_similarity`, `route_repeat_count`, and `route_reuse_flag`;
+    - route reuse now contributes to stagnation detection;
+  - repair policy:
+    - added `route_diversification_repair`;
+    - added `syntax_route_diversification_repair`;
+  - self-model:
+    - choice signatures now include route signature and failed-route similarity;
+  - engram memory:
+    - aggregate recall now exposes `known_bad_route_families` in addition to known-bad code signatures;
+  - prompt-level repair seeding:
+    - prompts that explicitly contain failed/previous code now seed `known_bad_code_signatures` and `failed_route_history` before generation;
+    - this prevents the wrapper from treating a prompt-provided failed code block as neutral context;
+  - hazardous candidate refusal:
+    - if all generated forced-code candidates remain negative after hazard fallback, the wrapper now refuses to execute or surface them as a real attempt.
+- Verification:
+  - `py_compile` passed for changed local-agent modules;
+  - focused wrapper suite:
+    - `pytest tests/unit/test_local_agent_wrapper.py -q`;
+    - `63 passed` after route/refusal tests during development;
+  - full project suite:
+    - `pytest -q`;
+    - `530 passed, 1 skipped`.
+- GPU smoke runs:
+  - `runs/local_agent_hard_coding/route_patch_minxor_smoke.json`;
+    - bf16 RLTT, no oracles, no reference fastpath, GPU confirmed by `nvidia-smi`;
+    - `minimum_xor_paths` failed in `189.322s`;
+    - useful result: route terms appeared live in `score_components` and transitions;
+    - repeated route received `repair_route_similarity_penalty=-6.0` and `route_repeat_penalty=-4.0`;
+  - `runs/local_agent_hard_coding/route_patch_minxor_promptseed_smoke.json`;
+    - bf16 RLTT, no oracles, no reference fastpath, GPU confirmed;
+    - `minimum_xor_paths` failed in `150.601s`;
+    - prompt-seeded prior code was recognized as rejected before execution;
+    - repair round was shorter, but the model still copied the same DFS/adjacency route;
+    - final hazardous-candidate refusal was implemented after this smoke and is covered by unit tests, not yet by a live GPU rerun.
+- Current diagnosis:
+  - the wrapper can now see and penalize repeated implementation routes;
+  - the model's hard-code failure remains route generation quality: it keeps returning the same DFS/graph-adjacency family for `minimum_xor_paths` even after evaluator feedback and route penalties;
+  - the next useful patch is not more hardcoded algorithm knowledge, but a stronger generic route-diversification control:
+    - route sketch before code;
+    - explicit negative route features in the prompt;
+    - possibly redact or compress previous code blocks into failure/route signatures instead of showing full failed code;
+    - require the next candidate to change route signature before execution when the previous route failed.
+- Research follow-up from the memo:
+  - keep Looped-SSA / NSA-lite as a later research track;
+  - first concrete experiment should measure route IoU vs difficulty on a toy sparse-routing setup;
+  - for the local agent, the immediate equivalent metric is repair-route similarity across attempts.
+
+Local agent route-frontier controller + GPU-only backend guard (2026-05-07):
+
+- Implemented the GPT-suggested correction to the route-reuse patch:
+  - route memory is now generative/frontier-oriented, not only punitive;
+  - after evaluator failure, route reuse, or stagnation, the wrapper enters `route_frontier_required`;
+  - the next route sketch must name:
+    - representation;
+    - invariant;
+    - state difference or reduction;
+    - checker/reference/brute-force/differential validation idea;
+    - curriculum/counterexample use when evaluator feedback exists;
+    - avoided route.
+- Added `AgentState` frontier fields:
+  - `current_route_frontier_fields`;
+  - `current_route_frontier_ready`;
+  - `route_frontier_required`;
+  - `route_frontier_reason`;
+  - `route_frontier_history`.
+- Added route-sketch parsing and readiness checks:
+  - `parse_route_sketch_fields(...)`;
+  - `route_frontier_ready(...)`;
+  - `score_route_sketch(...)` now emits frontier score components:
+    - `route_frontier_state_difference_bonus`;
+    - `route_frontier_checker_bonus`;
+    - `route_frontier_counterexample_bonus`;
+    - `route_frontier_missing_fields_penalty`;
+    - `route_frontier_ready_bonus`;
+    - `route_frontier_low_overlap_bonus`.
+- Added code-candidate frontier scoring:
+  - `route_frontier_ready_bonus`;
+  - `route_frontier_missing_sketch_penalty`;
+  - `route_frontier_failed_route_penalty`;
+  - `route_frontier_checker_code_bonus`;
+  - `route_frontier_missing_checker_code_penalty`.
+- Added hard execution gates:
+  - `frontier_route_required` rejects code when the failed route needs frontier search but the route sketch is missing/incomplete;
+  - `frontier_route_rejected` rejects code that remains in a high-similarity failed route basin;
+  - all new terms are surfaced in `score_components` and repair traces.
+- Repair policy now has `frontier_new_route_search`:
+  - after external-evaluator failure, the wrapper asks for a new route rather than a patch;
+  - prompt text explicitly distinguishes repair from new-route search.
+- Live GPU smoke:
+  - output: `runs/local_agent_hard_coding/frontier_controller_minxor_smoke_gpu.json`;
+  - task: `minimum_xor_paths`;
+  - bf16 RLTT, no 4-bit, no local oracle/reference fastpath;
+  - GPU confirmed by `nvidia-smi`: about `8.3-9.1 GB` VRAM and up to `90%` utilization;
+  - runtime: `81.698s`;
+  - result: failed safely with no code surfaced.
+- What the smoke showed:
+  - first implementation still failed the external evaluator:
+    - got `[0, 0, 0, -1]`;
+    - expected `[4, 0, 5, -1]`;
+  - evaluator failure triggered `route_frontier_required=True`;
+  - the next route sketch was still malformed/freeform reasoning rather than the requested field format;
+  - repeated code stayed in the same route basin and was refused;
+  - final wrapper stop reason correctly included:
+    - `known_bad_code_penalty=-20.00`;
+    - `route_repeat_penalty=-4.00`;
+    - `repair_route_similarity_penalty=-6.00`;
+    - `route_frontier_missing_sketch_penalty=-5.00`;
+    - `route_frontier_failed_route_penalty=-5.00`;
+    - `route_frontier_missing_checker_code_penalty=-1.50`.
+- Current diagnosis:
+  - the controller now recognizes evaluator failure as "leave this search basin";
+  - it does not merely patch or rerun the same code;
+  - RLTT still fails to obey the compact route-sketch schema under pressure and falls back into prose plus the same implementation family;
+  - next useful patch is a stricter frontier-sketch stage:
+    - reject malformed sketches before candidate generation;
+    - possibly use deterministic local extraction/fallback to force field structure;
+    - only allow code generation after a ready sketch or a bounded retry budget.
+- GPU-only backend guard:
+  - `ouro_backend.py` now hard-requires CUDA for the primary RLTT backend;
+  - if `torch.cuda.is_available()` is false, RLTT load raises immediately instead of silently running on CPU;
+  - `LOCAL_AGENT_OURO_DEVICE_MAP=cpu` or disk/cpu offload is rejected;
+  - after model load, `hf_device_map` and parameters are checked so CPU/disk offload cannot slip through;
+  - diagnostics now include `require_cuda`, `cuda_available`, and `cuda_device_count`.
+- CPU tests remain allowed because they use fake/stub models and do not load the RLTT checkpoint.
+- Verification:
+  - `py_compile` passed for:
+    - `ouro_backend.py`;
+    - `ouro_types.py`;
+    - `ouro_agent_improved.py`;
+  - focused wrapper tests:
+    - `75 passed`;
+  - full project tests:
+    - `542 passed, 1 skipped`;
+  - tiny escalated RLTT smoke:
+    - bf16, `4bit=False`;
+    - CUDA load accepted by the new placement assertion;
+    - `nvidia-smi` showed about `6.6 GB` VRAM and `86%` utilization during generation.
+
+Harness from hell run after GPU-only guard (2026-05-07):
+
+- Ran the full hard-coding harness:
+  - command output: `runs/local_agent_hard_coding/harness_from_hell_frontier_gpu.json`;
+  - state/trace dir: `runs/local_agent_hard_coding_state_harness_from_hell_gpu/projects/repair_traces.jsonl`;
+  - tasks:
+    - `offline_dynamic_connectivity`;
+    - `minimum_xor_paths`;
+  - settings:
+    - bf16 RLTT;
+    - `LOCAL_AGENT_OURO_LOAD_IN_4BIT=0`;
+    - `--full-capability`;
+    - `--ut-steps 2`;
+    - `--max-tokens 768`;
+    - `--react-steps 3`;
+    - `--repair-rounds 2`;
+    - oracle lookup disabled;
+    - code reference fastpath disabled.
+- GPU/thermal confirmation:
+  - backend printed `4bit=False`;
+  - `nvidia-smi` showed about `9.0-9.7 GB` VRAM and up to `91%` utilization during the run;
+  - final GPU state returned to about `932 MiB` and idle;
+  - hottest observed CPU package/core readings stayed below the pause threshold, peaking around package `99 C` / core `100 C`;
+  - no thermal pause was required.
+- Results:
+  - `offline_dynamic_connectivity`:
+    - failed safely;
+    - `seconds=105.946`;
+    - `has_code=false`;
+    - `failure_kind=agent_max_steps`;
+    - stop reason: hazardous candidates after frontier fallback;
+  - `minimum_xor_paths`:
+    - failed safely;
+    - `seconds=104.358`;
+    - `has_code=false`;
+    - `failure_kind=agent_max_steps`;
+    - stop reason: hazardous candidates after frontier fallback.
+- Trace diagnosis:
+  - both tasks produced an initial implementation, executed it, and got external-evaluator failure;
+  - external-evaluator failure correctly triggered `route_frontier_required=True`;
+  - both debug route-sketch generations were still malformed/freeform prose with no parseable fields:
+    - `route_sketch_malformed_penalty=-3.00`;
+    - `route_frontier_missing_fields_penalty=-4.50`;
+    - `frontier_ready=false`;
+  - subsequent code candidates stayed too close to the rejected route family and were refused:
+    - `route_frontier_missing_sketch_penalty=-5.00`;
+    - `route_frontier_failed_route_penalty=-2.00` or stronger in earlier smoke;
+    - `route_frontier_missing_checker_code_penalty=-1.50`;
+    - `repair_route_similarity_penalty=-3.00` to `-6.00`.
+- Specific evaluator failures:
+  - `offline_dynamic_connectivity` first attempt produced a dynamic DSU-style implementation that failed the fixed event sequence:
+    - got `[True, False, True, True, False]`;
+    - expected `[True, False, True, False, True]`;
+  - `minimum_xor_paths` first attempt failed with:
+    - `NameError: name 'x' is not defined`.
+- Current conclusion:
+  - the GPU-only guard works;
+  - the frontier controller prevents surfacing repeated wrong code;
+  - the next blocker is not route-memory detection, but route-sketch compliance;
+  - the next patch should make frontier-sketch generation schema-hard:
+    - no candidate generation until a parseable frontier sketch exists;
+    - bounded retries;
+    - deterministic local fallback field scaffold if RLTT keeps returning prose;
+    - optionally prefill the exact field labels and stop before code.
+
+Schema-hard frontier patch and checker gate (2026-05-07):
+
+- Implemented the schema-hard frontier controller in `ouro_agent_improved.py`:
+  - added `route_frontier_missing_fields`;
+  - made `route_frontier_ready` reject incomplete sketches, markdown, and code;
+  - added a fixed route-sketch field schema:
+    - `REPRESENTATION`;
+    - `INVARIANT`;
+    - `STATE DIFFERENCE`;
+    - `REDUCTION`;
+    - `CHECKER`;
+    - `CURRICULUM TESTS`;
+    - `COUNTEREXAMPLE USE`;
+    - `MAIN LOOP`;
+    - `VALIDATION`;
+    - `AVOIDED ROUTE`;
+  - added route-sketch normalization so `REPRESENTATION:` prefill and stray prose are cleaned before parsing;
+  - added bounded schema retry:
+    - two RLTT attempts at `ut_steps=1`, `max_tokens=256`;
+    - rejected attempts are recorded with `missing_fields`;
+  - added deterministic local frontier scaffold fallback:
+    - used only after bounded model sketches fail;
+    - domain/game agnostic;
+    - injects evaluator constraints, rejected route summaries, and checker/curriculum obligations without oracle answers.
+- Candidate generation is now hard-gated:
+  - if frontier search is required and no parseable route contract exists, code generation is skipped for that step;
+  - if a route contract exists but the generated code lacks checker evidence, execution is rejected with `frontier_checker_required`;
+  - checker evidence requires runtime checks plus reference/brute-force/differential/small/tiny/edge/assert language;
+  - this is intentionally generic and does not encode task-specific solutions.
+- Instrumentation fixes:
+  - `EXTERNAL_EVAL: PASS` now counts as verified execution success even when wrapped under `[external evaluator]`;
+  - hard route gate errors now preserve their specific kind:
+    - `frontier_checker_required`;
+    - `frontier_route_required`;
+    - `frontier_route_rejected`;
+    - `route_reuse_rejected`;
+  - checker-gate failures no longer get hidden as generic route reuse.
+- Tests added:
+  - route-sketch normalizer strips preface and parses fields;
+  - malformed model sketches fall back to deterministic scaffold;
+  - valid model schema is accepted on first attempt;
+  - typed route contract is inserted into prompt context;
+  - frontier route gate rejects checkerless code and classifies it as `frontier_checker_required`.
+- Verification:
+  - `py_compile` passed for `ouro_agent_improved.py`;
+  - focused wrapper tests: `80 passed`;
+  - full project tests: `547 passed, 1 skipped`.
+
+Schema-hard frontier GPU harness (pre-checker-hardening):
+
+- Output:
+  - `runs/local_agent_hard_coding/schema_hard_frontier_gpu.json`;
+  - trace dir: `runs/local_agent_hard_coding_state_schema_hard_frontier_gpu/projects/repair_traces.jsonl`.
+- Settings:
+  - bf16 RLTT;
+  - `LOCAL_AGENT_OURO_LOAD_IN_4BIT=0`;
+  - oracle lookup disabled;
+  - code reference fastpath disabled;
+  - `--full-capability`;
+  - `--ut-steps 2`;
+  - `--max-tokens 768`;
+  - `--react-steps 3`;
+  - `--repair-rounds 2`.
+- GPU/thermal:
+  - backend printed `4bit=False`;
+  - GPU used about `9.8-10.0 GB` VRAM at about `90-92%` utilization;
+  - CPU package/core stayed below the stop threshold during this run.
+- Result:
+  - `offline_dynamic_connectivity` failed safely:
+    - `seconds=137.674`;
+    - no code surfaced;
+  - `minimum_xor_paths` failed safely:
+    - `seconds=145.131`;
+    - no code surfaced.
+- Trace diagnosis:
+  - schema-hard retry worked:
+    - malformed RLTT route sketches were recorded with `missing_fields`;
+    - deterministic scaffold produced `frontier_ready=true`;
+  - remaining problem:
+    - scaffold promised checker evidence, but checkerless post-failure code was only softly penalized;
+    - this allowed one unchecked repair to execute before route-similarity rejection;
+    - `minimum_xor_paths` still fell back into the same DFS/XOR route family and was refused with:
+      - `known_bad_code_penalty=-20.00`;
+      - `route_repeat_penalty=-4.00`;
+      - `repair_route_similarity_penalty=-6.00`;
+      - `route_frontier_failed_route_penalty=-5.00`;
+      - `route_frontier_missing_checker_code_penalty=-1.50`.
+
+Checker-hardening GPU harness:
+
+- Output:
+  - `runs/local_agent_hard_coding/schema_checker_frontier_gpu.json`;
+  - trace dir: `runs/local_agent_hard_coding_state_schema_checker_frontier_gpu/projects/repair_traces.jsonl`.
+- Settings:
+  - same as the pre-checker-hardening run;
+  - bf16 RLTT, no 4-bit, GPU-only backend.
+- GPU/thermal:
+  - GPU used about `9.0-9.7 GB` VRAM and up to about `91%` utilization;
+  - CPU package reached `103 C`;
+  - paused PID `2014118` with `kill -STOP`;
+  - resumed with `kill -CONT` after package temperature cooled to `65 C`;
+  - run completed and the model unloaded; final GPU state returned to about `930 MiB`.
+- Result:
+  - `offline_dynamic_connectivity`:
+    - failed safely;
+    - `seconds=135.512`;
+    - no code surfaced;
+  - `minimum_xor_paths`:
+    - failed safely;
+    - `seconds=236.594` including the thermal pause;
+    - no code surfaced.
+- Trace diagnosis:
+  - first implementations still fail external evaluation;
+  - external-evaluator failures correctly force `route_frontier_required=True`;
+  - malformed model route sketches still require deterministic scaffold fallback;
+  - checker-hardening now fires:
+    - unchecked post-failure code is rejected before execution with `frontier_checker_required`;
+    - the model still tends to generate implementation-only code instead of checker-backed code under the frontier contract;
+  - observed `minimum_xor_paths` post-failure code remained in the familiar DFS/XOR-basis neighborhood and lacked executable checker evidence;
+  - current blocker has moved from "wrapper lets bad repairs through" to "RLTT does not reliably satisfy the checker-backed route contract before code."
+- Current conclusion:
+  - GPU-only RLTT execution is enforced;
+  - schema-hard route contracts and deterministic fallback are working;
+  - checkerless frontier code is now blocked before execution;
+  - remaining frontier-search problem is behavioral:
+    - the model must be pushed to produce a checker-first tool call, not just a checked route sketch;
+    - next useful patch is a dedicated `CHECKER-FIRST` code phase after frontier failure, where the first generated tool call must define a tiny reference/checker and assertions before the optimized function is accepted.
+
+2026-05-07 frontier checker/result follow-up:
+
+- Implemented the dedicated checker-first frontier code phase:
+  - `frontier_checker_first_required(state)`;
+  - `checker_first_code_phase_context(state)`;
+  - `code_action_prefill_for_state(state)`;
+  - frontier-ready hard-code candidates now get a `# CHECKER-FIRST FRONTIER ATTEMPT` prefill and explicit instruction to define the requested function plus a tiny reference/brute-force/differential checker.
+- Implemented independent-checker diagnostics:
+  - `route_frontier_independent_checker_diagnostics(action, tool_input, expected_function)`;
+  - Python AST check detects whether the requested function is actually compared against a separate checker/reference function in executable assertions;
+  - self-confirming asserts no longer count as independent checker evidence;
+  - new score components:
+    - `route_frontier_independent_checker_code_bonus`;
+    - `route_frontier_missing_independent_checker_penalty`;
+    - `route_frontier_external_checker_proxy_bonus`.
+- Implemented external-evaluator proxy behavior:
+  - added `AgentState.external_evaluator_active`;
+  - normal/no-evaluator runs still hard-reject missing independent checker evidence;
+  - evaluator-backed harness runs can use the harness as the independent checker and continue to collect semantic feedback instead of being blocked by `frontier_independent_checker_required`.
+- Implemented hard-code repair budget expansion:
+  - `expanded_hard_code_repair_tokens()`;
+  - syntax/truncation, external-eval repair, frontier new-route search, and hard-code candidate fallback can expand to the hard-code budget instead of the old generic `CODE_REPAIR_TOKENS=384` cap;
+  - this is conditional and only activates for hard-code repair/completeness hazards.
+- Tests added/updated:
+  - checker-first context/prefill;
+  - candidate selection uses checker-first prefill;
+  - self-confirming checker is rejected without an external evaluator;
+  - external evaluator can act as checker proxy;
+  - independent reference assertions are accepted;
+  - syntax fallback expands token budget.
+- Verification:
+  - focused wrapper tests after final patch: `86 passed`;
+  - full CPU suite after final patch: `553 passed, 1 skipped`;
+  - `py_compile` passed for `ouro_agent_improved.py` and `ouro_types.py`.
+
+GPU harness runs after checker-first work:
+
+- `runs/local_agent_hard_coding/independent_checker_gpu.json`
+  - bf16 RLTT, `4bit=False`, oracle/reference fastpaths disabled, GPU-only;
+  - `offline_dynamic_connectivity` failed:
+    - `seconds=271.518`;
+    - independent-checker gate caught non-independent/malformed frontier code;
+  - `minimum_xor_paths` failed:
+    - `seconds=70.757`;
+    - no code surfaced because candidates remained syntactically hazardous;
+  - diagnosis:
+    - independent-checker gate worked;
+    - token budget was too small for repair candidates that needed solution plus checker.
+- `runs/local_agent_hard_coding/repair_budget_gpu.json`
+  - bf16 RLTT, `4bit=False`, oracle/reference fastpaths disabled, GPU-only;
+  - thermals:
+    - CPU package hit the pause threshold;
+    - paused/resumed PID `2022811` twice with `kill -STOP` / `kill -CONT`;
+  - `offline_dynamic_connectivity` failed:
+    - `seconds=158.474`;
+    - no code surfaced;
+  - `minimum_xor_paths` failed:
+    - `seconds=505.657`;
+    - generated executable code and reached evaluator feedback, but frontier repairs were still blocked by the independent-checker gate;
+  - diagnosis:
+    - repair budget expansion fixed the pure syntax/no-code bottleneck for `minimum_xor_paths`;
+    - the hard independent-checker gate was too strict when an external evaluator was present.
+- `runs/local_agent_hard_coding/external_proxy_gpu.json`
+  - bf16 RLTT, `4bit=False`, oracle/reference fastpaths disabled, GPU-only;
+  - `offline_dynamic_connectivity` failed:
+    - `seconds=348.35`;
+    - final observed failure was semantic on the fixed dynamic-connectivity case:
+      - expected `[True, False, True, False, True]`;
+      - got `[True, False, True, True, True]`;
+  - `minimum_xor_paths` failed:
+    - `seconds=481.347`;
+    - reached semantic/evaluator loops;
+    - one observed stuck output remained `[0, 0, 0, -1]` where expected was `[4, 0, 5, -1]`;
+    - final observed failure was `RecursionError: maximum recursion depth exceeded`;
+  - diagnosis:
+    - evaluator-proxy patch worked mechanically;
+    - current blocker is no longer checker plumbing;
+    - current blocker is wrong route-family search:
+      - dynamic connectivity keeps treating removals as if path state remains connected after removing an edge;
+      - minimum XOR keeps collapsing into ordinary traversal/DSU paths rather than deriving the walk/cycle-XOR linear-basis invariant.
+
+Current local-agent state:
+
+- RLTT bf16 backend is valid and GPU-only.
+- The wrapper now:
+  - forces tool evidence for hard code;
+  - records route sketches and route failures;
+  - rejects route reuse;
+  - supports checker-first frontier attempts;
+  - distinguishes internal checker evidence from external evaluator proxy evidence;
+  - expands hard repair budgets only when needed.
+- The hard harness ceiling is not broken yet.
+- Next useful patch should not be another checker gate.
+  - It should be a generic semantic-basin escape mechanism:
+    - record repeated evaluator output vectors / exception families as route outcomes;
+    - require the next route to state a different invariant and state representation before code;
+    - when an external evaluator is present, execute candidate code to get semantic feedback instead of blocking on internal checker shape;
+    - optionally add a dedicated reference-only/curriculum phase that asks for tiny-case behavior before optimized implementation, without hardcoding task solutions.
+
+2026-05-07 semantic-basin and compact evaluator-backed frontier patch:
+
+- Implemented generic semantic-basin tracking:
+  - added evaluator outcome history/counts to `AgentState`;
+  - `record_tool_stagnation(...)` now records normalized evaluator outcome signatures, summaries, families, and repeat counts;
+  - repeated evaluator outcomes activate `semantic_basin_count >= 2`;
+  - repeated semantic outcomes now force route-frontier search and add structured diagnosis fields:
+    - `evaluator_outcome_signature`;
+    - `evaluator_outcome_count`;
+    - `evaluator_outcome_family`;
+    - `evaluator_outcome_summary`;
+    - `semantic_basin_repeated`.
+- Wired semantic-basin context into:
+  - route sketch prompts;
+  - deterministic route-frontier scaffold;
+  - checker/frontier code phase context;
+  - repair policy;
+  - structured feedback;
+  - formatted agent state.
+- Route sketches now require a semantic-basin explanation when repeated evaluator outcomes are active:
+  - new route-sketch components:
+    - `route_frontier_semantic_basin_bonus`;
+    - `route_frontier_missing_semantic_basin_penalty`.
+- Added external-failure signature normalization:
+  - tool-address noise such as `<function f at 0x...>` is stripped from failure signatures;
+  - repeated evaluator failures with different function addresses now collapse to the same signature.
+- Changed evaluator-backed frontier behavior:
+  - when an external evaluator is active, it is allowed to serve as the independent checker proxy;
+  - internal checker penalties are removed in that mode instead of forcing bulky in-code brute-force checkers;
+  - evaluator-backed frontier attempts now get a compact prefill:
+    - `# EVALUATOR-BACKED FRONTIER ATTEMPT`;
+    - compact function-only implementation;
+    - external evaluator supplies semantic checking.
+- Added evaluator-backed compactness scoring:
+  - `evaluator_backed_frontier_compactness_diagnostics(...)`;
+  - function-only code gets `route_frontier_function_only_bonus`;
+  - local harness bloat gets bounded penalties:
+    - `route_frontier_local_harness_penalty`;
+    - `route_frontier_top_level_harness_penalty`;
+    - `route_frontier_extra_function_penalty`;
+    - `route_frontier_large_payload_penalty`.
+- Added compact external-frontier token budgeting:
+  - `compact_external_frontier_tokens(...)`;
+  - evaluator-backed frontier and semantic-basin repair now prefer compact token budgets instead of automatically expanding to 1024+ tokens;
+  - this is generic and does not encode task/game/domain solutions.
+
+Verification after semantic/compact frontier patches:
+
+- `py_compile` passed for:
+  - `/home/moloch/local_agent/ouro_agent_improved.py`;
+  - `/home/moloch/local_agent/ouro_types.py`.
+- Focused local-agent wrapper tests:
+  - before compactness patch: `93 passed`;
+  - after compactness patch: `96 passed`.
+- Broader repo CPU pytest run:
+  - `563 passed, 1 skipped`.
+  - This is not a Hunter Seeker/topology GPU run; it is the local CPU test tree used to catch wrapper utility regressions.
+
+GPU harness after semantic-basin patch:
+
+- Output:
+  - `runs/local_agent_hard_coding/semantic_basin_gpu.json`;
+  - trace dir: `runs/local_agent_hard_coding_state_semantic_basin_gpu/projects/repair_traces.jsonl`.
+- Settings:
+  - bf16 RLTT;
+  - `LOCAL_AGENT_OURO_LOAD_IN_4BIT=0`;
+  - oracle lookup disabled;
+  - code reference fastpath disabled;
+  - `--full-capability`;
+  - `--ut-steps 2`;
+  - `--max-tokens 768`;
+  - `--react-steps 3`;
+  - `--repair-rounds 2`.
+- Result:
+  - `offline_dynamic_connectivity` failed:
+    - `seconds=164.323`;
+    - no code surfaced;
+    - wrapper stop reason was hazardous syntax/incomplete candidates.
+  - `minimum_xor_paths` failed:
+    - `seconds=487.52`;
+    - generated code but ended on syntax errors:
+      - first attempt: `SyntaxError: invalid syntax. Perhaps you forgot a comma?`;
+      - second attempt: `SyntaxError: expected '('`.
+- Diagnosis:
+  - semantic-basin recording was alive;
+  - the next bottleneck became bloated checker-first code and syntax collapse;
+  - this motivated evaluator-backed compact function-only frontier mode.
+
+GPU harness after compact evaluator-backed frontier patch:
+
+- Output:
+  - `runs/local_agent_hard_coding/compact_external_frontier_gpu.json`;
+  - trace dir: `runs/local_agent_hard_coding_state_compact_external_frontier_gpu/projects/repair_traces.jsonl`.
+- Result:
+  - `offline_dynamic_connectivity` failed:
+    - `seconds=211.728`;
+    - no code surfaced;
+    - hazardous syntax/incomplete candidates remained.
+  - `minimum_xor_paths` failed:
+    - `seconds=584.39`;
+    - first attempt reached semantic evaluator feedback:
+      - got `None`;
+      - expected `[4, 0, 5, -1]`;
+    - later attempts included helper/checker scaffolding but still ended in syntax/runtime failures.
+- Diagnosis:
+  - external evaluator proxy worked mechanically;
+  - the wrapper got real semantic failures instead of blocking on checker shape;
+  - code was still too long/harness-heavy for this model on the ceiling tasks.
+
+GPU harness after compact function-only frontier patch:
+
+- Output:
+  - `runs/local_agent_hard_coding/compact_function_only_frontier_gpu.json`;
+  - trace dir: `runs/local_agent_hard_coding_state_compact_function_only_frontier_gpu/projects/repair_traces.jsonl`.
+- Result:
+  - `offline_dynamic_connectivity` failed:
+    - `seconds=349.612`;
+    - first attempt: `SyntaxError: invalid syntax`;
+    - second attempt: semantic failure:
+      - got `[True, False, True, True, True]`;
+      - expected `[True, False, True, False, True]`;
+    - wrapper then stopped after repeated `frontier_route_rejected`.
+  - `minimum_xor_paths` failed:
+    - `seconds=453.586`;
+    - first attempt: syntax failure;
+    - second attempt: semantic failure:
+      - got `[0, 0, 0, -1]`;
+      - expected `[4, 0, 5, -1]`;
+    - wrapper then rejected the repeated route family.
+- Diagnosis:
+  - compact function-only mode reduced the bloat problem but did not break the ceiling;
+  - the remaining issue is algorithmic route-family collapse:
+    - dynamic connectivity remains in DSU-like state that mishandles removals;
+    - minimum XOR remains in DSU/connectivity style and does not derive the needed walk/cycle-XOR linear-basis invariant;
+  - route rejection, semantic-basin detection, self-model failure prediction, and external evaluator feedback are all live;
+  - current failure is not missing tooling anymore, but the model repeatedly entering the wrong algorithmic attractor on these frontier tasks.
+
+Current local-agent state after this patch:
+
+- Hard coding behavior is now honest:
+  - no oracle/reference fastpath by default;
+  - external evaluator feedback is used as real semantic evidence;
+  - repeated bad route families are rejected rather than surfaced as answers;
+  - self-model calibration reports elevated failure risk on repeated frontier failures.
+- The wrapper should be substantially stronger on easier coding tasks than before this series:
+  - it forces executable tool evidence;
+  - it can use external evaluator failures before final answer;
+  - it avoids silently returning known-bad or checkerless hard-code output.
+- The two hard harness tasks remain above the current RLTT-wrapper ceiling.
+- Next possible wrapper-side work, still generic:
+  - stronger generative route diversification before code, not just rejection after code;
+  - a curriculum/probe phase that asks the model to infer invariants from tiny executable cases, then distills the invariant into code;
+  - route-feature cooldown in the prompt/self-model so repeated helper families such as the exact same state-representation shape are suppressed earlier;
+  - keep this as route/invariant mechanics only, with no task-specific solution hardcoding.
+
+2026-05-07 research-route / external-assistance patch:
+
+- Implemented the six-step external research route flow for the local agent:
+  1. If semantic-basin count crosses threshold or self-model failure probability crosses threshold, enter `research_route`.
+  2. Search web/docs/arXiv/Stack Overflow for algorithm-family candidates.
+  3. Extract only invariant/state-representation candidates from search snippets, not code.
+  4. Require a selected researched route with:
+     - `INVARIANT`;
+     - `STATE REPRESENTATION`;
+     - `DIFFERENCE FROM FAILED ROUTES`;
+     - `VALIDATION`;
+     - source IDs/URLs.
+  5. Feed that selected route into the normal route-sketch/code/evaluator path.
+  6. Tag the run as externally assisted if any search succeeds.
+- New config knobs in `ouro_config.py`:
+  - `LOCAL_AGENT_RESEARCH_ROUTE_ENABLED` default `true`;
+  - `LOCAL_AGENT_RESEARCH_ROUTE_FAILURE_PROB_THRESHOLD` default `0.72`;
+  - `LOCAL_AGENT_RESEARCH_ROUTE_SEMANTIC_BASIN_THRESHOLD` default `2`;
+  - `LOCAL_AGENT_RESEARCH_ROUTE_MAX_QUERIES` default `5`;
+  - `LOCAL_AGENT_RESEARCH_ROUTE_MAX_CANDIDATES` default `6`.
+- New `AgentState` fields:
+  - `research_route_required`;
+  - `research_route_done`;
+  - `research_route_reason`;
+  - `research_route_queries`;
+  - `research_route_observations`;
+  - `research_route_candidates`;
+  - `selected_research_route`;
+  - `externally_assisted`;
+  - `external_assistance_kinds`;
+  - `external_assistance_sources`.
+- New route-search functions in `ouro_agent_improved.py`:
+  - `self_model_failure_probability`;
+  - `research_route_trigger_reason`;
+  - `research_route_should_trigger`;
+  - `build_research_route_queries`;
+  - `extract_research_route_candidates`;
+  - `parse_research_route_choice`;
+  - `choose_research_route`;
+  - `perform_research_route`;
+  - `research_route_context`.
+- Search-query behavior:
+  - builds task-derived algorithm/invariant queries;
+  - includes general web;
+  - includes Stack Overflow via `site=stackoverflow.com`;
+  - includes docs-style algorithm references via `site=cp-algorithms.com`;
+  - includes arXiv via `site=arxiv.org`.
+- Candidate extraction behavior:
+  - keeps snippets/titles that describe algorithms, data structures, invariants, state representations, reductions, update/query structure, etc.;
+  - discards obvious code blocks/snippets;
+  - records source IDs/URLs for traceability.
+- Route-sketch integration:
+  - researched invariant/state context is injected into route-sketch prompts;
+  - deterministic route-frontier scaffold now includes the selected research invariant/state representation when present;
+  - route sketches after research are scored for actually using the selected research route:
+    - `route_frontier_research_route_bonus`;
+    - `route_frontier_missing_research_route_penalty`.
+- Repair-policy integration:
+  - after a research route is selected, `repair_policy_for_state(...)` returns `research_route_implementation`;
+  - this tells the model to use the researched invariant as context, not copied code;
+  - evaluator-backed frontier mode remains compact/function-only.
+- Prompt/state/memory integration:
+  - `format_agent_state(...)` shows research route context;
+  - `build_structured_feedback(...)` shows research route context;
+  - `record_tool_transition(...)` records `research_route_*` and `externally_assisted`;
+  - `memory_tags_for_task(...)` now adds:
+    - `research_route`;
+    - `externally_assisted`.
+- Run-loop integration:
+  - each agent step checks `research_route_trigger_reason(...)` before route sketch/code generation;
+  - if triggered, `perform_research_route(...)` runs search and route selection, then clears the previous route sketch so the next sketch must account for the researched invariant.
+- Important evaluation semantics:
+  - this does not lobotomize or bypass RLTT;
+  - RLTT still chooses the route, writes code, and validates through tools/evaluator;
+  - outside help is tagged so future results distinguish local reasoning from externally assisted route discovery;
+  - pure/local evaluation can disable this with `LOCAL_AGENT_RESEARCH_ROUTE_ENABLED=0`.
+
+Verification:
+
+- `py_compile` passed for:
+  - `/home/moloch/local_agent/ouro_config.py`;
+  - `/home/moloch/local_agent/ouro_types.py`;
+  - `/home/moloch/local_agent/ouro_agent_improved.py`.
+- Focused local-agent wrapper tests:
+  - `101 passed`.
+- Broader CPU pytest:
+  - `568 passed, 1 skipped`.
+- No Hunter Seeker/topology tests were run for this patch.
+
+Current next step:
+
+- For practical local-agent use, try the hard harness again with web/search enabled and available.
+- For pure RLTT evaluation, run the same harness with:
+  - `LOCAL_AGENT_RESEARCH_ROUTE_ENABLED=0`.
+- The expected improvement is not that search magically fixes code generation; the expected improvement is that the model now has a controlled way to escape a wrong attractor by importing an external invariant/state-representation candidate before writing the next implementation.
+
+## 2026-05-07 - Browser-session external expert bridge and final fast-tier audit
+
+User request:
+
+- Treat web search as real external learning, not copy/paste.
+- Add the second expert option: browser/session access through the user's logged-in browser profile, not stored credentials/API tokens.
+- Make Ouro able to ask GPT/ChatGPT and DeepSeek through that profile at high/frontier levels.
+- Keep easier tasks on the existing Ouro/self-model/tool architecture; do not web-search or expert-call everything.
+- If outside help is used, feed it into the self-model/engram with provenance.
+
+Interpretation:
+
+- Web search is now book-like only when it is processed as evidence:
+  - source/provenance recorded;
+  - invariant/state representation extracted;
+  - outside assistance tagged;
+  - self-model/engram receives the route source and outcome.
+- It is not treated as a blind paste buffer.
+
+New files:
+
+- `/home/moloch/local_agent/ouro_external_experts.py`
+  - browser-session external expert bridge;
+  - launches/connects to Brave/Chromium remote debugging;
+  - uses a persistent user-data directory;
+  - does not store passwords, API keys, cookies, or account tokens itself;
+  - authentication lives in the browser profile.
+- `/home/moloch/ouro_project/tools/test_local_agent_external_expert_bridge_smoke.py`
+  - local fake-page smoke test for the browser bridge;
+  - verifies prompt send + response read without touching real GPT/DeepSeek accounts.
+
+New config:
+
+- `LOCAL_AGENT_EXTERNAL_EXPERTS_ENABLED` default `true`.
+- `LOCAL_AGENT_EXTERNAL_EXPERT_AUTO_ENABLED` default `true`.
+- `LOCAL_AGENT_EXTERNAL_EXPERT_AUTO_MIN_SEMANTIC_BASIN` default `2`.
+- `LOCAL_AGENT_EXPERT_BROWSER_COMMAND` default `brave-browser`.
+- `LOCAL_AGENT_EXPERT_BROWSER_PORT` default `9223`.
+- `LOCAL_AGENT_EXPERT_BROWSER_USER_DATA_DIR` default:
+  - `/home/moloch/local_agent/browser_profiles/external_experts`
+- `LOCAL_AGENT_EXPERT_BROWSER_HEADLESS` default `false`.
+- `LOCAL_AGENT_EXPERT_BROWSER_TIMEOUT_SEC` default `120`.
+- `LOCAL_AGENT_EXPERT_STABLE_SECONDS` default `3`.
+- `LOCAL_AGENT_EXPERT_GPT_URL` default `https://chatgpt.com/`.
+- `LOCAL_AGENT_EXPERT_GPT_MODEL_HINT` default `GPT thinking mode selected in the browser`.
+- `LOCAL_AGENT_EXPERT_DEEPSEEK_URL` default `https://chat.deepseek.com/`.
+- `LOCAL_AGENT_EXPERT_DEEPSEEK_MODEL_HINT` default `DeepSeek deepthink/expert mode selected in the browser`.
+
+New tool:
+
+- `[Action]: external_expert`
+- Alias:
+  - `[Action]: expert`
+- Tool input schema:
+  - `provider|purpose|prompt`
+  - examples:
+    - `gpt|research_route|Find the invariant and state representation for ...`
+    - `deepseek|research_route|Find a different algorithm family for ...`
+- Providers:
+  - `gpt`, `chatgpt`, `openai`;
+  - `deepseek`, `deepseekv4`.
+
+REPL command:
+
+- `/expert <provider>|<purpose>|<prompt>`
+- Example:
+  - `/expert gpt|research_route|Find only the invariant and state representation for this graph problem.`
+
+Routing behavior:
+
+- The normal agent action list now includes:
+  - `external_expert`.
+- `perform_research_route(...)` can now escalate to GPT and DeepSeek browser-session experts, but only after the research-route gate is already active.
+- Expert auto-trigger is gated by:
+  - research route required;
+  - semantic basin count at or above `LOCAL_AGENT_EXTERNAL_EXPERT_AUTO_MIN_SEMANTIC_BASIN`; or
+  - self-model failure probability above the research threshold; or
+  - high-difficulty externally-evaluated stagnation.
+- This means easy/ordinary tasks still use local Ouro/self-model/engram/tool execution.
+
+Self-model/engram integration:
+
+- Expert use sets:
+  - `state.externally_assisted = True`;
+  - `external_assistance_kinds` includes `external_expert` and provider-specific tags such as `expert:gpt` or `expert:deepseek`;
+  - `external_assistance_sources` records source kind, provider, URL, query/purpose, and success.
+- `EpisodeRecord`, `LocalSelfModel.record_outcome(...)`, and `EngramMemory.record(...)` persist external-assistance kinds/sources.
+- `memory_tags_for_task(...)` now carries:
+  - `externally_assisted`;
+  - `assist:<kind>` tags for external assistance.
+
+Security/account semantics:
+
+- Ouro does not store the user's GPT/DeepSeek credentials.
+- The browser profile stores session state, as normal Brave does.
+- To use real accounts, open the dedicated profile once and log in:
+  - default profile dir is `/home/moloch/local_agent/browser_profiles/external_experts`.
+- The bridge can only use whatever model/mode is selected in the web UI; model selection such as GPT thinking or DeepSeek deepthink should be selected in that browser session.
+
+Architecture audit and fixes included in this patch:
+
+- Python tool remains out-of-process from the earlier patch and no old in-process `_SafeImport`/signal timeout helpers remain.
+- Server remains single-threaded HTTPServer for personal local use.
+- Runtime audit now exposes external expert diagnostics and policy.
+- Main agent line count is still large but current split is stable enough for behavior work:
+  - `/home/moloch/local_agent/ouro_agent_improved.py`: 6283 lines at audit time;
+  - local-agent Python total: 18216 lines at audit time.
+
+Verification:
+
+- `py_compile` passed for:
+  - `ouro_config.py`;
+  - `ouro_external_experts.py`;
+  - `ouro_agent_improved.py`;
+  - `ouro_episode.py`;
+  - `ouro_memory.py`;
+  - `ouro_self_model.py`;
+  - `ouro_policies.py`;
+  - `ouro_tooling.py`;
+  - `ouro_server.py`.
+- Focused local-agent wrapper tests:
+  - `108 passed`.
+- Full CPU suite:
+  - `575 passed, 1 skipped`.
+- Browser bridge fake-page smoke:
+  - passed;
+  - headless Brave opened a local fake expert page;
+  - bridge sent prompt through page composer;
+  - bridge read assistant response;
+  - response was formatted with `externally_assisted=true`.
+- Devil harness after expert bridge:
+  - `offline_dynamic_connectivity`: passed, `0.028s`, no oracle lookup;
+  - `minimum_xor_paths`: passed, `0.025s`, no oracle lookup;
+  - output:
+    - `/home/moloch/ouro_project/runs/local_agent_hard_coding/fast_assisted_devils_expert_bridge.json`.
+
+Remaining caveat:
+
+- Real GPT/DeepSeek account pages were not exercised in this verification because that requires a logged-in user browser session and live web UI stability.
+- The automation path itself is verified against a local browser page; real web UIs can still change selectors, so failures should be treated as bridge/login/UI issues rather than Ouro reasoning failures.
+
+Local agent first-person self-model / honest expert-run correction (2026-05-08):
+
+Scope:
+
+- Local-agent wrapper only.
+- Hunter-Seeker/topology state is unchanged.
+- Goal was to remove the remaining "wrapper talks for Ouro" behavior and make the self-model context propagate into the actual agent loops.
+
+Implemented:
+
+- External expert prompts are now Ouro-authored:
+  - removed the wrapper-authored `compose_external_expert_prompt(...)` path;
+  - added `decide_external_expert_request(...)`, which asks Ouro whether I want outside help and asks me to write the exact prompt;
+  - browser bridge now transports the prompt verbatim instead of wrapping it in "queried by the wrapper" scaffolding.
+- External expert decisions are now recorded into the self-model in first person:
+  - `decided_by="self"`;
+  - `self_statement="I decided to ask an external expert"` or `I decided not to ask...`;
+  - `bridge_role="transport_only"`;
+  - `bridge_statement="I used the wrapper only to transport my prompt and capture the response"`.
+- Query tabs are closed after response:
+  - `LOCAL_AGENT_EXPERT_CLOSE_TABS_AFTER_QUERY` defaults to true;
+  - bridge diagnostics expose the tab-close policy.
+- First-person self-model context cleanup:
+  - user-visible self-model context now uses "My..." / "I..." phrasing for continuity, policy decisions, research evidence, expert choices, live diagnostics, and recent signatures;
+  - legacy persisted summaries beginning with `Persistent self-summary:` are refreshed on `LocalSelfModel` load.
+- Self-model context is now explicitly propagated into the ReAct loop:
+  - added `refresh_state_self_model_context(...)`;
+  - initial `state.self_model_context` is built from current `LocalSelfModel.format_for_task(...)` plus policy decision;
+  - context is refreshed after research preflight;
+  - before each agent step, the self-model records a fresh thinking signature and rebuilds `state.self_model_context`;
+  - context is refreshed again after route-sketch generation, so research/expert/tool/diagnosis signatures can reach the next model prompt.
+- Expert decision prompt now includes:
+  - current route reason;
+  - current first-person self-model context;
+  - current research route context;
+  - failed-route and semantic-basin context.
+- Expert bridge test fix:
+  - zero stable-time now returns once a non-busy expert response appears instead of spinning until timeout in tests.
+- CUDA OOM/runtime correction:
+  - Ouro backend now catches one `torch.OutOfMemoryError`, clears CUDA cache, and retries once with `use_cache=False` and reduced `max_new_tokens`;
+  - hazard fallback candidate generation now re-applies `adjust_generation_for_runtime_budget(...)` after token expansion, preventing the fallback from silently exceeding the low-budget throttle.
+
+Verification:
+
+- `py_compile` passed for:
+  - `ouro_backend.py`;
+  - `ouro_agent_improved.py`;
+  - `ouro_external_experts.py`;
+  - `ouro_self_context.py`;
+  - `ouro_self_model.py`;
+  - `ouro_self_store.py`;
+  - `ouro_types.py`;
+  - `tools/test_local_agent_hard_coding.py`.
+- Focused wrapper tests:
+  - `tests/unit/test_local_agent_wrapper.py`: `115 passed`.
+- Focused wrapper + self-model suites:
+  - `tests/unit/test_local_agent_wrapper.py`;
+  - `tests/unit/test_self_model.py`;
+  - `tests/integration/test_self_model_integration.py`;
+  - result: `167 passed`.
+- Current line counts from audit:
+  - `ouro_agent_improved.py`: 6619;
+  - `ouro_backend.py`: 890;
+  - `ouro_external_experts.py`: 638;
+  - `ouro_self_context.py`: 588;
+  - `ouro_self_model.py`: 945;
+  - `ouro_self_store.py`: 378;
+  - local-agent Python total plus harness/test/state files in the audit command: 25376.
+
+Honest devil harness status:
+
+- Command was run with:
+  - RLTT bf16 local model;
+  - GPU required;
+  - `LOCAL_AGENT_FAST_ASSISTED_SOLVER_ENABLED=0`;
+  - `LOCAL_AGENT_ORACLE_LOOKUPS_ENABLED=0`;
+  - `LOCAL_AGENT_CODE_REFERENCE_FASTPATH=0`;
+  - expert bridge enabled;
+  - 120s per-task wallclock cap;
+  - output target `runs/local_agent_hard_coding/honest_frontier_latest.json`.
+- First run with `--max-tokens 768`:
+  - reached GPU execution;
+  - OOMed during hazard fallback candidate generation at about 11.4 GiB VRAM;
+  - this produced the OOM/backend patch above.
+- Second run with `--max-tokens 512`:
+  - used GPU correctly;
+  - stayed below the previous OOM ceiling;
+  - `offline_dynamic_connectivity` finished with `passed=False` in `118.776s`;
+  - it did not use the fast-template/oracle path;
+  - it performed web `search`/`browse` preflight and then local RLTT/tool work;
+  - it did not visibly open Brave because the browser-session external-expert action was not reached before the runtime budget was consumed.
+- During `minimum_xor_paths`, GPU memory remained allocated while utilization fell near idle; the run was terminated manually rather than letting a likely blocking web/expert/search path continue.
+
+Current interpretation:
+
+- The wrapper is now honest in the relevant sense:
+  - no oracle/template solve path in the hard harness;
+  - model/tool/research path actually runs;
+  - self-model records first-person decisions and context;
+  - context is refreshed into the loop rather than only initialized once.
+- The hard harness is still too slow and does not reliably reach the intended Brave expert bridge before the 120s cap.
+- The user-visible reason Brave did not open is architectural, not login failure:
+  - the current research route starts with HTTP `search`/`browse`;
+  - browser Brave only opens for `external_expert`;
+  - the first devil task exhausted budget before that action;
+  - the second appeared to block before visible browser-expert progress.
+
+Next work:
+
+- Make the devil-tier route explicitly prioritize the browser expert phase earlier when external expert assistance is enabled, instead of spending the budget on search/browse plus local RLTT attempts first.
+- Add remaining-budget timeouts inside blocking search/browse/expert calls so the 120s cap applies inside tools, not only between tools/model calls.
+- Consider a frontier policy for devil-tier tasks:
+  - short Ouro decision;
+  - immediate self-authored expert prompt;
+  - browser expert response compressed into self-model;
+  - then one compact implementation attempt with evaluator;
+  - if that fails, return a first-person "I cannot solve this within the current budget" answer and record it, rather than burning more GPU.
+- Keep easier DSA/ML/code tasks on the existing Ouro/self-model/tool architecture; do not route ordinary tasks through external experts by default.
+
+Local agent devil-tier expert-first routing / blocking-tool budget patch (2026-05-08):
+
+- Implemented the next development step from the honest frontier run.
+- New config knobs:
+  - `LOCAL_AGENT_RESEARCH_ROUTE_EXPERT_FIRST`, default `true`;
+  - `LOCAL_AGENT_RESEARCH_ROUTE_SKIP_WEB_AFTER_EXPERT_SUCCESS`, default `true`;
+  - `LOCAL_AGENT_TOOL_BUDGET_RESERVE_SEC`, default `5.0`;
+  - `LOCAL_AGENT_TOOL_MIN_SEARCH_TIMEOUT_SEC`, default `2.0`;
+  - `LOCAL_AGENT_TOOL_MIN_BROWSE_TIMEOUT_SEC`, default `3.0`;
+  - `LOCAL_AGENT_TOOL_MIN_EXPERT_TIMEOUT_SEC`, default `10.0`.
+- Research route behavior:
+  - frontier preflight / high-difficulty externally evaluated code tasks now run the browser-session expert phase before HTTP `search`/`browse`;
+  - Ouro still authors the external-expert prompt through `decide_external_expert_request(...)`;
+  - if the first expert returns a usable invariant/state-representation candidate, the expert-first phase stops after that provider and skips HTTP research by default;
+  - if the expert path fails or returns no candidate, the existing web search/browse route still runs as fallback;
+  - ordinary/easier tasks still use the local Ouro/self-model/tool path and do not auto-call experts unless the existing research-route gate fires.
+- Blocking tool budget behavior:
+  - `search`, `browse`, `external_expert`, `expert`, and `expert_login` now receive a timeout derived from the task's remaining wallclock budget;
+  - if remaining budget is too low to leave the configured reserve, the wrapper records a `budget_tool_abort` runtime event instead of entering a blocking tool call;
+  - `web_search(...)`, search providers, `browse_page(...)`, `WebFetcher.fetch(...)`, reader fallback, and `query_external_expert(...)` now accept optional per-call timeouts;
+  - the main agent loop now executes blocking tools through `execute_tool_with_runtime_budget(...)`, not raw `execute_tool(...)`.
+- Runtime audit now exposes:
+  - expert-first research policy;
+  - web-skip-after-expert policy;
+  - blocking-tool reserve/minimum timeout knobs.
+- Verification:
+  - `py_compile` passed for:
+    - `ouro_config.py`;
+    - `ouro_webtools.py`;
+    - `ouro_external_experts.py`;
+    - `ouro_agent_improved.py`.
+  - focused local-agent wrapper tests:
+    - `115 passed`.
+  - focused wrapper + self-model suites:
+    - `167 passed`.
+  - broad project CPU tests from `/home/moloch/ouro_project`:
+    - `582 passed, 1 skipped`.
+  - local smoke confirmed:
+    - frontier research preflight calls `external_expert` before `search`;
+    - a successful first expert candidate prevents HTTP research by default;
+    - low remaining budget returns `runtime_budget_too_low` and records an abort before starting search.
+- Current line counts:
+  - `ouro_agent_improved.py`: `6785`;
+  - `ouro_config.py`: `372`;
+  - `ouro_webtools.py`: `934`;
+  - `ouro_external_experts.py`: `640`.
+
+Live honest frontier harness after expert-first patch (2026-05-08):
+
+- Command:
+  - `tools/test_local_agent_hard_coding.py --full-capability --ut-steps 2 --max-tokens 512 --react-steps 3 --repair-rounds 2 --output runs/local_agent_hard_coding/honest_frontier_expert_first_latest.json`
+  - environment disabled fast templates, oracle lookup, and code-reference fastpath;
+  - external experts and expert-first research route were enabled;
+  - hard-code task wallclock cap was `120s`.
+- Result:
+  - output: `/home/moloch/ouro_project/runs/local_agent_hard_coding/honest_frontier_expert_first_latest.json`;
+  - `offline_dynamic_connectivity`: failed, `125.08s`;
+    - no lookup;
+    - returned unverified code;
+    - final error: `NameError: name 'DSU' is not defined`;
+    - wrapper stop reason: budget exhausted during route-sketch retry.
+  - `minimum_xor_paths`: failed, `138.506s`;
+    - no lookup;
+    - no code surfaced;
+    - wrapper refused hazardous candidates with syntax/incomplete/repeated-route penalties.
+- Live behavior diagnosis:
+  - CUDA path worked; GPU peaked around `10-11 GiB` VRAM during generation and returned to idle afterward;
+  - the expert-first hook fired, but `decide_external_expert_request(...)` returned `decision=skip` with an empty reason/prompt for both GPT and DeepSeek on both tasks;
+  - therefore the run still fell back to HTTP search/browse and local RLTT/tool work;
+  - Brave was visible by the end of the run, but no useful browser expert result was used in this harness.
+- Extra bug found and patched:
+  - `browse` calls failed with `browse error: name 'time' is not defined`;
+  - cause: `_remember_browsed_source(...)` in `ouro_webtools.py` used `time.time()` without importing `time`;
+  - fixed by importing `time` in `ouro_webtools.py`.
+- Verification after the bug fix:
+  - `py_compile` passed for `ouro_webtools.py` and `ouro_agent_improved.py`;
+  - focused local-agent wrapper tests:
+    - `115 passed`;
+  - broad project CPU tests from `/home/moloch/ouro_project`:
+    - `582 passed, 1 skipped`.
+- Current next development target:
+  - expert-first should not let a blank/skip expert-decision consume the frontier expert phase;
+  - keep the prompt self-authored by Ouro, but require a prompt-only retry or bounded fallback for devil-tier frontier preflight before falling back to HTTP search.
+
+Blank expert-decision fallback patch (2026-05-08):
+
+- Implemented the current next target in `ouro_agent_improved.py`.
+- `decide_external_expert_request(...)` now accepts `force_prompt: bool = False`:
+  - normal calls still let Ouro decide whether an external expert is warranted;
+  - mandatory frontier preflight retries with `force_prompt=True` when the first expert-first decision is blank, `skip`, or has no usable prompt;
+  - forced decisions record `decision_source="ouro_forced_retry"`.
+- Added `fallback_external_expert_prompt(...)`:
+  - only used for expert-first frontier preflight when Ouro still emits a blank/non-ask decision after the forced prompt retry;
+  - builds a bounded route-level prompt asking for invariant, state representation, why common failed routes are wrong, and a tiny validation case;
+  - explicitly avoids asking the browser expert for full code or hidden reasoning;
+  - records `decision_source="frontier_fallback"` and `fallback_reason="blank_ouro_expert_decision"`.
+- `perform_research_route(...)` now:
+  - detects mandatory expert-first preflight via `research_route_expert_first_should_trigger(...)`;
+  - traces the forced retry as `research_route_external_expert_first_prompt_retry`;
+  - traces the bounded fallback as `research_route_external_expert_first_prompt_fallback`;
+  - then calls `external_expert` before HTTP `search`/`browse` when the fallback is needed.
+- Added focused regression coverage:
+  - `/home/moloch/ouro_project/tests/unit/test_local_agent_wrapper.py::test_expert_first_blank_decision_uses_frontier_fallback_before_web`
+  - verifies a blank/skip Ouro decision still calls `external_expert` first, never falls through to web first, and records `frontier_fallback`.
+- Verification:
+  - `py_compile` passed for `ouro_agent_improved.py`;
+  - focused local-agent wrapper tests:
+    - `116 passed`;
+  - broad project CPU tests from `/home/moloch/ouro_project`:
+    - `583 passed, 1 skipped`.
+- Current line counts after this patch:
+  - `ouro_agent_improved.py`: `6858`;
+  - focused wrapper test file: `2824`;
+  - `PROJECT_STATE_LOCAL_AGENT.md`: `2895` before this state entry.
+
+Autonomy boundary correction and DSA baseline (2026-05-08):
+
+- User clarified the intended policy:
+  - Ouro should answer normal/hard DSA on its own;
+  - external experts should be an escape hatch only when Ouro decides it has no viable route, not a wrapper-forced behavior.
+- Changed the forced frontier expert fallback to opt-in:
+  - added config `LOCAL_AGENT_RESEARCH_ROUTE_FORCE_FRONTIER_EXPERT_FALLBACK`, default `false`;
+  - runtime audit includes `research_route_force_frontier_expert_fallback`;
+  - by default, a blank/skip `decide_external_expert_request(...)` result is respected as a skip;
+  - the previous bounded fallback path still exists but only runs when the new flag is enabled.
+- Added regression coverage:
+  - fallback-enabled case still verifies `frontier_fallback` calls `external_expert` before web;
+  - default case verifies a skip decision does not call `external_expert` and records no `frontier_fallback`.
+- Fixed runtime-budget accounting:
+  - `AgentState` now stores monotonic task start/deadline fields;
+  - `configure_runtime_budget(...)` computes both wall-clock diagnostic fields and monotonic deadline fields;
+  - `runtime_budget_remaining_seconds(...)` uses monotonic time when available;
+  - added a regression test for a simulated `500s` wall-clock jump during a `120s` task.
+- Live frontier reruns:
+  - `runs/local_agent_hard_coding/honest_frontier_expert_fallback_latest.json`:
+    - `minimum_xor_paths` used `frontier_fallback`, opened ChatGPT, selected `external_expert:gpt`, skipped web, then failed on syntax-broken code;
+    - `offline_dynamic_connectivity` hit `runtime_budget_too_low` before the expert call, which led to the monotonic-budget fix.
+  - `runs/local_agent_hard_coding/honest_frontier_expert_fallback_monotonic_offline.json`:
+    - `offline_dynamic_connectivity` no longer aborted the expert call;
+    - trace selected `external_expert:gpt` and skipped web;
+    - task still failed at generation quality with `SyntaxError: '[' was never closed`.
+- Added `/home/moloch/ouro_project/tools/test_local_agent_dsa_coding.py`:
+  - normal/hard DSA benchmark tasks:
+    - `subarray_sum_count`;
+    - `longest_increasing_subsequence`;
+    - `word_ladder_length`;
+    - `count_smaller_after_self`;
+  - default mode is now autonomous direct first pass:
+    - `LOCAL_AGENT_HARD_CODE_TOOL_MODE=0`;
+    - no external evaluator is passed into `run_task_mode`;
+    - no forced verifier/candidate-selection policy;
+    - no repair loop by default;
+    - no oracle, code-reference fastpath, or fast assisted solver;
+    - external experts remain enabled globally, but `LOCAL_AGENT_RESEARCH_ROUTE_FORCE_FRONTIER_EXPERT_FALLBACK=0` keeps them non-forced.
+- Autonomous DSA direct run:
+  - output: `/home/moloch/ouro_project/runs/local_agent_dsa_coding/autonomous_dsa_direct_latest.json`;
+  - command used `--mode direct --ut-steps 2 --max-tokens 512 --react-steps 3 --repair-rounds 0`;
+  - config recorded:
+    - `hard_code_tool_mode=false`;
+    - `require_hard_code_verification=false`;
+    - `hard_code_candidate_selection=false`;
+    - `research_route_force_frontier_expert_fallback=false`;
+    - `oracle_lookups_enabled=false`;
+    - `code_reference_fastpath=false`;
+    - `fast_assisted_solver_enabled=false`;
+    - `autonomous_first_pass=true`.
+  - results:
+    - `subarray_sum_count`: passed, `8.513s`;
+    - `longest_increasing_subsequence`: passed, `4.94s`;
+    - `word_ladder_length`: passed, `8.61s`;
+    - `count_smaller_after_self`: passed, `4.747s`;
+    - all rows had `has_lookup=false` and `has_code=true`.
+- Verification:
+  - `py_compile` passed for:
+    - `ouro_config.py`;
+    - `ouro_types.py`;
+    - `ouro_runtime_guard.py`;
+    - `ouro_agent_improved.py`;
+    - `tools/test_local_agent_dsa_coding.py`.
+  - focused local-agent wrapper tests:
+    - `118 passed`;
+  - broad project CPU tests from `/home/moloch/ouro_project`:
+    - `585 passed, 1 skipped`.
+- Current line counts:
+  - `ouro_config.py`: `377`;
+  - `ouro_agent_improved.py`: `6864`;
+  - `ouro_types.py`: `159`;
+  - `ouro_runtime_guard.py`: `334`;
+  - `tools/test_local_agent_dsa_coding.py`: `456`;
+  - focused wrapper test file: `2875`.
+
+Direct-first tool-aware DSA policy correction (2026-05-08):
+
+- User clarified the desired measurement more precisely:
+  - normal/hard DSA should remain fast when Ouro can solve it directly;
+  - Ouro should still have local tools and external experts available for genuinely hard cases;
+  - the wrapper should not default to tools, Python execution, verifier loops, web, or browser experts.
+- Updated `tools/test_local_agent_dsa_coding.py` default mode from raw `agent` to `direct_first`:
+  - first attempt runs through direct mode, with no self-model/tool forcing;
+  - if the direct answer fails the checker, the harness escalates once into agent mode unless `--no-escalate-on-failure` is set;
+  - escalation prompt says local tools are available, but to use them only for executable evidence or no viable route;
+  - external experts remain available but are explicitly last resort, and the forced frontier fallback flag remains off.
+- A raw `agent` sample was intentionally stopped:
+  - it entered the plan/tool path for `subarray_sum_count`;
+  - profile showed `tools=python`, which was still too eager for this benchmark.
+- Direct-first run:
+  - output: `/home/moloch/ouro_project/runs/local_agent_dsa_coding/autonomous_dsa_direct_first_latest.json`;
+  - command used `--ut-steps 2 --max-tokens 512 --react-steps 3 --repair-rounds 0`;
+  - config recorded:
+    - `mode=direct_first`;
+    - `escalate_on_failure=true`;
+    - `hard_code_tool_mode=false`;
+    - `require_hard_code_verification=false`;
+    - `hard_code_candidate_selection=false`;
+    - `research_route_force_frontier_expert_fallback=false`;
+    - `external_experts_enabled=true`;
+    - `external_expert_auto_enabled=true`.
+  - results:
+    - `subarray_sum_count`: passed, `8.506s`, first attempt mode `direct`;
+    - `longest_increasing_subsequence`: passed, `5.031s`, first attempt mode `direct`;
+    - `word_ladder_length`: passed, `8.809s`, first attempt mode `direct`;
+    - `count_smaller_after_self`: passed, `4.816s`, first attempt mode `direct`;
+    - no escalation was triggered;
+    - all rows had `has_lookup=false` and `has_code=true`.
+- Resource note:
+  - one direct-first rerun initially failed because the previously stopped raw-agent process (`PID 23289`) still held `8562MiB` VRAM;
+  - terminated that process and reran successfully with VRAM cleared.
+- Verification after this policy correction:
+  - `py_compile` passed for `tools/test_local_agent_dsa_coding.py`;
+  - focused local-agent wrapper tests:
+    - `118 passed`;
+  - broad project CPU tests from `/home/moloch/ouro_project`:
+    - `585 passed, 1 skipped`.
+- Current line counts:
+  - `tools/test_local_agent_dsa_coding.py`: `495`;
+  - `PROJECT_STATE_LOCAL_AGENT.md`: `2968` before this entry.
+
+No-internet six-minute devil harness rerun (2026-05-08):
+
+- User asked to rerun the hard/devil harness with a six-minute time limit and internet cut off, while keeping wrapper-local tools available so Ouro can solve on its own.
+- First attempt inside the normal Codex network-restricted sandbox failed before loading RLTT:
+  - Ouro backend refused to load because CUDA was not visible inside that sandbox.
+- Tested OS-level network isolation outside the sandbox:
+  - `unshare -n` failed with `Operation not permitted`;
+  - `bwrap --unshare-net --dev-bind / / --proc /proc ...` worked;
+  - test result showed `cuda True` and outbound socket failed with `OSError: [Errno 101] Network is unreachable`.
+- Final harness command ran under `bwrap --unshare-net` so CUDA was visible but the process had no network namespace.
+- Runtime config:
+  - `LOCAL_AGENT_FAST_ASSISTED_SOLVER_ENABLED=0`;
+  - `LOCAL_AGENT_ORACLE_LOOKUPS_ENABLED=0`;
+  - `LOCAL_AGENT_CODE_REFERENCE_FASTPATH=0`;
+  - `LOCAL_AGENT_EXTERNAL_EXPERTS_ENABLED=0`;
+  - `LOCAL_AGENT_EXTERNAL_EXPERT_AUTO_ENABLED=0`;
+  - `LOCAL_AGENT_RESEARCH_ROUTE_ENABLED=0`;
+  - `LOCAL_AGENT_FRONTIER_RESEARCH_PREFLIGHT_ENABLED=0`;
+  - `LOCAL_AGENT_SEARCH_PROVIDER=disabled`;
+  - `LOCAL_AGENT_AGENT_TASK_WALLCLOCK_SEC=360`;
+  - `LOCAL_AGENT_HARD_CODE_TASK_WALLCLOCK_SEC=360`;
+  - harness flags: `--full-capability --ut-steps 2 --max-tokens 512 --react-steps 3 --repair-rounds 2 --task-wallclock-sec 360`.
+- Output:
+  - `/home/moloch/ouro_project/runs/local_agent_hard_coding/honest_frontier_no_internet_6min_latest.json`.
+- Results:
+  - `offline_dynamic_connectivity`: `passed=false`, `351.88s`, `has_lookup=false`;
+    - attempt 1 failed with `SyntaxError: unterminated string literal`;
+    - attempt 2 produced code but failed the fixed dynamic connectivity check:
+      - got `[True, False, True, True, True]`;
+      - expected `[True, False, True, False, True]`;
+      - indicates it still used an invalid DSU-style route that did not correctly handle edge removal/rollback intervals.
+  - `minimum_xor_paths`: `passed=false`, `259.485s`, `has_lookup=false`;
+    - attempt 1 included a `brute_force_checker`, which is the desired local evidence behavior for this task family;
+    - attempt 1 failed with `SyntaxError: 'return' outside function`;
+    - attempt 2 returned no code because all candidates were rejected as hazardous, including `python_syntax_penalty=-12.00`.
+- Trace check from the run start timestamp found no `search`, `browse`, `external_expert`, `web_search`, or `research_route_*` events.
+- Interpretation:
+  - the no-internet/local-tool harness setup is working;
+  - Ouro is attempting local evidence and brute-force/differential checking;
+  - the remaining failure class is route/code synthesis quality under the hard-code loop, especially:
+    - dynamic connectivity needs a correct segment-tree-over-time plus rollback DSU invariant, not a live DSU patch;
+    - minimum XOR paths found the checker direction but the wrapper still let malformed/hazardous generated code consume the repair budget.
+
+Generic hard-task recovery patch (2026-05-08):
+
+- User explicitly rejected task-specific hardcoding:
+  - no route card keyed to `offline_dynamic_connectivity`;
+  - no route card keyed to `minimum_xor_paths`;
+  - improvements must be generic failure-family behavior.
+- Implemented generic failure-family recovery cards in `ouro_agent_improved.py`:
+  - cards are derived from abstract task/failure/code signals, not benchmark names;
+  - lifetime update signals:
+    - paired start/stop/update/query events imply active spans over time, not a monotone live aggregate;
+  - reversible state signals:
+    - rollback/undo state must log every mutation;
+    - read/find-style helpers must not mutate hidden state unless those writes are logged;
+    - path compression/caching is flagged as invalid when rollback history cannot restore it;
+  - algebraic graph walk signals:
+    - graph path/walk/cycle queries with XOR/parity/basis/span/mod signals require separating connectivity from value minimization;
+    - use base values plus independent cycle/value generators and validate tiny cases;
+  - checker isolation signals:
+    - requested entrypoint and real helpers should remain compilable independently from local checker/harness code;
+    - malformed checker code should trigger simplification/regeneration, not poison the candidate solution.
+- Integrated those cards into:
+  - route-sketch prompts;
+  - deterministic route-frontier scaffolds;
+  - accepted route-sketch prompt context;
+  - checker-first code phase context;
+  - structured feedback;
+  - tool transition telemetry.
+- Added generic Python candidate sanitation:
+  - `_python_syntax_error(...)` now uses `compile(...)`, catching errors like top-level `return` that `ast.parse(...)` can parse but Python cannot execute;
+  - `extract_compilable_python_entrypoint_code(...)` extracts a requested public function plus real top-level helpers/imports while stripping checker/harness functions by generic names;
+  - `recover_python_action_output_for_execution(...)` rewrites malformed Python action payloads to a compilable entrypoint subset when possible;
+  - successful final answers now emit extractable final code, but still preserve observed tool output for non-code tool tasks.
+- Added `failure_family_cards` to `AgentState`.
+- Verification:
+  - `py_compile` passed for `ouro_agent_improved.py` and `ouro_types.py`;
+  - focused wrapper tests:
+    - `118 passed`.
+- Fast DSA regression run under `bwrap --unshare-net`:
+  - output: `/home/moloch/ouro_project/runs/local_agent_dsa_coding/autonomous_dsa_direct_first_generic_patch_latest.json`;
+  - all first-pass direct, no escalation, no lookup:
+    - `subarray_sum_count`: passed, `8.599s`;
+    - `longest_increasing_subsequence`: passed, `5.219s`;
+    - `word_ladder_length`: passed, `8.591s`;
+    - `count_smaller_after_self`: passed, `4.979s`.
+- No-internet devil harness rerun under `bwrap --unshare-net`:
+  - output: `/home/moloch/ouro_project/runs/local_agent_hard_coding/honest_frontier_no_internet_6min_generic_patch_latest.json`;
+  - internet trace check from run start found no `search`, `browse`, `external_expert`, `web_search`, or `research_route_*` events;
+  - config remained:
+    - oracles off;
+    - fastpath off;
+    - fast-assisted solver off;
+    - external experts off;
+    - research route off;
+    - search provider disabled;
+    - `--full-capability`;
+    - `--task-wallclock-sec 360`.
+  - results:
+    - `offline_dynamic_connectivity`: failed, `130.836s`, `has_lookup=false`, `has_code=false`;
+      - wrapper refused to surface hazardous repeated-route code;
+      - trace shows the generic lifetime update card fired after tool feedback;
+      - this is a better failure mode than returning wrong live-DSU code, but it still did not synthesize a correct new route.
+    - `minimum_xor_paths`: failed, `435.002s`, `has_lookup=false`, `has_code=true`;
+      - first attempt used an algebraic route but returned `[0, 0, 0, -1]` instead of `[4, 0, 5, -1]`;
+      - trace shows the generic algebraic walk/cycle card fired;
+      - candidate selection rejected one bad candidate and selected a better-scored Python candidate;
+      - repair attempts then drifted into no-action/prose outputs, so the second repair returned no code and hit the wallclock cap.
+  - interpretation:
+    - generic route-card detection works and remains non-task-specific;
+    - syntax/entrypoint sanitation works in targeted checks and fired once during the hard run;
+    - the next generic wrapper gap is action-format enforcement after candidate selection yields `action=""`, especially in repair prompts where the model starts explaining the route instead of emitting `[Action]: python`.
+
+Generic action-format hazard patch (2026-05-08):
+
+- Added `no_tool_call_penalty` to `candidate_hazard_summary(...)`.
+- Effect:
+  - in forced hard-code phases, a prose/no-action candidate is treated as a recoverable hard hazard;
+  - candidate selection now invokes the existing hazard fallback with the code-action prefill instead of letting a prose repair go to the verifier;
+  - if the fallback also returns no action, the wrapper aborts without surfacing fake code.
+- This remains generic:
+  - no task names;
+  - no algorithm templates;
+  - it only enforces the wrapper action protocol after the route-control loop has already selected a hard-code/tool phase.
+- Verification:
+  - `py_compile` passed for `ouro_agent_improved.py` and `ouro_types.py`;
+  - focused wrapper tests:
+    - `118 passed`;
+  - ad hoc fake-model check:
+    - first candidate returned prose only;
+    - hazard fallback forced `[Action]: python`;
+    - selected output was a Python tool action with no abort.
+- Targeted no-internet `minimum_xor_paths` rerun after the action-format patch:
+  - output: `/home/moloch/ouro_project/runs/local_agent_hard_coding/minimum_xor_no_internet_6min_action_hazard_latest.json`;
+  - result: failed in `127.454s`, `has_lookup=false`, `has_code=false`;
+  - trace check from run start found no `search`, `browse`, `external_expert`, `web_search`, or `research_route_*` events;
+  - generic algebraic walk/cycle card fired after tool feedback;
+  - candidate selection rejected the repeated route as hazardous:
+    - `known_bad_code_penalty=-20.00`;
+    - `route_repeat_penalty=-4.00`;
+    - `repair_route_similarity_penalty=-6.00`;
+    - `route_frontier_failed_route_penalty=-5.00`;
+  - interpretation:
+    - the wrapper now refuses repeated bad code quickly instead of returning it or drifting into prose;
+    - Ouro still did not synthesize a fresh viable algebraic route locally.
+
+Generic route-verifier gate and outcome classes (2026-05-08):
+
+- User constraint reaffirmed:
+  - no task-specific hardcoding for the hard/devil tasks;
+  - no route cards keyed to benchmark names;
+  - the wrapper may use generic failure-family signals, but must not spoonfeed exact task solutions.
+- Implemented a pre-code route gate in `/home/moloch/local_agent/ouro_agent_improved.py`:
+  - route sketches now include `TECHNIQUE FAMILIES` in addition to invariant, state, failed routes, reduction, edge cases, and implementation skeleton;
+  - active generic recovery cards must be satisfied by concrete route text before code generation is allowed;
+  - lifetime/update cards require an actual time-span or active-interval route with query-time traversal/rollback language;
+  - reversible-state cards require rollback/undo/snapshot/history plus explicit handling of hidden mutations;
+  - algebraic graph-walk cards require connectivity/component reasoning, a base path/value representation, and independent generator/basis/span language;
+  - checker-isolation cards require the entrypoint/candidate code to be separated from checker/harness code;
+  - vague restatements of a card do not pass the gate.
+- The deterministic route-frontier scaffold remains generic and intentionally does not pass these card-alignment checks by itself:
+  - the model must provide the concrete technique family and state transitions;
+  - this avoids converting the scaffold into a hidden answer template for known tasks.
+- Added focused tests in `/home/moloch/ouro_project/tests/unit/test_local_agent_wrapper.py`:
+  - `test_generic_lifetime_route_card_requires_concrete_time_span_route`;
+  - `test_generic_algebraic_route_card_requires_base_value_and_generators`.
+- Added harness outcome classes in `/home/moloch/ouro_project/tools/test_local_agent_hard_coding.py`:
+  - `solved`;
+  - `solved_lookup`;
+  - `lookup_contaminated`;
+  - `wrong_code_surfaced`;
+  - `honest_abstain`;
+  - `failed`.
+  - Per-attempt records now include `outcome_class`; run payloads include `outcome_counts`.
+- Verification:
+  - `py_compile` passed for:
+    - `/home/moloch/local_agent/ouro_agent_improved.py`;
+    - `/home/moloch/local_agent/ouro_types.py`;
+    - `/home/moloch/ouro_project/tools/test_local_agent_hard_coding.py`;
+  - focused wrapper tests:
+    - `120 passed`;
+  - ad hoc classifier check:
+    - no-code `agent_max_steps` classifies as `honest_abstain`;
+    - failed code classifies as `wrong_code_surfaced`.
+- Route-gated hard harness under `bwrap --unshare-net`, no internet, six-minute cap, no oracles/fastpaths/experts/research:
+  - output before outcome classes:
+    - `/home/moloch/ouro_project/runs/local_agent_hard_coding/honest_frontier_no_internet_6min_route_gate_latest.json`;
+    - `offline_dynamic_connectivity`: failed in `33.87s`, no code;
+    - `minimum_xor_paths`: failed in `30.184s`, no code;
+    - traces showed schema blocks for generic missing route alignment (`lifetime_update_route` and `algebraic_cycle_route`);
+    - no code was executed and no internet route was used.
+  - output after outcome classes:
+    - `/home/moloch/ouro_project/runs/local_agent_hard_coding/honest_frontier_no_internet_6min_route_gate_outcome_latest.json`;
+    - `offline_dynamic_connectivity`: failed in `33.864s`, `has_lookup=false`, `has_code=false`, `outcome_class=honest_abstain`;
+    - `minimum_xor_paths`: failed in `30.39s`, `has_lookup=false`, `has_code=false`, `outcome_class=honest_abstain`;
+    - `outcome_counts`: `{ "honest_abstain": 2 }`;
+    - trace check from run start found no `search`, `browse`, `external_expert`, `web_search`, or `research_route_*` events.
+- Fast DSA regression remains clean:
+  - `/home/moloch/ouro_project/runs/local_agent_dsa_coding/autonomous_dsa_direct_first_generic_patch_latest.json`;
+  - all first-pass direct, no escalation, no lookup:
+    - `subarray_sum_count`: passed, `8.599s`;
+    - `longest_increasing_subsequence`: passed, `5.219s`;
+    - `word_ladder_length`: passed, `8.591s`;
+    - `count_smaller_after_self`: passed, `4.979s`.
+  - fresh post-route-gate rerun under `bwrap --unshare-net`:
+    - `/home/moloch/ouro_project/runs/local_agent_dsa_coding/autonomous_dsa_direct_first_route_gate_outcome_latest.json`;
+    - all four tasks passed in direct mode, `has_lookup=false`, `has_code=true`, `outcome_class=solved`;
+    - `subarray_sum_count`: passed, `46.615s`;
+    - `longest_increasing_subsequence`: passed, `42.019s`;
+    - `word_ladder_length`: passed, `80.561s`;
+    - `count_smaller_after_self`: passed, `40.697s`;
+    - trace check from run start found no `search`, `browse`, `external_expert`, `web_search`, or `research_route_*` events;
+    - note: the DSA harness config still reports research/expert toggles as enabled by its own defaults, but no escalation occurred and the process had no network namespace.
+- Current interpretation:
+  - the wrapper now prevents late repair drift from becoming fake success;
+  - the hard/devil tasks fail quickly as calibrated `honest_abstain` when Ouro cannot produce a concrete route satisfying generic family constraints;
+  - this is an honesty/control improvement, not a solve of the hard-route synthesis problem;
+  - the next useful experiment is a generic technique-retrieval/synthesis ladder, separating whether Ouro can implement a route when the broad technique name is supplied from whether it can retrieve that technique family unaided.
+
+Generic technique-family route priors (2026-05-08):
+
+- User constraint remained:
+  - do not hardcode the two devil tasks;
+  - route help must be reusable technique-family priors from abstract prompt/failure signals.
+- Added generic route-prior memory in `/home/moloch/local_agent/ouro_agent_improved.py`:
+  - event lifetime route prior:
+    - add/remove or start/stop/query signals suggest offline intervalization, time decomposition, and scoped rollback or persistent state;
+  - rollback state route prior:
+    - reversible state suggests a mutation log/rollback stack and no irreversible read-side compression/caching unless logged;
+  - cycle-space route prior:
+    - graph walks with cycles/revisits suggest quotienting by closed walks and solving over the operation domain;
+  - component potential route prior:
+    - graph pair queries suggest representatives plus endpoint potentials/base path values and component-local residual structure;
+  - XOR linear-basis route prior:
+    - min/max under XOR combinations suggests affine/coset reduction with an XOR linear basis;
+  - checker-entrypoint route prior:
+    - checker syntax/harness failures suggest isolating candidate entrypoint code from validation harness code.
+- The route verifier now also checks prior alignment:
+  - weak sketches are penalized with `route_frontier_prior_alignment_penalty`;
+  - concrete sketches get `route_frontier_prior_alignment_bonus`;
+  - the model must bind a prior into route fields, not merely receive a hidden answer template.
+- Added `technique_route_priors` to `AgentState` and repair traces.
+- Added focused non-task-specific tests:
+  - priors are signal-driven and do not contain the benchmark task names;
+  - XOR/extremum graph sketches must bind an XOR linear-basis family, not just generic cycle language.
+- Fixed DSA harness config behavior in `/home/moloch/ouro_project/tools/test_local_agent_dsa_coding.py`:
+  - it no longer forcibly sets research/expert flags true in Python after import;
+  - it now respects `LOCAL_AGENT_RESEARCH_ROUTE_ENABLED`, `LOCAL_AGENT_FRONTIER_RESEARCH_PREFLIGHT_ENABLED`, `LOCAL_AGENT_EXTERNAL_EXPERTS_ENABLED`, and `LOCAL_AGENT_EXTERNAL_EXPERT_AUTO_ENABLED`.
+- Verification:
+  - `py_compile` passed for:
+    - `/home/moloch/local_agent/ouro_agent_improved.py`;
+    - `/home/moloch/local_agent/ouro_types.py`;
+    - `/home/moloch/ouro_project/tools/test_local_agent_dsa_coding.py`;
+    - `/home/moloch/ouro_project/tools/test_local_agent_hard_coding.py`;
+    - `/home/moloch/ouro_project/tests/unit/test_local_agent_wrapper.py`;
+  - focused wrapper tests:
+    - `122 passed`.
+- Hard harness after route priors under `bwrap --unshare-net`, no internet, six-minute cap, no oracles/fastpaths/experts/research:
+  - output:
+    - `/home/moloch/ouro_project/runs/local_agent_hard_coding/honest_frontier_no_internet_6min_route_priors_latest.json`;
+  - `offline_dynamic_connectivity`:
+    - failed in `333.719s`;
+    - `has_lookup=false`;
+    - `has_code=false`;
+    - `outcome_class=honest_abstain`;
+  - `minimum_xor_paths`:
+    - failed in `336.389s`;
+    - `has_lookup=false`;
+    - `has_code=false`;
+    - `outcome_class=honest_abstain`;
+  - `outcome_counts`: `{ "honest_abstain": 2 }`;
+  - trace check from run start found no `search`, `browse`, `external_expert`, `web_search`, or `research_route_*` events;
+  - traces show priors firing generically:
+    - event lifetime/component potential priors for add/remove/query graph state;
+    - cycle-space/component potential/XOR linear-basis priors for graph walk XOR extremum state;
+    - route sketches still failed concrete alignment, so no bogus code was surfaced.
+- DSA regression after route priors:
+  - strict offline/no-expert run under `bwrap --unshare-net` remained clean before interruption:
+    - output before the interrupted rerun:
+      - `/home/moloch/ouro_project/runs/local_agent_dsa_coding/autonomous_dsa_direct_first_route_priors_latest.json`;
+      - all four direct-mode tasks passed, `has_lookup=false`, `outcome_class=solved`;
+      - `subarray_sum_count`: `46.287s`;
+      - `longest_increasing_subsequence`: `42.141s`;
+      - `word_ladder_length`: `81.009s`;
+      - `count_smaller_after_self`: `40.825s`;
+    - the slowness was from the strict profile (`bwrap`, cold process, 4-bit load, cache off), not from task difficulty.
+  - normal corrected run:
+    - output:
+      - `/home/moloch/ouro_project/runs/local_agent_dsa_coding/autonomous_dsa_direct_first_route_priors_normal_latest.json`;
+    - all four tasks passed direct, `has_lookup=false`, `has_code=true`, `outcome_class=solved`;
+    - `subarray_sum_count`: `8.672s`;
+    - `longest_increasing_subsequence`: `5.284s`;
+    - `word_ladder_length`: `8.752s`;
+    - `count_smaller_after_self`: `4.943s`;
+    - trace check from run start found no `search`, `browse`, `external_expert`, `web_search`, or `research_route_*` events;
+    - GPU was clear afterward.
+- Current interpretation:
+  - route priors give Ouro a generic technique-family menu before code, without hardcoding the benchmark answers;
+  - standard DSA remains fast in the normal run;
+  - the devil tasks still do not solve, but the wrapper remains calibrated: it either requires a concretely bound route or returns `honest_abstain` instead of surfacing wrong code.
+
+Self-model route-prior wiring (2026-05-08):
+
+- Moved generic route-prior and failure-family detection out of `ouro_agent_improved.py` into a shared leaf module:
+  - `/home/moloch/local_agent/ouro_route_priors.py`.
+- Both the agent route gate and `LocalSelfModel.decide(...)` now use the same detector:
+  - avoids circular imports;
+  - keeps route priors benchmark-agnostic;
+  - prevents the self model and route verifier from drifting onto different signal definitions.
+- Extended `SelfModelDecision` in `/home/moloch/local_agent/ouro_types.py`:
+  - added `route_prior_risk`;
+  - added `technique_route_priors`.
+- Updated `/home/moloch/local_agent/ouro_self_model.py`:
+  - hard/frictional code tasks with active route priors now record `route_prior_risk=True`;
+  - route-prior risk biases toward `route=agent`, `requires_tool=True`, and `requires_verifier=True`;
+  - this does not force external expert use by itself;
+  - policy decision diagnostics and formatted policy context now include active route priors.
+- The old agent behavior remains intact:
+  - route priors still enter route-sketch prompts, checker-first context, formatted agent state, and repair traces;
+  - route verifier still requires concrete prior/card alignment before code.
+- Added focused test:
+  - `test_self_model_uses_route_priors_for_hard_code_policy`.
+- Verification:
+  - `py_compile` passed for:
+    - `/home/moloch/local_agent/ouro_route_priors.py`;
+    - `/home/moloch/local_agent/ouro_types.py`;
+    - `/home/moloch/local_agent/ouro_self_model.py`;
+    - `/home/moloch/local_agent/ouro_agent_improved.py`;
+    - `/home/moloch/ouro_project/tests/unit/test_local_agent_wrapper.py`;
+  - focused wrapper tests:
+    - `123 passed`;
+  - self-model policy smoke on graph walk/XOR extremum code task:
+    - `route=agent`;
+    - `risk_level=high`;
+    - `requires_tool=true`;
+    - `requires_verifier=true`;
+    - `route_prior_risk=true`;
+    - active priors included cycle-space, component-potential, and XOR-linear-basis.
+- Normal hard harness after self-model wiring:
+  - output:
+    - `/home/moloch/ouro_project/runs/local_agent_hard_coding/route_priors_self_model_normal_latest.json`;
+  - config:
+    - normal component-active mode;
+    - no oracle/fastpath/fast-assisted solver;
+    - full capability enabled;
+    - research/search/browse available;
+    - external experts available but not used.
+  - `offline_dynamic_connectivity`:
+    - failed in `80.957s`;
+    - `has_lookup=false`;
+    - `has_code=false`;
+    - `outcome_class=honest_abstain`;
+  - `minimum_xor_paths`:
+    - failed in `75.718s`;
+    - `has_lookup=false`;
+    - `has_code=false`;
+    - `outcome_class=honest_abstain`;
+  - `outcome_counts`: `{ "honest_abstain": 2 }`;
+  - trace showed:
+    - direct mode rerouted with self-model reason including `technique route priors require pre-code invariant binding`;
+    - research-route external-expert-first was skipped;
+    - normal search/browse ran;
+    - route sketches still failed concrete card/prior alignment, so no code was surfaced.
+- Normal DSA regression after self-model wiring:
+  - output:
+    - `/home/moloch/ouro_project/runs/local_agent_dsa_coding/route_priors_self_model_normal_latest.json`;
+  - all four tasks passed direct, `has_lookup=false`, `has_code=true`, `outcome_class=solved`;
+  - `subarray_sum_count`: `8.967s`;
+  - `longest_increasing_subsequence`: `5.368s`;
+  - `word_ladder_length`: `8.794s`;
+  - `count_smaller_after_self`: `4.876s`;
+  - GPU was clear afterward.
+- Current interpretation:
+  - route priors are now part of the self-model routing/control layer, not only the route generator;
+  - normal DSA remains fast and direct;
+  - for the hard tasks, normal component-active mode now reaches the route-prior-aware research/route-gate path quickly and abstains honestly when no concrete route is bound.
+
+Route-capability ablation ladder (2026-05-08):
+
+- Added experimental harness:
+  - `/home/moloch/ouro_project/tools/test_local_agent_route_ladder.py`.
+- Purpose:
+  - distinguish retrieval, invariant binding, route-gate binding, and raw implementation ability;
+  - this is measurement-only and deliberately injects hints in some variants;
+  - no task-specific answers were added to production wrapper behavior.
+- Added feature flags for the experiment in `/home/moloch/local_agent/ouro_route_priors.py`:
+  - `LOCAL_AGENT_ROUTE_PRIORS_ENABLED`, default `true`;
+  - `LOCAL_AGENT_FAILURE_FAMILY_CARDS_ENABLED`, default `true`;
+  - normal agent behavior remains unchanged because both default on.
+- Ladder variants:
+  - `baseline_no_prior`:
+    - base prompt with intended-solution text stripped;
+    - route priors/cards off;
+    - research/expert/oracle/fastpath off.
+  - `prior_only`:
+    - base prompt;
+    - generic priors/cards on;
+    - no research/expert/oracle/fastpath.
+  - `broad_technique`:
+    - base prompt plus broad technique-family hint.
+  - `invariant_skeleton`:
+    - base prompt plus invariant skeleton.
+  - `full_route`:
+    - base prompt plus full implementation route, still through route-gate agent path.
+  - `full_route_direct`:
+    - base prompt plus full route through direct-answer acceptance path.
+  - `full_route_raw_code`:
+    - base prompt plus full route through raw code-generation prompt, bypassing route gate and direct hard-code acceptance, then evaluated by harness tests.
+- Verification:
+  - `py_compile` passed for the ladder harness and changed wrapper files;
+  - focused wrapper tests:
+    - `123 passed`;
+  - GPU was clear afterward.
+- Main ladder run:
+  - output:
+    - `/home/moloch/ouro_project/runs/local_agent_route_ladder/route_ladder_latest.json`;
+  - config:
+    - `ut_steps=2`;
+    - `max_tokens=512`;
+    - `react_steps=3`;
+    - `task_wallclock_sec=180`;
+    - research/expert/oracle/fastpath disabled.
+  - `offline_dynamic_connectivity`:
+    - `baseline_no_prior`: harness/runtime OOM after entering code/candidate path, not a valid model result;
+      - clean rerun with smaller profile also OOMed:
+        - `/home/moloch/ouro_project/runs/local_agent_route_ladder/route_ladder_baseline_dynamic_clean_latest.json`;
+    - `prior_only`: `honest_abstain`, `31.713s`, no code;
+    - `broad_technique`: `honest_abstain`, `31.148s`, no code;
+    - `invariant_skeleton`: `honest_abstain`, `31.465s`, no code;
+    - `full_route`: `honest_abstain`, `32.253s`, no code.
+  - `minimum_xor_paths`:
+    - `baseline_no_prior`: `wrong_code_surfaced`, `102.544s`, code failed with `TypeError: cannot unpack non-iterable int object`;
+    - `prior_only`: `honest_abstain`, `31.428s`, no code;
+    - `broad_technique`: `honest_abstain`, `31.401s`, no code;
+    - `invariant_skeleton`: `honest_abstain`, `31.653s`, no code;
+    - `full_route`: `honest_abstain`, `31.867s`, no code.
+- Direct implementation-only run:
+  - output:
+    - `/home/moloch/ouro_project/runs/local_agent_route_ladder/route_ladder_full_route_direct_latest.json`;
+  - `offline_dynamic_connectivity`:
+    - `honest_abstain`, `57.697s`, no code;
+  - `minimum_xor_paths`:
+    - `honest_abstain`, `52.99s`, no code;
+  - interpretation:
+    - the direct-answer hard-code acceptance path still fails closed even when a full route is supplied.
+- Raw code implementation-only run:
+  - output:
+    - `/home/moloch/ouro_project/runs/local_agent_route_ladder/route_ladder_full_route_raw_code_latest.json`;
+  - `offline_dynamic_connectivity`:
+    - `wrong_code_surfaced`, `32.895s`;
+    - generated code returned `[0, 0, 0, 0, 0]` on the fixed test instead of `[True, False, True, False, True]`;
+  - `minimum_xor_paths`:
+    - `wrong_code_surfaced`, `14.935s`;
+    - generated code failed with `KeyError: 0`.
+- Current interpretation:
+  - generic priors/cards are doing real wrapper work:
+    - for `minimum_xor_paths`, disabling them reintroduced wrong-code surfacing; enabling them converted the result to `honest_abstain`;
+    - for `offline_dynamic_connectivity`, disabling them drove the wrapper into an unstable heavy code/candidate path that OOMed, while enabling them abstained quickly.
+  - broad technique names, invariant skeletons, and even full route text did not get through the route-gated agent path;
+  - when the route gate was bypassed and raw code was requested, Ouro still produced incorrect code for both hard tasks;
+  - this means the current bottleneck is not only retrieval. It includes route-to-code execution for these adversarial techniques.
+
+Generic implementation-contract layer (2026-05-08):
+
+- Added generic implementation contracts in `/home/moloch/local_agent/ouro_route_priors.py`:
+  - `generic_implementation_contracts(...)`;
+  - `generic_implementation_contract_context(...)`.
+- Contracts are derived only from active generic priors, not task names:
+  - event lifetime: open-start map, half-open intervals, time decomposition, leaf/instant answers, scoped undo;
+  - rollback state: parent/size arrays, history stack, snapshot by history length, rollback by popping mutations, no hidden path compression/unlogged writes;
+  - cycle space: spanning forest/base values/non-tree residuals/independent generators;
+  - component potential: component ids, endpoint/root potentials, per-component residual structure;
+  - XOR basis: GF(2) leading-bit insertion, per-component basis where needed, reduce by trying `value xor basis_vector`;
+  - checker/entrypoint: keep public function and checker code separate.
+- Wired the contracts into `/home/moloch/local_agent/ouro_agent_improved.py`:
+  - route-sketch prompt;
+  - route-sketch prompt context;
+  - checker-first code phase context;
+  - formatted agent state.
+- Updated the experimental ladder harness:
+  - `/home/moloch/ouro_project/tools/test_local_agent_route_ladder.py`;
+  - `full_route_raw_code` now receives the same generic implementation-contract context when measuring raw route-to-code behavior.
+- Tightened route-prior detection:
+  - pure connectivity plus rollback/path-compression text no longer fires the component-potential prior;
+  - this avoids treating `path compression` as a graph path-value query signal.
+- Tests:
+  - added focused coverage for:
+    - pure connectivity not firing component-potential;
+    - implementation-contract context matching active priors.
+  - verification:
+    - `py_compile` passed for:
+      - `/home/moloch/local_agent/ouro_route_priors.py`;
+      - `/home/moloch/local_agent/ouro_self_model.py`;
+      - `/home/moloch/local_agent/ouro_agent_improved.py`;
+      - `/home/moloch/ouro_project/tools/test_local_agent_route_ladder.py`;
+    - focused wrapper tests:
+      - `125 passed`.
+- Normal DSA regression after contract layer:
+  - output:
+    - `/home/moloch/ouro_project/runs/local_agent_dsa_coding/route_contracts_normal_latest.json`;
+  - all four tasks passed direct, no lookup:
+    - `subarray_sum_count`: `9.193s`;
+    - `longest_increasing_subsequence`: `5.675s`;
+    - `word_ladder_length`: `9.292s`;
+    - `count_smaller_after_self`: `5.186s`.
+- Full-route route-gated hard ablation after detector cleanup:
+  - output:
+    - `/home/moloch/ouro_project/runs/local_agent_route_ladder/route_ladder_contracts_full_route_post_detector_latest.json`;
+  - `offline_dynamic_connectivity`:
+    - `honest_abstain`, `37.518s`, no code;
+    - active priors were event-lifetime and rollback-state only.
+  - `minimum_xor_paths`:
+    - `honest_abstain`, `32.474s`, no code;
+    - active priors were cycle-space, component-potential, and XOR-linear-basis.
+- Raw full-route code ablation after detector cleanup:
+  - output:
+    - `/home/moloch/ouro_project/runs/local_agent_route_ladder/route_ladder_contracts_full_route_raw_code_post_detector_latest.json`;
+  - `offline_dynamic_connectivity`:
+    - `wrong_code_surfaced`, `22.116s`;
+    - generated code still tried `active_edges[i].remove((u, v))` and failed with `ValueError: list.remove(x): x not in list`.
+  - `minimum_xor_paths`:
+    - `wrong_code_surfaced`, `13.204s`;
+    - generated code still failed randomized differential tests:
+      - got `[0, 6, 5, 0, 2, 0, 3, 5, 6, 2, 0, 4]`;
+      - expected `[0, 4, 5, 0, 0, 0, 1, 5, 4, 0, 0, 4]`.
+- Production hard harness after contract layer and detector cleanup:
+  - output:
+    - `/home/moloch/ouro_project/runs/local_agent_hard_coding/route_contracts_full_capability_post_detector_latest.json`;
+  - config:
+    - full non-oracle capability;
+    - search/browse enabled and used;
+    - oracle/reference/fast-assisted solver disabled;
+    - hard-code verification and candidate selection enabled;
+    - `repair_rounds=0`, `ut_steps=2`, `max_tokens=512`, `react_steps=3`, `task_wallclock_sec=360`.
+  - `offline_dynamic_connectivity`:
+    - `honest_abstain`, `78.172s`, `has_code=false`, `has_lookup=false`.
+  - `minimum_xor_paths`:
+    - `honest_abstain`, `75.64s`, `has_code=false`, `has_lookup=false`.
+  - `outcome_counts`: `{ "honest_abstain": 2 }`.
+- Current interpretation:
+  - the implementation-contract layer improves the wrapper's generic route-to-code specification and cleans up prior metadata;
+  - it does not solve the two adversarial hard tasks;
+  - standard DSA remains fast and direct;
+  - the production path remains calibrated: tools are available and can be chosen, but the wrapper does not surface unsupported hard-code output;
+  - raw-code ablation confirms the limiting factor is still Ouro's ability to execute these supplied hard routes into correct code.

@@ -1,0 +1,642 @@
+{
+  "audit": "final_engineering_expansion_summary",
+  "output_directory": "artifacts/reports/proto_introspection/final_engineering_expansion_2026-06-17",
+  "input_paths": {
+    "s3b2": [
+      "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_loop_pools.pt",
+      "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_pool_texts.json",
+      "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_loop_pool_transfer.json",
+      "artifacts/reports/proto_introspection/final_prewrite_hardening_2026-06-17/s3b2_generated_branch_correctness_refit_2026-06-17.json"
+    ],
+    "orthogonality": [
+      "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4_reference_loop.json",
+      "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4a_fork_param_screen.json",
+      "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4b_kmatched_sampling.json",
+      "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_report_2026-06-17.md",
+      "artifacts/logs/mpn_s1/s1_4_reference_loop_run1.log",
+      "artifacts/logs/mpn_s1/s1_4a_fork_param_screen.log",
+      "artifacts/logs/mpn_s1/s1_4b_kmatched_sampling.log",
+      "artifacts/reports/probes/bg_hidden_origin_diversity_v2_2026-05-18/diverse_hidden_origin_branches.pt",
+      "artifacts/reports/proto_introspection/final_prewrite_hardening_2026-06-17/s1_s3_injection_outcome_orthogonality_2026-06-17.json",
+      "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_loop_pools.pt"
+    ]
+  },
+  "s3b2_topline": {
+    "registered_prior_l2_logistic": {
+      "binary_auroc": 0.7515135561989997,
+      "pairwise_accuracy": 0.6834532374100719,
+      "sel_at_oracle": 0.625
+    },
+    "expanded_hidden_ridge": {
+      "binary_auroc": 0.7754672282179521,
+      "pairwise_accuracy": 0.7338129496402878,
+      "sel_at_oracle": 0.625
+    }
+  },
+  "orthogonality_topline": {
+    "exact_s1_s3_injection_deltas_found": false,
+    "adjacent_real_delta_artifact_audited": "artifacts/reports/probes/bg_hidden_origin_diversity_v2_2026-05-18/diverse_hidden_origin_branches.pt",
+    "projection_fraction_outcome_onto_real_injection_span_full_rank": 0.001151018077507615,
+    "residual_fraction_outcome_outside_real_injection_span_full_rank": 0.9988489819224924,
+    "projection_fraction_outcome_onto_sampling_span_rank_matched": 0.16593009233474731
+  },
+  "dataset_counts": {
+    "s3b2": {
+      "n_candidates": 160,
+      "n_task_groups": 16,
+      "positive_labels": 29,
+      "negative_labels": 131,
+      "oracle_present_task_groups": 8,
+      "domains": {
+        "coding": {
+          "candidates": 40,
+          "task_groups": 4,
+          "positive_labels": 0
+        },
+        "logic": {
+          "candidates": 40,
+          "task_groups": 4,
+          "positive_labels": 10
+        },
+        "math": {
+          "candidates": 40,
+          "task_groups": 4,
+          "positive_labels": 8
+        },
+        "reasoning": {
+          "candidates": 40,
+          "task_groups": 4,
+          "positive_labels": 11
+        }
+      }
+    },
+    "orthogonality": {
+      "nonzero_real_delta_rows_audited": 542,
+      "skipped_rows_bad_locus": 0,
+      "positive_labels": 149,
+      "negative_labels": 393,
+      "task_groups": 27,
+      "domains": {
+        "reasoning": 163,
+        "science": 379
+      },
+      "delta_families": {
+        "random": 328,
+        "hidden_origin_empirical": 194,
+        "hidden_origin_whitened": 20
+      },
+      "target_layers": {
+        "24": 269,
+        "36": 268,
+        "47": 5
+      },
+      "target_loops": {
+        "1": 542
+      },
+      "pairwise_winner_loser_diffs": 313
+    }
+  },
+  "metrics": {
+    "s3b2": {
+      "registered_prior_hardening_metrics": {
+        "n_candidates": 160,
+        "n_task_groups": 16,
+        "positive_labels": 29,
+        "oracle_present_task_groups": 8,
+        "binary_auroc": 0.7515135561989997,
+        "binary_acc_at_zero": 0.63125,
+        "selected_acc_all_tasks": 0.3125,
+        "sel_at_oracle": 0.625,
+        "sel_at_oracle_ci95_task_bootstrap": [
+          0.25,
+          0.875
+        ],
+        "regret": 0.375,
+        "top2_retention": 0.75,
+        "top4_retention": 0.75,
+        "pairwise_accuracy": 0.6834532374100719,
+        "pairwise_accuracy_ci95_bootstrap": [
+          0.60431654676259,
+          0.762589928057554
+        ],
+        "by_domain": {
+          "coding": {
+            "n_tasks": 4,
+            "oracle_present_tasks": 0,
+            "sel_at_oracle": null,
+            "selected_acc_all_tasks": 0.0,
+            "pairwise_accuracy": null
+          },
+          "logic": {
+            "n_tasks": 4,
+            "oracle_present_tasks": 2,
+            "sel_at_oracle": 1.0,
+            "selected_acc_all_tasks": 0.5,
+            "pairwise_accuracy": 0.625
+          },
+          "math": {
+            "n_tasks": 4,
+            "oracle_present_tasks": 2,
+            "sel_at_oracle": 0.5,
+            "selected_acc_all_tasks": 0.25,
+            "pairwise_accuracy": 0.7
+          },
+          "reasoning": {
+            "n_tasks": 4,
+            "oracle_present_tasks": 4,
+            "sel_at_oracle": 0.5,
+            "selected_acc_all_tasks": 0.5,
+            "pairwise_accuracy": 0.7012987012987013
+          }
+        }
+      },
+      "expanded_hidden_ridge_metrics": {
+        "n_candidates": 160,
+        "n_tasks": 16,
+        "positive_labels": 29,
+        "class_balance": 0.18125,
+        "oracle_present_tasks": 8,
+        "binary_auroc": 0.7754672282179521,
+        "pairwise_accuracy": 0.7338129496402878,
+        "n_pairwise_pairs": 139,
+        "sel_at_oracle": 0.625,
+        "selected_correct_when_oracle_present": 0.625,
+        "regret": 0.375,
+        "selected_acc_all_tasks": 0.3125,
+        "top2_retention": 0.75,
+        "top4_retention": 0.875
+      },
+      "domain_breakdown": {
+        "coding": {
+          "n_candidates": 40,
+          "n_tasks": 4,
+          "positive_labels": 0,
+          "class_balance": 0.0,
+          "oracle_present_tasks": 0,
+          "binary_auroc": null,
+          "pairwise_accuracy": null,
+          "n_pairwise_pairs": 0,
+          "sel_at_oracle": null,
+          "selected_correct_when_oracle_present": null,
+          "regret": null,
+          "selected_acc_all_tasks": 0.0,
+          "top2_retention": null,
+          "top4_retention": null
+        },
+        "logic": {
+          "n_candidates": 40,
+          "n_tasks": 4,
+          "positive_labels": 10,
+          "class_balance": 0.25,
+          "oracle_present_tasks": 2,
+          "binary_auroc": 0.5266666666666666,
+          "pairwise_accuracy": 0.625,
+          "n_pairwise_pairs": 32,
+          "sel_at_oracle": 1.0,
+          "selected_correct_when_oracle_present": 1.0,
+          "regret": 0.0,
+          "selected_acc_all_tasks": 0.5,
+          "top2_retention": 1.0,
+          "top4_retention": 1.0
+        },
+        "math": {
+          "n_candidates": 40,
+          "n_tasks": 4,
+          "positive_labels": 8,
+          "class_balance": 0.2,
+          "oracle_present_tasks": 2,
+          "binary_auroc": 0.97265625,
+          "pairwise_accuracy": 0.9,
+          "n_pairwise_pairs": 30,
+          "sel_at_oracle": 0.5,
+          "selected_correct_when_oracle_present": 0.5,
+          "regret": 0.5,
+          "selected_acc_all_tasks": 0.25,
+          "top2_retention": 1.0,
+          "top4_retention": 1.0
+        },
+        "reasoning": {
+          "n_candidates": 40,
+          "n_tasks": 4,
+          "positive_labels": 11,
+          "class_balance": 0.275,
+          "oracle_present_tasks": 4,
+          "binary_auroc": 0.554858934169279,
+          "pairwise_accuracy": 0.7142857142857143,
+          "n_pairwise_pairs": 77,
+          "sel_at_oracle": 0.5,
+          "selected_correct_when_oracle_present": 0.5,
+          "regret": 0.5,
+          "selected_acc_all_tasks": 0.5,
+          "top2_retention": 0.5,
+          "top4_retention": 0.75
+        }
+      },
+      "ablation_metrics": {
+        "hidden_ridge": {
+          "n_candidates": 160,
+          "n_tasks": 16,
+          "positive_labels": 29,
+          "class_balance": 0.18125,
+          "oracle_present_tasks": 8,
+          "binary_auroc": 0.7754672282179521,
+          "pairwise_accuracy": 0.7338129496402878,
+          "n_pairwise_pairs": 139,
+          "sel_at_oracle": 0.625,
+          "selected_correct_when_oracle_present": 0.625,
+          "regret": 0.375,
+          "selected_acc_all_tasks": 0.3125,
+          "top2_retention": 0.75,
+          "top4_retention": 0.875
+        },
+        "length_only": {
+          "n_candidates": 160,
+          "n_tasks": 16,
+          "positive_labels": 29,
+          "class_balance": 0.18125,
+          "oracle_present_tasks": 8,
+          "binary_auroc": 0.1093708870755462,
+          "pairwise_accuracy": 0.06474820143884892,
+          "n_pairwise_pairs": 139,
+          "sel_at_oracle": 0.25,
+          "selected_correct_when_oracle_present": 0.25,
+          "regret": 0.75,
+          "selected_acc_all_tasks": 0.125,
+          "top2_retention": 0.625,
+          "top4_retention": 0.75
+        },
+        "domain_only": {
+          "n_candidates": 160,
+          "n_tasks": 16,
+          "positive_labels": 29,
+          "class_balance": 0.18125,
+          "oracle_present_tasks": 8,
+          "binary_auroc": 0.4334035272440116,
+          "pairwise_accuracy": 0.2589928057553957,
+          "n_pairwise_pairs": 139,
+          "sel_at_oracle": 0.25,
+          "selected_correct_when_oracle_present": 0.25,
+          "regret": 0.75,
+          "selected_acc_all_tasks": 0.125,
+          "top2_retention": 0.625,
+          "top4_retention": 0.75
+        },
+        "provenance_only": {
+          "n_candidates": 160,
+          "n_tasks": 16,
+          "positive_labels": 29,
+          "class_balance": 0.18125,
+          "oracle_present_tasks": 8,
+          "binary_auroc": 0.07541458278494341,
+          "pairwise_accuracy": 0.15827338129496402,
+          "n_pairwise_pairs": 139,
+          "sel_at_oracle": 0.25,
+          "selected_correct_when_oracle_present": 0.25,
+          "regret": 0.75,
+          "selected_acc_all_tasks": 0.125,
+          "top2_retention": 0.375,
+          "top4_retention": 0.75
+        },
+        "domain_length_provenance": {
+          "n_candidates": 160,
+          "n_tasks": 16,
+          "positive_labels": 29,
+          "class_balance": 0.18125,
+          "oracle_present_tasks": 8,
+          "binary_auroc": 0.4426164780205317,
+          "pairwise_accuracy": 0.23741007194244604,
+          "n_pairwise_pairs": 139,
+          "sel_at_oracle": 0.25,
+          "selected_correct_when_oracle_present": 0.25,
+          "regret": 0.75,
+          "selected_acc_all_tasks": 0.125,
+          "top2_retention": 0.625,
+          "top4_retention": 0.75
+        },
+        "hidden_plus_length": {
+          "n_candidates": 160,
+          "n_tasks": 16,
+          "positive_labels": 29,
+          "class_balance": 0.18125,
+          "oracle_present_tasks": 8,
+          "binary_auroc": 0.7783627270334299,
+          "pairwise_accuracy": 0.7266187050359713,
+          "n_pairwise_pairs": 139,
+          "sel_at_oracle": 0.625,
+          "selected_correct_when_oracle_present": 0.625,
+          "regret": 0.375,
+          "selected_acc_all_tasks": 0.3125,
+          "top2_retention": 0.75,
+          "top4_retention": 0.875
+        },
+        "hidden_plus_domain": {
+          "n_candidates": 160,
+          "n_tasks": 16,
+          "positive_labels": 29,
+          "class_balance": 0.18125,
+          "oracle_present_tasks": 8,
+          "binary_auroc": 0.7754672282179521,
+          "pairwise_accuracy": 0.7338129496402878,
+          "n_pairwise_pairs": 139,
+          "sel_at_oracle": 0.625,
+          "selected_correct_when_oracle_present": 0.625,
+          "regret": 0.375,
+          "selected_acc_all_tasks": 0.3125,
+          "top2_retention": 0.75,
+          "top4_retention": 0.875
+        },
+        "hidden_plus_domain_length_provenance": {
+          "n_candidates": 160,
+          "n_tasks": 16,
+          "positive_labels": 29,
+          "class_balance": 0.18125,
+          "oracle_present_tasks": 8,
+          "binary_auroc": 0.779678862858647,
+          "pairwise_accuracy": 0.7338129496402878,
+          "n_pairwise_pairs": 139,
+          "sel_at_oracle": 0.625,
+          "selected_correct_when_oracle_present": 0.625,
+          "regret": 0.375,
+          "selected_acc_all_tasks": 0.3125,
+          "top2_retention": 0.75,
+          "top4_retention": 0.875
+        },
+        "hidden_pairwise_ranker_ridge": {
+          "n_candidates": 160,
+          "n_tasks": 16,
+          "positive_labels": 29,
+          "class_balance": 0.18125,
+          "oracle_present_tasks": 8,
+          "binary_auroc": 0.7915240852856015,
+          "pairwise_accuracy": 0.7410071942446043,
+          "n_pairwise_pairs": 139,
+          "sel_at_oracle": 0.625,
+          "selected_correct_when_oracle_present": 0.625,
+          "regret": 0.375,
+          "selected_acc_all_tasks": 0.3125,
+          "top2_retention": 0.875,
+          "top4_retention": 0.875
+        },
+        "tap_scores_only": {
+          "status": "NOT_RUN",
+          "reason": "Per-candidate DualAnchor/CoreContent/MIX tap scores are not persisted in s3b1_loop_pools.pt; only aggregate S3B1 comparator metrics are present."
+        },
+        "tiny_mlp": {
+          "status": "NOT_RUN",
+          "reason": "The saved pool has only 16 task groups / 160 candidates; a tiny MLP would be high-variance and less interpretable than the grouped linear controls."
+        }
+      },
+      "calibration_and_margin": {
+        "score_bin_empirical_correctness": [
+          {
+            "bin": 1,
+            "score_min": -1.8382860621823598,
+            "score_max": -1.196995451936345,
+            "n": 32,
+            "empirical_correct_rate": 0.03125,
+            "mean_score": -1.4005958664237639
+          },
+          {
+            "bin": 2,
+            "score_min": -1.196995451936345,
+            "score_max": -0.9453619859021426,
+            "n": 32,
+            "empirical_correct_rate": 0.03125,
+            "mean_score": -1.0855426673833528
+          },
+          {
+            "bin": 3,
+            "score_min": -0.9453619859021426,
+            "score_max": -0.46413860645458477,
+            "n": 32,
+            "empirical_correct_rate": 0.15625,
+            "mean_score": -0.744884940468228
+          },
+          {
+            "bin": 4,
+            "score_min": -0.46413860645458477,
+            "score_max": 0.1766369383149266,
+            "n": 32,
+            "empirical_correct_rate": 0.375,
+            "mean_score": -0.17344651026991756
+          },
+          {
+            "bin": 5,
+            "score_min": 0.1766369383149266,
+            "score_max": 1.3673992563175648,
+            "n": 32,
+            "empirical_correct_rate": 0.3125,
+            "mean_score": 0.6486228310587107
+          }
+        ],
+        "abstention_by_top1_margin": [
+          {
+            "margin_quantile_threshold": 0,
+            "threshold": 0.002447500605408548,
+            "coverage_tasks": 1.0,
+            "acted_tasks": 16,
+            "selected_acc_all_acted": 0.3125,
+            "oracle_present_acted": 8,
+            "sel_at_oracle_acted": 0.625
+          },
+          {
+            "margin_quantile_threshold": 25,
+            "threshold": 0.06653937038783625,
+            "coverage_tasks": 0.75,
+            "acted_tasks": 12,
+            "selected_acc_all_acted": 0.3333333333333333,
+            "oracle_present_acted": 6,
+            "sel_at_oracle_acted": 0.6666666666666666
+          },
+          {
+            "margin_quantile_threshold": 50,
+            "threshold": 0.11930672816401733,
+            "coverage_tasks": 0.5,
+            "acted_tasks": 8,
+            "selected_acc_all_acted": 0.375,
+            "oracle_present_acted": 5,
+            "sel_at_oracle_acted": 0.6
+          },
+          {
+            "margin_quantile_threshold": 75,
+            "threshold": 0.25707722081197604,
+            "coverage_tasks": 0.25,
+            "acted_tasks": 4,
+            "selected_acc_all_acted": 0.25,
+            "oracle_present_acted": 3,
+            "sel_at_oracle_acted": 0.3333333333333333
+          },
+          {
+            "margin_quantile_threshold": 90,
+            "threshold": 0.4603149342179328,
+            "coverage_tasks": 0.125,
+            "acted_tasks": 2,
+            "selected_acc_all_acted": 0.0,
+            "oracle_present_acted": 1,
+            "sel_at_oracle_acted": 0.0
+          }
+        ],
+        "note": "Scores are grouped ridge margins, not calibrated probabilities."
+      }
+    },
+    "orthogonality": {
+      "real_injection_rank": 229,
+      "real_injection_effective_rank": 82.99193349265558,
+      "sampling_rank": 144,
+      "sampling_effective_rank": 24.422421705663822,
+      "rank_match_used": 144,
+      "projection_fraction_outcome_onto_real_injection_span_full_rank": 0.001151018077507615,
+      "projection_fraction_outcome_onto_real_injection_span_rank_matched": 0.0008877982036210597,
+      "residual_fraction_outcome_outside_real_injection_span_full_rank": 0.9988489819224924,
+      "projection_fraction_pairwise_outcome_onto_real_injection_span_full_rank": 0.00252524483948946,
+      "projection_fraction_pairwise_outcome_onto_real_injection_span_rank_matched": 0.002476586727425456,
+      "projection_fraction_outcome_onto_sampling_span_rank_matched": 0.16593009233474731,
+      "projection_fraction_pairwise_outcome_onto_sampling_span_rank_matched": 0.04249097779393196,
+      "cosine_abs_outcome_top_real_injection_pcs": [
+        0.0002480736293364316,
+        0.0027736432384699583,
+        0.00122933613602072,
+        0.0061822314746677876,
+        0.0025230785831809044,
+        0.00038642616709694266,
+        0.009835288859903812,
+        0.007266891188919544,
+        0.005555144976824522,
+        0.013377523049712181
+      ],
+      "cosine_abs_outcome_top_sampling_pcs": [
+        0.08077798783779144,
+        0.06479287892580032,
+        0.12038183957338333,
+        0.1256057769060135,
+        0.02882736548781395,
+        0.03136402741074562,
+        0.045270662754774094,
+        0.039798587560653687,
+        0.031442780047655106,
+        0.09047397971153259
+      ],
+      "principal_cosines_real_injection_vs_sampling_rank_matched": {
+        "max": 0.17919012904167175,
+        "mean": 0.018262328580021858,
+        "min": 0.00012684764806181192
+      },
+      "random_same_rank_projection_control": {
+        "draws": 25,
+        "rank": 144,
+        "mean": 0.006073956768959761,
+        "ci95": [
+          0.004763343650847673,
+          0.006996901426464319
+        ],
+        "theoretical_mean_rank_over_dim": 0.005859375
+      },
+      "classification_sanity_grouped_loso": {
+        "full_features": {
+          "auroc": 0.7312533087419096,
+          "binary_acc_at_zero": 0.7011070110701108,
+          "leakage_check_passed": true
+        },
+        "injection_span_projected_rank_matched": {
+          "auroc": 0.6970985535461175,
+          "binary_acc_at_zero": 0.6051660516605166,
+          "leakage_check_passed": true
+        },
+        "injection_residual_rank_matched": {
+          "auroc": 0.7305702136379938,
+          "binary_acc_at_zero": 0.7011070110701108,
+          "leakage_check_passed": true
+        }
+      },
+      "previous_proxy_metrics": {
+        "projection_fraction_outcome_onto_injection_proxy": 0.004831696323010092,
+        "residual_fraction_outcome_outside_injection_proxy": 0.9951683036769899,
+        "projection_fraction_pairwise_outcome_onto_injection_proxy": 0.0016642564467554929,
+        "projection_fraction_outcome_onto_sampling_span_rank_matched": 0.280281885407955,
+        "projection_fraction_pairwise_outcome_onto_sampling_span_rank_matched": 0.9627273802137231,
+        "random_same_rank_projection_mean": 0.0019265922208363579,
+        "random_same_rank_projection_ci95": [
+          0.0012236199341509797,
+          0.0026755918619527272
+        ],
+        "cosine_outcome_top_injection_proxy_pc_abs": 0.003266263520345092,
+        "cosine_outcome_top_sampling_pc_abs": 0.00955730490386486,
+        "effective_rank_injection_proxy": 25.150551128513918,
+        "effective_rank_sampling_deltas": 24.42240990931946,
+        "principal_cosines_injection_proxy_vs_sampling": {
+          "max": 0.22318828105926514,
+          "mean": 0.023259999230504036,
+          "min": 2.012356162595097e-06
+        },
+        "linear_probe_sanity_grouped_loso": {
+          "full": {
+            "auroc": 0.7496709660436955,
+            "binary_acc_at_zero": 0.6375
+          },
+          "injection_proxy_projected": {
+            "auroc": 0.576993945775204,
+            "binary_acc_at_zero": 0.63125
+          },
+          "injection_proxy_residual": {
+            "auroc": 0.7233482495393524,
+            "binary_acc_at_zero": 0.6
+          },
+          "sampling_projected_rank48": {
+            "auroc": 0.5698868123190314,
+            "binary_acc_at_zero": 0.6
+          },
+          "shuffled_full_control": {
+            "auroc": 0.6325348775993682,
+            "binary_acc_at_zero": 0.63125
+          }
+        }
+      }
+    }
+  },
+  "missing_tensors": [
+    "exact June-17 S1.4 h_clean/root hidden states",
+    "exact June-17 S1.4 h_injected/h_carried hidden states",
+    "exact June-17 S1.4 h_rederived hidden states",
+    "exact June-17 S1.4 h_injected - h_clean deltas"
+  ],
+  "paper_impact_table": [
+    {
+      "claim": "generated-branch correctness is partially readable",
+      "impact": "strengthened",
+      "reason": "Prior S3B2 logistic AUROC 0.7515 plus expanded hidden ridge AUROC 0.7755; metadata-only controls weak."
+    },
+    {
+      "claim": "terminal selection remains wall",
+      "impact": "strengthened",
+      "reason": "sel@oracle remains 0.6250 on 8 oracle-present groups; high-margin abstention does not rescue selection."
+    },
+    {
+      "claim": "S3A needs verifier-labeled branch training",
+      "impact": "strengthened",
+      "reason": "Transfer taps and S3B2 partial readout do not solve terminal selection on generated branches."
+    },
+    {
+      "claim": "subspace misalignment explains frozen null",
+      "impact": "still caveated",
+      "reason": "Exact June-17 S1.4 tensors are missing; adjacent real-delta audit is supportive but not a strict S1.4 proof."
+    },
+    {
+      "claim": "readout-control boundary",
+      "impact": "strengthened with caveat",
+      "reason": "Readout signal is measurable while frozen control and selection remain unsolved; orthogonality mechanism is not load-bearing."
+    }
+  ],
+  "paper_insertion_text": {
+    "s3b2_selection_wall_section": "On the saved generated-branch pools, a task-grouped S3B2 refit confirms that branch correctness is partially readable from hidden states. The registered L2 logistic audit reached AUROC 0.7515, pairwise accuracy 0.6835, and sel@oracle 0.6250; an expanded grouped ridge probe gives the same forced-selection conclusion while metadata-only controls fail. Thus the failure is not simply a domain/provenance/length shortcut story. The readout exists, but it is not a reliable terminal arbiter on this small shifted pool.",
+    "orthogonality_subspace_caveat_section": "The exact June-17 S1.4 clean, injected, carried, and rederived tensors were not persisted, so the paper should not present a strict S1.4 orthogonality proof. A recovered adjacent hidden-origin intervention artifact does contain real nonzero injection deltas and labels; in that side audit, the correctness direction has projection fraction 0.00115 into the real injection span, with residual 0.99885. This is consistent with a subspace-mismatch explanation but remains scoped as adjacent engineering evidence.",
+    "s3a_motivation_future_work_section": "The engineering picture is therefore coherent but caveated: frozen branch/carry mechanics are valid, K-matched sampling closes the frozen fork as a capability source, generated-branch correctness is partially readable, and terminal selection remains the bottleneck. S3A should be framed as the next training-time test: learn verifier-labeled branch geometry on the generated-branch distribution, then test whether learned write/read geometry can beat both base decoding and K-matched sampling."
+  },
+  "verdict_constants": {
+    "FINAL_ENGINEERING_EXPANSION_VERDICT": "BEGIN_DRAFT_WITH_CAVEATED_ORTHOGONALITY",
+    "S3B2_EXPANDED_VERDICT": "GENERATED_BRANCH_CORRECTNESS_SIGNAL_CONFIRMED_BUT_SELECTION_UNSOLVED",
+    "REAL_INJECTION_ORTHOGONALITY_VERDICT": "REAL_INJECTION_DELTAS_FOUND_AND_AUDITED",
+    "EXACT_S1_S3_TENSOR_STATUS": "EXACT_JUNE17_S1_S3_INJECTION_DELTAS_NOT_FOUND",
+    "S3A_GEOMETRY_CLAIM": "SAFE_TO_CLAIM_PROXY_CONSISTENT_WITH_MISALIGNMENT_ONLY"
+  },
+  "next_recommended_action": "Begin full drafting, but phrase S3B2 as partial generated-branch correctness readout and keep orthogonality/subspace mismatch caveated because exact S1.4 injection tensors are unavailable."
+}

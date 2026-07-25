@@ -18,7 +18,7 @@ from typing import Iterator
 import torch
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_MODEL_PATH = PROJECT_ROOT / "models/ouro_rltt_local"
 DEFAULT_MAX_LENGTH = 1536
 

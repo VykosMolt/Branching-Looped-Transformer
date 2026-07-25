@@ -1,0 +1,27 @@
+{
+ "passed": 20,
+ "failed": 0,
+ "failures": [],
+ "tests": [
+  "scoring_equivalence_24_L4",
+  "scoring_equivalence_36_L2",
+  "scoring_equivalence_47_L1",
+  "all_subset_groups_extracted",
+  "feature_shapes_finite",
+  "group_uid_alignment",
+  "candidate_order_alignment",
+  "reward_alignment",
+  "zero_crossing_recorded",
+  "zero_crossing_recheck",
+  "frozen_head_hash_matches_source_cell",
+  "saved_taps_hash_match",
+  "deterministic_refit",
+  "grid_selection_is_val_argmax",
+  "fit_grid_signature_excludes_heldout",
+  "bootstrap_deterministic",
+  "bootstrap_point_correct",
+  "bootstrap_cluster_integrity",
+  "fresh_matches_cached_at_24_36_47",
+  "early_layers_are_new_loci"
+ ]
+}

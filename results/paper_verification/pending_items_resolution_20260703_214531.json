@@ -1,0 +1,393 @@
+{
+  "report": "paper_pending_items_resolution",
+  "run_dates": "2026-07-03/04",
+  "source_draft": "ouro_paper_draft_v3_6.md",
+  "patched_draft": "ouro_paper_draft_v3_7_pending_items_pinned.md",
+  "scope": "artifact pinning only; no training, no checkpoint edits, no artifact deletion/moves, no expensive regeneration, no new scientific claims",
+  "hard_rules_honored": {
+    "no_training": true,
+    "no_checkpoint_modification": true,
+    "no_artifact_deletion_or_move": true,
+    "no_expensive_regeneration": true,
+    "no_silent_upgrade_of_uncertain_claims": true,
+    "not_found_marked_clearly": true,
+    "historical_status_preserved": true,
+    "no_new_scientific_claims": true,
+    "no_restructure": true
+  },
+  "summary_counts": {
+    "verified_pinned": 8,
+    "not_found": 2,
+    "feasibility_only": 1,
+    "note": "counts span the 11 items; item 10 (citations) counted under verified; items 6 and 7 are the two NOT_FOUND; item 11 is feasibility-only"
+  },
+  "items": [
+    {
+      "id": 1,
+      "name": "strict_preanswer_gsm8k",
+      "status": "VERIFIED",
+      "load_bearing": true,
+      "md_exists": true,
+      "json_exists": true,
+      "md_json_agree": true,
+      "artifact_paths": [
+        "artifacts/reports/proto_introspection/proto_introspection_within_domain_preanswer_specificity_2026-06-17.md",
+        "artifacts/reports/proto_introspection/proto_introspection_within_domain_preanswer_specificity_2026-06-17.json",
+        "artifacts/reports/proto_introspection/within_domain_specificity_results.json",
+        "artifacts/reports/proto_introspection/within_domain_recapture.pt",
+        "artifacts/reports/proto_introspection/within_domain_recapture_index.json",
+        "utilities/tests/manual/proto_introspection_within_domain_recapture.py",
+        "utilities/tests/manual/proto_introspection_within_domain_analysis.py"
+      ],
+      "verified_metrics": {
+        "n_tasks": 170,
+        "n_examples": 680,
+        "hidden_auroc": 0.745,
+        "hidden_auroc_json": 0.7451,
+        "hidden_auroc_ci95": [0.7071, 0.7829],
+        "length_auroc": 0.687,
+        "length_auroc_json": 0.6865,
+        "logprob_auroc": 0.569,
+        "logprob_auroc_json": 0.5692,
+        "length_plus_logprob_auroc": 0.731,
+        "length_plus_logprob_auroc_json": 0.7312,
+        "hidden_plus_all_auroc": 0.797,
+        "incremental_gain": 0.066,
+        "incremental_gain_json": 0.0658,
+        "incremental_ci95": [0.017, 0.114],
+        "hidden_alone_minus_composite": 0.0139,
+        "hidden_alone_vs_composite_significant": false,
+        "base_rate": 0.5985,
+        "preanswer_median_tokens": 163,
+        "cv": "task-grouped 5-fold",
+        "bootstrap": "group bootstrap over tasks, 1000 rounds"
+      },
+      "strict_cut_definition_present": true,
+      "strict_cut_definition": "pre-answer text = before min(FINAL-ANSWER marker, first occurrence of gold answer value); answer number excluded by construction",
+      "confidence_intervals_present": true,
+      "safe_as_primary_evidence": true,
+      "verdicts": {
+        "TIMING_EVIDENCE_VERDICT": "PREANSWER_TIMING_CONTROL_PASS",
+        "SPECIFICITY_EVIDENCE_VERDICT": "HIDDEN_BEATS_SHORTCUTS_WITHIN_DOMAIN",
+        "PROTO_INTROSPECTION_WEAK_CLAIM_VERDICT": "NARROW_DEFENSIBLE_CLAIM_ONLY"
+      },
+      "draft_action": "replaced §5.2 [TODO] block and Appendix I with pinned paths; confirmed cut definition + CIs",
+      "risk": "low"
+    },
+    {
+      "id": 2,
+      "name": "s3b2_generated_branch_correctness",
+      "status": "VERIFIED",
+      "matched_random_baseline_exists": true,
+      "matched_random_baseline_value_sel_at_oracle": 0.5833,
+      "matched_random_baseline_auroc": 0.4625,
+      "matched_random_baseline_provenance": "S3B2 expanded artifact Baseline Comparison table RANDOM row; expanded JSON baseline_comparison.RANDOM; refit JSON RANDOM row",
+      "matched_random_baseline_is_native_not_s3b1_import": true,
+      "coincidence_explanation": "0.5833 ~= 0.58 only because S3B1 and S3B2 refit over the same candidate pool s3b1_loop_pools.pt; NOT the forbidden S3B1-context import",
+      "artifact_paths": [
+        "artifacts/reports/proto_introspection/final_prewrite_hardening_2026-06-17/s3b2_generated_branch_correctness_refit_2026-06-17.md",
+        "artifacts/reports/proto_introspection/final_prewrite_hardening_2026-06-17/s3b2_generated_branch_correctness_refit_2026-06-17.json",
+        "artifacts/reports/proto_introspection/final_engineering_expansion_2026-06-17/s3b2_generated_branch_correctness_expanded_2026-06-17.md",
+        "artifacts/reports/proto_introspection/final_engineering_expansion_2026-06-17/s3b2_generated_branch_correctness_expanded_2026-06-17.json",
+        "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_loop_pools.pt"
+      ],
+      "verified_metrics": {
+        "l2_logistic_auroc": 0.7515,
+        "l2_logistic_pairwise": 0.6835,
+        "l2_logistic_sel_at_oracle": 0.6250,
+        "expanded_hidden_ridge_auroc": 0.7755,
+        "expanded_hidden_ridge_pairwise": 0.7338,
+        "expanded_hidden_ridge_sel_at_oracle": 0.6250,
+        "random_sel_at_oracle": 0.5833,
+        "metadata_only_length_auroc": 0.1094,
+        "metadata_only_domain_auroc": 0.4334,
+        "metadata_only_provenance_auroc": 0.0754,
+        "abstention_q90_coverage": 0.125,
+        "abstention_q90_sel_at_oracle_acted": 0.0,
+        "n_task_groups": 16,
+        "n_oracle_present_groups": 8,
+        "n_candidates": 160,
+        "sel_at_oracle_ci95": [0.25, 0.875]
+      },
+      "draft_action": "corrected §6.3 footnote (no-baseline claim was false), §6.4, Appendix E.2 to report native RANDOM 0.5833 with provenance; distinguished from S3B1 0.58",
+      "risk": "low-medium",
+      "reviewer_flag": "sanity-check the 0.5833<->0.58 coincidence and the editorial choice to add the native baseline"
+    },
+    {
+      "id": 3,
+      "name": "orthogonality_null_audit",
+      "status": "VERIFIED",
+      "load_bearing": false,
+      "used_as": "failed simple explanation only",
+      "md_exists": true,
+      "json_exists": true,
+      "artifact_paths": [
+        "artifacts/reports/proto_introspection/s1_s3_exact_injection_orthogonality_2026-06-17/s1_s3_exact_injection_orthogonality_null_audit_2026-06-17.md",
+        "artifacts/reports/proto_introspection/s1_s3_exact_injection_orthogonality_2026-06-17/s1_s3_exact_injection_orthogonality_null_audit_2026-06-17.json",
+        "artifacts/reports/proto_introspection/s1_s3_exact_injection_orthogonality_2026-06-17/s1_s3_exact_injection_delta_bundle_2026-06-17.pt"
+      ],
+      "verified_metrics": {
+        "D": 24576,
+        "injection_span_rank": 344,
+        "relative_1e-3_rank": 246,
+        "entropy_effective_rank": 6.427472,
+        "participation_ratio": 5.062494,
+        "observed_projection": 0.018296247348189354,
+        "k_over_D": 0.013997395833333334,
+        "observed_over_expected": 1.3071179500845975,
+        "random_direction_null_draws": 1000000,
+        "observed_percentile": 99.9907,
+        "p_right": 9.3e-05,
+        "global_shuffled_mean": 0.022990,
+        "global_shuffled_percentile": 3.44,
+        "global_shuffled_draws": 10000,
+        "domain_stratified_mean": 0.022702,
+        "domain_stratified_percentile": 0.0,
+        "domain_stratified_draws": 10000,
+        "domain_stratified_q01": 0.020509
+      },
+      "shuffled_draw_counts_present": true,
+      "domain_stratified_0pct_strongly_supportable": "below all 10,000 draws / below q01; conservative 'at the low end' phrasing retained given tiny effect and single 1-D projection",
+      "both_nulls_correctly_represented": true,
+      "verdict": "ORTHOGONALITY_LOAD_BEARING_STATUS = DO_NOT_USE_AS_ORTHOGONALITY_EVIDENCE",
+      "draft_action": "§8.4 + Appendix J: draw counts (1e6/10k/10k) + full precision pinned; kept 'at the low end'",
+      "risk": "low"
+    },
+    {
+      "id": 4,
+      "name": "s1_frozen_fork_kmatched",
+      "status": "VERIFIED",
+      "provenance": "live-run 2026-06-17, not regenerated",
+      "artifact_paths": [
+        "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_report_2026-06-17.md",
+        "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4_reference_loop.json",
+        "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4a_fork_param_screen.json",
+        "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4b_kmatched_sampling.json"
+      ],
+      "verified_metrics": {
+        "reference_loop": {"n_tasks": 4, "K": 2, "budget": 4, "alpha": 0.02, "decode": "greedy", "oracle_over_survivors": 0.25, "base_acc": 0.25, "selected_acc": 0.25, "mean_survivors": 4.0},
+        "fork_screen": {"loci": ["L24", "L36", "L47"], "K": 4, "mnt": 96, "scoring": "prompt_plus_answer", "alpha_set": [0.02, 0.05, 0.10], "token_ranges": ["last", "last-8", "second-half"], "greedy_new_correct": 0.0, "sample_new_correct_range": [0.5, 0.75]},
+        "kmatched": {"n_samples": 12, "temp": 0.7, "top_p": 0.95, "mnt": 96, "mnt_long": 160, "base_acc_160": 0.25, "base_acc_96": 0.0, "plain_sampling_oracle": 0.75, "sample_fork_oracle": 0.611, "greedy_fork_new_correct": 0.0, "sample_fork_minus_plain_sampling": -0.139, "plain_sampling_selected_acc": 0.0}
+      },
+      "final_verdict": "FROZEN_FORK_CLOSED__SAMPLING_EXPLAINS_SCREEN__S3_IS_LEVER",
+      "verdict_scope": "LOCAL (under tested alpha/token_range/decode regimes)",
+      "interpretation_matches_draft": true,
+      "draft_action": "§8.2 + Appendix G: exact figures + params pinned",
+      "risk": "low"
+    },
+    {
+      "id": 5,
+      "name": "seven_steering_methods_closure",
+      "status": "VERIFIED",
+      "seven_exactly_backed": true,
+      "provenance_correction": {
+        "field": "two-adapter convergence cosine 0.951",
+        "v3_6_pointed_to": "bg_steering_suite_2026-05-18 (WRONG - contains no adapter-convergence cosine)",
+        "correct_source": "artifacts/reports/probes/bg_sequence_level_adapter_2026-05-18/diagnostics.json (cosine_to_teacher_forced_adapter_proxy = 0.951094388961792)",
+        "also_in": "docs/evaluator/history/steering-and-adapters/steering-consolidation.md:118"
+      },
+      "methods": [
+        "raw NoNorm readout directions",
+        "empirical success-mean-difference directions",
+        "RMS-calibrated static directions",
+        "local BG-score gradient",
+        "classifier/logistic-style adapter",
+        "teacher-forced causal adapter",
+        "sequence-level REINFORCE adapter"
+      ],
+      "artifact_paths": [
+        "docs/evaluator/history/steering-and-adapters/steering-consolidation.md",
+        "artifacts/reports/probes/bg_causal_intervention_adapter_2026-05-18/analysis.json",
+        "artifacts/reports/probes/bg_causal_intervention_adapter_2026-05-18/summary.md",
+        "artifacts/reports/probes/bg_sequence_level_adapter_2026-05-18/diagnostics.json",
+        "artifacts/reports/probes/bg_sequence_level_adapter_2026-05-18/summary.md",
+        "artifacts/reports/probes/bg_preconsolidation_control_probes_2026-05-18/summary.md",
+        "artifacts/reports/probes/bg_steering_suite_2026-05-18/summary.md"
+      ],
+      "verified_metrics": {
+        "cosine_adapter_proxy_raw_nonorm": -0.0005529620521149163,
+        "cosine_adapter_proxy_empirical_mean_diff": -0.0042940625214685476,
+        "cosine_raw_nonorm_empirical_mean_diff": 0.1010015667081813,
+        "two_adapter_convergence_cosine": 0.951094388961792,
+        "safe_alpha_envelope": 0.02,
+        "propagation_decay": "SURVIVES_32_TOKENS",
+        "teacher_forced_margin_lift": 0.010405
+      },
+      "closure_supports_no_signed_control": true,
+      "closure_verdicts": ["RMS_UNSIGNED_ONLY", "GRADIENT_NO_BETTER_THAN_RANDOM", "LOCAL_LOGIT_CONTROL_ONLY", "NO_FROZEN_BACKBONE_WRITE_PATH", "CLOSED_UNDER_TESTED_METHODS", "READOUT_SUPPORTED_CONTROL_NOT_SOLVED"],
+      "draft_action": "§8.1 fixed 0.951 pointer; Appendix H pinned enumeration + cosines + paths",
+      "risk": "low"
+    },
+    {
+      "id": 6,
+      "name": "training_stage_localization_base_thinking_rltt",
+      "status": "NOT_FOUND",
+      "detail": "base 24% (below chance) and RLTT 95.0% cross-model eval have NO live artifact; 95.2% (Thinking) is the historical Kirin-2026 epoch-2 figure",
+      "searched_locations": ["docs/", "artifacts/", "all *.md (repo-wide)", ".codex"],
+      "same_evaluator_across_all_three": "user-confirmed only (unverifiable without artifact)",
+      "metric_type": "pairwise-preference accuracy on HH test split (per draft framing; unverifiable)",
+      "artifact_paths": [],
+      "user_confirmed": true,
+      "upgraded_to_artifact_backed": false,
+      "safe_to_claim_looping_insufficient": "claim coherent and consistent with base-model paper, but NOT artifact-backed; should not be presented as one of the strongest artifact-backed results",
+      "draft_action": "§3.7 Table 1 provenance note; §10.1 row + checklist marked NOT_FOUND / user-confirmed; not upgraded",
+      "risk": "high",
+      "arxiv_blocker": "B1 - featured result standing on user-confirmation only"
+    },
+    {
+      "id": 7,
+      "name": "math_transfer_origin_2.7x",
+      "status": "NOT_FOUND",
+      "detail": "47/100 and 2.7x appear nowhere in the live repo except the paper draft itself; only the later, separately truncation-confounded broad MATH pilots survive (chronological-evaluator-summary.md section 6)",
+      "denominator_baseline_recoverable": false,
+      "artifact_paths": [],
+      "safe_as_number": "historical/lab-notes motivation only; non-load-bearing",
+      "should_remain_historical": true,
+      "draft_action": "§3.6/§1.5: 'unarchived' -> explicit NOT_FOUND (purged); kept non-load-bearing",
+      "risk": "low"
+    },
+    {
+      "id": 8,
+      "name": "pre_dualanchor_scaffold_lineage",
+      "status": "VERIFIED",
+      "backing": "doc/snapshot",
+      "artifact_paths": [
+        "docs/evaluator/branch-generation-and-survival.md",
+        "docs/evaluator/terminal-selection-and-arbiters.md",
+        "docs/evaluator/current-state.md"
+      ],
+      "verified_metrics": {
+        "fixed_composite_conservative_top4": {"oracle_retention": 0.931, "false_prune": 0.069, "avg_survivors": 3.873, "old_context_coding_retention": 1.000, "coding_false_prune": 0.000},
+        "selection_only_phase2": {"fixed_top4_oracle_retention": 0.9514, "false_prune": 0.0486, "avg_survivors": 3.9109, "task_macro_best_selected_reward": 0.9453, "task_macro_final_reward": 0.6672, "status": "SURVIVAL_READY_FINAL_ARBITER_WEAK"}
+      },
+      "safe_as_lineage_evidence": true,
+      "draft_action": "already snapshot-backed; numbers confirmed exact",
+      "risk": "low"
+    },
+    {
+      "id": 9,
+      "name": "branch_carry_substrate_checks",
+      "status": "VERIFIED",
+      "backing": "doc",
+      "artifact_paths": ["docs/evaluator/kv-cache-branch-carry.md"],
+      "verified_metrics": {
+        "slots": 192,
+        "slot_formula": "current_ut*48 + layer_idx",
+        "zero_perturbation_prefill_rms": 0,
+        "zero_perturbation_decode_bf16_drift_rms": "0.05-0.2",
+        "zero_perturbation_decode_max_abs": "<1.0",
+        "no_carry_negative_control_rms": 3.0,
+        "suffix_splice_bit_exact": true,
+        "suffix_splice_prefill_logits_rms": 0,
+        "compute_savings_loop0": 0.13,
+        "compute_savings_loop1": 0.38,
+        "compute_savings_loop2": 0.63,
+        "compute_savings_loop3": 0.88,
+        "k_scaling_loop2_l24": {"K2": 0.32, "K4": 0.47, "K8": 0.55},
+        "compute_savings_amortized_k_ge_2": true
+      },
+      "main_body_safe": ["192 slots", "prefill bit-exactness", "no-carry RMS~3.0", "suffix-splice bit-exactness"],
+      "appendix_only": ["compute-savings percentages (amortized, K>=2)"],
+      "overclaim_check": "draft correctly does NOT claim zero-perturbation bit-exactness beyond prefill (states prefill RMS 0 + decode drift)",
+      "draft_action": "confirmed; no change needed beyond status",
+      "risk": "low"
+    },
+    {
+      "id": 10,
+      "name": "citation_metadata",
+      "status": "VERIFIED",
+      "method": "web (arxiv.org abstract pages), 2026-07-04",
+      "citations": {
+        "2601.01828": {"title": "Emergent Introspective Awareness in Large Language Models", "authors": ["Jack Lindsey"], "match": true},
+        "2410.13787": {"title": "Looking Inward: Language Models Can Learn About Themselves by Introspection", "authors": ["Binder", "Chua", "Korbak", "Sleight", "Hughes", "Long", "Perez", "Turpin", "Evans"], "match": true},
+        "2506.05068": {"title": "Does It Make Sense to Speak of Introspection in Large Language Models?", "authors": ["Iulia M. Comsa", "Murray Shanahan"], "match": true},
+        "2602.20031": {"title": "Latent Introspection: Models Can Detect Prior Concept Injections", "authors": ["Theia Pearson-Vogel", "Martin Vanek", "Raymond Douglas", "Jan Kulveit"], "match": true},
+        "2412.06769": {"title": "Training Large Language Models to Reason in a Continuous Latent Space", "authors": ["Hao", "Sukhbaatar", "Su", "Li", "Hu", "Weston", "Tian"], "match": true},
+        "2602.10520": {"title": "Prioritize the Process, Not Just the Outcome: Rewarding Latent Thought Trajectories Improves Reasoning in Looped Language Models", "authors": ["Jonathan Williams", "Esin Tureci"], "match": true},
+        "2604.09870": {"title": "Relational Preference Encoding in Looped Transformer Internal States", "authors": ["Jan Kirin"], "match": true},
+        "2510.25741": {"title": "Scaling Latent Reasoning via Looped Language Models", "authors_count": 33, "lead": "Rui-Jie Zhu", "notable": ["Yoshua Bengio", "Jason Eshraghian"], "hf_model_card": "https://huggingface.co/ByteDance/Ouro-2.6B-Thinking", "resolved_todo": "full author list + HF URL"},
+        "2403.13787": {"title": "RewardBench: Evaluating Reward Models for Language Modeling", "authors": ["Lambert", "Pyatkin", "Morrison", "Miranda", "Lin", "Chandu", "Dziri", "Kumar", "Zick", "Choi", "Smith", "Hajishirzi"], "resolved_todo": "full author list"},
+        "2408.05094": {"title": "Unlocking Decoding-time Controllability: Gradient-Free Multi-Objective Alignment with Contrastive Prompts", "authors": ["Tingchen Fu", "Yupeng Hou", "Julian McAuley", "Rui Yan"], "resolved_todo": "authors"}
+      },
+      "remaining_citation_todos": [],
+      "note": "only optional BibTeX formatting remains",
+      "draft_action": "References: resolved author lists + HF URL; banner/checklist updated",
+      "risk": "low"
+    },
+    {
+      "id": 11,
+      "name": "second_powered_preanswer_domain",
+      "status": "FEASIBILITY_ONLY_NOT_RUN",
+      "existing_preflight_artifact": "artifacts/reports/proto_introspection/proto_introspection_second_domain_preflight_2026-06-17.md",
+      "preflight_verdict": "SECOND_DOMAIN_STRENGTHENER_VERDICT = REJECTED_AT_PREFLIGHT_BOTH_CANDIDATES",
+      "candidates": {
+        "arc_reasoning": {"status": "underpowered", "n_tasks": 105, "preanswer_median_tokens": 14, "reason": "front-loaded MCQ ~ prompt-only"},
+        "svamp": {"status": "REJECTED", "reasons": ["front-loading (Final Answer in first ~3 tokens)", "verifier mismatch (\\boxed{} vs GSM8K parser, ~60% mislabels)"]},
+        "hendrycks_math": {"status": "REJECTED", "reasons": ["near-degenerate base rate: parseable samples ~21/22 correct", "failure mode is truncation not wrong-answer -> no negative class"]}
+      },
+      "reusable_code": ["utilities/tests/manual/proto_introspection_within_domain_recapture.py", "utilities/tests/manual/proto_introspection_within_domain_analysis.py", "utilities/tests/manual/proto_introspection_math_recapture.py"],
+      "can_reuse_gsm8k_audit_code": true,
+      "compute_cost_estimate": "~4127s for 170 tasks (K=4) on single ~12 GiB GPU; a >=150-task run is a single bounded GPU session",
+      "risk_of_ambiguous_result": "high",
+      "recommendation": "not a cheap win; single-domain narrow claim is defensible for arXiv; second domain is worthwhile follow-up requiring a curated medium-difficulty numeric domain",
+      "draft_action": "§11 + Known-TODOs cite the negative preflight; feasibility analysis in MD report"
+    }
+  ],
+  "provenance_corrections": [
+    {
+      "item": 5,
+      "what": "0.951 two-adapter convergence cosine source pointer",
+      "from": "bg_steering_suite_2026-05-18 (incorrect)",
+      "to": "bg_sequence_level_adapter_2026-05-18/diagnostics.json (cosine_to_teacher_forced_adapter_proxy=0.951094)",
+      "value_changed": false,
+      "note": "number was always correct; only the citation path was wrong in v3.6"
+    }
+  ],
+  "downgraded_claims": [
+    {
+      "item": 6,
+      "claim": "base/Thinking/RLTT training-stage localization (24% / 95.2% / 95.0%)",
+      "from": "artifact-backed-implied / user-confirmed pending",
+      "to": "user-confirmed only, NOT_FOUND as live artifact; not upgraded",
+      "numbers_changed": false,
+      "numbers_deleted": false
+    },
+    {
+      "item": 7,
+      "claim": "math-transfer origin 2.7x / 47-of-100",
+      "from": "unarchived, flagged for live-repo pinning",
+      "to": "explicit NOT_FOUND (purged), non-load-bearing historical motivation",
+      "numbers_changed": false,
+      "numbers_deleted": false
+    }
+  ],
+  "corrections_that_strengthen_a_negative": [
+    {
+      "item": 2,
+      "what": "added S3B2's own matched RANDOM control (sel@oracle 0.5833) which v3.6 said did not exist",
+      "effect": "selection wall is starker; 0.6250 selector only marginally above random"
+    }
+  ],
+  "remaining_arxiv_blockers": [
+    {"id": "B1", "item": 6, "severity": "high", "desc": "base-model 24% localization is featured but has no live artifact; re-run to pin or soften framing"},
+    {"id": "B2", "item": 11, "severity": "medium", "desc": "single powered pre-answer domain; decision needed (pre-flight negative)"},
+    {"id": "B3", "item": "512-slice-antisym", "severity": "low", "desc": "HH 512-slice antisym (0.9668/0.6367) not pinned in this pass; companion artifact exists"}
+  ],
+  "remaining_todos_out_of_scope": [
+    "512-slice HH antisymmetrization pin (companion artifact artifacts/reports/proto_introspection/final_prewrite_hardening_2026-06-17/antisymmetrized_hh_pairwise_audit_2026-06-17.{md,json} exists)",
+    "base-model localization re-run to pin an artifact",
+    "figures/tables production",
+    "reproducibility commit pin (Appendix K)",
+    "LaTeX/Overleaf conversion",
+    "BibTeX formatting"
+  ],
+  "final_recommendation": {
+    "order": [
+      "1. Resolve B1 (base-model localization): re-run to pin, or soften §3.7 'one of the strongest results' framing",
+      "2. Decide second powered domain (B2): narrow single-domain claim defensible for arXiv given negative pre-flight",
+      "3. Proceed to figure/table pass (items 1/2/3/4/5/8/9 pinned and stable)",
+      "4. Optional: pin the 512-slice HH antisym companion artifact"
+    ],
+    "primary_recommendation": "proceed to figure/table pass after deciding B1; a second artifact sweep is not needed"
+  }
+}

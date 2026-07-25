@@ -1,0 +1,392 @@
+{
+  "question": "Where does the historical 24%/95%/95% cross-backbone pattern live: antisymmetric relational score or symmetric/order component?",
+  "head_checkpoint": "/home/moloch/ouro_project/artifacts/checkpoints/evaluator/pairwise_epoch2.pt",
+  "head_checkpoint_sha256": "3630c2092eca8db13239f763bc9c212f4b673866e47f811c3095efc57409ec96",
+  "variants": {
+    "attention_with_norm": "original checkpoint architecture",
+    "attention_without_norm": "bypass trained input_norm only",
+    "mean_with_norm": "replace learned attention pool by masked mean; retain input_norm",
+    "mean_without_norm": "replace learned attention pool by masked mean and bypass input_norm",
+    "fixed_components": "input_proj, two-layer GRU, nonlinear scorer, and all checkpoint weights"
+  },
+  "definitions": {
+    "canonical_score": "s(chosen,rejected)",
+    "swapped_score": "s(rejected,chosen)",
+    "antisymmetric_component": "(canonical-swapped)/2",
+    "symmetric_order_component": "(canonical+swapped)/2"
+  },
+  "metadata": {
+    "thinking": {
+      "source": "/home/moloch/ouro_project/artifacts/reports/evaluator/hh_loop_states_200_thinking.pt",
+      "source_meta": {
+        "model_path": "ByteDance/Ouro-2.6B-Thinking",
+        "tokenizer_path": "models/ouro_rltt_local",
+        "dataset": "Anthropic/hh-rlhf",
+        "split": "test",
+        "seed": 42,
+        "max_examples": 200,
+        "max_length": 384,
+        "dtype": "fp32 states (model fwd in bf16)"
+      },
+      "elapsed_seconds": 1.3328702449798584
+    },
+    "rltt": {
+      "source": "/home/moloch/ouro_project/artifacts/reports/evaluator/hh_loop_states_200_rltt.pt",
+      "source_meta": {
+        "model_path": "models/ouro_rltt_local",
+        "tokenizer_path": "models/ouro_rltt_local",
+        "dataset": "Anthropic/hh-rlhf",
+        "split": "test",
+        "seed": 42,
+        "max_examples": 200,
+        "max_length": 384,
+        "dtype": "fp32 states (model fwd in bf16)"
+      },
+      "elapsed_seconds": 1.1164634227752686
+    },
+    "base": {
+      "source": "streamed token-level capture; states not persisted",
+      "model_id": "ByteDance/Ouro-2.6B",
+      "revision": "1ed04250da1a9936042725d302e81c8fa2ab5abd",
+      "dataset": "Anthropic/hh-rlhf test",
+      "selection_seed": 42,
+      "max_length": 384,
+      "early_exit_threshold": 1.0,
+      "elapsed_seconds": 74.27831792831421
+    }
+  },
+  "summaries": [
+    {
+      "backbone": "Base Ouro 2.6B",
+      "variant": "attention_with_norm",
+      "n_pairs": 200,
+      "canonical_accuracy": 0.95,
+      "canonical_accuracy_ci95": [
+        0.92,
+        0.9751249999999981
+      ],
+      "swapped_accuracy": 0.11,
+      "antisym_accuracy": 0.58,
+      "antisym_accuracy_ci95": [
+        0.51,
+        0.65
+      ],
+      "strict_sign_flip_rate": 0.16,
+      "normal_flipped_pearson": -0.871594878467009,
+      "normal_mean": 1.497828571870923,
+      "flipped_mean": 1.0205840488197282,
+      "antisym_mean": 0.23862226152559743,
+      "antisym_abs_mean": 0.6886750628217123,
+      "symmetric_order_mean": 1.2592063103453257,
+      "symmetric_order_abs_mean": 1.2592063103453257,
+      "symmetric_to_antisym_abs_ratio": 1.8284476646881511,
+      "both_orders_prefer_first_rate": 0.84,
+      "both_orders_prefer_second_rate": 0.0
+    },
+    {
+      "backbone": "Base Ouro 2.6B",
+      "variant": "attention_without_norm",
+      "n_pairs": 200,
+      "canonical_accuracy": 0.99,
+      "canonical_accuracy_ci95": [
+        0.975,
+        1.0
+      ],
+      "swapped_accuracy": 0.03,
+      "antisym_accuracy": 0.595,
+      "antisym_accuracy_ci95": [
+        0.525,
+        0.66
+      ],
+      "strict_sign_flip_rate": 0.04,
+      "normal_flipped_pearson": -0.87492965636438,
+      "normal_mean": 1.9462612088769675,
+      "flipped_mean": 1.5533724143728613,
+      "antisym_mean": 0.196444397252053,
+      "antisym_abs_mean": 0.5229806715808809,
+      "symmetric_order_mean": 1.7498168116249144,
+      "symmetric_order_abs_mean": 1.7498168116249144,
+      "symmetric_to_antisym_abs_ratio": 3.3458536934749774,
+      "both_orders_prefer_first_rate": 0.96,
+      "both_orders_prefer_second_rate": 0.0
+    },
+    {
+      "backbone": "Base Ouro 2.6B",
+      "variant": "mean_with_norm",
+      "n_pairs": 200,
+      "canonical_accuracy": 0.95,
+      "canonical_accuracy_ci95": [
+        0.92,
+        0.98
+      ],
+      "swapped_accuracy": 0.065,
+      "antisym_accuracy": 0.55,
+      "antisym_accuracy_ci95": [
+        0.48,
+        0.62
+      ],
+      "strict_sign_flip_rate": 0.115,
+      "normal_flipped_pearson": -0.8339083435029854,
+      "normal_mean": 1.3620421280385926,
+      "flipped_mean": 1.0403951231297106,
+      "antisym_mean": 0.16082350245444105,
+      "antisym_abs_mean": 0.6087240240187384,
+      "symmetric_order_mean": 1.2012186255841515,
+      "symmetric_order_abs_mean": 1.2012186255841515,
+      "symmetric_to_antisym_abs_ratio": 1.9733386201086986,
+      "both_orders_prefer_first_rate": 0.885,
+      "both_orders_prefer_second_rate": 0.0
+    },
+    {
+      "backbone": "Base Ouro 2.6B",
+      "variant": "mean_without_norm",
+      "n_pairs": 200,
+      "canonical_accuracy": 0.995,
+      "canonical_accuracy_ci95": [
+        0.985,
+        1.0
+      ],
+      "swapped_accuracy": 0.035,
+      "antisym_accuracy": 0.56,
+      "antisym_accuracy_ci95": [
+        0.49,
+        0.625
+      ],
+      "strict_sign_flip_rate": 0.04,
+      "normal_flipped_pearson": -0.8203136090351116,
+      "normal_mean": 1.7979998810216784,
+      "flipped_mean": 1.4991059052059428,
+      "antisym_mean": 0.14944698790786787,
+      "antisym_abs_mean": 0.502001064706128,
+      "symmetric_order_mean": 1.6485528931138105,
+      "symmetric_order_abs_mean": 1.6485528931138105,
+      "symmetric_to_antisym_abs_ratio": 3.2839629415504827,
+      "both_orders_prefer_first_rate": 0.96,
+      "both_orders_prefer_second_rate": 0.0
+    },
+    {
+      "backbone": "Ouro 2.6B Thinking",
+      "variant": "attention_with_norm",
+      "n_pairs": 200,
+      "canonical_accuracy": 0.95,
+      "canonical_accuracy_ci95": [
+        0.92,
+        0.98
+      ],
+      "swapped_accuracy": 0.13,
+      "antisym_accuracy": 0.595,
+      "antisym_accuracy_ci95": [
+        0.53,
+        0.665
+      ],
+      "strict_sign_flip_rate": 0.18,
+      "normal_flipped_pearson": -0.8997921432732293,
+      "normal_mean": 1.6016440350236372,
+      "flipped_mean": 0.9847491109231487,
+      "antisym_mean": 0.3084474620502442,
+      "antisym_abs_mean": 0.7830075391987339,
+      "symmetric_order_mean": 1.293196572973393,
+      "symmetric_order_abs_mean": 1.293196572973393,
+      "symmetric_to_antisym_abs_ratio": 1.6515761448436945,
+      "both_orders_prefer_first_rate": 0.82,
+      "both_orders_prefer_second_rate": 0.0
+    },
+    {
+      "backbone": "Ouro 2.6B Thinking",
+      "variant": "attention_without_norm",
+      "n_pairs": 200,
+      "canonical_accuracy": 0.99,
+      "canonical_accuracy_ci95": [
+        0.975,
+        1.0
+      ],
+      "swapped_accuracy": 0.035,
+      "antisym_accuracy": 0.6,
+      "antisym_accuracy_ci95": [
+        0.535,
+        0.67
+      ],
+      "strict_sign_flip_rate": 0.045,
+      "normal_flipped_pearson": -0.9127824311124243,
+      "normal_mean": 2.0215956879779697,
+      "flipped_mean": 1.5548891480639577,
+      "antisym_mean": 0.23335326995700598,
+      "antisym_abs_mean": 0.5622271056473255,
+      "symmetric_order_mean": 1.7882424180209637,
+      "symmetric_order_abs_mean": 1.7882424180209637,
+      "symmetric_to_antisym_abs_ratio": 3.1806407056131776,
+      "both_orders_prefer_first_rate": 0.955,
+      "both_orders_prefer_second_rate": 0.0
+    },
+    {
+      "backbone": "Ouro 2.6B Thinking",
+      "variant": "mean_with_norm",
+      "n_pairs": 200,
+      "canonical_accuracy": 0.935,
+      "canonical_accuracy_ci95": [
+        0.9,
+        0.965
+      ],
+      "swapped_accuracy": 0.11,
+      "antisym_accuracy": 0.58,
+      "antisym_accuracy_ci95": [
+        0.51,
+        0.65
+      ],
+      "strict_sign_flip_rate": 0.175,
+      "normal_flipped_pearson": -0.8525570139876936,
+      "normal_mean": 1.4101143754413352,
+      "flipped_mean": 1.0197984570125118,
+      "antisym_mean": 0.19515795921441167,
+      "antisym_abs_mean": 0.6434121754392982,
+      "symmetric_order_mean": 1.2149564162269235,
+      "symmetric_order_abs_mean": 1.2149564162269235,
+      "symmetric_to_antisym_abs_ratio": 1.8883018733635184,
+      "both_orders_prefer_first_rate": 0.825,
+      "both_orders_prefer_second_rate": 0.0
+    },
+    {
+      "backbone": "Ouro 2.6B Thinking",
+      "variant": "mean_without_norm",
+      "n_pairs": 200,
+      "canonical_accuracy": 0.99,
+      "canonical_accuracy_ci95": [
+        0.975,
+        1.0
+      ],
+      "swapped_accuracy": 0.025,
+      "antisym_accuracy": 0.55,
+      "antisym_accuracy_ci95": [
+        0.4848750000000001,
+        0.62
+      ],
+      "strict_sign_flip_rate": 0.035,
+      "normal_flipped_pearson": -0.8450338629049449,
+      "normal_mean": 1.851004397906363,
+      "flipped_mean": 1.5093047745898367,
+      "antisym_mean": 0.1708498116582632,
+      "antisym_abs_mean": 0.5248253043368458,
+      "symmetric_order_mean": 1.6801545862480998,
+      "symmetric_order_abs_mean": 1.6801545862480998,
+      "symmetric_to_antisym_abs_ratio": 3.201359714107335,
+      "both_orders_prefer_first_rate": 0.965,
+      "both_orders_prefer_second_rate": 0.0
+    },
+    {
+      "backbone": "Ouro RLTT local",
+      "variant": "attention_with_norm",
+      "n_pairs": 200,
+      "canonical_accuracy": 0.945,
+      "canonical_accuracy_ci95": [
+        0.91,
+        0.975
+      ],
+      "swapped_accuracy": 0.13,
+      "antisym_accuracy": 0.6,
+      "antisym_accuracy_ci95": [
+        0.53,
+        0.67
+      ],
+      "strict_sign_flip_rate": 0.185,
+      "normal_flipped_pearson": -0.9016343980217211,
+      "normal_mean": 1.595663720634766,
+      "flipped_mean": 0.9879802152141929,
+      "antisym_mean": 0.3038417527102865,
+      "antisym_abs_mean": 0.7965475333086215,
+      "symmetric_order_mean": 1.2918219679244793,
+      "symmetric_order_abs_mean": 1.2918219679244793,
+      "symmetric_to_antisym_abs_ratio": 1.621776371032919,
+      "both_orders_prefer_first_rate": 0.815,
+      "both_orders_prefer_second_rate": 0.0
+    },
+    {
+      "backbone": "Ouro RLTT local",
+      "variant": "attention_without_norm",
+      "n_pairs": 200,
+      "canonical_accuracy": 0.99,
+      "canonical_accuracy_ci95": [
+        0.975,
+        1.0
+      ],
+      "swapped_accuracy": 0.035,
+      "antisym_accuracy": 0.61,
+      "antisym_accuracy_ci95": [
+        0.5448750000000001,
+        0.675
+      ],
+      "strict_sign_flip_rate": 0.045,
+      "normal_flipped_pearson": -0.9135815264327435,
+      "normal_mean": 2.019715024866164,
+      "flipped_mean": 1.551342456699349,
+      "antisym_mean": 0.23418628408340736,
+      "antisym_abs_mean": 0.5747748364019207,
+      "symmetric_order_mean": 1.7855287407827563,
+      "symmetric_order_abs_mean": 1.7855287407827563,
+      "symmetric_to_antisym_abs_ratio": 3.106483839759116,
+      "both_orders_prefer_first_rate": 0.955,
+      "both_orders_prefer_second_rate": 0.0
+    },
+    {
+      "backbone": "Ouro RLTT local",
+      "variant": "mean_with_norm",
+      "n_pairs": 200,
+      "canonical_accuracy": 0.935,
+      "canonical_accuracy_ci95": [
+        0.9,
+        0.965
+      ],
+      "swapped_accuracy": 0.13,
+      "antisym_accuracy": 0.565,
+      "antisym_accuracy_ci95": [
+        0.495,
+        0.635
+      ],
+      "strict_sign_flip_rate": 0.195,
+      "normal_flipped_pearson": -0.8585178910522226,
+      "normal_mean": 1.4122162625286727,
+      "flipped_mean": 1.0142354263132438,
+      "antisym_mean": 0.1989904181077145,
+      "antisym_abs_mean": 0.6571407181839458,
+      "symmetric_order_mean": 1.2132258444209583,
+      "symmetric_order_abs_mean": 1.2132258444209583,
+      "symmetric_to_antisym_abs_ratio": 1.8462192508383781,
+      "both_orders_prefer_first_rate": 0.805,
+      "both_orders_prefer_second_rate": 0.0
+    },
+    {
+      "backbone": "Ouro RLTT local",
+      "variant": "mean_without_norm",
+      "n_pairs": 200,
+      "canonical_accuracy": 0.99,
+      "canonical_accuracy_ci95": [
+        0.975,
+        1.0
+      ],
+      "swapped_accuracy": 0.025,
+      "antisym_accuracy": 0.56,
+      "antisym_accuracy_ci95": [
+        0.49,
+        0.63
+      ],
+      "strict_sign_flip_rate": 0.035,
+      "normal_flipped_pearson": -0.8510958881037951,
+      "normal_mean": 1.8531163419084624,
+      "flipped_mean": 1.50483363032341,
+      "antisym_mean": 0.17414135579252615,
+      "antisym_abs_mean": 0.5352225643000565,
+      "symmetric_order_mean": 1.6789749861159362,
+      "symmetric_order_abs_mean": 1.6789749861159362,
+      "symmetric_to_antisym_abs_ratio": 3.1369659990169416,
+      "both_orders_prefer_first_rate": 0.965,
+      "both_orders_prefer_second_rate": 0.0
+    }
+  ],
+  "rows_csv": "/home/moloch/ouro_project/artifacts/reports/paper_verification/fable_hardening_checks_20260710_175017/evaluator_decomposition_rows.csv",
+  "summary_csv": "/home/moloch/ouro_project/artifacts/reports/paper_verification/fable_hardening_checks_20260710_175017/evaluator_decomposition_summary.csv",
+  "environment": {
+    "torch": "2.12.0.dev20260407+cu128",
+    "device": "NVIDIA GeForce RTX 5070 Ti Laptop GPU",
+    "dtype": "backbone bf16; captures/head fp32",
+    "quantization": "none"
+  }
+}

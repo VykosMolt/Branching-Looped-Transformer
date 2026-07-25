@@ -1,19 +1,12 @@
 # Evaluator Docs
 
-Updated: 2026-06-04
+Updated: 2026-06-07
 
 This directory has three layers:
 
 1. Current entry-point docs with memorable names.
 2. Source run notes sorted by topic under `history/bg-run-notes/`.
 3. Exact archives under `history/`.
-
-Scope note: these docs preserve research provenance from a larger local worktree.
-The public repository's active code surface is the top-level `evaluator/`,
-`evaluator_core/`, and `probes/` folders. Historical references to older paths,
-external wrappers, source-worktree routing, action-loop systems, or other
-non-public components are provenance notes only; they are not dependencies or
-current claims of this repository.
 
 No source data was intentionally removed during the 2026-05-31 cleanup. A preservation snapshot of the pre-cleanup root Markdown files is kept at:
 
@@ -39,7 +32,10 @@ The older 2026-05-18 raw archive is now under:
 
 - `dualanchor-architecture-baseline.md` — the active Phase 2a branch-selection baseline.
 - `science-reasoning-repair.md` — pre-steering domain decision (reasoning headline-ready, science diagnostic).
-- `bg_core_domain_tap_audit_dualanchor_readiness_v1.md` — core-domain (coding/reasoning/math/logic/alignment) tap audit; DualAnchor locked unchanged, core domains ready for Phase 2b, science diagnostic-only.
+- `core-domain-tap-audit.md` — core-domain (coding/reasoning/math/logic/alignment) tap audit; DualAnchor locked unchanged, core domains ready for Phase 2b, science diagnostic-only.
+- `content-selection-taps.md` — content / final-selection taps (CoreContent). Entry point for the selector that ranks within the survivor handoff (separate from DualAnchor survival).
+- `corecontent-dataset-expansion-v2.md` — the v2 dataset-expansion + refit run detail (a crafted tap beats the broad-objective baseline on heldout; honest constructed-negative caveats).
+- `branch-training-logic-expansion.md` — first step toward **model-internal branching**: logic-expanded (10 verifier-backed families) branch-training **data + evaluation harness** + 5 training views; bounded bf16-LoRA proof-of-capability (changes branching behavior but doesn't beat the external baseline → keep DualAnchor + CoreContent_v2). H confirmed selection (not survival) is the terminal bottleneck.
 - `domain-transfer-ledger.md` — domain-transfer results ledger.
 
 **Mechanisms and foundations**
@@ -50,7 +46,6 @@ The older 2026-05-18 raw archive is now under:
 - `branch-generation-and-survival.md` — hidden-origin, fixed-composite, and architecture-looped survival.
 - `terminal-selection-and-arbiters.md` — final-arbiter and terminal-confidence work.
 - `kv-cache-branch-carry.md` — generation-time KV/cache branch-carry (v1 ladder) + compute-saving suffix-recompute splice (v2).
-- `s1-branch-carry-reference-loop.md` — S1: full inject->carry->prune->loop-back->terminal reference loop (5-gate validation), and the frozen-model capability result (reachability-neutral / locally closed; two walls -> training is the next lever).
 
 **Historical consolidations**
 
@@ -111,6 +106,19 @@ Separately, the generation-time cache substrate is now validated (see
 branch-specific KV/cache carry is validated, and amortized compute-saving branch-carry
 (K≥2 branches via suffix recompute) is the one place a compute-savings claim is made.
 This is a mechanical cache result, not steering or a production routing change.
+
+Separately, the **content / final-selection** decision was re-opened after a 27–520× data
+expansion (see `content-selection-taps.md`):
+
+`CORECONTENT_DATASET_EXPANSION_REFIT_V2_STATUS = V2_CORECONTENT_READY`
+`BG_CORECONTENT_V2_PHASE2B_READINESS_VERDICT = READY_FOR_PHASE2B_WITH_V2_CORECONTENT`
+
+A crafted tap (`CoreContent_v2_blockwise_pruned_24_36`, layers 24+36) now beats the v1
+broad-objective baseline `mixedhead_MIX_HH_OBJECTIVE` on heldout (0.669 vs 0.553 core macro
+top1). Honest caveat: ~half that margin is a constructed-negative artifact (real-negative-only
+edge is +0.063), and the coding tap is a corruption detector that does not separate plausible
+wrong-problem solutions. This changes only content/final selection; DualAnchor survival,
+terminal survivor-set handoff, and science-diagnostic-only are unchanged.
 
 ## Source Run Notes
 

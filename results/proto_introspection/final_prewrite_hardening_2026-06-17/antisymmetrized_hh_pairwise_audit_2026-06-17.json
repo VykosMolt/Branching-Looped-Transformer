@@ -1,0 +1,62 @@
+{
+  "audit": "antisymmetrized_hh_pairwise_audit",
+  "ran_generation_or_extraction": false,
+  "input_paths": [
+    "artifacts/reports/probes/bg_pairwise_epoch2_vs_tiny_taps_hh_same_slice_v1_2026-05-30/pairwise_epoch2_vs_tiny_taps_hh_same_slice_v1.pt",
+    "artifacts/reports/probes/bg_pairwise_epoch2_vs_tiny_taps_hh_same_slice_v1_2026-05-30/pairwise_epoch2_rows.csv",
+    "artifacts/checkpoints/evaluator/pairwise_epoch2.pt",
+    "artifacts/reports/evaluator/hh_loop_states_200_thinking.pt",
+    "artifacts/reports/evaluator/hh_loop_states_200_rltt.pt"
+  ],
+  "primary_scored_feature_source": "artifacts/reports/probes/bg_pairwise_epoch2_vs_tiny_taps_hh_same_slice_v1_2026-05-30/pairwise_epoch2_vs_tiny_taps_hh_same_slice_v1.pt",
+  "checkpoint_path": "artifacts/checkpoints/evaluator/pairwise_epoch2.pt",
+  "model_name": "models/ouro_rltt_local for existing 512-pair score artifact; pairwise_epoch2.pt evaluator head",
+  "dataset_split": "Anthropic/hh-rlhf test slice; 512-pair saved same-slice artifact, not full 8552 split",
+  "random_seeds": {
+    "score_artifact_source": "existing artifact",
+    "bootstrap": 20260617
+  },
+  "n_examples": 512,
+  "metrics": {
+    "fixed_order_acc": 0.966796875,
+    "fixed_order_acc_ci95": [
+      0.951171875,
+      0.98046875
+    ],
+    "flipped_direction_acc": 0.15625,
+    "strict_sign_flip_rate": 0.189453125,
+    "flip_correlation": -0.8989218234075901,
+    "antisym_acc": 0.63671875,
+    "antisym_acc_ci95": [
+      0.595703125,
+      0.677734375
+    ],
+    "bias_mean": 1.2421430234589934,
+    "bias_std": 0.198125114227172,
+    "normal_mean": 1.575859473694436,
+    "normal_std": 0.8945801375498256,
+    "normal_margin_quantiles": {
+      "0.05": 0.14134959280490875,
+      "0.25": 0.9626534134149551,
+      "0.5": 1.5680385828018188,
+      "0.75": 2.176785945892334,
+      "0.95": 3.1145962357521055
+    },
+    "antisym_score_mean": 0.3337164502354426,
+    "antisym_score_std": 0.8560855805650256,
+    "antisym_margin_quantiles": {
+      "0.05": -1.031955498829484,
+      "0.25": -0.22465071827173233,
+      "0.5": 0.30815550684928894,
+      "0.75": 0.9426076859235764,
+      "0.95": 1.7908967509865759
+    }
+  },
+  "missing_full_test_inputs": [
+    "Full 8552-pair saved HH-RLHF loop-state feature pack or per-pair normal/flipped score table was not found.",
+    "Only 200-pair state packs and a separate 512-pair same-slice score artifact were found locally."
+  ],
+  "HH_ANTISYM_AUDIT_VERDICT": "FIXED_ORDER_RESULT_PARTLY_ORDER_ARTIFACTED",
+  "HH_952_CLAIM_STATUS": "SAFE_AS_FIXED_ORDER_WITH_ANTISYM_CAVEAT",
+  "interpretation": "On the existing 512-pair HH-RLHF same-slice artifact, fixed-order accuracy is high but antisymmetrized accuracy is much lower. The 95.2% full-test number must remain fixed-order HH-RLHF pairwise accuracy; it should not be described as strict antisymmetrized accuracy."
+}

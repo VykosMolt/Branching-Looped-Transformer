@@ -1,0 +1,70 @@
+{
+  "status": "COMPLETE",
+  "backbone": "thinking",
+  "model": "ByteDance/Ouro-2.6B-Thinking",
+  "revision": "f1edd81e7ac41355db670500ceaf204e0f73af68",
+  "dataset": "Anthropic/hh-rlhf",
+  "dataset_split": "train",
+  "n_source_pairs": 40000,
+  "train_pairs": 32000,
+  "eval_pairs": 8000,
+  "train_candidates": 64000,
+  "eval_candidates": 16000,
+  "pair_selection_seed": 20260711,
+  "split_seed": 20260711,
+  "pair_disjoint": true,
+  "source_pairs_crossing_splits": 0,
+  "candidate_labels": {
+    "chosen": 1,
+    "rejected": 0
+  },
+  "feature": "mean-pooled post-final-norm Ouro loop boundary states",
+  "max_length": 384,
+  "probe": "L-BFGS logistic linear with intercept",
+  "normalization": "NoNorm/raw pointwise states",
+  "regularization": "0.5 * ||w||^2 / n_train_candidates; intercept unregularized",
+  "variants": {
+    "final_boundary": {
+      "variant": "final_boundary",
+      "feature_dim": 2048,
+      "train_candidate_accuracy": 0.56109375,
+      "eval_candidate_accuracy": 0.5461875,
+      "eval_chosen_accuracy": 0.54975,
+      "eval_rejected_accuracy": 0.542625,
+      "eval_candidate_accuracy_ci95_pair_bootstrap": [
+        0.541125,
+        0.5513125
+      ],
+      "eval_induced_pairwise_accuracy": 0.567625,
+      "eval_induced_pairwise_accuracy_ci95_pair_bootstrap": [
+        0.5565,
+        0.578625
+      ],
+      "intercept": -0.15434874594211578,
+      "weight_norm": 5.54002046585083,
+      "bootstrap_draws": 10000,
+      "fit_seconds": 5.336165189743042
+    },
+    "all_boundaries_concat": {
+      "variant": "all_boundaries_concat",
+      "feature_dim": 8192,
+      "train_candidate_accuracy": 0.589375,
+      "eval_candidate_accuracy": 0.5418125,
+      "eval_chosen_accuracy": 0.5505,
+      "eval_rejected_accuracy": 0.533125,
+      "eval_candidate_accuracy_ci95_pair_bootstrap": [
+        0.5365625,
+        0.5470625
+      ],
+      "eval_induced_pairwise_accuracy": 0.555375,
+      "eval_induced_pairwise_accuracy_ci95_pair_bootstrap": [
+        0.54425,
+        0.56625
+      ],
+      "intercept": -0.0028639505617320538,
+      "weight_norm": 12.40555477142334,
+      "bootstrap_draws": 10000,
+      "fit_seconds": 17.3690402507782
+    }
+  }
+}

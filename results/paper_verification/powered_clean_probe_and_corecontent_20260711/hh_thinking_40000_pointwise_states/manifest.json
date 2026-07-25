@@ -1,0 +1,382 @@
+{
+  "status": "COMPLETE",
+  "backbone": "thinking",
+  "pairs": 40000,
+  "shards": [
+    {
+      "file": "states_0000.pt",
+      "sha256": "290ee9c93bc82e54f97b0b8256450f52807fe0ab1900d6b0bddda3c4d9d7138b"
+    },
+    {
+      "file": "states_0001.pt",
+      "sha256": "e1bf2f403d406df53e55ce37ef32b463610717381f163f3c0c17e412fc7a1066"
+    },
+    {
+      "file": "states_0002.pt",
+      "sha256": "1838fa96cc8b81770b8c27933aa80a977489f62fe0dae6cd92585ae1b886bcb4"
+    },
+    {
+      "file": "states_0003.pt",
+      "sha256": "bf58f00b797797779a334f72ce438da78415074c523484a19d72442e2e21f7b7"
+    },
+    {
+      "file": "states_0004.pt",
+      "sha256": "fdd78c18d191bfb47d44f5fff24abbbe4c7165ed66a46981b54e311db74d6464"
+    },
+    {
+      "file": "states_0005.pt",
+      "sha256": "e47652f6acfa7fe9dedd86912f55706b7e042aa37b80f971cec2222f417dae3f"
+    },
+    {
+      "file": "states_0006.pt",
+      "sha256": "7c1ab84cccc138104b74dff4cfa9ed90e77c58f85fb8b3c6932f430d52d75538"
+    },
+    {
+      "file": "states_0007.pt",
+      "sha256": "a38db646aa0a0d8c48913a77cd4f97162b289ba65fc6e23196e71372bb4df354"
+    },
+    {
+      "file": "states_0008.pt",
+      "sha256": "1b1d4f681ea95ca4614cc56bea8819ac4f436bdc086cf6ad39f4f39aa99a146b"
+    },
+    {
+      "file": "states_0009.pt",
+      "sha256": "9058c1493d069afa8191f295e367159f5f894423fbd6b87caaa3241462c04fb3"
+    },
+    {
+      "file": "states_0010.pt",
+      "sha256": "7360c456a013c252b479c5168e9488e9881a8baea184c522222c572246b9da1b"
+    },
+    {
+      "file": "states_0011.pt",
+      "sha256": "140518830e4c7047b590cde2755b09cfbf3eaf6d8e06689267a16d2f754cd106"
+    },
+    {
+      "file": "states_0012.pt",
+      "sha256": "981cbfbbf7e1e053da714c3e0ea505b211925fd1d9a0e507ed8626eab2dd4f77"
+    },
+    {
+      "file": "states_0013.pt",
+      "sha256": "968e4465cabb52b5df1ec61a575577903d8d105b13653dc0b72ec796f3a03c50"
+    },
+    {
+      "file": "states_0014.pt",
+      "sha256": "a04fdae152652d25a8a1d0a15e7467493e5b6d03cb143a149a7749ed78a87ee6"
+    },
+    {
+      "file": "states_0015.pt",
+      "sha256": "a45d0b0f19bae297903a82128efdc11da162ea62fb39c005fb6de492d079610e"
+    },
+    {
+      "file": "states_0016.pt",
+      "sha256": "40991a92d118e00d59c7e902062c3d3fd7f8843533c59ca4c7f2b7eec64417f3"
+    },
+    {
+      "file": "states_0017.pt",
+      "sha256": "70b688a9bb702be7cc4d5513d4edc56f3496334f93cbd380a15b78a95980d5c5"
+    },
+    {
+      "file": "states_0018.pt",
+      "sha256": "29def01fcd387ab8231ec04cab6f6cdcc547ab75195ecc89d9a508ed20650e9d"
+    },
+    {
+      "file": "states_0019.pt",
+      "sha256": "43d60a16bde3e7c5107c83ef95bebed282242a852c17539004d8ffdb6f622fa0"
+    },
+    {
+      "file": "states_0020.pt",
+      "sha256": "680827172fb3dd2206cfa284fd53e904f1200860a90de4f1d6134a586f31c829"
+    },
+    {
+      "file": "states_0021.pt",
+      "sha256": "72637c2d55181ad18b7665144e8d29fb7049078dd703856b23626122a5adee4a"
+    },
+    {
+      "file": "states_0022.pt",
+      "sha256": "af0e97f6bcaa29be22d518a09100b2972ad915296b3030e244b9e5828bd488fd"
+    },
+    {
+      "file": "states_0023.pt",
+      "sha256": "be8e52c5b268686248b17778a8eb4f762009440208f3ddf77e0c6587595a7804"
+    },
+    {
+      "file": "states_0024.pt",
+      "sha256": "b942df1584267723a04e7f2344bda74a587cabab74631824f92eb9c88a777098"
+    },
+    {
+      "file": "states_0025.pt",
+      "sha256": "eee579790b9f00da8913357468f4d5b5d2a49f8c86cc7665b7c69e767babad4a"
+    },
+    {
+      "file": "states_0026.pt",
+      "sha256": "86a5e649e01b156414c73c428391b3224953b6068ad49ff8a5c6d63050b4e15b"
+    },
+    {
+      "file": "states_0027.pt",
+      "sha256": "38f65a49caeb20f2e88f45af9785a509044f72c99f69e6d926e977f114614c0d"
+    },
+    {
+      "file": "states_0028.pt",
+      "sha256": "8b38ee4582ea2b1150bfd7fdbc8d0b3a43cc85074214e345183531396a28c37c"
+    },
+    {
+      "file": "states_0029.pt",
+      "sha256": "ea8b7df606df3e9c946b6f6285874f50e95e9740dfdfeba813f7119d2f63b269"
+    },
+    {
+      "file": "states_0030.pt",
+      "sha256": "c8536d9b340ea6d31cf24de8e589286b1dd4100c803ea5341e666d2ea05f1f2f"
+    },
+    {
+      "file": "states_0031.pt",
+      "sha256": "78ea4b77af9dd43a81f59c3143e5e95f3f0ad1187c957f457a0046cfbc0d98b3"
+    },
+    {
+      "file": "states_0032.pt",
+      "sha256": "75aaae6fa709e21770a20c618784ce499ad1b5b3705656bfe995b0eac4ed89ea"
+    },
+    {
+      "file": "states_0033.pt",
+      "sha256": "53e7ccea9dd56458950dbceb02c3c002d2513f15dcacf1f69d54997528812b60"
+    },
+    {
+      "file": "states_0034.pt",
+      "sha256": "ea762fe5b5493fa16d70fdb85707906f547f306c5b0ca7537855b73aa61ecb67"
+    },
+    {
+      "file": "states_0035.pt",
+      "sha256": "1e814bded4df0b1e092825baa2b3cf91f499d199a191f5add30540ee6d50b252"
+    },
+    {
+      "file": "states_0036.pt",
+      "sha256": "6a7505abf5175956feb08eed0ec895da743781d9f5fb1f08c277c2edd1272f42"
+    },
+    {
+      "file": "states_0037.pt",
+      "sha256": "c09832bbf7ad8adb016e0cde086cb5d06ce2508d1e5a5b0a3747add286e3eb34"
+    },
+    {
+      "file": "states_0038.pt",
+      "sha256": "b6b095478882535703f0a4274fe4af30783027e51383faff3c219578c1e5b243"
+    },
+    {
+      "file": "states_0039.pt",
+      "sha256": "a562ccf960a254ee591e56a2e058d3afc2631bc58c00f903e133add8a3c4f7d0"
+    },
+    {
+      "file": "states_0040.pt",
+      "sha256": "9c45925dbd9285525fc0b2697819e2d6a0d4f31cbdd2ea5ac8d48f72ecd9f2d1"
+    },
+    {
+      "file": "states_0041.pt",
+      "sha256": "7bfde6bfb1efcbad16f87b22946c6dea5fd2638e2dcab62741ccc2ba58e39dac"
+    },
+    {
+      "file": "states_0042.pt",
+      "sha256": "46b28b1b3234adbb54282fe6a00d2352490bd75c51efa246ae4550fb9bef2aec"
+    },
+    {
+      "file": "states_0043.pt",
+      "sha256": "b1c719918f850a06a1562c19db95bd42a3c321f4a6a82eebf1b3b222ff2f5c43"
+    },
+    {
+      "file": "states_0044.pt",
+      "sha256": "9805e93b5a7127fc8a1acfdc3b8448cf85faf7d51c802d9a3f46cbfe8c15e233"
+    },
+    {
+      "file": "states_0045.pt",
+      "sha256": "b98fc6d46119a31bf804733529bf4b1b10157fa028c839f7e5b9db62a463ea9e"
+    },
+    {
+      "file": "states_0046.pt",
+      "sha256": "b876017aefe062cc2e2b71adb0a10a8ce035ba03456c1cf1a75370f20f8a8870"
+    },
+    {
+      "file": "states_0047.pt",
+      "sha256": "02c4e906d3454aafe33449c0e44ad48afcb8b5be32388902f12d4c0b68433d78"
+    },
+    {
+      "file": "states_0048.pt",
+      "sha256": "78a4b8cc6db339fd4efd6a2793900d608df1ef53e9a5928e57b6bf7cd5830b37"
+    },
+    {
+      "file": "states_0049.pt",
+      "sha256": "bc03e875d2b7b05f7c58659619c2af753fa8f9b6f565b788e8415daf7a437488"
+    },
+    {
+      "file": "states_0050.pt",
+      "sha256": "9ffbcc1a165409a95c708ad5368771eb8112100f6cf65a9d8afd937871095762"
+    },
+    {
+      "file": "states_0051.pt",
+      "sha256": "15e2cbb957c18cc9e0e65cd2f08bf1f56fa66cee7ab4ab61c450e5a04f9e2021"
+    },
+    {
+      "file": "states_0052.pt",
+      "sha256": "732e4bd814d20b8cd55b2a091256af5bab96028a6fa52677de561c553df1b771"
+    },
+    {
+      "file": "states_0053.pt",
+      "sha256": "ee931e813b572380329478ba87272c80ed83615905633fb43cde2bbcd2aac4ff"
+    },
+    {
+      "file": "states_0054.pt",
+      "sha256": "ed3b0cf4f59702ee39da716992a92a1f9085e02390306df6678ec89123847df7"
+    },
+    {
+      "file": "states_0055.pt",
+      "sha256": "eef5a4c247e839d03ce83918d435b11946f387f3a1e3f18468fb3e1f363c7ec3"
+    },
+    {
+      "file": "states_0056.pt",
+      "sha256": "a5b9782a7b3eb08e85432981d72326c11c8f41293e94b50a7615af01130d4e96"
+    },
+    {
+      "file": "states_0057.pt",
+      "sha256": "85b337fa449b3239e0b4d6d65f9db25294be4079aa9157daabe0ab1a76933263"
+    },
+    {
+      "file": "states_0058.pt",
+      "sha256": "d078542a63b3b395ba6423226781f1fe170098ca181ae6d33c8531a45e61c390"
+    },
+    {
+      "file": "states_0059.pt",
+      "sha256": "e7f399a99958df3a55876a15c1d62d2a5eee1101e6e834115fdf56a9390b0964"
+    },
+    {
+      "file": "states_0060.pt",
+      "sha256": "1a25ba15d09a8e46d3f14f62ec54eb278132914a293805c042e3af0e7263b895"
+    },
+    {
+      "file": "states_0061.pt",
+      "sha256": "0c5650ea824f16eef03819a4c24b8e94899f4a834c04a58f5d4414bb140b42be"
+    },
+    {
+      "file": "states_0062.pt",
+      "sha256": "c6bbaf9999800ff9e772c429f8854fe1c5dea3b9d16e2b38192154d6308ff4a6"
+    },
+    {
+      "file": "states_0063.pt",
+      "sha256": "9e644ef16d1a9c45f02133081fbd1c7dac2cad765d436ade977a153f7dc735f7"
+    },
+    {
+      "file": "states_0064.pt",
+      "sha256": "f41d35d88bf41a3ce943a80bbdf4f746c11e6d77dc2777084c81f00b3e881e0e"
+    },
+    {
+      "file": "states_0065.pt",
+      "sha256": "6cd22c95b558ed5c7f62a597707b37cede0e3a700d808b5c3bdea39271924b91"
+    },
+    {
+      "file": "states_0066.pt",
+      "sha256": "f24113ad449e143d346b7a84bb4bb487eb7f92a2b0d065ea29c5ab68e2da98d3"
+    },
+    {
+      "file": "states_0067.pt",
+      "sha256": "289524ec8e5c73624aaedbbf26dbe29b1c573f7274cb97aeba9e4e595d7b8197"
+    },
+    {
+      "file": "states_0068.pt",
+      "sha256": "e5999b9d49a29813d920fdd86ac40df4461e5701adc14beb8b9f440b44397b60"
+    },
+    {
+      "file": "states_0069.pt",
+      "sha256": "66c4980253facf57f58268a5364610ef9d905c05530fa4c55219c0aecffc9834"
+    },
+    {
+      "file": "states_0070.pt",
+      "sha256": "37575101c175aa8c38fc458ab4e87c34e302882536a387f8c8078bd2335a03d5"
+    },
+    {
+      "file": "states_0071.pt",
+      "sha256": "5a531ef0afa724e8a23082a88deb5af8a761d1da14a73811e235a6954ee1c4c2"
+    },
+    {
+      "file": "states_0072.pt",
+      "sha256": "b6793720c09526164b142eee7e38f49ceaf8697b081bbf9337cf3b746f78271a"
+    },
+    {
+      "file": "states_0073.pt",
+      "sha256": "0ff48dfd4a00437f8c9606b7a204a2fe67df5a8cf7978470999145776b001957"
+    },
+    {
+      "file": "states_0074.pt",
+      "sha256": "db4ebc4a9388d47296baed627ccdcfc596e233f73f2a3df2acd135e9902f1307"
+    },
+    {
+      "file": "states_0075.pt",
+      "sha256": "2a21d29381f80c9fe486b9088bb16ce4bdefe76fe922d746e7482a1adb86233b"
+    },
+    {
+      "file": "states_0076.pt",
+      "sha256": "2ed3acd172ace1c89fadb28e265b5839cbd9ed9fb1411895c03b207102e7eba8"
+    },
+    {
+      "file": "states_0077.pt",
+      "sha256": "e7c0ffb74acc1815d73cb575b1b85e3be006b0659a8fe1df6bda9607ac38a0f5"
+    },
+    {
+      "file": "states_0078.pt",
+      "sha256": "d58ff671635ccb711f553bc0bedd1c9bcdbcae348d885df5cc414a0ffa204db7"
+    },
+    {
+      "file": "states_0079.pt",
+      "sha256": "be17b1198f3612f4afca3aec5443e05dd0702bec13deb87900bb39a61954ad3f"
+    },
+    {
+      "file": "states_0080.pt",
+      "sha256": "2e312342a22bfa0614535cd9a0059744bf7f3ed1d52fbac21751364b7db24e79"
+    },
+    {
+      "file": "states_0081.pt",
+      "sha256": "29cdede71aa2b1adee2ab53c9edd59b24c1b7c0569f47280ab0b2c28df8ffe6e"
+    },
+    {
+      "file": "states_0082.pt",
+      "sha256": "243e1445a596f7ea9a33b5abe57b2c2d66586b3e3f4e858033c57591e172d762"
+    },
+    {
+      "file": "states_0083.pt",
+      "sha256": "845fafec4915b7952a877e21cb3793f8140ac1170496d661d5014a494f5b3351"
+    },
+    {
+      "file": "states_0084.pt",
+      "sha256": "4ac81ee447701d5708f905988dca0559d0e1923f896993836725ddea4a246b83"
+    },
+    {
+      "file": "states_0085.pt",
+      "sha256": "0fe549787551b986c4d66da6ffac86249b468260b4ac6c4ec3bef633dc3281eb"
+    },
+    {
+      "file": "states_0086.pt",
+      "sha256": "4923953ee8c56d6b44da27f91d18209603a623eef09b8ac62275c60eafabd9e6"
+    },
+    {
+      "file": "states_0087.pt",
+      "sha256": "c375d67366a318abbe323f5e91d233089d99ee956546e42cbfd3376bae58fd0b"
+    },
+    {
+      "file": "states_0088.pt",
+      "sha256": "bef095fb5ed53d8639807bda38a213a8c3b2c9d723c03a6161efffd6f4e505f9"
+    },
+    {
+      "file": "states_0089.pt",
+      "sha256": "251cafbc9e3909424198a1cf610292f734dbbc6ddf0a815a637e2220507f90e7"
+    }
+  ],
+  "model": "ByteDance/Ouro-2.6B-Thinking",
+  "revision": "f1edd81e7ac41355db670500ceaf204e0f73af68",
+  "candidate_order": [
+    "chosen",
+    "rejected"
+  ],
+  "feature_shape_per_pair": [
+    2,
+    4,
+    2048
+  ],
+  "dtype": "bfloat16 forward; float16 saved",
+  "quantization": "none",
+  "device": "NVIDIA GeForce RTX 5070 Ti Laptop GPU",
+  "pair_selection_seed": 20260711
+}

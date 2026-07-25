@@ -1,0 +1,17 @@
+{
+  "start_time_utc": "Fri Jul 24 07:15:40 PM UTC 2026",
+  "repo_path": "/home/moloch/ouro_project",
+  "branch": "main",
+  "head_commit": "e4776dd41a85cad699ac36f309b5986ab48bd171",
+  "python_version": "3.14.6 (main, Jun 15 2026, 11:36:54) [GCC 16.1.1 20260430]",
+  "torch_version": "2.12.0.dev20260407+cu128",
+  "cuda_available": true,
+  "cuda_version": "12.8",
+  "transformers_version": "4.54.1",
+  "tokenizers_version": "0.21.4",
+  "gpu": "NVIDIA GeForce RTX 5070 Ti Laptop GPU, 12227 MiB",
+  "model_path": "models/ouro_rltt_local",
+  "expected_transformers": "4.54.1",
+  "expected_layers": 48,
+  "expected_loops": 4
+}

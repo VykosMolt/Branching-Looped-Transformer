@@ -1,0 +1,28 @@
+{
+  "status": "COMPLETE",
+  "backbone": "base",
+  "model": "ByteDance/Ouro-2.6B",
+  "revision": "1ed04250da1a9936042725d302e81c8fa2ab5abd",
+  "dataset": "Anthropic/hh-rlhf",
+  "dataset_split": "train",
+  "n_source_pairs": 40000,
+  "train_pairs": 32000,
+  "eval_pairs": 8000,
+  "pair_selection_seed": 20260711,
+  "split_seed": 20260711,
+  "feature_dim": 8192,
+  "feature": "four mean-pooled post-final-norm loop boundaries concatenated",
+  "max_length": 384,
+  "probe": "bias-free L-BFGS logistic linear",
+  "normalization": "NoNorm/raw difference",
+  "exact_antisymmetry": true,
+  "max_swap_sum_abs": 0.0,
+  "train_accuracy": 0.6916875,
+  "eval_accuracy": 0.55525,
+  "eval_ci95_pair_bootstrap": [
+    0.544375,
+    0.56625
+  ],
+  "bootstrap_draws": 10000,
+  "fit_seconds": 10.395953178405762
+}

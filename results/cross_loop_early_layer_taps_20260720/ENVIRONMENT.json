@@ -1,0 +1,23 @@
+{
+ "date": "2026-07-20",
+ "repo": "/home/moloch/ouro_project",
+ "model_path": "/home/moloch/ouro_project/models/ouro_rltt_local",
+ "transformers": "4.54.1",
+ "torch": "2.12.0.dev20260407+cu128",
+ "cuda_available": true,
+ "gpu": "NVIDIA GeForce RTX 5070 Ti Laptop GPU",
+ "gpu_mem_mb": 11788,
+ "python": "3.14.6",
+ "os": "Linux-7.1.3-2-cachyos-x86_64-with-glibc2.43",
+ "OURO_LOAD_IN_4BIT": false,
+ "git_head": "e4776dd41a85cad699ac36f309b5986ab48bd171",
+ "model_config_sha": "7d6764dbc8210d02",
+ "model_config": {
+  "model_type": "ouro",
+  "num_hidden_layers": 48,
+  "hidden_size": 2048,
+  "total_ut_steps": 4,
+  "early_exit_threshold": 1.0,
+  "torch_dtype": "bfloat16"
+ }
+}

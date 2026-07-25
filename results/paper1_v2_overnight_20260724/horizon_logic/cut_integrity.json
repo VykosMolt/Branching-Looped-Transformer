@@ -1,0 +1,10 @@
+{
+  "cut_definition": "text strictly before the first regex match of FINAL\\s*ANSWE (case-insensitive)",
+  "n_candidates": 680,
+  "n_found_final_marker": 622,
+  "n_malformed_no_marker_or_unparseable": 170,
+  "answer_region_exclusion_violations": 0,
+  "gold_value_in_prompt_or_preanswer_text": false,
+  "gold_value_exclusion_method": "gold answer/letter is never concatenated into any prompt or feature-extraction text; only compared post-hoc against the parsed model output for labeling",
+  "mean_n_pre_tok": 149.00294117647059
+}

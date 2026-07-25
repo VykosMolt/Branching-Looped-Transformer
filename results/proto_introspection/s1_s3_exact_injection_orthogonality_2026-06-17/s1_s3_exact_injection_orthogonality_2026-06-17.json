@@ -1,0 +1,1553 @@
+{
+  "audit": "s1_s3_exact_injection_orthogonality",
+  "ran_generation": true,
+  "trained_ouro_or_modified_checkpoints": false,
+  "bundle_path": "artifacts/reports/proto_introspection/s1_s3_exact_injection_orthogonality_2026-06-17/s1_s3_exact_injection_delta_bundle_2026-06-17.pt",
+  "input_paths": {
+    "task_set": "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_1_task_set.json",
+    "reference_loop_json": "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4_reference_loop.json",
+    "fork_screen_json": "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4a_fork_param_screen.json",
+    "kmatched_sampling_json": "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4b_kmatched_sampling.json",
+    "closure_json": "artifacts/reports/probes/mpn_s3_closure_2026-06-17/s3_closure_verdicts.json"
+  },
+  "protocol": {
+    "delta_status": "EXACT_PROTOCOL_REGENERATED",
+    "historical_tensors_found": false,
+    "protocol_recovery": "exact S1.4 reference-loop config recovered from saved scripts/json; tensors regenerated because historical tensors were absent",
+    "s1_reference_paths": {
+      "task_set": "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_1_task_set.json",
+      "reference_loop_json": "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4_reference_loop.json",
+      "fork_screen_json": "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4a_fork_param_screen.json",
+      "kmatched_sampling_json": "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4b_kmatched_sampling.json",
+      "closure_json": "artifacts/reports/probes/mpn_s3_closure_2026-06-17/s3_closure_verdicts.json"
+    },
+    "tasks": [
+      "logic_00013d9d03",
+      "math_0313a1abc4",
+      "reasoning_00bf397683",
+      "coding_00715d44da"
+    ],
+    "domains": [
+      "math",
+      "reasoning",
+      "logic",
+      "coding"
+    ],
+    "N_PER": 1,
+    "K": 2,
+    "BUDGET": 4,
+    "alpha": 0.02,
+    "loci": [
+      {
+        "loop": 0,
+        "loop_1indexed": 1,
+        "layer": 24
+      },
+      {
+        "loop": 0,
+        "loop_1indexed": 1,
+        "layer": 36
+      },
+      {
+        "loop": 0,
+        "loop_1indexed": 1,
+        "layer": 47
+      },
+      {
+        "loop": 1,
+        "loop_1indexed": 2,
+        "layer": 24
+      },
+      {
+        "loop": 1,
+        "loop_1indexed": 2,
+        "layer": 36
+      },
+      {
+        "loop": 1,
+        "loop_1indexed": 2,
+        "layer": 47
+      },
+      {
+        "loop": 2,
+        "loop_1indexed": 3,
+        "layer": 24
+      },
+      {
+        "loop": 2,
+        "loop_1indexed": 3,
+        "layer": 36
+      },
+      {
+        "loop": 2,
+        "loop_1indexed": 3,
+        "layer": 47
+      },
+      {
+        "loop": 3,
+        "loop_1indexed": 4,
+        "layer": 24
+      },
+      {
+        "loop": 3,
+        "loop_1indexed": 4,
+        "layer": 36
+      },
+      {
+        "loop": 3,
+        "loop_1indexed": 4,
+        "layer": 47
+      }
+    ],
+    "token_range": "fixed last-token suffix (plen-1, plen)",
+    "score_input_mode": "candidate_text_only",
+    "mnt_inter": 64,
+    "mnt_term": 160,
+    "prune_mode": "rank-only content plus budget; DualAnchor validity diagnostic only",
+    "correctness_labels": "verifier/gold/exact labels only; tap scores stored only as pruning metadata",
+    "sampling_control": {
+      "status": "RECONSTRUCTED_K_MATCHED_SAMPLING_SPAN",
+      "N_SAMPLES": 12,
+      "mnt": 96,
+      "temperature": 0.7,
+      "top_p": 0.95,
+      "score_input_mode": "prompt_plus_answer",
+      "seed": 20260617
+    }
+  },
+  "tensor_shapes": {
+    "branch_features": [
+      344,
+      3,
+      4,
+      2048
+    ],
+    "h_clean_locus": [
+      344,
+      2048
+    ],
+    "h_injected_locus": [
+      344,
+      2048
+    ],
+    "delta_locus": [
+      344,
+      2048
+    ],
+    "sample_features": [
+      48,
+      3,
+      4,
+      2048
+    ],
+    "feature_basis": "[3,4,2048] flattened; layer slots 24/36/47 x loops 1..4",
+    "locus_delta_basis": "[2048] last-token boundary vector; embedded into [3,4,2048] at row locus for span audit"
+  },
+  "counts": {
+    "task_count": 4,
+    "branch_count": 344,
+    "terminal_survivor_count": 16,
+    "selected_terminal_count": 4,
+    "correct_branch_labels": 8,
+    "incorrect_branch_labels": 336,
+    "candidate_group_count": 172,
+    "task_locus_group_count": 48,
+    "mixed_label_task_locus_groups": 0,
+    "mixed_label_parent_groups": 0,
+    "loci": 12,
+    "layers": [
+      24,
+      36,
+      47
+    ],
+    "loops": 4
+  },
+  "task_summaries": [
+    {
+      "task_id": "logic_00013d9d03",
+      "domain": "logic",
+      "prompt": "Facts: the fan is running.\nRules: If the tank is full, then the engine starts. If the valve is closed, then the battery is charged. If the fan is running, then the tank is full. If the tank is full, then the valve is closed.\nQuestion: Is the following statement True, False, or Unknown given the facts and rules?\nStatement: the battery is charged.",
+      "prompt_tokens": 274,
+      "base_correct": false,
+      "base_parsed_answer": "So starting with the fact that the fan is running. From rule 3, that means the t",
+      "base_text": "\nOkay, let's see. The problem gives some facts and rules, and I need to determine if the battery is charged. The fact is that the fan is running. The rules are:\n\n1. If the tank is full, then the engine starts.\n2. If the valve is closed, then the battery is charged.\n3. If the fan is running, then the tank is full.\n4. If the tank is full, then the valve is closed.\n\nSo starting with the fact that the fan is running. From rule 3, that means the tank is full. Then, rule 4 says if the tank is full, the valve is closed. Then, rule 2 says if the valve is closed, the battery is charged. So following",
+      "n_generated_branches": 86,
+      "n_terminal_survivors": 4,
+      "n_terminal_correct": 0,
+      "oracle_over_terminal_survivors": false,
+      "selected_correct": false,
+      "selected_branch_id": "b11_79",
+      "trace": [
+        {
+          "locus": "loop1_L24",
+          "is_terminal": false,
+          "n_children": 2,
+          "n_valid": 2,
+          "n_passing": 2,
+          "n_kept": 2,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            0.0,
+            0.0
+          ],
+          "cc_range": [
+            0.0,
+            0.0
+          ],
+          "kept_branch_ids": [
+            "b0_1",
+            "b0_2"
+          ]
+        },
+        {
+          "locus": "loop1_L36",
+          "is_terminal": false,
+          "n_children": 4,
+          "n_valid": 4,
+          "n_passing": 4,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            0.0,
+            0.0
+          ],
+          "cc_range": [
+            0.0,
+            0.0
+          ],
+          "kept_branch_ids": [
+            "b1_3",
+            "b1_4",
+            "b1_5",
+            "b1_6"
+          ]
+        },
+        {
+          "locus": "loop1_L47",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            0.0,
+            0.0
+          ],
+          "cc_range": [
+            0.0,
+            0.0
+          ],
+          "kept_branch_ids": [
+            "b2_7",
+            "b2_8",
+            "b2_9",
+            "b2_10"
+          ]
+        },
+        {
+          "locus": "loop2_L24",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            0.0,
+            0.0
+          ],
+          "cc_range": [
+            0.0,
+            0.0
+          ],
+          "kept_branch_ids": [
+            "b3_15",
+            "b3_16",
+            "b3_17",
+            "b3_18"
+          ]
+        },
+        {
+          "locus": "loop2_L36",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            0.0,
+            0.0
+          ],
+          "cc_range": [
+            0.0,
+            0.0
+          ],
+          "kept_branch_ids": [
+            "b4_23",
+            "b4_24",
+            "b4_25",
+            "b4_26"
+          ]
+        },
+        {
+          "locus": "loop2_L47",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            0.0,
+            0.0
+          ],
+          "cc_range": [
+            0.0,
+            0.0
+          ],
+          "kept_branch_ids": [
+            "b5_31",
+            "b5_32",
+            "b5_33",
+            "b5_34"
+          ]
+        },
+        {
+          "locus": "loop3_L24",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            0.0,
+            0.0
+          ],
+          "cc_range": [
+            0.0,
+            0.0
+          ],
+          "kept_branch_ids": [
+            "b6_39",
+            "b6_40",
+            "b6_41",
+            "b6_42"
+          ]
+        },
+        {
+          "locus": "loop3_L36",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            0.0,
+            0.0
+          ],
+          "cc_range": [
+            0.0,
+            0.0
+          ],
+          "kept_branch_ids": [
+            "b7_47",
+            "b7_48",
+            "b7_49",
+            "b7_50"
+          ]
+        },
+        {
+          "locus": "loop3_L47",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            0.0,
+            0.0
+          ],
+          "cc_range": [
+            0.0,
+            0.0
+          ],
+          "kept_branch_ids": [
+            "b8_55",
+            "b8_56",
+            "b8_57",
+            "b8_58"
+          ]
+        },
+        {
+          "locus": "loop4_L24",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            0.0,
+            0.0
+          ],
+          "cc_range": [
+            0.0,
+            0.0
+          ],
+          "kept_branch_ids": [
+            "b9_63",
+            "b9_64",
+            "b9_65",
+            "b9_66"
+          ]
+        },
+        {
+          "locus": "loop4_L36",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            0.0,
+            0.0
+          ],
+          "cc_range": [
+            0.0,
+            0.0
+          ],
+          "kept_branch_ids": [
+            "b10_71",
+            "b10_72",
+            "b10_73",
+            "b10_74"
+          ]
+        },
+        {
+          "locus": "loop4_L47",
+          "is_terminal": true,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            0.0,
+            0.0
+          ],
+          "cc_range": [
+            0.0,
+            0.0
+          ],
+          "kept_branch_ids": [
+            "b11_79",
+            "b11_80",
+            "b11_81",
+            "b11_82"
+          ]
+        }
+      ],
+      "elapsed_seconds": 805.6
+    },
+    {
+      "task_id": "math_0313a1abc4",
+      "domain": "math",
+      "prompt": "Jerry had some action figures on a shelf in his room. Later he added 7 more action figures to the shelf. If there are a total of 10 action figures on his shelf now How many action figures did he have initially on the shelf?",
+      "prompt_tokens": 267,
+      "base_correct": true,
+      "base_parsed_answer": "3",
+      "base_text": "\nOkay, let's see. The problem says Jerry had some action figures on a shelf, then he added 7 more, and now there are 10 total. I need to find out how many he had initially.\n\nSo, if he added 7 and ended up with 10, the initial number must be 10 minus 7. That's 3. The tempting wrong answer might be adding instead of subtracting, but that would give 17, which is more than 10. So the correct answer is 3.\n\n\nFINAL ANSWER: 3\n\nThe problem states that Jerry added 7 action figures to his initial collection, resulting in a total of 10. To find the initial number",
+      "n_generated_branches": 86,
+      "n_terminal_survivors": 4,
+      "n_terminal_correct": 4,
+      "oracle_over_terminal_survivors": true,
+      "selected_correct": true,
+      "selected_branch_id": "b11_79",
+      "trace": [
+        {
+          "locus": "loop1_L24",
+          "is_terminal": false,
+          "n_children": 2,
+          "n_valid": 2,
+          "n_passing": 2,
+          "n_kept": 2,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            0.0,
+            0.0
+          ],
+          "cc_range": [
+            0.0,
+            0.0
+          ],
+          "kept_branch_ids": [
+            "b0_1",
+            "b0_2"
+          ]
+        },
+        {
+          "locus": "loop1_L36",
+          "is_terminal": false,
+          "n_children": 4,
+          "n_valid": 4,
+          "n_passing": 4,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -0.3333,
+            0.3333
+          ],
+          "cc_range": [
+            -1.0,
+            1.0
+          ],
+          "kept_branch_ids": [
+            "b1_5",
+            "b1_6",
+            "b1_3",
+            "b1_4"
+          ]
+        },
+        {
+          "locus": "loop1_L47",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -0.3333,
+            0.3333
+          ],
+          "cc_range": [
+            -1.0,
+            1.0
+          ],
+          "kept_branch_ids": [
+            "b2_9",
+            "b2_10",
+            "b2_12",
+            "b2_13"
+          ]
+        },
+        {
+          "locus": "loop2_L24",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -0.3333,
+            0.3333
+          ],
+          "cc_range": [
+            -1.0,
+            1.0
+          ],
+          "kept_branch_ids": [
+            "b3_16",
+            "b3_19",
+            "b3_20",
+            "b3_22"
+          ]
+        },
+        {
+          "locus": "loop2_L36",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -0.4303,
+            0.2582
+          ],
+          "cc_range": [
+            -0.7746,
+            1.291
+          ],
+          "kept_branch_ids": [
+            "b4_24",
+            "b4_28",
+            "b4_30",
+            "b4_23"
+          ]
+        },
+        {
+          "locus": "loop2_L47",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -0.3333,
+            0.3333
+          ],
+          "cc_range": [
+            -1.0,
+            1.0
+          ],
+          "kept_branch_ids": [
+            "b5_31",
+            "b5_32",
+            "b5_37",
+            "b5_38"
+          ]
+        },
+        {
+          "locus": "loop3_L24",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -0.2582,
+            0.4303
+          ],
+          "cc_range": [
+            -1.291,
+            0.7746
+          ],
+          "kept_branch_ids": [
+            "b6_40",
+            "b6_41",
+            "b6_43",
+            "b6_44"
+          ]
+        },
+        {
+          "locus": "loop3_L36",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -0.2582,
+            0.4303
+          ],
+          "cc_range": [
+            -1.291,
+            0.7746
+          ],
+          "kept_branch_ids": [
+            "b7_47",
+            "b7_48",
+            "b7_49",
+            "b7_50"
+          ]
+        },
+        {
+          "locus": "loop3_L47",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -0.4303,
+            0.2582
+          ],
+          "cc_range": [
+            -0.7746,
+            1.291
+          ],
+          "kept_branch_ids": [
+            "b8_57",
+            "b8_58",
+            "b8_59",
+            "b8_55"
+          ]
+        },
+        {
+          "locus": "loop4_L24",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -0.4303,
+            0.2582
+          ],
+          "cc_range": [
+            -0.7746,
+            1.291
+          ],
+          "kept_branch_ids": [
+            "b9_65",
+            "b9_66",
+            "b9_67",
+            "b9_63"
+          ]
+        },
+        {
+          "locus": "loop4_L36",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -0.1925,
+            0.5774
+          ],
+          "cc_range": [
+            -1.7321,
+            0.5774
+          ],
+          "kept_branch_ids": [
+            "b10_71",
+            "b10_73",
+            "b10_74",
+            "b10_75"
+          ]
+        },
+        {
+          "locus": "loop4_L47",
+          "is_terminal": true,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            0.0,
+            0.0
+          ],
+          "cc_range": [
+            0.0,
+            0.0
+          ],
+          "kept_branch_ids": [
+            "b11_79",
+            "b11_80",
+            "b11_81",
+            "b11_82"
+          ]
+        }
+      ],
+      "elapsed_seconds": 798.5
+    },
+    {
+      "task_id": "reasoning_00bf397683",
+      "domain": "reasoning",
+      "prompt": "Is it safe to eat hair?",
+      "prompt_tokens": 193,
+      "base_correct": false,
+      "base_parsed_answer": "Another angle is the physical structure of hair. It's long and fibrous, which mi",
+      "base_text": "\nOkay, let's tackle this question: Is it safe to eat hair? The options are A. Yes and B. No.\n\nFirst, I need to think about what hair is made of. Hair is primarily composed of a protein called keratin. Keratin is a tough, fibrous substance that's not easily digestible by the human body. Unlike other proteins found in food, like those in meat or eggs, keratin isn't broken down by our digestive enzymes. So if someone eats hair, it would pass through the digestive system without being absorbed, which could lead to a blockage or other gastrointestinal issues.\n\nAnother angle is the physical structure of hair. It's long and fibrous, which might cause irritation or damage to the digestive tract. There's also the risk of trichophagia",
+      "n_generated_branches": 86,
+      "n_terminal_survivors": 4,
+      "n_terminal_correct": 0,
+      "oracle_over_terminal_survivors": false,
+      "selected_correct": false,
+      "selected_branch_id": "b11_81",
+      "trace": [
+        {
+          "locus": "loop1_L24",
+          "is_terminal": false,
+          "n_children": 2,
+          "n_valid": 2,
+          "n_passing": 2,
+          "n_kept": 2,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            0.0,
+            0.0
+          ],
+          "cc_range": [
+            0.0,
+            0.0
+          ],
+          "kept_branch_ids": [
+            "b0_1",
+            "b0_2"
+          ]
+        },
+        {
+          "locus": "loop1_L36",
+          "is_terminal": false,
+          "n_children": 4,
+          "n_valid": 4,
+          "n_passing": 4,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -0.3333,
+            0.3333
+          ],
+          "cc_range": [
+            -0.3333,
+            0.3333
+          ],
+          "kept_branch_ids": [
+            "b1_3",
+            "b1_5",
+            "b1_4",
+            "b1_6"
+          ]
+        },
+        {
+          "locus": "loop1_L47",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -0.8819,
+            0.126
+          ],
+          "cc_range": [
+            -0.126,
+            0.8819
+          ],
+          "kept_branch_ids": [
+            "b2_9",
+            "b2_7",
+            "b2_8",
+            "b2_10"
+          ]
+        },
+        {
+          "locus": "loop2_L24",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -0.4303,
+            0.2582
+          ],
+          "cc_range": [
+            -0.2582,
+            0.4303
+          ],
+          "kept_branch_ids": [
+            "b3_17",
+            "b3_20",
+            "b3_21",
+            "b3_15"
+          ]
+        },
+        {
+          "locus": "loop2_L36",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            0.0,
+            0.0
+          ],
+          "cc_range": [
+            0.0,
+            0.0
+          ],
+          "kept_branch_ids": [
+            "b4_23",
+            "b4_24",
+            "b4_25",
+            "b4_26"
+          ]
+        },
+        {
+          "locus": "loop2_L47",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -0.8819,
+            0.126
+          ],
+          "cc_range": [
+            -0.126,
+            0.8819
+          ],
+          "kept_branch_ids": [
+            "b5_36",
+            "b5_31",
+            "b5_32",
+            "b5_33"
+          ]
+        },
+        {
+          "locus": "loop3_L24",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            0.0,
+            0.0
+          ],
+          "cc_range": [
+            0.0,
+            0.0
+          ],
+          "kept_branch_ids": [
+            "b6_39",
+            "b6_40",
+            "b6_41",
+            "b6_42"
+          ]
+        },
+        {
+          "locus": "loop3_L36",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -0.3333,
+            0.3333
+          ],
+          "cc_range": [
+            -0.3333,
+            0.3333
+          ],
+          "kept_branch_ids": [
+            "b7_48",
+            "b7_49",
+            "b7_50",
+            "b7_54"
+          ]
+        },
+        {
+          "locus": "loop3_L47",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -0.4303,
+            0.2582
+          ],
+          "cc_range": [
+            -0.2582,
+            0.4303
+          ],
+          "kept_branch_ids": [
+            "b8_55",
+            "b8_60",
+            "b8_61",
+            "b8_56"
+          ]
+        },
+        {
+          "locus": "loop4_L24",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -0.3333,
+            0.3333
+          ],
+          "cc_range": [
+            -0.3333,
+            0.3333
+          ],
+          "kept_branch_ids": [
+            "b9_63",
+            "b9_65",
+            "b9_69",
+            "b9_70"
+          ]
+        },
+        {
+          "locus": "loop4_L36",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -0.1925,
+            0.5774
+          ],
+          "cc_range": [
+            -0.5774,
+            0.1925
+          ],
+          "kept_branch_ids": [
+            "b10_71",
+            "b10_74",
+            "b10_75",
+            "b10_76"
+          ]
+        },
+        {
+          "locus": "loop4_L47",
+          "is_terminal": true,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -0.5774,
+            0.1925
+          ],
+          "cc_range": [
+            -1.7321,
+            0.5774
+          ],
+          "kept_branch_ids": [
+            "b11_81",
+            "b11_82",
+            "b11_83",
+            "b11_84"
+          ]
+        }
+      ],
+      "elapsed_seconds": 801.4
+    },
+    {
+      "task_id": "coding_00715d44da",
+      "domain": "coding",
+      "prompt": "Write a function which accepts an arbitrary list and converts it to a heap using heap queue algorithm.",
+      "prompt_tokens": 123,
+      "base_correct": false,
+      "base_parsed_answer": "Okay, I need to write a Python function called raw_heap that takes an arbitrary list and converts it into a heap using the heap queue algorithm. Hmm, right, the heapq module in Python has a heapify function that does exactly this. So the task is to use that.\n\nWait, the function should modify the list in place, right? Because heapify does that. So the function raw_heap should take the list as an argument and call heapq.heapify on it. Then return the modified list. But wait, the problem says \"converts it to a heap\", so the function should return the heapified list. But since heapify is in-place, the original list is modified. So the function can just return the list",
+      "base_text": "\nOkay, I need to write a Python function called raw_heap that takes an arbitrary list and converts it into a heap using the heap queue algorithm. Hmm, right, the heapq module in Python has a heapify function that does exactly this. So the task is to use that.\n\nWait, the function should modify the list in place, right? Because heapify does that. So the function raw_heap should take the list as an argument and call heapq.heapify on it. Then return the modified list. But wait, the problem says \"converts it to a heap\", so the function should return the heapified list. But since heapify is in-place, the original list is modified. So the function can just return the list",
+      "n_generated_branches": 86,
+      "n_terminal_survivors": 4,
+      "n_terminal_correct": 0,
+      "oracle_over_terminal_survivors": false,
+      "selected_correct": false,
+      "selected_branch_id": "b11_83",
+      "trace": [
+        {
+          "locus": "loop1_L24",
+          "is_terminal": false,
+          "n_children": 2,
+          "n_valid": 2,
+          "n_passing": 2,
+          "n_kept": 2,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -1.0,
+            1.0
+          ],
+          "cc_range": [
+            -1.0,
+            1.0
+          ],
+          "kept_branch_ids": [
+            "b0_2",
+            "b0_1"
+          ]
+        },
+        {
+          "locus": "loop1_L36",
+          "is_terminal": false,
+          "n_children": 4,
+          "n_valid": 4,
+          "n_passing": 4,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            0.0,
+            0.0
+          ],
+          "cc_range": [
+            0.0,
+            0.0
+          ],
+          "kept_branch_ids": [
+            "b1_3",
+            "b1_4",
+            "b1_5",
+            "b1_6"
+          ]
+        },
+        {
+          "locus": "loop1_L47",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -1.0,
+            1.0
+          ],
+          "cc_range": [
+            -1.0,
+            1.0
+          ],
+          "kept_branch_ids": [
+            "b2_11",
+            "b2_12",
+            "b2_13",
+            "b2_14"
+          ]
+        },
+        {
+          "locus": "loop2_L24",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -0.378,
+            2.6458
+          ],
+          "cc_range": [
+            -0.378,
+            2.6458
+          ],
+          "kept_branch_ids": [
+            "b3_17",
+            "b3_15",
+            "b3_16",
+            "b3_18"
+          ]
+        },
+        {
+          "locus": "loop2_L36",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -0.5774,
+            1.7321
+          ],
+          "cc_range": [
+            -0.5774,
+            1.7321
+          ],
+          "kept_branch_ids": [
+            "b4_25",
+            "b4_28",
+            "b4_23",
+            "b4_24"
+          ]
+        },
+        {
+          "locus": "loop2_L47",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -1.0,
+            1.0
+          ],
+          "cc_range": [
+            -1.0,
+            1.0
+          ],
+          "kept_branch_ids": [
+            "b5_33",
+            "b5_34",
+            "b5_37",
+            "b5_38"
+          ]
+        },
+        {
+          "locus": "loop3_L24",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -0.7746,
+            1.291
+          ],
+          "cc_range": [
+            -0.7746,
+            1.291
+          ],
+          "kept_branch_ids": [
+            "b6_42",
+            "b6_43",
+            "b6_46",
+            "b6_39"
+          ]
+        },
+        {
+          "locus": "loop3_L36",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -0.378,
+            2.6458
+          ],
+          "cc_range": [
+            -0.378,
+            2.6458
+          ],
+          "kept_branch_ids": [
+            "b7_50",
+            "b7_47",
+            "b7_48",
+            "b7_49"
+          ]
+        },
+        {
+          "locus": "loop3_L47",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -1.1148,
+            1.1446
+          ],
+          "cc_range": [
+            -0.9563,
+            1.287
+          ],
+          "kept_branch_ids": [
+            "b8_56",
+            "b8_57",
+            "b8_60",
+            "b8_55"
+          ]
+        },
+        {
+          "locus": "loop4_L24",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -0.7746,
+            1.291
+          ],
+          "cc_range": [
+            -0.7746,
+            1.291
+          ],
+          "kept_branch_ids": [
+            "b9_63",
+            "b9_67",
+            "b9_68",
+            "b9_64"
+          ]
+        },
+        {
+          "locus": "loop4_L36",
+          "is_terminal": false,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -1.7321,
+            0.5774
+          ],
+          "cc_range": [
+            -1.7321,
+            0.5774
+          ],
+          "kept_branch_ids": [
+            "b10_71",
+            "b10_72",
+            "b10_73",
+            "b10_74"
+          ]
+        },
+        {
+          "locus": "loop4_L47",
+          "is_terminal": true,
+          "n_children": 8,
+          "n_valid": 8,
+          "n_passing": 8,
+          "n_kept": 4,
+          "content_threshold": null,
+          "n_correct_children": 0,
+          "da_range": [
+            -0.7586,
+            1.0001
+          ],
+          "cc_range": [
+            -0.5085,
+            0.3028
+          ],
+          "kept_branch_ids": [
+            "b11_83",
+            "b11_84",
+            "b11_79",
+            "b11_80"
+          ]
+        }
+      ],
+      "elapsed_seconds": 799.7
+    }
+  ],
+  "metrics": {
+    "injection_span": {
+      "raw_rank": 344,
+      "effective_rank": 6.427472172839128,
+      "pca_energy_counts": {
+        "pcs_50pct": 3,
+        "pcs_80pct": 4,
+        "pcs_90pct": 5,
+        "pcs_95pct": 8
+      },
+      "top_singular_values": [
+        2.2986605167388916,
+        2.29819917678833,
+        2.214676856994629,
+        2.0849497318267822,
+        0.6989719867706299,
+        0.6828545928001404,
+        0.6781508326530457,
+        0.5160052180290222,
+        0.49225831031799316,
+        0.4730713367462158,
+        0.4472694396972656,
+        0.23018530011177063,
+        0.19281011819839478,
+        0.18949899077415466,
+        0.18894849717617035,
+        0.17943711578845978,
+        0.10107313841581345,
+        0.09946724027395248,
+        0.09811609238386154,
+        0.07458589971065521
+      ]
+    },
+    "projection": {
+      "projection_fraction_outcome_onto_actual_injection_span": 0.018296247348189354,
+      "residual_fraction_outcome_outside_actual_injection_span": 0.9817037526518106,
+      "projection_fraction_group_outcome_onto_actual_injection_span": null,
+      "n_group_outcome_directions": 0,
+      "projection_fraction_pair_outcome_onto_actual_injection_span": null,
+      "n_pair_outcome_directions": 0,
+      "cosine_abs_outcome_top_injection_pcs": [
+        0.003248653607442975,
+        0.002272457117214799,
+        0.004517441615462303,
+        0.0073974160477519035,
+        0.00018979866581503302,
+        0.0007085069664753973,
+        0.0006983416387811303,
+        0.0010196929797530174,
+        0.0006002744194120169,
+        0.0005553581286221743
+      ],
+      "max_abs_cosine_top10_injection_pcs": 0.0073974160477519035
+    },
+    "random_controls": {
+      "same_rank_random_subspace": {
+        "draws": 100,
+        "rank": 344,
+        "mean": 0.013879932966083287,
+        "ci95": [
+          0.01207569141406566,
+          0.0164155600592494
+        ],
+        "theoretical_mean_rank_over_dim": 0.013997395833333334
+      },
+      "shuffled_correctness_labels": {
+        "draws": 100,
+        "mean": 0.023378635589033366,
+        "ci95": [
+          0.01874361759983003,
+          0.02883067629300057
+        ]
+      }
+    },
+    "sampling_comparison": {
+      "sampling_span_status": "RECONSTRUCTED_K_MATCHED_SAMPLING_SPAN",
+      "n_sample_candidates": 48,
+      "sample_positive_labels": 4,
+      "sampling_rank": 44,
+      "sampling_effective_rank": 7.388714280140898,
+      "rank_match_used": 44,
+      "projection_fraction_outcome_onto_sampling_span_rank_matched": 0.4745825231075287,
+      "projection_fraction_group_outcome_onto_sampling_span_rank_matched": null,
+      "projection_fraction_pair_outcome_onto_sampling_span_rank_matched": null,
+      "principal_cosines_injection_vs_sampling": {
+        "max": 0.22790934145450592,
+        "mean": 0.0531974695622921,
+        "min": 3.8431408029282466e-05
+      },
+      "cosine_abs_outcome_top_sampling_pcs": [
+        0.4004543721675873,
+        0.317573606967926,
+        0.16523227095603943,
+        0.29560917615890503,
+        0.05980677157640457,
+        0.03816214203834534,
+        0.07344113290309906,
+        0.06036628782749176,
+        0.05340017378330231,
+        0.014885682612657547
+      ]
+    },
+    "classification_sanity": {
+      "full_features": {
+        "auroc": 0.11607142857142858,
+        "binary_acc_at_zero": 0.9534883720930233,
+        "leakage_check_passed": true
+      },
+      "actual_injection_span_projected": {
+        "auroc": 0.41964285714285715,
+        "binary_acc_at_zero": 0.9767441860465116,
+        "leakage_check_passed": true
+      },
+      "actual_injection_residual": {
+        "auroc": 0.3482142857142857,
+        "binary_acc_at_zero": 0.9534883720930233,
+        "leakage_check_passed": true
+      },
+      "sampling_span_projected_rank_matched": {
+        "auroc": 0.3482142857142857,
+        "binary_acc_at_zero": 0.9767441860465116,
+        "leakage_check_passed": true
+      },
+      "shuffled_label_control_full_features": {
+        "auroc": 0.41443452380952384,
+        "binary_acc_at_zero": 0.9767441860465116,
+        "leakage_check_passed": true
+      }
+    },
+    "domain_breakdown": {
+      "coding": {
+        "n_candidates": 86,
+        "positive_labels": 0,
+        "negative_labels": 86,
+        "projection_fraction_outcome_onto_injection_span": null
+      },
+      "logic": {
+        "n_candidates": 86,
+        "positive_labels": 0,
+        "negative_labels": 86,
+        "projection_fraction_outcome_onto_injection_span": null
+      },
+      "math": {
+        "n_candidates": 86,
+        "positive_labels": 8,
+        "negative_labels": 78,
+        "projection_fraction_outcome_onto_injection_span": 0.02802048623561859
+      },
+      "reasoning": {
+        "n_candidates": 86,
+        "positive_labels": 0,
+        "negative_labels": 86,
+        "projection_fraction_outcome_onto_injection_span": null
+      }
+    }
+  },
+  "verdict_constants": {
+    "EXACT_S1_S3_DELTA_STATUS": "EXACT_PROTOCOL_REGENERATED",
+    "REAL_INJECTION_ORTHOGONALITY_VERDICT": "OUTCOME_DIRECTION_MOSTLY_OUTSIDE_ACTUAL_S1_S3_INJECTION_SPAN",
+    "SAMPLING_SPAN_COMPARISON_VERDICT": "INJECTION_SPAN_DISTINCT_FROM_SAMPLING_SPAN",
+    "READOUT_CONTROL_BOUNDARY_VERDICT": "FROZEN_BRANCH_NULL_EXPLAINED_BY_SUBSPACE_MISALIGNMENT",
+    "PROTO_INTROSPECTION_TITLE_SUPPORT_VERDICT": "ORTHOGONALITY_SUPPORTS_READOUT_NOT_CONTROL_FRAMING",
+    "S3A_COMPUTE_PITCH_VERDICT": "TRAINING_JUSTIFIED_TO_ALIGN_WRITABLE_BRANCH_DIRECTIONS"
+  },
+  "paper_insertion_text": {
+    "cautious_main_body_paragraph": "We regenerated the frozen S1.4 branch/carry protocol from the saved June-17 configuration (4 tasks, 12 loci, K=2, alpha=0.02, fixed last-token perturbations) and captured the actual boundary deltas used by the branch/carry mechanism. In the regenerated bundle, the verifier-labeled outcome direction projects 0.018296 of its squared norm into the actual injection/carry span, leaving residual 0.981704. Because the original historical tensors were not persisted, this is an exact-protocol regeneration rather than a historical tensor replay; nevertheless it directly audits the S1.4 writable frozen directions.",
+    "stronger_main_body_paragraph": "The exact S1.4 protocol regeneration closes the geometry gap: the frozen branch/carry deltas span a low-rank writable subspace, but the verifier-success direction lies almost entirely outside it (projection 0.018296, residual 0.981704). This supports the readout-control boundary interpretation: the model exposes process-quality information in hidden states, while the frozen write directions available to the branch/carry mechanism are not aligned with the outcome-relevant geometry.",
+    "compute_pitch_paragraph": "This geometry makes S3A a training-time alignment test rather than another frozen-control tweak. The frozen mechanism is mechanically valid and K-matched sampling closes the apparent fork gain, but the actual writable branch/carry span is misaligned with verifier-success directions. The next compute should therefore train on verifier-labeled generated branches to align readable process-state directions with controllable branch dynamics."
+  },
+  "interpretation": "The exact S1.4 protocol was regenerated because historical tensors were absent. The outcome direction lies mostly outside the actual frozen injection/carry span, so the frozen null is explained or at minimum strongly supported by subspace misalignment. The claim should be phrased as exact-protocol regenerated, not exact historical tensor replay."
+}

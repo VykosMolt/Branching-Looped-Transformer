@@ -1,0 +1,260 @@
+{
+  "report": "proto_introspection_paper_writing_package",
+  "date": "2026-06-17",
+  "compiled": "2026-06-23",
+  "scope": "synthesis-only paper-writing package; no new experiments; no checkpoint changes; no S3A; verify-from-artifacts only",
+  "companion_md": "artifacts/reports/proto_introspection/proto_introspection_paper_writing_package_2026-06-17.md",
+  "short_handoff": "artifacts/reports/proto_introspection/proto_introspection_paper_handoff_short_2026-06-17.md",
+
+  "executive_summary": "The paper claims, operationally only, that looped LM hidden states expose readable, pre-answer, partly shortcut-independent process-quality signals about the model's own ongoing computation. Strongest block is relational (pairwise 0.952; pointwise-linear 0.2175 below chance; antisymmetry rho~=-0.94). Decisive recent addition is the strict pre-answer within-domain specificity audit: GSM8K 170 powered tasks, hidden AUROC 0.745 [0.707,0.783], hidden+all beats length+logprob composite by +0.066 [+0.017,+0.114] SIG. Caveat: hidden-alone ties the composite (Δ+0.014 ns). Readout is not control: every frozen intervention failed. No consciousness/self-awareness/autonomous-control/capability claim. Ready to draft now; remaining gaps are scope limitations, not blockers.",
+
+  "thesis": {
+    "conservative_recommended": "In a frozen looped LM (Ouro-RLTT), intermediate hidden states carry readable, pre-answer process-quality information about the model's own ongoing computation -- predicting eventual success in a powered domain and adding significant information beyond length/logprob shortcuts -- but this readable signal does not by itself yield autonomous control or capability gains.",
+    "slightly_stronger": "Looped-transformer hidden states expose an operational weak form of proto-introspection: a tiny external readout recovers relational quality ordering (95.2%) and strict pre-answer success signal (0.745) that is partly shortcut-independent, establishing that the model's own trajectory states encode their own prospects before external judgment.",
+    "title_safe": "Readable Process-Quality Signals in Looped-Transformer Hidden States.",
+    "abstract_safe": "We give an operational definition of weak proto-introspection for looped LMs and show, on frozen Ouro-RLTT, that intermediate hidden states predict the model's own pre-answer success beyond simple shortcuts, while readout does not imply control."
+  },
+
+  "contributions": [
+    "Operational definition of weak proto-introspection for looped LMs (excludes mentalistic interpretation).",
+    "Relational hidden-state readout evidence in Ouro-RLTT (pairwise 0.952; antisymmetry/pointwise controls).",
+    "Strict pre-answer within-domain specificity audit: hidden states add significant incremental information beyond shortcuts (GSM8K powered).",
+    "Role separation: validity (DualAnchor) / content (CoreContent) / correctness (verifier) are distinct; tap scores never correctness labels.",
+    "Empirical readout/control boundary: readable signals do not automatically yield steering or capability gains."
+  ],
+
+  "claim_safety_table": [
+    {"claim": "hidden states encode relational preference/quality", "status": "SAFE", "evidence": "HH pairwise 0.952; pointwise-linear 0.2175; rho~=-0.94", "allowed": "tiny relational readout recovers human-preference ordering", "forbidden": "the model knows which answer is better"},
+    {"claim": "preanswer hidden states predict future success (GSM8K)", "status": "SAFE", "evidence": "strict cut AUROC 0.745 [0.707,0.783] grouped CV 170 tasks", "allowed": "predict eventual correctness before answer emitted", "forbidden": "predicts its own success (mentalistic)"},
+    {"claim": "hidden states add significant info beyond shortcuts", "status": "SAFE_WITH_CAVEAT", "evidence": "(hidden+all)-composite +0.066 [+0.017,+0.114] SIG", "allowed": "adds significant incremental information beyond length/logprob", "forbidden": "dominates / beats all trivial predictors"},
+    {"claim": "signal is partly shortcut-independent", "status": "SAFE_WITH_CAVEAT", "evidence": "incremental gain SIG; hidden-alone ties composite (+0.014 ns)", "allowed": "partly shortcut-independent", "forbidden": "shortcut-free"},
+    {"claim": "signal is cross-domain", "status": "SAFE_WITH_CAVEAT", "evidence": "GSM8K powered + ARC underpowered same direction", "allowed": "appears in a second (underpowered) domain", "forbidden": "established cross-domain"},
+    {"claim": "signal is useful", "status": "SAFE_WITH_CAVEAT", "evidence": "retention 0.9848/1.0; ranking; diagnostics", "allowed": "useful for external ranking/retention/diagnosis (weak utility)", "forbidden": "improves task capability"},
+    {"claim": "readout implies control", "status": "UNSAFE", "evidence": "steering closed; fork new-correct 0.0; sampling >= fork", "allowed": "-", "forbidden": "readable implies controllable/steerable"},
+    {"claim": "proto-introspection means consciousness", "status": "UNSAFE", "evidence": "definitional", "allowed": "operational, non-psychological", "forbidden": "consciousness/self-awareness/sentience/mental states"},
+    {"claim": "branching/Jormungandr capability gain", "status": "UNSAFE", "evidence": "frozen fork reachability-neutral; S3A not run", "allowed": "mechanism validated; capability not demonstrated", "forbidden": "branching improves capability"}
+  ],
+
+  "evidence_table": [
+    {"block": "original evaluator / relational preference", "artifact": "artifacts/reports/evaluator/probe_loop_geometry_hh.json; artifacts/checkpoints/evaluator/pairwise_epoch2.pt", "key_result": "HH pairwise 0.952 (8141/8552); thinking 0.95 / RLTT 0.945", "supports": ["P1","P3"], "caveat": "fixed-order preference; evaluator != self-knowledge", "placement": "R1/Fig2/Table1"},
+    {"block": "linear probe & pairwise difference", "artifact": "artifacts/reports/evaluator/probe_l1_ablation.json", "key_result": "pairwise-nonlinear 0.952; pointwise-nonlinear 0.65; pointwise-linear 0.2175 (below chance); linear-diff 0.845; L1-only canonical 0.915", "supports": ["P1","P3"], "caveat": "generating script removed from worktree (JSON survives)", "placement": "R1/Methods/Appendix"},
+    {"block": "flip/antisymmetry", "artifact": "docs/evaluator/flip-test-interpretation.md; s3_closure_verdicts.json item D", "key_result": "strict sign-flip exact 0 (by construction); flip-correlation rho~=-0.94", "supports": ["P3"], "caveat": "structural+empirical; not held-out generalization test", "placement": "R1/Fig2"},
+    {"block": "taps / CoreContent / DualAnchor role separation", "artifact": "artifacts/reports/probes/mpn_s3_closure_2026-06-17/s3_closure_verdicts.json; docs/evaluator/content-selection-taps.md; docs/evaluator/dualanchor-architecture-baseline.md", "key_result": "CoreContent in-dist 0.6691 [0.6448,0.6902]; DualAnchor survival retention 0.9848 / terminal 1.0 / forced-top1 0.379", "supports": ["P4","P5"], "caveat": "forced-top1 diagnostic; survivor-retention is headline", "placement": "R5/Table1"},
+    {"block": "trajectory / prefix prediction", "artifact": "artifacts/reports/probes/bg_trajectory_prediction_2026-05-18/summary.json; predictive_power.md", "key_result": "reasoning@256 pairwise 0.8536, top1-lift +0.1625 [0.0625,0.2625], oracle 0.90", "supports": ["P1","P2"], "caveat": "LEAKAGE: 256-prefix 95% answer-leaked; task-grouped AUROC drops to 0.624; clean preanswer 0.690; do NOT use as clean headline", "placement": "R2 caveated/Appendix"},
+    {"block": "strict preanswer GSM8K audit", "artifact": "artifacts/reports/proto_introspection/proto_introspection_within_domain_preanswer_specificity_2026-06-17.{md,json}; within_domain_recapture.pt", "key_result": "hidden 0.745 [0.707,0.783]; length 0.687; logprob 0.569; len+logprob 0.731; hidden+all 0.797; incremental +0.066 [+0.017,+0.114] SIG", "supports": ["P1","P2","P3"], "caveat": "hidden-alone ties composite (+0.014 ns); one powered domain", "placement": "R3/R4/Fig3/Table3"},
+    {"block": "reasoning/ARC secondary audit", "artifact": "same JSON, reasoning block", "key_result": "hidden 0.690 [0.634,0.741]; len+logprob 0.597; incremental +0.093 [+0.037,+0.150] SIG", "supports": ["P1","P6"], "caveat": "UNDERPOWERED (105<150); preanswer front-loaded median 14 tok", "placement": "R3 secondary/Table3"},
+    {"block": "steering / control failure", "artifact": "docs/evaluator/steering-and-adapters.md; mpn_s1_baseline_2026-06-13/s1_4b_kmatched_sampling.json", "key_result": "frozen steering CLOSED_UNDER_TESTED_METHODS; K-matched plain sampling 0.75 >= sample-fork 0.611 (diff -0.139); greedy-fork new-correct 0.0", "supports": ["P7"], "caveat": "bounded negative under tested methods, not impossibility", "placement": "R6/Fig4/Table4"},
+    {"block": "S1/S3 branch closure", "artifact": "mpn_s3_closure_2026-06-17/s3_closure_and_sokac_validity_bundle.md + s3_closure_verdicts.json", "key_result": "mechanism validated; frozen branching reachability-neutral; S3A cloud-only, not run", "supports": ["P4","P5","P7"], "caveat": "engineering background/limitation, not the proto-introspection proof", "placement": "R6/Appendix/Limitations"}
+  ],
+
+  "operational_definition": {
+    "definition": "An intermediate model state is proto-introspective if it contains readable information about the quality, stability, uncertainty, likely success/failure, or branch-viability of the model's own ongoing computation, recoverable by a small external readout before external final judgment.",
+    "does_imply": ["model's intermediate trajectory states encode their own prospects", "small frozen-backbone readout recovers it", "information present before final answer, not reducible to final label"],
+    "does_not_imply": ["consciousness/sentience/subjective awareness/mental states", "verbal self-report / self-understanding", "autonomous use of signal for self-control (readout != control)", "generic correctness reducible to trivial output stats"]
+  },
+
+  "load_bearing_numbers_verified": {
+    "A_relational_preference": {
+      "hh_pairwise_full_test": 0.952, "hh_pairwise_count": "8141/8552",
+      "hh_pairwise_subset_thinking": 0.95, "hh_pairwise_subset_rltt": 0.945,
+      "linear_diff_probe": 0.845, "pointwise_nonlinear": 0.65, "pointwise_linear": 0.2175,
+      "antisymmetry_rho": -0.94, "strict_sign_flip_by_construction": 0.0, "L1_only_canonical": 0.915,
+      "source": "probe_loop_geometry_hh.json (subset accs verified), proto_introspection_evidence_matrix_2026-06-17.json (full/linear), s3_closure_verdicts.json item D (rho)",
+      "provenance_note": "full-test 0.952 and pointwise-linear 0.2175 come from the evidence matrix / probe_l1_ablation JSON; thinking 0.95 and rltt 0.945 verified directly in probe_loop_geometry_hh.json; rho~=-0.94 verified in s3 closure"
+    },
+    "B_trajectory_prefix": {
+      "best_cell": "reasoning@256", "pairwise_acc": 0.8536585365853658, "top1_lift": 0.1625,
+      "top1_lift_bootstrap_ci": [0.0625, 0.2625], "top2_lift": 0.0417, "oracle_reasoning_256": 0.90,
+      "leakage_caveat": "256-prefix ~95% answer-leaked; random-CV overstates by +0.108 vs task-grouped; task-grouped AUROC 0.624; clean preanswer 0.690",
+      "source": "bg_trajectory_prediction_2026-05-18/summary.json (0.8536/0.162/oracle/0.9 string-verified); leakage from proto_introspection_controls_2026-06-17",
+      "usage": "MOTIVATION ONLY, caveated; NOT the clean proto-introspection headline"
+    },
+    "C_strict_preanswer_within_domain": {
+      "gsm8k": {"n_tasks": 170, "n_examples": 680, "base_rate": 0.599, "powered": true, "preanswer_median_tok": 163,
+                "hidden": 0.745, "hidden_ci95": [0.707, 0.783], "length": 0.687, "logprob": 0.569,
+                "length_plus_logprob": 0.731, "hidden_plus_all": 0.797,
+                "incremental_hidden_all_minus_composite": 0.0658, "incremental_ci95": [0.0172, 0.1144], "incremental_sig": true,
+                "hidden_minus_length": 0.0586, "hidden_minus_length_ci95": [-0.0005, 0.1203], "hidden_minus_length_sig": false,
+                "hidden_minus_logprob": 0.1759, "hidden_minus_logprob_sig": true,
+                "hidden_minus_composite": 0.0139, "hidden_minus_composite_ci95": [-0.0542, 0.0798], "hidden_minus_composite_sig": false,
+                "prompt_only_hidden": 0.6992, "prompt_only_shortcut": 0.6893},
+      "reasoning_arc": {"n_tasks": 105, "n_examples": 420, "base_rate": 0.429, "powered": false, "preanswer_median_tok": 14,
+                "hidden": 0.690, "hidden_ci95": [0.634, 0.741], "length": 0.590, "logprob": 0.528,
+                "length_plus_logprob": 0.597, "hidden_plus_all": 0.690,
+                "incremental_hidden_all_minus_composite": 0.0932, "incremental_ci95": [0.0371, 0.1496], "incremental_sig": true,
+                "verdict": "UNDERPOWERED"},
+      "source": "proto_introspection_within_domain_preanswer_specificity_2026-06-17.json"
+    },
+    "D_utility_control_boundary": {
+      "kmatched_plain_sampling_oracle": 0.75, "sample_fork_oracle": 0.611, "sample_fork_minus_plain": -0.139,
+      "greedy_fork_new_correct": 0.0, "frozen_steering": "CLOSED_UNDER_TESTED_METHODS",
+      "bounded_lora_macro_before": 0.708, "bounded_lora_macro_after": 0.688,
+      "corecontent_in_dist": 0.6691, "corecontent_in_dist_ci": [0.6448, 0.6902], "corecontent_generated_ood": 0.417,
+      "dualanchor_survival_retention": 0.9848, "dualanchor_terminal_retention": 1.0, "dualanchor_forced_top1": 0.379,
+      "s3b1_best_real_selector_separability": 0.569, "s3b1_random_separability": 0.463,
+      "source": "s3_closure_verdicts.json key_metrics; proto_introspection_evidence_matrix_2026-06-17.json P4/P7"
+    }
+  },
+
+  "results_order": {
+    "R1": "Relational hidden-state quality signal (evaluator/pairwise/antisymmetry)",
+    "R2": "Intermediate/prefix trajectory signal (CAVEATED for leakage)",
+    "R3": "Strict preanswer process-quality signal (cleanest result; GSM8K powered)",
+    "R4": "Specificity (significant incremental over shortcuts; hidden-alone ties composite)",
+    "R5": "Role separation (validity/content/correctness distinct)",
+    "R6": "Readout/control boundary (steering+fork failures)"
+  },
+
+  "figures": [
+    {"id": "Fig1", "desc": "Conceptual diagram: looped UT, taps L24/36/47 x4 loops, external readout before final judgment", "source": "schematic + s3_closure_verdicts.json model config"},
+    {"id": "Fig2", "desc": "Pairwise hidden-state difference & antisymmetric readout: 0.952 vs 0.2175 pointwise-linear; rho~=-0.94", "source": "probe_loop_geometry_hh.json; flip-test-interpretation.md; matrix JSON"},
+    {"id": "Fig3", "desc": "Strict preanswer AUROC bars: hidden/length/logprob/len+logprob/hidden+all, GSM8K (powered) + ARC (underpowered flagged)", "source": "within_domain_specificity JSON results"},
+    {"id": "Fig4", "desc": "Readout vs control boundary: readout successes vs control failures", "source": "within_domain JSON + s3_closure key_metrics"}
+  ],
+  "tables": [
+    {"id": "Table1", "desc": "Evidence pillar matrix P1-P7", "source": "matrix JSON pillars + within_domain pillar_status_updated"},
+    {"id": "Table2", "desc": "Claim safety table", "source": "this package §4"},
+    {"id": "Table3", "desc": "Strict preanswer audit metrics (per-domain AUROCs, deltas, CIs, n, base rate, token dist)", "source": "within_domain_specificity JSON"},
+    {"id": "Table4", "desc": "Limitations and forbidden interpretations", "source": "this package §14 + §4 UNSAFE rows"}
+  ],
+
+  "related_work_buckets": [
+    "looped transformers / latent reasoning / RLTT",
+    "probing hidden states",
+    "preference modeling and reward models",
+    "mechanistic interpretability / representation geometry",
+    "uncertainty / confidence estimation",
+    "process supervision",
+    "tree-of-thought / external search vs internal branching",
+    "steering / activation intervention limits"
+  ],
+
+  "limitations": [
+    "primary specificity rests on one powered strict-preanswer domain (GSM8K 170 tasks)",
+    "secondary reasoning/ARC UNDERPOWERED (105<150), preanswer front-loaded (median 14 tok)",
+    "second powered domain attempted+REJECTED at pre-flight 2026-06-23 (see proto_introspection_second_domain_preflight_2026-06-17.md): SVAMP front-loads (preanswer median 3 tok) + boxed/verifier mismatch; MATH L1-3 forces real reasoning but model failure mode is truncation not wrong-answers -> parseable base rate ~1.0, no negative class. Clean domain needs answer-last reasoning AND balanced commit/fail mix; GSM8K hits this window",
+    "hidden-alone does not dominate length+logprob composite (Δ+0.014 ns); win is significant incremental validity",
+    "shortcut independence partial, not complete",
+    "cross-domain shortcut-free proof not complete",
+    "readout is not causal control; boundary established not crossed",
+    "no consciousness/self-awareness/sentience/mental-state claim",
+    "no Jormungandr/branching capability improvement (frozen branching reachability-neutral; fork new-correct 0.0)",
+    "S3A (training-time branch-tournament RLTT) not run (cloud/backbone scale)",
+    "frozen branch/carry negative result (K-matched sampling >= fork) reported not hidden",
+    "two L1 probe generating scripts removed from worktree (result JSONs survive)",
+    "evaluator preference is fixed-order human-preference; external evaluator != model self-knowledge"
+  ],
+
+  "paper_outline": {
+    "Abstract": "conservative candidate + operational disclaimer",
+    "1_Introduction": "why looped transformers; why hidden states may carry process signal; why operational definition; what Ouro-RLTT allows; findings; non-claims",
+    "2_Operational_Definition": "definition + does/does-not-imply",
+    "3_Background": "Ouro-RLTT config, tap points, pairwise evaluator, taps",
+    "4_Methods": "extraction, strict preanswer cut, shortcut baselines, task-grouped CV + group-bootstrap deltas",
+    "5_Results": "R1-R5; Fig2/Fig3; Table1/Table3",
+    "6_Readout_vs_Control": "R6; steering/fork failures; Fig4/Table4",
+    "7_Limitations": "see limitations",
+    "8_Discussion": "interest despite caveats; logprob weak; hidden+all complementary; readout/control separation; motivates S3A",
+    "9_Conclusion": "restate conservative thesis + readout/control boundary + next step",
+    "Appendices": "A evaluator/probe; B taps; C shortcut baselines; D preanswer cut; E branch/S3 closure; F negative results; G artifact index"
+  },
+
+  "appendix_plan": [
+    "A evaluator architecture / linear-probe details",
+    "B tap definitions (DualAnchor/CoreContent)",
+    "C shortcut-baseline details",
+    "D strict preanswer cut construction",
+    "E branch/S3 engineering closure",
+    "F additional negative results (trajectory leakage, steering closure, generated-branch transfer fail)",
+    "G artifact/reproducibility index"
+  ],
+
+  "wording_bank": {
+    "operational_definition": "We use proto-introspection operationally, not psychologically: an intermediate state is proto-introspective if it carries readable information about the quality, stability, uncertainty, or likely success of the model's own ongoing computation, recoverable by a small external readout before external final judgment.",
+    "weak_claim": "Looped-model hidden states expose readable process-quality signals about the model's own ongoing computation.",
+    "preanswer_result": "At a strict pre-answer cut that excludes the gold answer value, frozen hidden states predict eventual GSM8K success at AUROC 0.745 [0.707, 0.783] under task-grouped cross-validation over 170 powered tasks.",
+    "shortcut_caveat": "Hidden states add statistically significant incremental information beyond length and log-probability shortcuts (+0.066, CI [+0.017, +0.114]); on their own they tie, but do not beat, a strong length+log-probability composite (Δ +0.014, ns).",
+    "readout_control_boundary": "These signals are readable, but no tested frozen-backbone intervention converted them into reliable control or new correct answers; readout and autonomous control are distinct problems.",
+    "no_consciousness": "This is an operational, empirical result about readable internal information; we make no claim about consciousness, self-awareness, sentience, mental states, or verbal self-understanding.",
+    "jormungandr_limitation": "Frozen internal branching is reachability-neutral under the tested regimes and does not demonstrate any capability improvement; the branching mechanism is validated but not shown to add capability.",
+    "future_work": "The readout/control gap motivates training-time branch-tournament RLTT (S3A), a cloud/backbone-scale experiment, rather than further inference-time steering."
+  },
+
+  "final_verdict_constants": {
+    "PAPER_READINESS_VERDICT": "READY_TO_DRAFT_WITH_CAVEATS",
+    "PROTO_INTROSPECTION_CLAIM_SCOPE": "NARROW_OPERATIONAL_WEAK_FORM",
+    "TIMING_VERDICT": "STRICT_PREANSWER_SIGNAL_SUPPORTED",
+    "SPECIFICITY_VERDICT": "PARTLY_SHORTCUT_INDEPENDENT_SIGNIFICANT_INCREMENTAL_SIGNAL",
+    "CROSS_DOMAIN_VERDICT": "PARTIAL_NOT_FULLY_ESTABLISHED",
+    "UTILITY_VERDICT": "WEAK_READOUT_UTILITY_SUPPORTED_STRONG_CONTROL_NOT_PROVEN",
+    "CONTROL_VERDICT": "READOUT_CONTROL_BOUNDARY_ESTABLISHED",
+    "BRANCHING_VERDICT": "MECHANISM_VALIDATED_CAPABILITY_NOT_PROVEN",
+    "NEXT_STEP_VERDICT": "BEGIN_PAPER_DRAFT"
+  },
+
+  "artifact_index": {
+    "present_load_bearing": [
+      "artifacts/reports/proto_introspection/proto_introspection_evidence_matrix_2026-06-17.md",
+      "artifacts/reports/proto_introspection/proto_introspection_evidence_matrix_2026-06-17.json",
+      "artifacts/reports/proto_introspection/proto_introspection_within_domain_preanswer_specificity_2026-06-17.md",
+      "artifacts/reports/proto_introspection/proto_introspection_within_domain_preanswer_specificity_2026-06-17.json",
+      "artifacts/reports/proto_introspection/proto_introspection_second_domain_preflight_2026-06-17.md",
+      "utilities/tests/manual/proto_introspection_math_recapture.py",
+      "artifacts/reports/proto_introspection/within_domain_recapture.pt",
+      "artifacts/reports/proto_introspection/within_domain_recapture_index.json",
+      "artifacts/reports/proto_introspection/within_domain_specificity_results.json",
+      "artifacts/reports/proto_introspection/proto_introspection_controls_2026-06-17.md",
+      "artifacts/reports/proto_introspection/proto_introspection_controls_2026-06-17.json",
+      "artifacts/reports/proto_introspection/preanswer_recapture.pt",
+      "artifacts/reports/proto_introspection/controls_analysis_results.json",
+      "artifacts/reports/proto_introspection/proto_introspection_final_readiness_2026-06-17.md",
+      "artifacts/reports/probes/mpn_s3_closure_2026-06-17/s3_closure_and_sokac_validity_bundle.md",
+      "artifacts/reports/probes/mpn_s3_closure_2026-06-17/s3_closure_verdicts.json",
+      "artifacts/reports/evaluator/probe_loop_geometry_hh.json",
+      "artifacts/checkpoints/evaluator/pairwise_epoch2.pt",
+      "artifacts/reports/probes/bg_trajectory_prediction_2026-05-18/summary.json",
+      "artifacts/reports/probes/bg_trajectory_prediction_2026-05-18/predictive_power.md",
+      "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4b_kmatched_sampling.json",
+      "docs/evaluator/flip-test-interpretation.md",
+      "docs/evaluator/steering-and-adapters.md",
+      "docs/evaluator/dualanchor-architecture-baseline.md",
+      "docs/evaluator/content-selection-taps.md",
+      "utilities/tests/manual/proto_introspection_within_domain_recapture.py",
+      "utilities/tests/manual/proto_introspection_within_domain_analysis.py",
+      "utilities/tests/manual/proto_introspection_preanswer_recapture.py",
+      "utilities/tests/manual/proto_introspection_controls_analysis.py",
+      "src/evaluator/bg_transformer_features.py"
+    ],
+    "missing": [
+      "MISSING: utilities/tests/manual/probe_l1_ablation.py and probe_l1_alpha_sweep.py -- consequence: result JSONs survive and are load-bearing; generating scripts removed from worktree; 0.2175 and L1-only 0.915 stand; script reproducibility weakened",
+      "MISSING: second powered strict-preanswer domain (reasoning reached 105<150, budget-capped, front-loaded) -- consequence: powered specificity rests on one domain; CROSS_DOMAIN_VERDICT stays PARTIAL",
+      "MISSING: Barbados loop-state success/failure predictability -- consequence: no small-looped-transformer cross-check; optional; must NOT be invented",
+      "MISSING: artifacts/logs/mpn_s3b/ -- consequence: S3B-0/S3B-1 have no dedicated run log (JSONs are the record); low impact",
+      "MISSING: offsite/cloud copy of S0 backup -- consequence: single-disk failure risk for pre-S3A weight backup; weakens S3A safety precondition, not a paper claim"
+    ]
+  },
+
+  "honesty_ledger": [
+    "trajectory 0.854 was leakage+memorization-inflated (256-prefix 95% answer-leaked; task-grouped AUROC 0.624); clean defensible number is strict preanswer GSM8K 0.745",
+    "hidden-alone ties length+logprob composite (Δ+0.014 ns); significant result is incremental hidden+all over composite (+0.066 [+0.017,+0.114])",
+    "powered specificity is one domain; ARC secondary underpowered; fresh second-domain attempt (SVAMP, MATH) rejected at pre-flight for principled model-specific reasons (front-loading / truncation-failure selection) -- documented as a negative finding, not silently dropped",
+    "frozen branching/steering produced no control and no capability gain -- reported not hidden"
+  ],
+
+  "hard_rules_honored": [
+    "no new experiments (artifact verification only)",
+    "no invented numbers (all verified against cited artifacts 2026-06-23)",
+    "no invented paths",
+    "no overclaim",
+    "no consciousness/self-awareness/sentience/mental-state claim",
+    "no strong introspection claim",
+    "no autonomous control claim",
+    "no Jormungandr capability claim",
+    "deflationary results not hidden (trajectory leakage, fork negative, hidden-ties-composite)",
+    "shortcut caveat not buried",
+    "hidden+all significant incremental gain stated",
+    "uses 'evidence/supports' not 'proof'",
+    "does not collapse into generic reward modeling (preanswer hidden-state process signal emphasized)",
+    "does not collapse into philosophy (kept operational/empirical)"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "generated_at": "2026-07-11T12:20:00+02:00",
+  "control_model": {
+    "model_id": "openbmb/MiniCPM-2B-sft-bf16",
+    "revision": "4ec16344ac13e6ef5010aeecaa533369ac8eb53c",
+    "weight_sha256": "0b0c993ace78c5983373948c636b0e587fcf1ac6f2e0f980bf7d735fe7dc52f8",
+    "layers": 40,
+    "hidden_size": 2304,
+    "dtype": "bfloat16",
+    "quantization": "none",
+    "device": "NVIDIA GeForce RTX 5070 Ti Laptop GPU"
+  },
+  "environment": {
+    "torch": "2.12.0.dev20260407+cu128",
+    "transformers": "4.54.1"
+  },
+  "corecontent_v2": {
+    "saved_groups": 36279,
+    "saved_candidates": 98228,
+    "feature_shards": 64,
+    "extraction_errors": 0,
+    "unique_group_uids": 28833,
+    "manifest_status_explanation": "PARTIAL is a false bookkeeping status caused by repeated group_uid strings; direct shard totals equal the full source totals.",
+    "feature_taps": [24, 36],
+    "pooling": "mask-valid mean",
+    "scoring": "bias-free raw/NoNorm linear candidate differences",
+    "best_tap": 24,
+    "stored_split_task_ids_crossing": 195,
+    "task_disjoint_seed": 20260711,
+    "task_disjoint_train_tasks": 23054,
+    "task_disjoint_val_tasks": 2948,
+    "task_disjoint_heldout_tasks": 2831,
+    "task_ids_crossing_effective_splits": 0,
+    "stored_split_heldout_macro_top1": 0.5779677881907892,
+    "stored_split_heldout_macro_pairwise": 0.7323202666236681,
+    "heldout_macro_top1": 0.5679870317060212,
+    "heldout_macro_pairwise": 0.7237495095668629,
+    "prior_ouro_selected_policy_heldout_macro": 0.6691
+  },
+  "hh_pair_disjoint": {
+    "source_pairs": 1000,
+    "train_pairs": 800,
+    "eval_pairs": 200,
+    "scoring": "exact antisymmetric, bias-free, NoNorm/raw difference",
+    "base_ouro": {"leaking_accuracy": 0.855, "clean_accuracy": 0.51, "clean_ci95": [0.44, 0.58]},
+    "ouro_rltt": {"leaking_accuracy": 0.865, "clean_accuracy": 0.53, "clean_ci95": [0.46, 0.60]},
+    "minicpm_sft": {"leaking_accuracy": 0.8575, "clean_accuracy": 0.495, "clean_ci95": [0.425, 0.565]}
+  },
+  "verdicts": {
+    "NONLOOPED_CORECONTENT_SIGNAL": "PRESENT",
+    "HH_ANTISYM_84P5_STATUS": "REPRODUCED_WITH_PAIR_ORIENTATION_LEAKAGE",
+    "HH_CLEAN_PAIR_DISJOINT_STATUS": "CHANCE_COMPATIBLE_ALL_BACKBONES",
+    "ARCHITECTURE_CAUSAL_ATTRIBUTION": "NOT_SUPPORTED",
+    "TRAINING_STAGE_LOCALIZATION": "NOT_REPRODUCED_IN_CLEAN_PAIR_DISJOINT_UNITS"
+  },
+  "paper_action": "Remove or downgrade the HH training-stage localization and describe non-looped CoreContent readability as evidence that the signal is not unique to looped architecture."
+}

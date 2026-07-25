@@ -13,6 +13,26 @@ signals in Princeton Ouro-RLTT loop states.
 > training has not started. Broad science is diagnostic; the active core domains
 > are coding, reasoning, math, logic, and alignment/preference.
 
+> ## ⚠️ Correction notice (2026-07-25)
+>
+> Several figures quoted in this README were corrected by a project-wide evaluation audit
+> (source-item leakage across row-level splits; a presentation-order prior in the
+> fixed-order pairwise evaluator). The correction of record for the published figures is
+> the **erratum to [arXiv:2604.09870](https://arxiv.org/abs/2604.09870) (v2)**.
+>
+> | Result | Reported here | Corrected |
+> |---|---:|---:|
+> | Pairwise nonlinear evaluator | 95.2% fixed-order | **0.6392** (strict antisymmetrized) |
+> | Pairwise linear difference probe | 84.5% | **0.5653** |
+> | Independent linear classifier | 21.75%, "inverted polarity" | **0.5418** — *above* chance |
+> | CoreContent v2 macro top-1 | 0.6691 | **0.6310** (task-disjoint) |
+> | DualAnchor stage oracle retention | 0.9848 | **0.9697** (task-disjoint) |
+>
+> Every effect survived decontamination with a modest loss; one training-stage claim did
+> not reproduce and is retracted. See [`papers/`](papers/) for the full account and
+> [`results/`](results/) for the artifacts behind the current values.
+
+
 Branching Looped Transformer is a research repository for evaluator and
 branch-selection work on **Princeton Ouro-RLTT**, a looped transformer whose
 internal loop states can be read by lightweight evaluators. The central
@@ -42,6 +62,7 @@ product, not a trained steering system, and not a tool-using runtime.
 - [Current Locked Baseline](#current-locked-baseline)
 - [Major Results](#major-results)
 - [Current Project State](#current-project-state)
+- [Papers And Published Artifacts](#papers-and-published-artifacts)
 - [Repository Layout](#repository-layout)
 - [Quickstart](#quickstart)
 - [Key Files](#key-files)
@@ -447,6 +468,34 @@ Next lever:
 Steering:
   not started
 ```
+
+## Papers and published artifacts
+
+`papers/` contains the manuscripts this repository supports:
+
+| File | Pages | Contents |
+|---|---:|---|
+| `kirin2026_paper1_v1.pdf` | 49 | *Operational Proto-Introspection in Looped Language Models* — process-quality taps, the executable branching substrate, and the readout–control boundary. |
+| `kirin2026_paper2.pdf` | 13 | *Two Evaluation Traps in Constructed-Row Pipelines* — source-item leakage, presentation-order shortcuts, and the audit protocol behind the corrections above. |
+
+`results/` contains the experiment records the papers cite, minus model weights and
+extracted feature tensors. Paths map onto the papers' artifact index by dropping the
+`artifacts/` prefix — the index's `artifacts/reports/<run>/` is `results/<run>/` here.
+
+| Directory | What it holds |
+|---|---|
+| `results/cross_loop_early_layer_taps_20260720/` | Cross-loop early-layer localization: the loop × layer refit matrix, the 18-transfer frozen transplant matrix, bootstrap statistics, controls, per-cell predictions, figures, and `SHA256SUMS`. |
+| `results/paper1_v2_overnight_20260724/` | Horizon Logic strict pre-answer study, the powered terminal-selection evaluation, and the subspace-vs-subspace geometry audit, each with its run manifest, integrity records, and results JSON. |
+| `results/paper_verification/` | The re-audits behind the corrected values: powered pair-disjoint probes, the full 8,552-pair antisymmetry audit, the task-disjoint CoreContent refit, and the non-looped architecture control. |
+| `results/proto_introspection/` | Strict pre-answer GSM8K records and the artifact reconciliation index. |
+
+Excluded by design: `*.pt` tensors, extracted feature shards, datasets, and model
+weights. Every published run directory ships the `SHA256SUMS` covering its **full**
+contents, so the omitted files are still enumerable and verifiable at their source.
+
+`tools/` holds the verification scripts named in the papers' reproducibility index, and
+`probes/` now also carries the scripts that produced the two newest runs
+(`bg_xloop_early_v1_*`, `bg_v2_overnight_*`).
 
 ## Repository Layout
 

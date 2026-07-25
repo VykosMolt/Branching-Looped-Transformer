@@ -1,0 +1,491 @@
+{
+  "generated_at": "2026-07-01 18:20:50",
+  "output_dir": "artifacts/reports/proto_introspection/final_prewrite_hardening_2026-06-17",
+  "audits": {
+    "A": {
+      "audit": "antisymmetrized_hh_pairwise_audit",
+      "ran_generation_or_extraction": false,
+      "input_paths": [
+        "artifacts/reports/probes/bg_pairwise_epoch2_vs_tiny_taps_hh_same_slice_v1_2026-05-30/pairwise_epoch2_vs_tiny_taps_hh_same_slice_v1.pt",
+        "artifacts/reports/probes/bg_pairwise_epoch2_vs_tiny_taps_hh_same_slice_v1_2026-05-30/pairwise_epoch2_rows.csv",
+        "artifacts/checkpoints/evaluator/pairwise_epoch2.pt",
+        "artifacts/reports/evaluator/hh_loop_states_200_thinking.pt",
+        "artifacts/reports/evaluator/hh_loop_states_200_rltt.pt"
+      ],
+      "primary_scored_feature_source": "artifacts/reports/probes/bg_pairwise_epoch2_vs_tiny_taps_hh_same_slice_v1_2026-05-30/pairwise_epoch2_vs_tiny_taps_hh_same_slice_v1.pt",
+      "checkpoint_path": "artifacts/checkpoints/evaluator/pairwise_epoch2.pt",
+      "model_name": "models/ouro_rltt_local for existing 512-pair score artifact; pairwise_epoch2.pt evaluator head",
+      "dataset_split": "Anthropic/hh-rlhf test slice; 512-pair saved same-slice artifact, not full 8552 split",
+      "random_seeds": {
+        "score_artifact_source": "existing artifact",
+        "bootstrap": 20260617
+      },
+      "n_examples": 512,
+      "metrics": {
+        "fixed_order_acc": 0.966796875,
+        "fixed_order_acc_ci95": [
+          0.951171875,
+          0.98046875
+        ],
+        "flipped_direction_acc": 0.15625,
+        "strict_sign_flip_rate": 0.189453125,
+        "flip_correlation": -0.8989218234075901,
+        "antisym_acc": 0.63671875,
+        "antisym_acc_ci95": [
+          0.595703125,
+          0.677734375
+        ],
+        "bias_mean": 1.2421430234589934,
+        "bias_std": 0.198125114227172,
+        "normal_mean": 1.575859473694436,
+        "normal_std": 0.8945801375498256,
+        "normal_margin_quantiles": {
+          "0.05": 0.14134959280490875,
+          "0.25": 0.9626534134149551,
+          "0.5": 1.5680385828018188,
+          "0.75": 2.176785945892334,
+          "0.95": 3.1145962357521055
+        },
+        "antisym_score_mean": 0.3337164502354426,
+        "antisym_score_std": 0.8560855805650256,
+        "antisym_margin_quantiles": {
+          "0.05": -1.031955498829484,
+          "0.25": -0.22465071827173233,
+          "0.5": 0.30815550684928894,
+          "0.75": 0.9426076859235764,
+          "0.95": 1.7908967509865759
+        }
+      },
+      "missing_full_test_inputs": [
+        "Full 8552-pair saved HH-RLHF loop-state feature pack or per-pair normal/flipped score table was not found.",
+        "Only 200-pair state packs and a separate 512-pair same-slice score artifact were found locally."
+      ],
+      "HH_ANTISYM_AUDIT_VERDICT": "FIXED_ORDER_RESULT_PARTLY_ORDER_ARTIFACTED",
+      "HH_952_CLAIM_STATUS": "SAFE_AS_FIXED_ORDER_WITH_ANTISYM_CAVEAT",
+      "interpretation": "On the existing 512-pair HH-RLHF same-slice artifact, fixed-order accuracy is high but antisymmetrized accuracy is much lower. The 95.2% full-test number must remain fixed-order HH-RLHF pairwise accuracy; it should not be described as strict antisymmetrized accuracy."
+    },
+    "B": {
+      "audit": "s1_s3_injection_outcome_orthogonality",
+      "input_paths": [
+        "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_report_2026-06-17.md",
+        "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4_reference_loop.json",
+        "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4b_kmatched_sampling.json",
+        "artifacts/reports/probes/bg_hidden_origin_branch_generator_v1_2026-05-18/basis_bank_v1.pt",
+        "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_loop_pools.pt",
+        "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_loop_pool_transfer.json"
+      ],
+      "actual_s1_tensors_found": false,
+      "inventory": {
+        "clean_root_hidden_states": "not found for S1 June-17 runs",
+        "injected_or_carried_hidden_states": "not found for S1 June-17 runs",
+        "actual_injection_deltas": "not persisted; curated injection basis bank exists",
+        "generated_branch_features": "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_loop_pools.pt",
+        "verifier_labels": "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_loop_pools.pt",
+        "task_ids_and_domains": "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_pool_texts.json"
+      },
+      "proxy_audit_scope": "Generated-branch correctness outcome direction projected onto the curated S1 injection-basis proxy, not actual h_injected - h_clean deltas.",
+      "counts": {
+        "generated_branch_candidates": 160,
+        "task_groups": 16,
+        "positive_labels": 29,
+        "winner_loser_pairs": 139,
+        "injection_proxy_rank": 48
+      },
+      "metrics": {
+        "projection_fraction_outcome_onto_injection_proxy": 0.004831696323010092,
+        "residual_fraction_outcome_outside_injection_proxy": 0.9951683036769899,
+        "projection_fraction_pairwise_outcome_onto_injection_proxy": 0.0016642564467554929,
+        "projection_fraction_outcome_onto_sampling_span_rank_matched": 0.280281885407955,
+        "projection_fraction_pairwise_outcome_onto_sampling_span_rank_matched": 0.9627273802137231,
+        "random_same_rank_projection_mean": 0.0019265922208363579,
+        "random_same_rank_projection_ci95": [
+          0.0012236199341509797,
+          0.0026755918619527272
+        ],
+        "cosine_outcome_top_injection_proxy_pc_abs": 0.003266263520345092,
+        "cosine_outcome_top_sampling_pc_abs": 0.00955730490386486,
+        "effective_rank_injection_proxy": 25.150551128513918,
+        "effective_rank_sampling_deltas": 24.42240990931946,
+        "principal_cosines_injection_proxy_vs_sampling": {
+          "max": 0.22318828105926514,
+          "mean": 0.023259999230504036,
+          "min": 2.012356162595097e-06
+        },
+        "linear_probe_sanity_grouped_loso": {
+          "full": {
+            "auroc": 0.7496709660436955,
+            "binary_acc_at_zero": 0.6375
+          },
+          "injection_proxy_projected": {
+            "auroc": 0.576993945775204,
+            "binary_acc_at_zero": 0.63125
+          },
+          "injection_proxy_residual": {
+            "auroc": 0.7233482495393524,
+            "binary_acc_at_zero": 0.6
+          },
+          "sampling_projected_rank48": {
+            "auroc": 0.5698868123190314,
+            "binary_acc_at_zero": 0.6
+          },
+          "shuffled_full_control": {
+            "auroc": 0.6325348775993682,
+            "binary_acc_at_zero": 0.63125
+          }
+        }
+      },
+      "INJECTION_OUTCOME_ALIGNMENT_VERDICT": "UNDERPOWERED_OR_ARTIFACTS_MISSING",
+      "SAMPLING_SPAN_COMPARISON_VERDICT": "UNDERPOWERED_OR_ARTIFACTS_MISSING",
+      "S3A_COMPUTE_JUSTIFICATION_VERDICT": "TRAINING_JUSTIFIED_BUT_MECHANISM_AMBIGUOUS",
+      "READOUT_CONTROL_BOUNDARY_UPDATE": "INCONCLUSIVE",
+      "paper_insertion_paragraph": "A limited no-generation audit found that the generated-branch correctness direction is almost entirely outside the saved curated S1 injection-basis proxy (projection fraction 0.0048; residual 0.9952), while rank-matched within-task sampling variation captures substantially more of the outcome direction. Because the actual S1 clean/injected/carried tensors and h_injected - h_clean deltas were not persisted, this is a proxy result rather than a full orthogonality proof. The safe conclusion is that the frozen null remains consistent with subspace mismatch, but the mechanism is not fully measured.",
+      "s3a_compute_pitch_paragraph": "The saved artifacts support the S3A compute pitch as a training-time alignment problem rather than a frozen-control tweak: S1 validates the mechanics and closes the K-matched frozen-fork control, S3B shows generated-branch correctness is not solved by transfer, and the proxy subspace audit suggests the correctness direction is not available through the frozen injection basis. A powered S3A run should therefore learn the write/read geometry jointly instead of relying on static frozen perturbations."
+    },
+    "C": {
+      "audit": "s3b2_generated_branch_correctness_refit",
+      "ran_generation": false,
+      "trained_ouro_or_modified_checkpoints": false,
+      "model": "task-grouped leave-one-task-out L2 logistic probe over saved [3,4,2048] generated-branch features",
+      "input_paths": [
+        "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_loop_pools.pt",
+        "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_pool_texts.json",
+        "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_loop_pool_transfer.json"
+      ],
+      "labels": "verifier/gold/exact correctness only via candidate reward field",
+      "split": "leave-one-task-out grouped by task_id; candidates from a held-out task are never in train",
+      "random_seeds": {
+        "torch_numpy_python": 20260617,
+        "bootstrap": 20260617
+      },
+      "metrics": {
+        "n_candidates": 160,
+        "n_task_groups": 16,
+        "positive_labels": 29,
+        "oracle_present_task_groups": 8,
+        "binary_auroc": 0.7515135561989997,
+        "binary_acc_at_zero": 0.63125,
+        "selected_acc_all_tasks": 0.3125,
+        "sel_at_oracle": 0.625,
+        "sel_at_oracle_ci95_task_bootstrap": [
+          0.25,
+          0.875
+        ],
+        "regret": 0.375,
+        "top2_retention": 0.75,
+        "top4_retention": 0.75,
+        "pairwise_accuracy": 0.6834532374100719,
+        "pairwise_accuracy_ci95_bootstrap": [
+          0.60431654676259,
+          0.762589928057554
+        ],
+        "by_domain": {
+          "coding": {
+            "n_tasks": 4,
+            "oracle_present_tasks": 0,
+            "sel_at_oracle": null,
+            "selected_acc_all_tasks": 0.0,
+            "pairwise_accuracy": null
+          },
+          "logic": {
+            "n_tasks": 4,
+            "oracle_present_tasks": 2,
+            "sel_at_oracle": 1.0,
+            "selected_acc_all_tasks": 0.5,
+            "pairwise_accuracy": 0.625
+          },
+          "math": {
+            "n_tasks": 4,
+            "oracle_present_tasks": 2,
+            "sel_at_oracle": 0.5,
+            "selected_acc_all_tasks": 0.25,
+            "pairwise_accuracy": 0.7
+          },
+          "reasoning": {
+            "n_tasks": 4,
+            "oracle_present_tasks": 4,
+            "sel_at_oracle": 0.5,
+            "selected_acc_all_tasks": 0.5,
+            "pairwise_accuracy": 0.7012987012987013
+          }
+        }
+      },
+      "comparators_from_s3b1_corrected": {
+        "S3B0_pairwise_blockwise": {
+          "sel_at_oracle": 0.5,
+          "separability": 0.5077,
+          "top2_ret": 0.75,
+          "top4_ret": 0.8333,
+          "regret": 0.3333
+        },
+        "S3B0_listwise_blockwise": {
+          "sel_at_oracle": 0.4167,
+          "separability": 0.4998,
+          "top2_ret": 0.75,
+          "top4_ret": 0.8333,
+          "regret": 0.4167
+        },
+        "CoreContent_v2_blockwise": {
+          "sel_at_oracle": 0.4167,
+          "separability": 0.4896,
+          "top2_ret": 0.5833,
+          "top4_ret": 0.8333,
+          "regret": 0.4167
+        },
+        "DualAnchor": {
+          "sel_at_oracle": 0.4167,
+          "separability": 0.5571,
+          "top2_ret": 0.5,
+          "top4_ret": 0.5833,
+          "regret": 0.4167
+        },
+        "mixedhead_MIX_HH_OBJECTIVE": {
+          "sel_at_oracle": 0.6667,
+          "separability": 0.5687,
+          "top2_ret": 0.75,
+          "top4_ret": 0.8333,
+          "regret": 0.25
+        },
+        "MIX_OBJECTIVE_ALL_only": {
+          "sel_at_oracle": 0.5,
+          "separability": 0.5442,
+          "top2_ret": 0.5,
+          "top4_ret": 0.6667,
+          "regret": 0.3333
+        },
+        "RANDOM": {
+          "sel_at_oracle": 0.5833,
+          "separability": 0.4625,
+          "top2_ret": 0.5833,
+          "top4_ret": 0.75,
+          "regret": 0.25
+        },
+        "ORACLE": {
+          "sel_at_oracle": 1.0,
+          "separability": 1.0,
+          "top2_ret": 1.0,
+          "top4_ret": 1.0,
+          "regret": 0.0
+        }
+      },
+      "per_task": [
+        {
+          "task_id": "math_0313a1abc4",
+          "domain": "math",
+          "n_candidates": 10,
+          "oracle_present": true,
+          "n_correct": 7,
+          "selected_correct": 1,
+          "selected_branch_id": "sample9",
+          "selected_score": 296.4346008300781
+        },
+        {
+          "task_id": "math_0490949b5c",
+          "domain": "math",
+          "n_candidates": 10,
+          "oracle_present": false,
+          "n_correct": 0,
+          "selected_correct": 0,
+          "selected_branch_id": "sample7",
+          "selected_score": 204.68028259277344
+        },
+        {
+          "task_id": "math_06d0ca6d3a",
+          "domain": "math",
+          "n_candidates": 10,
+          "oracle_present": false,
+          "n_correct": 0,
+          "selected_correct": 0,
+          "selected_branch_id": "sample7",
+          "selected_score": -28.381011962890625
+        },
+        {
+          "task_id": "math_075309bae2",
+          "domain": "math",
+          "n_candidates": 10,
+          "oracle_present": true,
+          "n_correct": 1,
+          "selected_correct": 0,
+          "selected_branch_id": "fork0",
+          "selected_score": 112.041015625
+        },
+        {
+          "task_id": "reasoning_00bf397683",
+          "domain": "reasoning",
+          "n_candidates": 10,
+          "oracle_present": true,
+          "n_correct": 3,
+          "selected_correct": 0,
+          "selected_branch_id": "fork3",
+          "selected_score": 840.2440185546875
+        },
+        {
+          "task_id": "reasoning_00ddfcee6a",
+          "domain": "reasoning",
+          "n_candidates": 10,
+          "oracle_present": true,
+          "n_correct": 2,
+          "selected_correct": 1,
+          "selected_branch_id": "sample6",
+          "selected_score": 214.0032196044922
+        },
+        {
+          "task_id": "reasoning_012f9d1412",
+          "domain": "reasoning",
+          "n_candidates": 10,
+          "oracle_present": true,
+          "n_correct": 4,
+          "selected_correct": 1,
+          "selected_branch_id": "fork3",
+          "selected_score": 168.38389587402344
+        },
+        {
+          "task_id": "reasoning_025b686a87",
+          "domain": "reasoning",
+          "n_candidates": 10,
+          "oracle_present": true,
+          "n_correct": 2,
+          "selected_correct": 0,
+          "selected_branch_id": "fork3",
+          "selected_score": -89.29912567138672
+        },
+        {
+          "task_id": "logic_0016af0d6f",
+          "domain": "logic",
+          "n_candidates": 10,
+          "oracle_present": false,
+          "n_correct": 0,
+          "selected_correct": 0,
+          "selected_branch_id": "sample7",
+          "selected_score": 82.32405090332031
+        },
+        {
+          "task_id": "logic_00158d8d9c",
+          "domain": "logic",
+          "n_candidates": 10,
+          "oracle_present": true,
+          "n_correct": 8,
+          "selected_correct": 1,
+          "selected_branch_id": "sample5",
+          "selected_score": 91.87187957763672
+        },
+        {
+          "task_id": "logic_000f384418",
+          "domain": "logic",
+          "n_candidates": 10,
+          "oracle_present": false,
+          "n_correct": 0,
+          "selected_correct": 0,
+          "selected_branch_id": "sample6",
+          "selected_score": 78.04220581054688
+        },
+        {
+          "task_id": "logic_00013d9d03",
+          "domain": "logic",
+          "n_candidates": 10,
+          "oracle_present": true,
+          "n_correct": 2,
+          "selected_correct": 1,
+          "selected_branch_id": "sample4",
+          "selected_score": 89.96754455566406
+        },
+        {
+          "task_id": "coding_007b833f21",
+          "domain": "coding",
+          "n_candidates": 10,
+          "oracle_present": false,
+          "n_correct": 0,
+          "selected_correct": 0,
+          "selected_branch_id": "fork0",
+          "selected_score": -118.04798126220703
+        },
+        {
+          "task_id": "coding_00715d44da",
+          "domain": "coding",
+          "n_candidates": 10,
+          "oracle_present": false,
+          "n_correct": 0,
+          "selected_correct": 0,
+          "selected_branch_id": "fork3",
+          "selected_score": -4.65266752243042
+        },
+        {
+          "task_id": "coding_06bd4a1597",
+          "domain": "coding",
+          "n_candidates": 10,
+          "oracle_present": false,
+          "n_correct": 0,
+          "selected_correct": 0,
+          "selected_branch_id": "fork0",
+          "selected_score": -48.328094482421875
+        },
+        {
+          "task_id": "coding_08e8397e8f",
+          "domain": "coding",
+          "n_candidates": 10,
+          "oracle_present": false,
+          "n_correct": 0,
+          "selected_correct": 0,
+          "selected_branch_id": "sample9",
+          "selected_score": -1.3763427734375
+        }
+      ],
+      "S3B2_REFIT_VERDICT": "GENERATED_BRANCH_SELECTOR_PARTIAL",
+      "SELECTION_WALL_VERDICT": "SELECTION_WALL_REMAINS_AFTER_REFIT",
+      "S3A_SELECTION_NEED_VERDICT": "S3B2_SHOWS_SELECTOR_NEEDS_S3A_OR_MORE_DATA",
+      "interpretation": "The generated-branch refit improves binary separability/pairwise ranking on the small saved generated pool, but forced top-1 selection remains weak and does not cleanly beat the best existing S3B1 selector on sel@oracle. The dataset is only 16 task groups / 8 oracle-present groups, so this sharpens the selection-wall diagnosis rather than solving it."
+    }
+  },
+  "verdict_constants": {
+    "HH_ANTISYM_AUDIT_VERDICT": "FIXED_ORDER_RESULT_PARTLY_ORDER_ARTIFACTED",
+    "HH_952_CLAIM_STATUS": "SAFE_AS_FIXED_ORDER_WITH_ANTISYM_CAVEAT",
+    "INJECTION_OUTCOME_ALIGNMENT_VERDICT": "UNDERPOWERED_OR_ARTIFACTS_MISSING",
+    "SAMPLING_SPAN_COMPARISON_VERDICT": "UNDERPOWERED_OR_ARTIFACTS_MISSING",
+    "S3A_COMPUTE_JUSTIFICATION_VERDICT": "TRAINING_JUSTIFIED_BUT_MECHANISM_AMBIGUOUS",
+    "READOUT_CONTROL_BOUNDARY_UPDATE": "INCONCLUSIVE",
+    "S3B2_REFIT_VERDICT": "GENERATED_BRANCH_SELECTOR_PARTIAL",
+    "SELECTION_WALL_VERDICT": "SELECTION_WALL_REMAINS_AFTER_REFIT",
+    "S3A_SELECTION_NEED_VERDICT": "S3B2_SHOWS_SELECTOR_NEEDS_S3A_OR_MORE_DATA",
+    "FINAL_PREWRITE_VERDICT": "BEGIN_DRAFT_WITH_NOTED_OPEN_AUDITS"
+  },
+  "missing_artifacts": [
+    "Full 8552-pair saved HH-RLHF loop-state feature pack or per-pair normal/flipped score table was not found.",
+    "Only 200-pair state packs and a separate 512-pair same-slice score artifact were found locally.",
+    "S1 clean/root hidden states for June-17 injection/carry runs",
+    "S1 injected/carried hidden states for June-17 injection/carry runs",
+    "S1 actual h_injected - h_clean delta tensor bundle",
+    "Powered S3B2 generated-branch feature pool beyond the 16-task/8-oracle-present saved pool"
+  ],
+  "paper_impact_table": [
+    {
+      "claim": "relational hidden-state readout",
+      "impact": "weakened",
+      "notes": "HH 95.2 remains fixed-order only. 512-slice strict antisym_acc is 0.6367, so do not describe the 95.2 number as antisymmetrized."
+    },
+    {
+      "claim": "pre-answer process-quality signal",
+      "impact": "unchanged",
+      "notes": "No new audit touched the GSM8K pre-answer results."
+    },
+    {
+      "claim": "domain-transfer taps",
+      "impact": "unchanged",
+      "notes": "S3B2 does not alter prior transfer caveats."
+    },
+    {
+      "claim": "survival vs selection wall",
+      "impact": "strengthened",
+      "notes": "S3B2 shows generated-branch correctness is learnable to some degree from saved features, but top-1 selection remains unsolved under grouped splits."
+    },
+    {
+      "claim": "readout-control boundary",
+      "impact": "still caveated",
+      "notes": "Proxy subspace audit is consistent with frozen injection misalignment, but actual S1 injection deltas are missing."
+    },
+    {
+      "claim": "S3A motivation",
+      "impact": "strengthened",
+      "notes": "S1 frozen closure + S3B2 partial refit + proxy misalignment support training-time integration, with mechanism caveat."
+    }
+  ],
+  "next_recommended_action": "Begin drafting with downgraded HH evaluator wording: cite 95.2 only as fixed-order HH-RLHF pairwise, cite strict antisymmetry separately from the 512-slice audit, and keep S1 orthogonality/S3B2 as caveated hardening results rather than solved mechanisms."
+}

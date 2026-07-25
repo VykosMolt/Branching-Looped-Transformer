@@ -1,0 +1,19 @@
+{
+ "length_macro_top1": 0.3233,
+ "length_by_domain": {
+  "coding": 0.4917,
+  "reasoning": 0.3083,
+  "math": 0.025,
+  "logic": 0.2833,
+  "alignment": 0.5083
+ },
+ "neg_length_macro_top1": 0.37,
+ "neg_length_by_domain": {
+  "coding": 0.0417,
+  "reasoning": 0.175,
+  "math": 0.9,
+  "logic": 0.2417,
+  "alignment": 0.4917
+ },
+ "note": "text-length ranking baseline on the identical heldout subset; context for the shuffle control"
+}

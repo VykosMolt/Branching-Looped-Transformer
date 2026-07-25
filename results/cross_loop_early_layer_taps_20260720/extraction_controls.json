@@ -1,0 +1,102 @@
+{
+ "XLOOP_EXTRACTION_CONTROL_VERDICT": "EXTRACTION_PATH_VALIDATED",
+ "candidates_matched": 2434,
+ "candidates_missing": 0,
+ "feature_match": {
+  "24_L1": {
+   "n": 2434,
+   "cos_mean": 0.998613,
+   "cos_min": 0.693057,
+   "max_abs_diff": 3.418
+  },
+  "24_L2": {
+   "n": 2434,
+   "cos_mean": 0.998638,
+   "cos_min": 0.644115,
+   "max_abs_diff": 5.6191
+  },
+  "24_L3": {
+   "n": 2434,
+   "cos_mean": 0.998461,
+   "cos_min": 0.653639,
+   "max_abs_diff": 5.9863
+  },
+  "24_L4": {
+   "n": 2434,
+   "cos_mean": 0.998449,
+   "cos_min": 0.64186,
+   "max_abs_diff": 6.0352
+  },
+  "36_L1": {
+   "n": 2434,
+   "cos_mean": 0.999079,
+   "cos_min": 0.728279,
+   "max_abs_diff": 4.3379
+  },
+  "36_L2": {
+   "n": 2434,
+   "cos_mean": 0.999096,
+   "cos_min": 0.760506,
+   "max_abs_diff": 6.5078
+  },
+  "36_L3": {
+   "n": 2434,
+   "cos_mean": 0.99911,
+   "cos_min": 0.794733,
+   "max_abs_diff": 7.0723
+  },
+  "36_L4": {
+   "n": 2434,
+   "cos_mean": 0.999113,
+   "cos_min": 0.788798,
+   "max_abs_diff": 6.9922
+  },
+  "47_L1": {
+   "n": 2434,
+   "cos_mean": 0.998517,
+   "cos_min": 0.593076,
+   "max_abs_diff": 3.9531
+  },
+  "47_L2": {
+   "n": 2434,
+   "cos_mean": 0.998179,
+   "cos_min": 0.465838,
+   "max_abs_diff": 4.8813
+  },
+  "47_L3": {
+   "n": 2434,
+   "cos_mean": 0.998155,
+   "cos_min": 0.457769,
+   "max_abs_diff": 5.0029
+  },
+  "47_L4": {
+   "n": 2434,
+   "cos_mean": 0.998162,
+   "cos_min": 0.464822,
+   "max_abs_diff": 4.9414
+  }
+ },
+ "policy_reproduction": {
+  "policy": "CoreContent_v2_blockwise_pruned_24_36",
+  "cached_features_macro_top1": 0.6867,
+  "fresh_features_macro_top1": 0.685,
+  "abs_delta": 0.0017,
+  "cached_by_domain": {
+   "coding": 0.9083,
+   "reasoning": 0.6917,
+   "math": 0.6667,
+   "logic": 0.45,
+   "alignment": 0.7167
+  },
+  "fresh_by_domain": {
+   "coding": 0.9083,
+   "reasoning": 0.6917,
+   "math": 0.6667,
+   "logic": 0.45,
+   "alignment": 0.7083
+  },
+  "stored_full_population_reference": 0.6691,
+  "note": "matched-subset comparison; full-population number is context only"
+ },
+ "elapsed_seconds": 1.6
+}

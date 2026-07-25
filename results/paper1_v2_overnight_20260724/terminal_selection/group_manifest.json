@@ -1,0 +1,4261 @@
+{
+  "n_groups": 170,
+  "groups_by_split": {
+    "train": 80,
+    "val": 31,
+    "heldout": 59
+  },
+  "n_informative_heldout": 39,
+  "groups": {
+    "synthlogic::synthetic_propositional::140": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5720": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4848": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::6163": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::2247": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5842": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::3604": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::2829": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1390": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1728": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4893": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1100": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4577": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5081": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::6377": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::290": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::3744": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1952": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1076": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::6857": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::3496": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::3777": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1771": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::3822": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1931": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::851": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::3610": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1363": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5096": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::6095": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::3609": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::353": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4969": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1998": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::6433": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::2517": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::6308": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::2492": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::575": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::949": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4783": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5909": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1156": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4323": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5944": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4743": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5248": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5665": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::6253": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4797": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5008": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4652": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::3809": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5426": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1645": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::238": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5123": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5473": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4428": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1227": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::6854": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::2869": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::3167": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4330": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::2913": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::6852": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::50": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1725": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::37": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4086": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::2133": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5950": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::6517": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::2835": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1051": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::3586": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::3730": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5576": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4936": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1031": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::29": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4713": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5438": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5397": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::3552": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4183": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::2077": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1202": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::3265": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5247": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::2431": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5655": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::284": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5494": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::142": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::3041": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1911": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::3663": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::3831": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4469": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4491": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1483": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::2866": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5751": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4793": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4858": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::3475": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::3369": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::6667": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1838": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::2708": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5452": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::3588": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::6733": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::6837": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1103": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::876": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1820": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1503": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5605": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::159": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::2858": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4922": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4651": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4403": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5196": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::229": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1520": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::160": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::435": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::3128": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4167": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::677": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5955": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::782": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::6345": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::478": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::6235": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::2948": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::2393": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::2261": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::6624": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1835": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::679": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::2590": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5315": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::2565": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::6760": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::6478": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4876": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::6089": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1499": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5801": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::2148": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::6210": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::42": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::2441": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::299": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::6240": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::3047": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": true
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::6811": {
+      "split": "val",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::5522": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": false,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::2931": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4518": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::4286": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1866": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::134": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1135": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::828": {
+      "split": "train",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": true
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    },
+    "synthlogic::synthetic_propositional::1069": {
+      "split": "heldout",
+      "candidates": [
+        {
+          "candidate_idx": 0,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 1,
+          "success": true,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 2,
+          "success": false,
+          "malformed": false
+        },
+        {
+          "candidate_idx": 3,
+          "success": true,
+          "malformed": false
+        }
+      ]
+    }
+  }
+}

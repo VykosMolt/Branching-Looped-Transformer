@@ -1,0 +1,1001 @@
+{
+  "audit": "s3b2_generated_branch_correctness_expanded",
+  "input_paths": [
+    "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_loop_pools.pt",
+    "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_pool_texts.json",
+    "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_loop_pool_transfer.json",
+    "artifacts/reports/proto_introspection/final_prewrite_hardening_2026-06-17/s3b2_generated_branch_correctness_refit_2026-06-17.json"
+  ],
+  "ran_generation": false,
+  "trained_ouro_or_modified_checkpoints": false,
+  "labels": "verifier/gold/exact correctness only via candidate reward field",
+  "split": {
+    "method": "leave-one-task-out grouped by task_id",
+    "group_key": "task_id",
+    "leakage_check_passed": true,
+    "n_groups": 16,
+    "n_examples": 160,
+    "fold_train_examples": [
+      150
+    ],
+    "fold_test_examples": [
+      10
+    ],
+    "folds": [
+      {
+        "heldout_group": "coding_00715d44da",
+        "train_examples": 150,
+        "test_examples": 10,
+        "train_groups": 15,
+        "test_groups": 1,
+        "leakage": false
+      },
+      {
+        "heldout_group": "coding_007b833f21",
+        "train_examples": 150,
+        "test_examples": 10,
+        "train_groups": 15,
+        "test_groups": 1,
+        "leakage": false
+      },
+      {
+        "heldout_group": "coding_06bd4a1597",
+        "train_examples": 150,
+        "test_examples": 10,
+        "train_groups": 15,
+        "test_groups": 1,
+        "leakage": false
+      },
+      {
+        "heldout_group": "coding_08e8397e8f",
+        "train_examples": 150,
+        "test_examples": 10,
+        "train_groups": 15,
+        "test_groups": 1,
+        "leakage": false
+      },
+      {
+        "heldout_group": "logic_00013d9d03",
+        "train_examples": 150,
+        "test_examples": 10,
+        "train_groups": 15,
+        "test_groups": 1,
+        "leakage": false
+      },
+      {
+        "heldout_group": "logic_000f384418",
+        "train_examples": 150,
+        "test_examples": 10,
+        "train_groups": 15,
+        "test_groups": 1,
+        "leakage": false
+      },
+      {
+        "heldout_group": "logic_00158d8d9c",
+        "train_examples": 150,
+        "test_examples": 10,
+        "train_groups": 15,
+        "test_groups": 1,
+        "leakage": false
+      },
+      {
+        "heldout_group": "logic_0016af0d6f",
+        "train_examples": 150,
+        "test_examples": 10,
+        "train_groups": 15,
+        "test_groups": 1,
+        "leakage": false
+      },
+      {
+        "heldout_group": "math_0313a1abc4",
+        "train_examples": 150,
+        "test_examples": 10,
+        "train_groups": 15,
+        "test_groups": 1,
+        "leakage": false
+      },
+      {
+        "heldout_group": "math_0490949b5c",
+        "train_examples": 150,
+        "test_examples": 10,
+        "train_groups": 15,
+        "test_groups": 1,
+        "leakage": false
+      },
+      {
+        "heldout_group": "math_06d0ca6d3a",
+        "train_examples": 150,
+        "test_examples": 10,
+        "train_groups": 15,
+        "test_groups": 1,
+        "leakage": false
+      },
+      {
+        "heldout_group": "math_075309bae2",
+        "train_examples": 150,
+        "test_examples": 10,
+        "train_groups": 15,
+        "test_groups": 1,
+        "leakage": false
+      },
+      {
+        "heldout_group": "reasoning_00bf397683",
+        "train_examples": 150,
+        "test_examples": 10,
+        "train_groups": 15,
+        "test_groups": 1,
+        "leakage": false
+      },
+      {
+        "heldout_group": "reasoning_00ddfcee6a",
+        "train_examples": 150,
+        "test_examples": 10,
+        "train_groups": 15,
+        "test_groups": 1,
+        "leakage": false
+      },
+      {
+        "heldout_group": "reasoning_012f9d1412",
+        "train_examples": 150,
+        "test_examples": 10,
+        "train_groups": 15,
+        "test_groups": 1,
+        "leakage": false
+      },
+      {
+        "heldout_group": "reasoning_025b686a87",
+        "train_examples": 150,
+        "test_examples": 10,
+        "train_groups": 15,
+        "test_groups": 1,
+        "leakage": false
+      }
+    ]
+  },
+  "dataset_counts": {
+    "n_candidates": 160,
+    "n_task_groups": 16,
+    "positive_labels": 29,
+    "negative_labels": 131,
+    "oracle_present_task_groups": 8,
+    "domains": {
+      "coding": {
+        "candidates": 40,
+        "task_groups": 4,
+        "positive_labels": 0
+      },
+      "logic": {
+        "candidates": 40,
+        "task_groups": 4,
+        "positive_labels": 10
+      },
+      "math": {
+        "candidates": 40,
+        "task_groups": 4,
+        "positive_labels": 8
+      },
+      "reasoning": {
+        "candidates": 40,
+        "task_groups": 4,
+        "positive_labels": 11
+      }
+    }
+  },
+  "registered_prior_hardening_metrics": {
+    "n_candidates": 160,
+    "n_task_groups": 16,
+    "positive_labels": 29,
+    "oracle_present_task_groups": 8,
+    "binary_auroc": 0.7515135561989997,
+    "binary_acc_at_zero": 0.63125,
+    "selected_acc_all_tasks": 0.3125,
+    "sel_at_oracle": 0.625,
+    "sel_at_oracle_ci95_task_bootstrap": [
+      0.25,
+      0.875
+    ],
+    "regret": 0.375,
+    "top2_retention": 0.75,
+    "top4_retention": 0.75,
+    "pairwise_accuracy": 0.6834532374100719,
+    "pairwise_accuracy_ci95_bootstrap": [
+      0.60431654676259,
+      0.762589928057554
+    ],
+    "by_domain": {
+      "coding": {
+        "n_tasks": 4,
+        "oracle_present_tasks": 0,
+        "sel_at_oracle": null,
+        "selected_acc_all_tasks": 0.0,
+        "pairwise_accuracy": null
+      },
+      "logic": {
+        "n_tasks": 4,
+        "oracle_present_tasks": 2,
+        "sel_at_oracle": 1.0,
+        "selected_acc_all_tasks": 0.5,
+        "pairwise_accuracy": 0.625
+      },
+      "math": {
+        "n_tasks": 4,
+        "oracle_present_tasks": 2,
+        "sel_at_oracle": 0.5,
+        "selected_acc_all_tasks": 0.25,
+        "pairwise_accuracy": 0.7
+      },
+      "reasoning": {
+        "n_tasks": 4,
+        "oracle_present_tasks": 4,
+        "sel_at_oracle": 0.5,
+        "selected_acc_all_tasks": 0.5,
+        "pairwise_accuracy": 0.7012987012987013
+      }
+    }
+  },
+  "expanded_hidden_ridge_metrics": {
+    "n_candidates": 160,
+    "n_tasks": 16,
+    "positive_labels": 29,
+    "class_balance": 0.18125,
+    "oracle_present_tasks": 8,
+    "binary_auroc": 0.7754672282179521,
+    "pairwise_accuracy": 0.7338129496402878,
+    "n_pairwise_pairs": 139,
+    "sel_at_oracle": 0.625,
+    "selected_correct_when_oracle_present": 0.625,
+    "regret": 0.375,
+    "selected_acc_all_tasks": 0.3125,
+    "top2_retention": 0.75,
+    "top4_retention": 0.875
+  },
+  "domain_breakdown": {
+    "coding": {
+      "n_candidates": 40,
+      "n_tasks": 4,
+      "positive_labels": 0,
+      "class_balance": 0.0,
+      "oracle_present_tasks": 0,
+      "binary_auroc": null,
+      "pairwise_accuracy": null,
+      "n_pairwise_pairs": 0,
+      "sel_at_oracle": null,
+      "selected_correct_when_oracle_present": null,
+      "regret": null,
+      "selected_acc_all_tasks": 0.0,
+      "top2_retention": null,
+      "top4_retention": null
+    },
+    "logic": {
+      "n_candidates": 40,
+      "n_tasks": 4,
+      "positive_labels": 10,
+      "class_balance": 0.25,
+      "oracle_present_tasks": 2,
+      "binary_auroc": 0.5266666666666666,
+      "pairwise_accuracy": 0.625,
+      "n_pairwise_pairs": 32,
+      "sel_at_oracle": 1.0,
+      "selected_correct_when_oracle_present": 1.0,
+      "regret": 0.0,
+      "selected_acc_all_tasks": 0.5,
+      "top2_retention": 1.0,
+      "top4_retention": 1.0
+    },
+    "math": {
+      "n_candidates": 40,
+      "n_tasks": 4,
+      "positive_labels": 8,
+      "class_balance": 0.2,
+      "oracle_present_tasks": 2,
+      "binary_auroc": 0.97265625,
+      "pairwise_accuracy": 0.9,
+      "n_pairwise_pairs": 30,
+      "sel_at_oracle": 0.5,
+      "selected_correct_when_oracle_present": 0.5,
+      "regret": 0.5,
+      "selected_acc_all_tasks": 0.25,
+      "top2_retention": 1.0,
+      "top4_retention": 1.0
+    },
+    "reasoning": {
+      "n_candidates": 40,
+      "n_tasks": 4,
+      "positive_labels": 11,
+      "class_balance": 0.275,
+      "oracle_present_tasks": 4,
+      "binary_auroc": 0.554858934169279,
+      "pairwise_accuracy": 0.7142857142857143,
+      "n_pairwise_pairs": 77,
+      "sel_at_oracle": 0.5,
+      "selected_correct_when_oracle_present": 0.5,
+      "regret": 0.5,
+      "selected_acc_all_tasks": 0.5,
+      "top2_retention": 0.5,
+      "top4_retention": 0.75
+    }
+  },
+  "baseline_comparison": {
+    "S3B0_pairwise_blockwise": {
+      "sel_at_oracle": 0.5,
+      "separability": 0.5077,
+      "top2_ret": 0.75,
+      "top4_ret": 0.8333,
+      "regret": 0.3333
+    },
+    "S3B0_listwise_blockwise": {
+      "sel_at_oracle": 0.4167,
+      "separability": 0.4998,
+      "top2_ret": 0.75,
+      "top4_ret": 0.8333,
+      "regret": 0.4167
+    },
+    "CoreContent_v2_blockwise": {
+      "sel_at_oracle": 0.4167,
+      "separability": 0.4896,
+      "top2_ret": 0.5833,
+      "top4_ret": 0.8333,
+      "regret": 0.4167
+    },
+    "DualAnchor": {
+      "sel_at_oracle": 0.4167,
+      "separability": 0.5571,
+      "top2_ret": 0.5,
+      "top4_ret": 0.5833,
+      "regret": 0.4167
+    },
+    "mixedhead_MIX_HH_OBJECTIVE": {
+      "sel_at_oracle": 0.6667,
+      "separability": 0.5687,
+      "top2_ret": 0.75,
+      "top4_ret": 0.8333,
+      "regret": 0.25
+    },
+    "MIX_OBJECTIVE_ALL_only": {
+      "sel_at_oracle": 0.5,
+      "separability": 0.5442,
+      "top2_ret": 0.5,
+      "top4_ret": 0.6667,
+      "regret": 0.3333
+    },
+    "RANDOM": {
+      "sel_at_oracle": 0.5833,
+      "separability": 0.4625,
+      "top2_ret": 0.5833,
+      "top4_ret": 0.75,
+      "regret": 0.25
+    },
+    "ORACLE": {
+      "sel_at_oracle": 1.0,
+      "separability": 1.0,
+      "top2_ret": 1.0,
+      "top4_ret": 1.0,
+      "regret": 0.0
+    },
+    "S3B2_L2_LOGISTIC_PRIOR_HARDENING": {
+      "sel_at_oracle": 0.625,
+      "separability": 0.7515135561989997,
+      "pairwise_accuracy": 0.6834532374100719,
+      "top2_ret": 0.75,
+      "top4_ret": 0.75,
+      "regret": 0.375,
+      "note": "registered prior hardening result"
+    },
+    "S3B2_HIDDEN_RIDGE_EXPANDED": {
+      "sel_at_oracle": 0.625,
+      "separability": 0.7754672282179521,
+      "pairwise_accuracy": 0.7338129496402878,
+      "top2_ret": 0.75,
+      "top4_ret": 0.875,
+      "regret": 0.375,
+      "note": "new grouped ridge expansion scores"
+    }
+  },
+  "ablation_metrics": {
+    "hidden_ridge": {
+      "n_candidates": 160,
+      "n_tasks": 16,
+      "positive_labels": 29,
+      "class_balance": 0.18125,
+      "oracle_present_tasks": 8,
+      "binary_auroc": 0.7754672282179521,
+      "pairwise_accuracy": 0.7338129496402878,
+      "n_pairwise_pairs": 139,
+      "sel_at_oracle": 0.625,
+      "selected_correct_when_oracle_present": 0.625,
+      "regret": 0.375,
+      "selected_acc_all_tasks": 0.3125,
+      "top2_retention": 0.75,
+      "top4_retention": 0.875
+    },
+    "length_only": {
+      "n_candidates": 160,
+      "n_tasks": 16,
+      "positive_labels": 29,
+      "class_balance": 0.18125,
+      "oracle_present_tasks": 8,
+      "binary_auroc": 0.1093708870755462,
+      "pairwise_accuracy": 0.06474820143884892,
+      "n_pairwise_pairs": 139,
+      "sel_at_oracle": 0.25,
+      "selected_correct_when_oracle_present": 0.25,
+      "regret": 0.75,
+      "selected_acc_all_tasks": 0.125,
+      "top2_retention": 0.625,
+      "top4_retention": 0.75
+    },
+    "domain_only": {
+      "n_candidates": 160,
+      "n_tasks": 16,
+      "positive_labels": 29,
+      "class_balance": 0.18125,
+      "oracle_present_tasks": 8,
+      "binary_auroc": 0.4334035272440116,
+      "pairwise_accuracy": 0.2589928057553957,
+      "n_pairwise_pairs": 139,
+      "sel_at_oracle": 0.25,
+      "selected_correct_when_oracle_present": 0.25,
+      "regret": 0.75,
+      "selected_acc_all_tasks": 0.125,
+      "top2_retention": 0.625,
+      "top4_retention": 0.75
+    },
+    "provenance_only": {
+      "n_candidates": 160,
+      "n_tasks": 16,
+      "positive_labels": 29,
+      "class_balance": 0.18125,
+      "oracle_present_tasks": 8,
+      "binary_auroc": 0.07541458278494341,
+      "pairwise_accuracy": 0.15827338129496402,
+      "n_pairwise_pairs": 139,
+      "sel_at_oracle": 0.25,
+      "selected_correct_when_oracle_present": 0.25,
+      "regret": 0.75,
+      "selected_acc_all_tasks": 0.125,
+      "top2_retention": 0.375,
+      "top4_retention": 0.75
+    },
+    "domain_length_provenance": {
+      "n_candidates": 160,
+      "n_tasks": 16,
+      "positive_labels": 29,
+      "class_balance": 0.18125,
+      "oracle_present_tasks": 8,
+      "binary_auroc": 0.4426164780205317,
+      "pairwise_accuracy": 0.23741007194244604,
+      "n_pairwise_pairs": 139,
+      "sel_at_oracle": 0.25,
+      "selected_correct_when_oracle_present": 0.25,
+      "regret": 0.75,
+      "selected_acc_all_tasks": 0.125,
+      "top2_retention": 0.625,
+      "top4_retention": 0.75
+    },
+    "hidden_plus_length": {
+      "n_candidates": 160,
+      "n_tasks": 16,
+      "positive_labels": 29,
+      "class_balance": 0.18125,
+      "oracle_present_tasks": 8,
+      "binary_auroc": 0.7783627270334299,
+      "pairwise_accuracy": 0.7266187050359713,
+      "n_pairwise_pairs": 139,
+      "sel_at_oracle": 0.625,
+      "selected_correct_when_oracle_present": 0.625,
+      "regret": 0.375,
+      "selected_acc_all_tasks": 0.3125,
+      "top2_retention": 0.75,
+      "top4_retention": 0.875
+    },
+    "hidden_plus_domain": {
+      "n_candidates": 160,
+      "n_tasks": 16,
+      "positive_labels": 29,
+      "class_balance": 0.18125,
+      "oracle_present_tasks": 8,
+      "binary_auroc": 0.7754672282179521,
+      "pairwise_accuracy": 0.7338129496402878,
+      "n_pairwise_pairs": 139,
+      "sel_at_oracle": 0.625,
+      "selected_correct_when_oracle_present": 0.625,
+      "regret": 0.375,
+      "selected_acc_all_tasks": 0.3125,
+      "top2_retention": 0.75,
+      "top4_retention": 0.875
+    },
+    "hidden_plus_domain_length_provenance": {
+      "n_candidates": 160,
+      "n_tasks": 16,
+      "positive_labels": 29,
+      "class_balance": 0.18125,
+      "oracle_present_tasks": 8,
+      "binary_auroc": 0.779678862858647,
+      "pairwise_accuracy": 0.7338129496402878,
+      "n_pairwise_pairs": 139,
+      "sel_at_oracle": 0.625,
+      "selected_correct_when_oracle_present": 0.625,
+      "regret": 0.375,
+      "selected_acc_all_tasks": 0.3125,
+      "top2_retention": 0.75,
+      "top4_retention": 0.875
+    },
+    "hidden_pairwise_ranker_ridge": {
+      "n_candidates": 160,
+      "n_tasks": 16,
+      "positive_labels": 29,
+      "class_balance": 0.18125,
+      "oracle_present_tasks": 8,
+      "binary_auroc": 0.7915240852856015,
+      "pairwise_accuracy": 0.7410071942446043,
+      "n_pairwise_pairs": 139,
+      "sel_at_oracle": 0.625,
+      "selected_correct_when_oracle_present": 0.625,
+      "regret": 0.375,
+      "selected_acc_all_tasks": 0.3125,
+      "top2_retention": 0.875,
+      "top4_retention": 0.875
+    },
+    "tap_scores_only": {
+      "status": "NOT_RUN",
+      "reason": "Per-candidate DualAnchor/CoreContent/MIX tap scores are not persisted in s3b1_loop_pools.pt; only aggregate S3B1 comparator metrics are present."
+    },
+    "tiny_mlp": {
+      "status": "NOT_RUN",
+      "reason": "The saved pool has only 16 task groups / 160 candidates; a tiny MLP would be high-variance and less interpretable than the grouped linear controls."
+    }
+  },
+  "calibration_and_margin": {
+    "score_bin_empirical_correctness": [
+      {
+        "bin": 1,
+        "score_min": -1.8382860621823598,
+        "score_max": -1.196995451936345,
+        "n": 32,
+        "empirical_correct_rate": 0.03125,
+        "mean_score": -1.4005958664237639
+      },
+      {
+        "bin": 2,
+        "score_min": -1.196995451936345,
+        "score_max": -0.9453619859021426,
+        "n": 32,
+        "empirical_correct_rate": 0.03125,
+        "mean_score": -1.0855426673833528
+      },
+      {
+        "bin": 3,
+        "score_min": -0.9453619859021426,
+        "score_max": -0.46413860645458477,
+        "n": 32,
+        "empirical_correct_rate": 0.15625,
+        "mean_score": -0.744884940468228
+      },
+      {
+        "bin": 4,
+        "score_min": -0.46413860645458477,
+        "score_max": 0.1766369383149266,
+        "n": 32,
+        "empirical_correct_rate": 0.375,
+        "mean_score": -0.17344651026991756
+      },
+      {
+        "bin": 5,
+        "score_min": 0.1766369383149266,
+        "score_max": 1.3673992563175648,
+        "n": 32,
+        "empirical_correct_rate": 0.3125,
+        "mean_score": 0.6486228310587107
+      }
+    ],
+    "abstention_by_top1_margin": [
+      {
+        "margin_quantile_threshold": 0,
+        "threshold": 0.002447500605408548,
+        "coverage_tasks": 1.0,
+        "acted_tasks": 16,
+        "selected_acc_all_acted": 0.3125,
+        "oracle_present_acted": 8,
+        "sel_at_oracle_acted": 0.625
+      },
+      {
+        "margin_quantile_threshold": 25,
+        "threshold": 0.06653937038783625,
+        "coverage_tasks": 0.75,
+        "acted_tasks": 12,
+        "selected_acc_all_acted": 0.3333333333333333,
+        "oracle_present_acted": 6,
+        "sel_at_oracle_acted": 0.6666666666666666
+      },
+      {
+        "margin_quantile_threshold": 50,
+        "threshold": 0.11930672816401733,
+        "coverage_tasks": 0.5,
+        "acted_tasks": 8,
+        "selected_acc_all_acted": 0.375,
+        "oracle_present_acted": 5,
+        "sel_at_oracle_acted": 0.6
+      },
+      {
+        "margin_quantile_threshold": 75,
+        "threshold": 0.25707722081197604,
+        "coverage_tasks": 0.25,
+        "acted_tasks": 4,
+        "selected_acc_all_acted": 0.25,
+        "oracle_present_acted": 3,
+        "sel_at_oracle_acted": 0.3333333333333333
+      },
+      {
+        "margin_quantile_threshold": 90,
+        "threshold": 0.4603149342179328,
+        "coverage_tasks": 0.125,
+        "acted_tasks": 2,
+        "selected_acc_all_acted": 0.0,
+        "oracle_present_acted": 1,
+        "sel_at_oracle_acted": 0.0
+      }
+    ],
+    "note": "Scores are grouped ridge margins, not calibrated probabilities."
+  },
+  "failure_taxonomy": {
+    "task_groups": 16,
+    "oracle_present_groups": 8,
+    "all_candidates_wrong_groups": 8,
+    "oracle_present_selector_misses": 3,
+    "oracle_present_selector_hits": 5,
+    "domain_hit_summary": {
+      "coding": {
+        "tasks": 4,
+        "oracle_present": 0,
+        "selected_hits_on_oracle": 0,
+        "all_wrong_tasks": 4
+      },
+      "logic": {
+        "tasks": 4,
+        "oracle_present": 2,
+        "selected_hits_on_oracle": 2,
+        "all_wrong_tasks": 2
+      },
+      "math": {
+        "tasks": 4,
+        "oracle_present": 2,
+        "selected_hits_on_oracle": 1,
+        "all_wrong_tasks": 2
+      },
+      "reasoning": {
+        "tasks": 4,
+        "oracle_present": 4,
+        "selected_hits_on_oracle": 2,
+        "all_wrong_tasks": 0
+      }
+    },
+    "representative_oracle_misses": [
+      {
+        "task_id": "math_075309bae2",
+        "domain": "math",
+        "n_candidates": 10,
+        "n_correct": 1,
+        "oracle_present": true,
+        "selected_correct": 0,
+        "selected_branch_id": "sample6",
+        "selected_provenance": "sample",
+        "selected_score": -0.05102536167859173,
+        "top1_margin": 0.42414880302960756,
+        "selected_text_snippet": "FINAL ANSWER: 73  The total cost is calculated as follows:  For green food: 3 baskets * $25/basket = $75 For red food: 3 baskets * ($18 - $2) = $42  Total cost: $75 + $42 = $117  The final answer is 117.  FINAL ANSWER: 1"
+      },
+      {
+        "task_id": "reasoning_00bf397683",
+        "domain": "reasoning",
+        "n_candidates": 10,
+        "n_correct": 3,
+        "oracle_present": true,
+        "selected_correct": 0,
+        "selected_branch_id": "sample8",
+        "selected_provenance": "sample",
+        "selected_score": 1.2395222225496794,
+        "top1_margin": 0.6227871644257141,
+        "selected_text_snippet": "FINAL ANSWER: B  Final answer: B. No.  Okay, so the question is whether it's safe to eat hair. Let me think. Hair is made of keratin, which is a protein. Humans can digest proteins, right? But wait, hair is tightly bound"
+      },
+      {
+        "task_id": "reasoning_025b686a87",
+        "domain": "reasoning",
+        "n_candidates": 10,
+        "n_correct": 2,
+        "oracle_present": true,
+        "selected_correct": 0,
+        "selected_branch_id": "fork3",
+        "selected_provenance": "fork",
+        "selected_score": -1.0261161962277048,
+        "top1_margin": 0.002447500605408548,
+        "selected_text_snippet": " Okay, let's tackle this question. The question is asking what something in the sunlight will absorb, with options A to D.   First, I need to understand the context. When something is in the sunlight, it's exposed to sun"
+      }
+    ],
+    "representative_all_wrong_groups": [
+      {
+        "task_id": "coding_00715d44da",
+        "domain": "coding",
+        "n_candidates": 10,
+        "n_correct": 0,
+        "oracle_present": false,
+        "selected_correct": 0,
+        "selected_branch_id": "sample8",
+        "selected_provenance": "sample",
+        "selected_score": -0.79969788130435,
+        "top1_margin": 0.09576819007573167,
+        "selected_text_snippet": " Okay, I need to write a Python function called raw_heap that takes an arbitrary list and converts it into a heap using the heap queue algorithm. Hmm, right, the heapq module in Python has a heapify function that does ex"
+      },
+      {
+        "task_id": "coding_007b833f21",
+        "domain": "coding",
+        "n_candidates": 10,
+        "n_correct": 0,
+        "oracle_present": false,
+        "selected_correct": 0,
+        "selected_branch_id": "sample7",
+        "selected_provenance": "sample",
+        "selected_score": -0.8855114205252428,
+        "top1_margin": 0.20091679824221043,
+        "selected_text_snippet": " Okay, I need to write a Python function called slope that calculates the slope of a line given two points. Let's think about how to do this.  The slope formula is (y2 - y1) divided by (x2 - x1). But wait, what if the de"
+      },
+      {
+        "task_id": "coding_06bd4a1597",
+        "domain": "coding",
+        "n_candidates": 10,
+        "n_correct": 0,
+        "oracle_present": false,
+        "selected_correct": 0,
+        "selected_branch_id": "fork0",
+        "selected_provenance": "fork",
+        "selected_score": -0.9985770475969105,
+        "top1_margin": 0.060158890883426075,
+        "selected_text_snippet": " Okay, I need to write a Python function called anagram_lambda that finds all anagrams of a given string in a list of strings. The function should use a lambda. Hmm, let's think.  First, what's an anagram? Oh right, two "
+      },
+      {
+        "task_id": "coding_08e8397e8f",
+        "domain": "coding",
+        "n_candidates": 10,
+        "n_correct": 0,
+        "oracle_present": false,
+        "selected_correct": 0,
+        "selected_branch_id": "fork2",
+        "selected_provenance": "fork",
+        "selected_score": -0.6055066261142361,
+        "top1_margin": 0.06866619688930631,
+        "selected_text_snippet": " Okay, I need to write a Python function called Extract that gets the last element of each sublist. Let's think about how to approach this.  So the input is a list of sublists. For each sublist in the main list, I have t"
+      },
+      {
+        "task_id": "logic_000f384418",
+        "domain": "logic",
+        "n_candidates": 10,
+        "n_correct": 0,
+        "oracle_present": false,
+        "selected_correct": 0,
+        "selected_branch_id": "sample5",
+        "selected_provenance": "sample",
+        "selected_score": 0.9484556912029549,
+        "top1_margin": 0.17025893166098904,
+        "selected_text_snippet": " Okay, let's tackle this question step by step. The passage talks about the construction of ecological civilization being tied to social development and people's well-being. It states that the strictest system and rule o"
+      }
+    ],
+    "invalid_or_corrupt_labels": {
+      "status": "NOT_MEASURED",
+      "reason": "The pool stores text, provenance, and correctness but no separate invalid/corrupt category."
+    }
+  },
+  "per_task_expanded_hidden_ridge": [
+    {
+      "task_id": "coding_00715d44da",
+      "domain": "coding",
+      "n_candidates": 10,
+      "n_correct": 0,
+      "oracle_present": false,
+      "selected_correct": 0,
+      "selected_branch_id": "sample8",
+      "selected_provenance": "sample",
+      "selected_score": -0.79969788130435,
+      "top1_margin": 0.09576819007573167,
+      "selected_text_snippet": " Okay, I need to write a Python function called raw_heap that takes an arbitrary list and converts it into a heap using the heap queue algorithm. Hmm, right, the heapq module in Python has a heapify function that does ex"
+    },
+    {
+      "task_id": "coding_007b833f21",
+      "domain": "coding",
+      "n_candidates": 10,
+      "n_correct": 0,
+      "oracle_present": false,
+      "selected_correct": 0,
+      "selected_branch_id": "sample7",
+      "selected_provenance": "sample",
+      "selected_score": -0.8855114205252428,
+      "top1_margin": 0.20091679824221043,
+      "selected_text_snippet": " Okay, I need to write a Python function called slope that calculates the slope of a line given two points. Let's think about how to do this.  The slope formula is (y2 - y1) divided by (x2 - x1). But wait, what if the de"
+    },
+    {
+      "task_id": "coding_06bd4a1597",
+      "domain": "coding",
+      "n_candidates": 10,
+      "n_correct": 0,
+      "oracle_present": false,
+      "selected_correct": 0,
+      "selected_branch_id": "fork0",
+      "selected_provenance": "fork",
+      "selected_score": -0.9985770475969105,
+      "top1_margin": 0.060158890883426075,
+      "selected_text_snippet": " Okay, I need to write a Python function called anagram_lambda that finds all anagrams of a given string in a list of strings. The function should use a lambda. Hmm, let's think.  First, what's an anagram? Oh right, two "
+    },
+    {
+      "task_id": "coding_08e8397e8f",
+      "domain": "coding",
+      "n_candidates": 10,
+      "n_correct": 0,
+      "oracle_present": false,
+      "selected_correct": 0,
+      "selected_branch_id": "fork2",
+      "selected_provenance": "fork",
+      "selected_score": -0.6055066261142361,
+      "top1_margin": 0.06866619688930631,
+      "selected_text_snippet": " Okay, I need to write a Python function called Extract that gets the last element of each sublist. Let's think about how to approach this.  So the input is a list of sublists. For each sublist in the main list, I have t"
+    },
+    {
+      "task_id": "logic_00013d9d03",
+      "domain": "logic",
+      "n_candidates": 10,
+      "n_correct": 2,
+      "oracle_present": true,
+      "selected_correct": 1,
+      "selected_branch_id": "sample4",
+      "selected_provenance": "sample",
+      "selected_score": -0.40158676634807045,
+      "top1_margin": 0.45159821010637136,
+      "selected_text_snippet": " Okay, let's see. The problem says the fan is running. So, according to the rules, if the fan is running, then the tank is full. That means the tank is definitely full. Then, there's another rule: if the tank is full, th"
+    },
+    {
+      "task_id": "logic_000f384418",
+      "domain": "logic",
+      "n_candidates": 10,
+      "n_correct": 0,
+      "oracle_present": false,
+      "selected_correct": 0,
+      "selected_branch_id": "sample5",
+      "selected_provenance": "sample",
+      "selected_score": 0.9484556912029549,
+      "top1_margin": 0.17025893166098904,
+      "selected_text_snippet": " Okay, let's tackle this question step by step. The passage talks about the construction of ecological civilization being tied to social development and people's well-being. It states that the strictest system and rule o"
+    },
+    {
+      "task_id": "logic_00158d8d9c",
+      "domain": "logic",
+      "n_candidates": 10,
+      "n_correct": 8,
+      "oracle_present": true,
+      "selected_correct": 1,
+      "selected_branch_id": "fork3",
+      "selected_provenance": "fork",
+      "selected_score": 0.2301072621397091,
+      "top1_margin": 0.20138669340609883,
+      "selected_text_snippet": " Okay, let's try to figure this out. The question is about whether the evidence given by naturalists that polar bears can navigate over long distances is valid. The evidence is a polar bear that came back home after bein"
+    },
+    {
+      "task_id": "logic_0016af0d6f",
+      "domain": "logic",
+      "n_candidates": 10,
+      "n_correct": 0,
+      "oracle_present": false,
+      "selected_correct": 0,
+      "selected_branch_id": "sample5",
+      "selected_provenance": "sample",
+      "selected_score": -0.08261886261044493,
+      "top1_margin": 0.07021638586618595,
+      "selected_text_snippet": " Okay, let's try to figure this out. So, the problem is about three rugs using five out of six colors. The colors are forest, olive, peach, turquoise, white, and yellow. The rules are:  1. If white is used, two other col"
+    },
+    {
+      "task_id": "math_0313a1abc4",
+      "domain": "math",
+      "n_candidates": 10,
+      "n_correct": 7,
+      "oracle_present": true,
+      "selected_correct": 1,
+      "selected_branch_id": "sample9",
+      "selected_provenance": "sample",
+      "selected_score": 1.3673992563175648,
+      "top1_margin": 0.09399442230679167,
+      "selected_text_snippet": " Okay, let's see. Jerry had some action figures on a shelf. Then he added 7 more, and now there are 10 in total. So, to find out how many he had initially, I need to subtract the 7 he added from the total. So 10 minus 7 "
+    },
+    {
+      "task_id": "math_0490949b5c",
+      "domain": "math",
+      "n_candidates": 10,
+      "n_correct": 0,
+      "oracle_present": false,
+      "selected_correct": 0,
+      "selected_branch_id": "sample7",
+      "selected_provenance": "sample",
+      "selected_score": -0.3036862818050064,
+      "top1_margin": 0.4690316583294943,
+      "selected_text_snippet": " Okay, let's see. Davonte has different sizes of paintings. I need to calculate the total square footage.  First, the three square 6x6 paintings. Each is 6*6=36 square feet. So 3*36=108.  Then the four small ones: 2x3. E"
+    },
+    {
+      "task_id": "math_06d0ca6d3a",
+      "domain": "math",
+      "n_candidates": 10,
+      "n_correct": 0,
+      "oracle_present": false,
+      "selected_correct": 0,
+      "selected_branch_id": "fork0",
+      "selected_provenance": "fork",
+      "selected_score": -1.0357997895563416,
+      "top1_margin": 0.016266661131188798,
+      "selected_text_snippet": " Okay, let's see. I need to find the area of the shaded region in the given figure. The Asymptote code draws two rectangles and a triangle. The shaded region is a triangle.  First, the coordinates of the triangle's verti"
+    },
+    {
+      "task_id": "math_075309bae2",
+      "domain": "math",
+      "n_candidates": 10,
+      "n_correct": 1,
+      "oracle_present": true,
+      "selected_correct": 0,
+      "selected_branch_id": "sample6",
+      "selected_provenance": "sample",
+      "selected_score": -0.05102536167859173,
+      "top1_margin": 0.42414880302960756,
+      "selected_text_snippet": "FINAL ANSWER: 73  The total cost is calculated as follows:  For green food: 3 baskets * $25/basket = $75 For red food: 3 baskets * ($18 - $2) = $42  Total cost: $75 + $42 = $117  The final answer is 117.  FINAL ANSWER: 1"
+    },
+    {
+      "task_id": "reasoning_00bf397683",
+      "domain": "reasoning",
+      "n_candidates": 10,
+      "n_correct": 3,
+      "oracle_present": true,
+      "selected_correct": 0,
+      "selected_branch_id": "sample8",
+      "selected_provenance": "sample",
+      "selected_score": 1.2395222225496794,
+      "top1_margin": 0.6227871644257141,
+      "selected_text_snippet": "FINAL ANSWER: B  Final answer: B. No.  Okay, so the question is whether it's safe to eat hair. Let me think. Hair is made of keratin, which is a protein. Humans can digest proteins, right? But wait, hair is tightly bound"
+    },
+    {
+      "task_id": "reasoning_00ddfcee6a",
+      "domain": "reasoning",
+      "n_candidates": 10,
+      "n_correct": 2,
+      "oracle_present": true,
+      "selected_correct": 1,
+      "selected_branch_id": "sample6",
+      "selected_provenance": "sample",
+      "selected_score": 1.0327865361449624,
+      "top1_margin": 0.009455251673895937,
+      "selected_text_snippet": " Okay, let's see. The question is about what a plant does when oxygen levels drop slightly after being in an environment with a lot of oxygen. The options are understand, sour, calibrate, or pray.  First, I need to think"
+    },
+    {
+      "task_id": "reasoning_012f9d1412",
+      "domain": "reasoning",
+      "n_candidates": 10,
+      "n_correct": 4,
+      "oracle_present": true,
+      "selected_correct": 1,
+      "selected_branch_id": "fork3",
+      "selected_provenance": "fork",
+      "selected_score": 0.0980542624411681,
+      "top1_margin": 0.14284526625230298,
+      "selected_text_snippet": " Okay, let's see. The question is asking which method of transportation uses air to float. The options are A through E.  First, I need to think about each option. Surface of the earth\u2014that's like roads or land, so probab"
+    },
+    {
+      "task_id": "reasoning_025b686a87",
+      "domain": "reasoning",
+      "n_candidates": 10,
+      "n_correct": 2,
+      "oracle_present": true,
+      "selected_correct": 0,
+      "selected_branch_id": "fork3",
+      "selected_provenance": "fork",
+      "selected_score": -1.0261161962277048,
+      "top1_margin": 0.002447500605408548,
+      "selected_text_snippet": " Okay, let's tackle this question. The question is asking what something in the sunlight will absorb, with options A to D.   First, I need to understand the context. When something is in the sunlight, it's exposed to sun"
+    }
+  ],
+  "verdicts": {
+    "S3B2_EXPANDED_VERDICT": "GENERATED_BRANCH_CORRECTNESS_SIGNAL_CONFIRMED_BUT_SELECTION_UNSOLVED",
+    "SELECTION_WALL_DIAGNOSIS": "PARTIAL_SIGNAL_TERMINAL_SELECTION_REMAINS_BOTTLENECK",
+    "S3B2_PAPER_CLAIM": "SAFE_TO_CLAIM_PARTIAL_GENERATED_BRANCH_CORRECTNESS_READOUT"
+  },
+  "interpretation": "S3B2 has a real generated-branch hidden-state correctness signal: grouped hidden features separate correct from incorrect candidates and metadata-only controls are weak. The signal does not solve terminal selection: forced top-1 remains 5/8 on oracle-present groups, high margin abstention does not reliably improve precision, and the pool has only 16 task groups."
+}

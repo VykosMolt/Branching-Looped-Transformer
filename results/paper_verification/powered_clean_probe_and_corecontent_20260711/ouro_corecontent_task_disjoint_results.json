@@ -1,0 +1,114 @@
+{
+  "status": "COMPLETE",
+  "split_audit": {
+    "seed": 20260711,
+    "rule": "sha256(seed:task_id), 80/10/10 thresholds",
+    "records": 36279,
+    "unique_tasks": 28833,
+    "stored_task_ids_crossing_splits": 195,
+    "effective_task_ids_crossing_splits": 0,
+    "record_counts": {
+      "train": 28927,
+      "val": 3776,
+      "heldout": 3576
+    },
+    "task_counts": {
+      "train": 23054,
+      "val": 2948,
+      "heldout": 2831
+    }
+  },
+  "configs": [
+    "24_L4",
+    "36_L4",
+    "47_L4"
+  ],
+  "architecture": "AntisymLinearNoNorm",
+  "scoring": "three-channel blockwise z-score average",
+  "best_per_config": {
+    "24_L4": {
+      "config": "24_L4",
+      "arch": "AntisymLinearNoNorm",
+      "training_set": "all_core",
+      "lr": 0.0003,
+      "seed": 1,
+      "pairs": 25855,
+      "val_core_macro": 0.6274,
+      "val_by_domain": {
+        "coding": 0.8081,
+        "reasoning": 0.6857,
+        "math": 0.5562,
+        "logic": 0.4726,
+        "alignment": 0.6144
+      }
+    },
+    "36_L4": {
+      "config": "36_L4",
+      "arch": "AntisymLinearNoNorm",
+      "training_set": "all_core",
+      "lr": 0.001,
+      "seed": 1,
+      "pairs": 25855,
+      "val_core_macro": 0.6547,
+      "val_by_domain": {
+        "coding": 0.8837,
+        "reasoning": 0.7102,
+        "math": 0.618,
+        "logic": 0.4557,
+        "alignment": 0.606
+      }
+    },
+    "47_L4": {
+      "config": "47_L4",
+      "arch": "AntisymLinearNoNorm",
+      "training_set": "all_core",
+      "lr": 0.001,
+      "seed": 0,
+      "pairs": 25855,
+      "val_core_macro": 0.5951,
+      "val_by_domain": {
+        "coding": 0.8837,
+        "reasoning": 0.5633,
+        "math": 0.5618,
+        "logic": 0.3502,
+        "alignment": 0.6167
+      }
+    }
+  },
+  "validation": {
+    "groups": {
+      "coding": 172,
+      "reasoning": 245,
+      "math": 356,
+      "logic": 237,
+      "alignment": 2713
+    },
+    "top1_by_domain": {
+      "coding": 0.9069767441860465,
+      "reasoning": 0.6979591836734694,
+      "math": 0.6095505617977528,
+      "logic": 0.4388185654008439,
+      "alignment": 0.6236638407666789
+    },
+    "macro_top1": 0.6553937791649583
+  },
+  "heldout": {
+    "groups": {
+      "coding": 182,
+      "reasoning": 269,
+      "math": 298,
+      "logic": 212,
+      "alignment": 2564
+    },
+    "top1_by_domain": {
+      "coding": 0.8956043956043956,
+      "reasoning": 0.5985130111524164,
+      "math": 0.6409395973154363,
+      "logic": 0.4056603773584906,
+      "alignment": 0.6142745709828393
+    },
+    "macro_top1": 0.6309983904827157
+  },
+  "historical_stored_split_macro_top1": 0.6691,
+  "elapsed_seconds": 193.53564310073853
+}

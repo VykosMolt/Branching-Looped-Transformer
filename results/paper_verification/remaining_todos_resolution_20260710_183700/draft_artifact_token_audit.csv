@@ -1,0 +1,24 @@
+draft_token,status,match_count,matches
+.../final_engineering_expansion_2026-06-17/s3b2_generated_branch_correctness_expanded_2026-06-17.md,RESOLVED,1,artifacts/reports/proto_introspection/final_engineering_expansion_2026-06-17/s3b2_generated_branch_correctness_expanded_2026-06-17.md
+artifacts/reports/probes/bg_steering_suite_2026-05-18/analysis.md,RESOLVED,1,/home/moloch/ouro_project/artifacts/reports/probes/bg_steering_suite_2026-05-18/analysis.md
+artifacts/reports/probes/bg_steering_suite_2026-05-18/summary.md,RESOLVED,1,/home/moloch/ouro_project/artifacts/reports/probes/bg_steering_suite_2026-05-18/summary.md
+branch-generation-and-survival.md,RESOLVED,1,docs/evaluator/branch-generation-and-survival.md
+branch-training-logic-expansion.md,RESOLVED,1,docs/evaluator/branch-training-logic-expansion.md
+changelog.md,UNRESOLVED,0,
+chronological-evaluator-summary.md,RESOLVED,2,docs/evaluator/chronological-evaluator-summary.md | docs/evaluator/history/pre_docs_consolidation_2026-05-31/chronological-evaluator-summary.md
+content-selection-taps.md,RESOLVED,1,docs/evaluator/content-selection-taps.md
+core-domain-tap-audit.md,RESOLVED,1,docs/evaluator/core-domain-tap-audit.md
+corecontent-dataset-expansion-v2.md,RESOLVED,1,docs/evaluator/corecontent-dataset-expansion-v2.md
+current-state.md,RESOLVED,2,docs/evaluator/current-state.md | docs/evaluator/history/pre_docs_consolidation_2026-05-31/current-state.md
+domain-transfer-ledger.md,RESOLVED,2,docs/evaluator/domain-transfer-ledger.md | docs/evaluator/history/pre_docs_consolidation_2026-05-31/domain-transfer-ledger.md
+dualanchor-architecture-baseline.md,RESOLVED,1,docs/evaluator/dualanchor-architecture-baseline.md
+dualanchor-tap-evolution.md,RESOLVED,1,docs/evaluator/dualanchor-tap-evolution.md
+evaluator-locus-summary.md,RESOLVED,3,docs/evaluator/evaluator-locus-summary.md | docs/evaluator/history/interfaces-and-tools/evaluator-locus-summary.md | docs/evaluator/history/pre_docs_consolidation_2026-05-31/evaluator-locus-summary.md
+flip-test-interpretation.md,RESOLVED,1,docs/evaluator/flip-test-interpretation.md
+history/bg-run-notes/survival-selection/bg_selection_only_phase2_prototype_v1.md,RESOLVED,1,docs/evaluator/history/bg-run-notes/survival-selection/bg_selection_only_phase2_prototype_v1.md
+interfaces-and-tools.md,RESOLVED,1,docs/evaluator/interfaces-and-tools.md
+kv-cache-branch-carry.md,RESOLVED,1,docs/evaluator/kv-cache-branch-carry.md
+phase1-controller-and-routing.md,RESOLVED,1,docs/evaluator/phase1-controller-and-routing.md
+science-reasoning-repair.md,RESOLVED,1,docs/evaluator/science-reasoning-repair.md
+steering-and-adapters.md,RESOLVED,1,docs/evaluator/steering-and-adapters.md
+terminal-selection-and-arbiters.md,RESOLVED,1,docs/evaluator/terminal-selection-and-arbiters.md

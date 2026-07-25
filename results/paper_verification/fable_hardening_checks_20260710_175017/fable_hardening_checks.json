@@ -1,0 +1,235 @@
+{
+  "report": "fable_hardening_checks",
+  "timestamp": "20260710_175017",
+  "project_root": "/home/moloch/ouro_project",
+  "paper_draft_read_only": "/home/moloch/Downloads/ouro_paper_draft_v3_16.md",
+  "report_dir": "/home/moloch/ouro_project/artifacts/reports/paper_verification/fable_hardening_checks_20260710_175017",
+  "code": "/home/moloch/ouro_project/tools/paper_verification/fable_hardening_checks.py",
+  "executive_summary": {
+    "localization": "Not reproduced in strict antisymmetric-linear units: base, Thinking, and RLTT each scored 0.8375 on the reconstructed original-style held-out ordered rows.",
+    "preanswer": "Verified with a fresh paired task-clustered bootstrap: delta=0.065790, 95% CI [0.020707, 0.112254], excludes zero.",
+    "paper_actions": {
+      "localization": "REMOVE_OR_TODO",
+      "preanswer": "KEEP_PRIMARY_CLAIM_VERIFIED"
+    }
+  },
+  "verdict_constants": {
+    "ANTISYM_LINEAR_PROBE_STATUS": "RECONSTRUCTED_LINEAR_PROBE",
+    "LOCALIZATION_BACKBONE_STATUS": "ALL_THREE_BACKBONES_EVALUATED",
+    "LOCALIZATION_RESULT_STATUS": "LOCALIZATION_NOT_REPRODUCED",
+    "PAPER_ACTION_LOCALIZATION": "REMOVE_OR_TODO",
+    "PREANSWER_RAW_PREDICTIONS_STATUS": "RAW_PREDICTIONS_FOUND",
+    "PREANSWER_CI_ORIGINAL_STATUS": "ORIGINAL_CI_PROVENANCE_UNKNOWN",
+    "PREANSWER_TASK_CLUSTERED_RESULT": "TASK_CLUSTERED_CI_EXCLUDES_ZERO",
+    "PAPER_ACTION_PREANSWER": "KEEP_PRIMARY_CLAIM_VERIFIED"
+  },
+  "check1": {
+    "probe_recovery": {
+      "status": "RECONSTRUCTED_LINEAR_PROBE",
+      "saved_weights_found": false,
+      "source_code": "probe_test.py at git HEAD (deleted in the dirty worktree; inspected read-only with git show HEAD:probe_test.py)",
+      "documented_model": "ByteDance/Ouro-2.6B-Thinking",
+      "dataset": "Anthropic/hh-rlhf test",
+      "dataset_selection": "200 pairs selected by numpy default_rng(seed=42), sorted dataset indices",
+      "preprocessing": "tokenize with the local Ouro tokenizer, right truncation to 384 tokens, mean-pool mask-valid tokens separately for each candidate and loop",
+      "feature_basis": "post-final-norm layer-47 loop-boundary states, loops L1-L4 concatenated",
+      "feature_dim": 8192,
+      "difference": "raw/NoNorm candidate difference h_left-h_right",
+      "bias": false,
+      "score": "w dot (h_left-h_right)",
+      "exact_antisymmetry": true,
+      "fit": "full-batch torch.optim.LBFGS, strong_wolfe, mean logistic loss plus ||w||^2/(2*C*n), C=1",
+      "probe_seed": 42,
+      "split": "symmetric +/- rows followed by numpy RandomState(42) permutation and 80/20 row split: 320 train rows, 80 eval rows",
+      "split_caveat": "The historical protocol splits +/- orientations at row level; opposite orientations of a source HH pair can cross train/eval. The 80 eval rows represent 74 unique source pairs. The reported CI clusters by source pair.",
+      "probe_path": "/home/moloch/ouro_project/artifacts/reports/paper_verification/fable_hardening_checks_20260710_175017/reconstructed_antisym_linear_probe.pt",
+      "reconstruction_sanity": "Thinking accuracy 0.8375 is within 0.75 percentage points of the documented approximately 0.845 result."
+    },
+    "models": [
+      {
+        "backbone": "Base Ouro 2.6B",
+        "model_id_or_path": "ByteDance/Ouro-2.6B",
+        "revision": "1ed04250da1a9936042725d302e81c8fa2ab5abd",
+        "weight_sha256": "2fdf9805a3510b7dc82959a2db4872ef767a5bdc55520c6a1b54fc3e463c1bba",
+        "cache": "/home/moloch/ouro_project/artifacts/hf_cache",
+        "load_status": "LOADED_SUCCESSFULLY",
+        "capture_path": "/home/moloch/ouro_project/artifacts/reports/paper_verification/fable_hardening_checks_20260710_175017/hh_boundary_pooled_200_base.pt"
+      },
+      {
+        "backbone": "Ouro 2.6B Thinking",
+        "model_id_or_path": "ByteDance/Ouro-2.6B-Thinking",
+        "revision": "f1edd81e7ac41355db670500ceaf204e0f73af68",
+        "weight_blob_sha256": "c506a79247dc51fc0400d789365c3d43932f718abce9810f3606ace47d0a3080",
+        "load_status": "REUSED_SAVED_FEATURES",
+        "capture_path": "/home/moloch/ouro_project/artifacts/reports/evaluator/hh_layer_states_200_thinking.pt",
+        "capture_sha256": "4ff588a2ffcb21c7bb792b987d1d777cbf797bf42b15203b80cd017fb1e977ba"
+      },
+      {
+        "backbone": "Ouro RLTT local",
+        "model_id_or_path": "/home/moloch/ouro_project/models/ouro_rltt_local",
+        "revision": null,
+        "revision_note": "Local converted FSDP checkpoint; no upstream revision is embedded in config.json.",
+        "weight_shard_sha256": [
+          "9f49e55b0d0ea368f2942cfd3fa256836ea7fa9002c6f860ca2d85ac1de252a1",
+          "97a0d531a2c624dd98e60c0ebc46a7cc0413642f8cba6df7dac8df01a432df19",
+          "0bf3d0c111c876ccc7f7ebaeb7cabc8dfccffde30acb4cd780a4c364d3679aad"
+        ],
+        "load_status": "REUSED_SAVED_FEATURES",
+        "capture_path": "/home/moloch/ouro_project/artifacts/reports/evaluator/hh_layer_states_200_rltt.pt",
+        "capture_sha256": "bb3b2f466e9d59808d55ade45ab25512d80df0a6a92868ced85522e07030745b"
+      }
+    ],
+    "runtime": {
+      "transformers": "4.54.1",
+      "torch": "2.12.0.dev20260407+cu128",
+      "model_forward_dtype": "bfloat16",
+      "captured_feature_dtype": "float32",
+      "quantization": "none",
+      "device": "NVIDIA GeForce RTX 5070 Ti Laptop GPU",
+      "early_exit_threshold": 1.0,
+      "num_loops": 4,
+      "max_length": 384
+    },
+    "results": [
+      {
+        "backbone": "Base Ouro 2.6B",
+        "n_ordered_eval_rows": 80,
+        "n_unique_source_pairs": 74,
+        "feature_shape": [200, 8192],
+        "strict_antisym_accuracy": 0.8375,
+        "ci95_source_pair_clustered": [0.7349397590361446, 0.935064935064935],
+        "swap_consistency": 1.0,
+        "max_abs_score_ab_plus_score_ba": 0.0,
+        "fixed_order_accuracy": null
+      },
+      {
+        "backbone": "Ouro 2.6B Thinking",
+        "n_ordered_eval_rows": 80,
+        "n_unique_source_pairs": 74,
+        "feature_shape": [200, 8192],
+        "strict_antisym_accuracy": 0.8375,
+        "ci95_source_pair_clustered": [0.7349397590361446, 0.935064935064935],
+        "swap_consistency": 1.0,
+        "max_abs_score_ab_plus_score_ba": 0.0,
+        "fixed_order_accuracy": null
+      },
+      {
+        "backbone": "Ouro RLTT local",
+        "n_ordered_eval_rows": 80,
+        "n_unique_source_pairs": 74,
+        "feature_shape": [200, 8192],
+        "strict_antisym_accuracy": 0.8375,
+        "ci95_source_pair_clustered": [0.7349397590361446, 0.935064935064935],
+        "swap_consistency": 1.0,
+        "max_abs_score_ab_plus_score_ba": 0.0,
+        "fixed_order_accuracy": null
+      }
+    ],
+    "identity_audit": {
+      "base_vs_thinking": {
+        "mean_difference_vector_cosine": 0.8765245079994202,
+        "score_pearson": 0.9117918610572815,
+        "mean_abs_score_delta": 0.5777284502983093,
+        "decision_agreement": 0.9950000047683716,
+        "max_abs_feature_delta": 2.017259120941162
+      },
+      "thinking_vs_rltt": {
+        "mean_difference_vector_cosine": 0.9433804154396057,
+        "score_pearson": 0.9988625049591064,
+        "mean_abs_score_delta": 0.06907793879508972,
+        "decision_agreement": 1.0,
+        "max_abs_feature_delta": 0.5074440240859985
+      },
+      "interpretation": "Features are not accidentally identical, but the reconstructed antisymmetric-linear decision direction transfers almost unchanged to all three backbones."
+    },
+    "supporting_paths": {
+      "results": "/home/moloch/ouro_project/artifacts/reports/paper_verification/fable_hardening_checks_20260710_175017/localization_results.json",
+      "rows": "/home/moloch/ouro_project/artifacts/reports/paper_verification/fable_hardening_checks_20260710_175017/localization_rows.csv"
+    }
+  },
+  "followup_evaluator_decomposition": {
+    "status": "COMPLETED",
+    "head_checkpoint": "/home/moloch/ouro_project/artifacts/checkpoints/evaluator/pairwise_epoch2.pt",
+    "head_checkpoint_sha256": "3630c2092eca8db13239f763bc9c212f4b673866e47f811c3095efc57409ec96",
+    "original_attention_with_norm": {
+      "base": {"canonical_accuracy": 0.95, "swapped_accuracy": 0.11, "antisym_accuracy": 0.58, "symmetric_order_mean": 1.2592063103453257},
+      "thinking": {"canonical_accuracy": 0.95, "swapped_accuracy": 0.13, "antisym_accuracy": 0.595, "symmetric_order_mean": 1.293196572973393},
+      "rltt": {"canonical_accuracy": 0.945, "swapped_accuracy": 0.13, "antisym_accuracy": 0.6, "symmetric_order_mean": 1.2918219679244793}
+    },
+    "ablation_verdicts": {
+      "HISTORICAL_BASE_24_STATUS": "NOT_REPRODUCED_NO_ARTIFACT_FOUND",
+      "FIXED_ORDER_MECHANISM": "SYMMETRIC_ORDER_PRIOR_DOMINATES_ALL_BACKBONES",
+      "POOLING_ABLATION": "ATTENTION_NOT_REQUIRED_FOR_CANONICAL_HIGH_ACCURACY",
+      "NORMALIZATION_ABLATION": "NORMALIZATION_MITIGATES_ORDER_DOMINANCE",
+      "LOCALIZATION_IMPLICATION": "NO_CROSS_BACKBONE_LOCALIZATION_IN_ORIGINAL_OR_LINEAR_UNITS_ON_CONTROLLED_SLICE"
+    },
+    "paths": {
+      "markdown": "/home/moloch/ouro_project/artifacts/reports/paper_verification/fable_hardening_checks_20260710_175017/evaluator_decomposition.md",
+      "json": "/home/moloch/ouro_project/artifacts/reports/paper_verification/fable_hardening_checks_20260710_175017/evaluator_decomposition.json",
+      "rows_csv": "/home/moloch/ouro_project/artifacts/reports/paper_verification/fable_hardening_checks_20260710_175017/evaluator_decomposition_rows.csv",
+      "summary_csv": "/home/moloch/ouro_project/artifacts/reports/paper_verification/fable_hardening_checks_20260710_175017/evaluator_decomposition_summary.csv"
+    }
+  },
+  "check2": {
+    "raw_status": "RAW_PREDICTIONS_FOUND",
+    "raw_note": "Raw per-example hidden features, shortcut features, labels, sample IDs, and task IDs were found; OOF predictions were recreated deterministically because they were not saved originally.",
+    "raw_artifact": "/home/moloch/ouro_project/artifacts/reports/proto_introspection/within_domain_recapture.pt",
+    "raw_artifact_sha256": "f0e44d7e859cb08c6423a1422f0899fe62a40ebec13dcb1a457952d5a04fab82",
+    "original_report_md": "/home/moloch/ouro_project/artifacts/reports/proto_introspection/proto_introspection_within_domain_preanswer_specificity_2026-06-17.md",
+    "original_report_json": "/home/moloch/ouro_project/artifacts/reports/proto_introspection/proto_introspection_within_domain_preanswer_specificity_2026-06-17.json",
+    "original_analysis": "/home/moloch/ouro_project/utilities/tests/manual/proto_introspection_within_domain_analysis.py",
+    "original_bootstrap_utility": "/home/moloch/ouro_project/utilities/tests/manual/proto_introspection_controls_analysis.py",
+    "original_ci_provenance": {
+      "status": "ORIGINAL_CI_PROVENANCE_UNKNOWN",
+      "evidence_for_clustered": "The June MD/JSON explicitly label the delta interval group-bootstrap/task-resampled and report [0.0172, 0.1144].",
+      "missing_evidence": "The preserved analysis code has candidate-level bootstrap_auroc_ci for marginal AUROCs but no paired task-clustered delta routine, and original OOF predictions/bootstrap draws were not saved. Therefore the exact historical execution path cannot be code-audited."
+    },
+    "recomputation": {
+      "n_tasks": 170,
+      "n_examples": 680,
+      "candidates_per_task": 4,
+      "class_balance": {"positive": 407, "negative": 273},
+      "cv": "5-fold task-grouped CV using the preserved grouped_folds implementation and seed 20260617",
+      "bootstrap": "Paired percentile cluster bootstrap: sample 170 task IDs with replacement and include all four examples for every sampled task occurrence",
+      "seed": 20260710,
+      "draws": 10000,
+      "skipped_draws": 0,
+      "hidden_plus_all_auroc": 0.796973296973297,
+      "length_plus_logprob_auroc": 0.7311832311832311,
+      "delta": 0.06579006579006585,
+      "bootstrap_mean": 0.06576964381326739,
+      "bootstrap_std": 0.02346425176504259,
+      "ci95": [0.020706818478552536, 0.1122539274800343],
+      "excludes_zero": true
+    },
+    "diagnostics": {
+      "candidate_bootstrap_ci95_not_primary": [0.031581481276808536, 0.10034764954956125],
+      "candidate_bootstrap_std_not_primary": 0.01758921652951941,
+      "leave_one_task_out_delta_range": [0.055999561575769796, 0.07055715001594465],
+      "leave_one_task_out_max_abs_change": 0.009790504214296059
+    },
+    "supporting_paths": {
+      "result": "/home/moloch/ouro_project/artifacts/reports/paper_verification/fable_hardening_checks_20260710_175017/preanswer_task_clustered_ci.json",
+      "oof_predictions": "/home/moloch/ouro_project/artifacts/reports/paper_verification/fable_hardening_checks_20260710_175017/preanswer_oof_predictions.csv",
+      "leave_one_task_out": "/home/moloch/ouro_project/artifacts/reports/paper_verification/fable_hardening_checks_20260710_175017/preanswer_leave_one_task_out.csv"
+    }
+  },
+  "recommended_paper_patches": {
+    "section_3_7": "In a targeted replication using the bias-free antisymmetric linear difference probe, the same held-out HH accuracy was obtained for base Ouro-2.6B, Ouro-2.6B-Thinking, and Ouro-RLTT (83.75% for each; exact swap consistency 1.0). Thus the earlier 24%/95.2%/95.0% separation is specific to the fixed-order high-capacity evaluator and does not establish training-stage localization in the clean relational units. We therefore do not claim that reasoning/RL training installs the linearly readable relational preference signal; resolving training-stage localization requires a larger independently pair-split antisymmetric replication.",
+    "section_5": "At the strict pre-answer cut, adding hidden features to the length-and-log-probability baseline raises AUROC from 0.731 to 0.797 (incremental ΔAUROC +0.066). A paired task-clustered bootstrap over 170 GSM8K problems (10,000 draws; all four candidates retained per sampled problem) gives a 95% CI of [+0.021, +0.112], which excludes zero. The improvement is therefore statistically significant under task-clustered resampling, while remaining a modest incremental effect demonstrated in one powered domain."
+  },
+  "remaining_blockers": [
+    "The original approximately 84.5% probe weights were not saved; Check 1 necessarily uses a reconstruction.",
+    "The historical +/- row split permits opposite orientations of the same HH pair to cross train/eval; a larger independent pair-level split is needed for a definitive localization study.",
+    "The exact code/draws that produced the historical pre-answer CI [0.0172, 0.1144] were not preserved, although the new task-clustered recomputation independently verifies exclusion of zero.",
+    "The local RLTT checkpoint has no embedded upstream revision; shard hashes are recorded instead."
+  ],
+  "hard_rules": {
+    "ouro_trained": false,
+    "checkpoints_modified": false,
+    "broad_generation_run": false,
+    "fixed_order_localization_reported_as_headline": false,
+    "candidate_bootstrap_used_for_primary_ci": false,
+    "paper_draft_modified": false
+  }
+}

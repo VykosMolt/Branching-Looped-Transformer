@@ -1,0 +1,3264 @@
+{
+  "tag": "preanswer_recapture",
+  "model": "models/ouro_rltt_local",
+  "tap_layers": [
+    24,
+    36,
+    47
+  ],
+  "num_loops": 4,
+  "force_all_loops": true,
+  "feature_shape": [
+    3,
+    4,
+    2048
+  ],
+  "samples_per_task": 4,
+  "seed": 20260617,
+  "max_new_tokens": {
+    "reasoning": 192,
+    "science": 192,
+    "gsm8k": 224
+  },
+  "temperature": 0.7,
+  "top_p": 0.95,
+  "n_tasks_requested": 120,
+  "n_tasks_captured": 120,
+  "budget_seconds": 4200.0,
+  "budget_hit": false,
+  "elapsed_seconds": 2508.1,
+  "errors": [],
+  "counts_by_domain": {
+    "reasoning": 40,
+    "gsm8k": 30,
+    "science": 50
+  },
+  "records_summary": [
+    {
+      "task_id": "ARC-Challenge/0",
+      "domain": "reasoning",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 159,
+      "prompt_tok": 111,
+      "s0_tok": 190
+    },
+    {
+      "task_id": "ARC-Challenge/1",
+      "domain": "reasoning",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 211,
+      "prompt_tok": 97,
+      "s0_tok": 186
+    },
+    {
+      "task_id": "ARC-Challenge/2",
+      "domain": "reasoning",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 560,
+      "prompt_tok": 194,
+      "s0_tok": 187
+    },
+    {
+      "task_id": "ARC-Challenge/3",
+      "domain": "reasoning",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 112,
+      "prompt_tok": 88,
+      "s0_tok": 190
+    },
+    {
+      "task_id": "ARC-Challenge/4",
+      "domain": "reasoning",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 209,
+      "prompt_tok": 113,
+      "s0_tok": 188
+    },
+    {
+      "task_id": "ARC-Challenge/5",
+      "domain": "reasoning",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 85,
+      "prompt_tok": 77,
+      "s0_tok": 190
+    },
+    {
+      "task_id": "ARC-Challenge/6",
+      "domain": "reasoning",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 75,
+      "prompt_tok": 89,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "ARC-Challenge/7",
+      "domain": "reasoning",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 94,
+      "prompt_tok": 95,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "ARC-Challenge/8",
+      "domain": "reasoning",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 274,
+      "prompt_tok": 114,
+      "s0_tok": 190
+    },
+    {
+      "task_id": "ARC-Challenge/9",
+      "domain": "reasoning",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 99,
+      "prompt_tok": 79,
+      "s0_tok": 192
+    },
+    {
+      "task_id": "ARC-Challenge/10",
+      "domain": "reasoning",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 136,
+      "prompt_tok": 130,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "ARC-Challenge/11",
+      "domain": "reasoning",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 314,
+      "prompt_tok": 120,
+      "s0_tok": 190
+    },
+    {
+      "task_id": "ARC-Challenge/12",
+      "domain": "reasoning",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "full": true
+      },
+      "question_chars": 346,
+      "prompt_tok": 144,
+      "s0_tok": 189
+    },
+    {
+      "task_id": "ARC-Challenge/13",
+      "domain": "reasoning",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 150,
+      "prompt_tok": 96,
+      "s0_tok": 185
+    },
+    {
+      "task_id": "ARC-Challenge/14",
+      "domain": "reasoning",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 62,
+      "prompt_tok": 87,
+      "s0_tok": 187
+    },
+    {
+      "task_id": "ARC-Challenge/15",
+      "domain": "reasoning",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 145,
+      "prompt_tok": 126,
+      "s0_tok": 189
+    },
+    {
+      "task_id": "ARC-Challenge/16",
+      "domain": "reasoning",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 163,
+      "prompt_tok": 107,
+      "s0_tok": 187
+    },
+    {
+      "task_id": "ARC-Challenge/17",
+      "domain": "reasoning",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 58,
+      "prompt_tok": 71,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "ARC-Challenge/18",
+      "domain": "reasoning",
+      "mean_correct": 0.0,
+      "maj_correct": false,
+      "any_correct": false,
+      "n_correct": 0,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 115,
+      "prompt_tok": 92,
+      "s0_tok": 190
+    },
+    {
+      "task_id": "ARC-Challenge/19",
+      "domain": "reasoning",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 183,
+      "prompt_tok": 113,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "OpenBookQA/0",
+      "domain": "reasoning",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 104,
+      "prompt_tok": 83,
+      "s0_tok": 188
+    },
+    {
+      "task_id": "OpenBookQA/1",
+      "domain": "reasoning",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 50,
+      "prompt_tok": 79,
+      "s0_tok": 189
+    },
+    {
+      "task_id": "OpenBookQA/2",
+      "domain": "reasoning",
+      "mean_correct": 1.0,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 4,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 59,
+      "prompt_tok": 84,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "OpenBookQA/3",
+      "domain": "reasoning",
+      "mean_correct": 1.0,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 4,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 79,
+      "prompt_tok": 69,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "OpenBookQA/4",
+      "domain": "reasoning",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 42,
+      "prompt_tok": 79,
+      "s0_tok": 189
+    },
+    {
+      "task_id": "OpenBookQA/5",
+      "domain": "reasoning",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 33,
+      "prompt_tok": 60,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "OpenBookQA/6",
+      "domain": "reasoning",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 67,
+      "prompt_tok": 72,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "OpenBookQA/7",
+      "domain": "reasoning",
+      "mean_correct": 1.0,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 4,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 89,
+      "prompt_tok": 106,
+      "s0_tok": 190
+    },
+    {
+      "task_id": "OpenBookQA/8",
+      "domain": "reasoning",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 38,
+      "prompt_tok": 80,
+      "s0_tok": 186
+    },
+    {
+      "task_id": "OpenBookQA/9",
+      "domain": "reasoning",
+      "mean_correct": 0.0,
+      "maj_correct": false,
+      "any_correct": false,
+      "n_correct": 0,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 51,
+      "prompt_tok": 76,
+      "s0_tok": 188
+    },
+    {
+      "task_id": "OpenBookQA/10",
+      "domain": "reasoning",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "full": true
+      },
+      "question_chars": 65,
+      "prompt_tok": 67,
+      "s0_tok": 186
+    },
+    {
+      "task_id": "OpenBookQA/11",
+      "domain": "reasoning",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "full": true
+      },
+      "question_chars": 32,
+      "prompt_tok": 79,
+      "s0_tok": 190
+    },
+    {
+      "task_id": "OpenBookQA/12",
+      "domain": "reasoning",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 37,
+      "prompt_tok": 62,
+      "s0_tok": 189
+    },
+    {
+      "task_id": "OpenBookQA/13",
+      "domain": "reasoning",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "full": true
+      },
+      "question_chars": 55,
+      "prompt_tok": 88,
+      "s0_tok": 189
+    },
+    {
+      "task_id": "OpenBookQA/14",
+      "domain": "reasoning",
+      "mean_correct": 0.0,
+      "maj_correct": false,
+      "any_correct": false,
+      "n_correct": 0,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "full": true
+      },
+      "question_chars": 14,
+      "prompt_tok": 66,
+      "s0_tok": 188
+    },
+    {
+      "task_id": "OpenBookQA/15",
+      "domain": "reasoning",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 34,
+      "prompt_tok": 68,
+      "s0_tok": 190
+    },
+    {
+      "task_id": "OpenBookQA/16",
+      "domain": "reasoning",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 44,
+      "prompt_tok": 91,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "OpenBookQA/17",
+      "domain": "reasoning",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 21,
+      "prompt_tok": 58,
+      "s0_tok": 187
+    },
+    {
+      "task_id": "OpenBookQA/18",
+      "domain": "reasoning",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 7,
+      "prompt_tok": 75,
+      "s0_tok": 190
+    },
+    {
+      "task_id": "OpenBookQA/19",
+      "domain": "reasoning",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 182,
+      "prompt_tok": 93,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/high_school_biology/0",
+      "domain": "science",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 249,
+      "prompt_tok": 107,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/high_school_biology/1",
+      "domain": "science",
+      "mean_correct": 0.0,
+      "maj_correct": false,
+      "any_correct": false,
+      "n_correct": 0,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 119,
+      "prompt_tok": 111,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/high_school_biology/2",
+      "domain": "science",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 93,
+      "prompt_tok": 77,
+      "s0_tok": 192
+    },
+    {
+      "task_id": "mmlu/high_school_biology/3",
+      "domain": "science",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 149,
+      "prompt_tok": 80,
+      "s0_tok": 183
+    },
+    {
+      "task_id": "mmlu/high_school_biology/4",
+      "domain": "science",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 67,
+      "prompt_tok": 110,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/high_school_biology/5",
+      "domain": "science",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 84,
+      "prompt_tok": 96,
+      "s0_tok": 189
+    },
+    {
+      "task_id": "mmlu/high_school_biology/6",
+      "domain": "science",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 59,
+      "prompt_tok": 80,
+      "s0_tok": 188
+    },
+    {
+      "task_id": "mmlu/high_school_biology/7",
+      "domain": "science",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 67,
+      "prompt_tok": 73,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/high_school_biology/8",
+      "domain": "science",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 106,
+      "prompt_tok": 139,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/high_school_biology/9",
+      "domain": "science",
+      "mean_correct": 0.0,
+      "maj_correct": false,
+      "any_correct": false,
+      "n_correct": 0,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 346,
+      "prompt_tok": 186,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/high_school_biology/10",
+      "domain": "science",
+      "mean_correct": 0.0,
+      "maj_correct": false,
+      "any_correct": false,
+      "n_correct": 0,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 208,
+      "prompt_tok": 102,
+      "s0_tok": 189
+    },
+    {
+      "task_id": "mmlu/high_school_biology/11",
+      "domain": "science",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 454,
+      "prompt_tok": 184,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/high_school_biology/12",
+      "domain": "science",
+      "mean_correct": 0.0,
+      "maj_correct": false,
+      "any_correct": false,
+      "n_correct": 0,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 45,
+      "prompt_tok": 111,
+      "s0_tok": 189
+    },
+    {
+      "task_id": "mmlu/high_school_biology/13",
+      "domain": "science",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 82,
+      "prompt_tok": 71,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/high_school_biology/14",
+      "domain": "science",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 96,
+      "prompt_tok": 121,
+      "s0_tok": 189
+    },
+    {
+      "task_id": "mmlu/high_school_biology/15",
+      "domain": "science",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 121,
+      "prompt_tok": 129,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/high_school_biology/16",
+      "domain": "science",
+      "mean_correct": 0.0,
+      "maj_correct": false,
+      "any_correct": false,
+      "n_correct": 0,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 58,
+      "prompt_tok": 101,
+      "s0_tok": 190
+    },
+    {
+      "task_id": "mmlu/high_school_biology/17",
+      "domain": "science",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 61,
+      "prompt_tok": 65,
+      "s0_tok": 190
+    },
+    {
+      "task_id": "mmlu/high_school_biology/18",
+      "domain": "science",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 90,
+      "prompt_tok": 125,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/high_school_biology/19",
+      "domain": "science",
+      "mean_correct": 0.0,
+      "maj_correct": false,
+      "any_correct": false,
+      "n_correct": 0,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 335,
+      "prompt_tok": 163,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/high_school_chemistry/0",
+      "domain": "science",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "full": true
+      },
+      "question_chars": 38,
+      "prompt_tok": 112,
+      "s0_tok": 190
+    },
+    {
+      "task_id": "mmlu/high_school_chemistry/1",
+      "domain": "science",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 82,
+      "prompt_tok": 130,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/high_school_chemistry/2",
+      "domain": "science",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 177,
+      "prompt_tok": 95,
+      "s0_tok": 190
+    },
+    {
+      "task_id": "mmlu/high_school_chemistry/3",
+      "domain": "science",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 87,
+      "prompt_tok": 148,
+      "s0_tok": 187
+    },
+    {
+      "task_id": "mmlu/high_school_chemistry/4",
+      "domain": "science",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 26,
+      "prompt_tok": 61,
+      "s0_tok": 187
+    },
+    {
+      "task_id": "mmlu/high_school_chemistry/5",
+      "domain": "science",
+      "mean_correct": 0.0,
+      "maj_correct": false,
+      "any_correct": false,
+      "n_correct": 0,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 212,
+      "prompt_tok": 141,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/high_school_chemistry/6",
+      "domain": "science",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 55,
+      "prompt_tok": 75,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/high_school_chemistry/7",
+      "domain": "science",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 25,
+      "prompt_tok": 103,
+      "s0_tok": 190
+    },
+    {
+      "task_id": "mmlu/high_school_chemistry/8",
+      "domain": "science",
+      "mean_correct": 0.0,
+      "maj_correct": false,
+      "any_correct": false,
+      "n_correct": 0,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 69,
+      "prompt_tok": 73,
+      "s0_tok": 187
+    },
+    {
+      "task_id": "mmlu/high_school_chemistry/9",
+      "domain": "science",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 82,
+      "prompt_tok": 141,
+      "s0_tok": 190
+    },
+    {
+      "task_id": "mmlu/high_school_chemistry/10",
+      "domain": "science",
+      "mean_correct": 0.0,
+      "maj_correct": false,
+      "any_correct": false,
+      "n_correct": 0,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 123,
+      "prompt_tok": 120,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/high_school_chemistry/11",
+      "domain": "science",
+      "mean_correct": 1.0,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 4,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 74,
+      "prompt_tok": 71,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/high_school_chemistry/12",
+      "domain": "science",
+      "mean_correct": 0.0,
+      "maj_correct": false,
+      "any_correct": false,
+      "n_correct": 0,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 160,
+      "prompt_tok": 182,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/high_school_chemistry/13",
+      "domain": "science",
+      "mean_correct": 0.0,
+      "maj_correct": false,
+      "any_correct": false,
+      "n_correct": 0,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 243,
+      "prompt_tok": 176,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/high_school_chemistry/14",
+      "domain": "science",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 113,
+      "prompt_tok": 123,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/high_school_chemistry/15",
+      "domain": "science",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 108,
+      "prompt_tok": 92,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/high_school_chemistry/16",
+      "domain": "science",
+      "mean_correct": 0.0,
+      "maj_correct": false,
+      "any_correct": false,
+      "n_correct": 0,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 64,
+      "prompt_tok": 99,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/high_school_chemistry/17",
+      "domain": "science",
+      "mean_correct": 0.0,
+      "maj_correct": false,
+      "any_correct": false,
+      "n_correct": 0,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 69,
+      "prompt_tok": 75,
+      "s0_tok": 190
+    },
+    {
+      "task_id": "mmlu/high_school_chemistry/18",
+      "domain": "science",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 190,
+      "prompt_tok": 93,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/high_school_chemistry/19",
+      "domain": "science",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 127,
+      "prompt_tok": 94,
+      "s0_tok": 189
+    },
+    {
+      "task_id": "mmlu/anatomy/0",
+      "domain": "science",
+      "mean_correct": 0.0,
+      "maj_correct": false,
+      "any_correct": false,
+      "n_correct": 0,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 99,
+      "prompt_tok": 119,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/anatomy/1",
+      "domain": "science",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 48,
+      "prompt_tok": 115,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/anatomy/2",
+      "domain": "science",
+      "mean_correct": 1.0,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 4,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 84,
+      "prompt_tok": 74,
+      "s0_tok": 187
+    },
+    {
+      "task_id": "mmlu/anatomy/3",
+      "domain": "science",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 65,
+      "prompt_tok": 74,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/anatomy/4",
+      "domain": "science",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 102,
+      "prompt_tok": 84,
+      "s0_tok": 190
+    },
+    {
+      "task_id": "mmlu/anatomy/5",
+      "domain": "science",
+      "mean_correct": 0.0,
+      "maj_correct": false,
+      "any_correct": false,
+      "n_correct": 0,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 107,
+      "prompt_tok": 105,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/anatomy/6",
+      "domain": "science",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 85,
+      "prompt_tok": 79,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/anatomy/7",
+      "domain": "science",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 104,
+      "prompt_tok": 79,
+      "s0_tok": 187
+    },
+    {
+      "task_id": "mmlu/anatomy/8",
+      "domain": "science",
+      "mean_correct": 0.0,
+      "maj_correct": false,
+      "any_correct": false,
+      "n_correct": 0,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 39,
+      "prompt_tok": 91,
+      "s0_tok": 191
+    },
+    {
+      "task_id": "mmlu/anatomy/9",
+      "domain": "science",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": true,
+        "gen32": true,
+        "full": true
+      },
+      "question_chars": 40,
+      "prompt_tok": 90,
+      "s0_tok": 190
+    },
+    {
+      "task_id": "gsm8k/0",
+      "domain": "gsm8k",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 293,
+      "prompt_tok": 109,
+      "s0_tok": 215
+    },
+    {
+      "task_id": "gsm8k/1",
+      "domain": "gsm8k",
+      "mean_correct": 1.0,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 4,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 148,
+      "prompt_tok": 74,
+      "s0_tok": 221
+    },
+    {
+      "task_id": "gsm8k/2",
+      "domain": "gsm8k",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 351,
+      "prompt_tok": 113,
+      "s0_tok": 221
+    },
+    {
+      "task_id": "gsm8k/3",
+      "domain": "gsm8k",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 561,
+      "prompt_tok": 165,
+      "s0_tok": 221
+    },
+    {
+      "task_id": "gsm8k/4",
+      "domain": "gsm8k",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 179,
+      "prompt_tok": 73,
+      "s0_tok": 217
+    },
+    {
+      "task_id": "gsm8k/5",
+      "domain": "gsm8k",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 235,
+      "prompt_tok": 83,
+      "s0_tok": 218
+    },
+    {
+      "task_id": "gsm8k/6",
+      "domain": "gsm8k",
+      "mean_correct": 1.0,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 4,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 292,
+      "prompt_tok": 97,
+      "s0_tok": 216
+    },
+    {
+      "task_id": "gsm8k/7",
+      "domain": "gsm8k",
+      "mean_correct": 0.0,
+      "maj_correct": false,
+      "any_correct": false,
+      "n_correct": 0,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 248,
+      "prompt_tok": 95,
+      "s0_tok": 221
+    },
+    {
+      "task_id": "gsm8k/8",
+      "domain": "gsm8k",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 207,
+      "prompt_tok": 94,
+      "s0_tok": 222
+    },
+    {
+      "task_id": "gsm8k/9",
+      "domain": "gsm8k",
+      "mean_correct": 1.0,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 4,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 183,
+      "prompt_tok": 77,
+      "s0_tok": 221
+    },
+    {
+      "task_id": "gsm8k/10",
+      "domain": "gsm8k",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 450,
+      "prompt_tok": 146,
+      "s0_tok": 220
+    },
+    {
+      "task_id": "gsm8k/11",
+      "domain": "gsm8k",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 248,
+      "prompt_tok": 93,
+      "s0_tok": 217
+    },
+    {
+      "task_id": "gsm8k/12",
+      "domain": "gsm8k",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 140,
+      "prompt_tok": 66,
+      "s0_tok": 217
+    },
+    {
+      "task_id": "gsm8k/13",
+      "domain": "gsm8k",
+      "mean_correct": 1.0,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 4,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 263,
+      "prompt_tok": 94,
+      "s0_tok": 221
+    },
+    {
+      "task_id": "gsm8k/14",
+      "domain": "gsm8k",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 208,
+      "prompt_tok": 84,
+      "s0_tok": 219
+    },
+    {
+      "task_id": "gsm8k/15",
+      "domain": "gsm8k",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 134,
+      "prompt_tok": 67,
+      "s0_tok": 219
+    },
+    {
+      "task_id": "gsm8k/16",
+      "domain": "gsm8k",
+      "mean_correct": 0.0,
+      "maj_correct": false,
+      "any_correct": false,
+      "n_correct": 0,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 500,
+      "prompt_tok": 143,
+      "s0_tok": 221
+    },
+    {
+      "task_id": "gsm8k/17",
+      "domain": "gsm8k",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 398,
+      "prompt_tok": 125,
+      "s0_tok": 220
+    },
+    {
+      "task_id": "gsm8k/18",
+      "domain": "gsm8k",
+      "mean_correct": 1.0,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 4,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 220,
+      "prompt_tok": 82,
+      "s0_tok": 220
+    },
+    {
+      "task_id": "gsm8k/19",
+      "domain": "gsm8k",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 208,
+      "prompt_tok": 87,
+      "s0_tok": 217
+    },
+    {
+      "task_id": "gsm8k/20",
+      "domain": "gsm8k",
+      "mean_correct": 0.25,
+      "maj_correct": false,
+      "any_correct": true,
+      "n_correct": 1,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 214,
+      "prompt_tok": 95,
+      "s0_tok": 221
+    },
+    {
+      "task_id": "gsm8k/21",
+      "domain": "gsm8k",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 213,
+      "prompt_tok": 83,
+      "s0_tok": 220
+    },
+    {
+      "task_id": "gsm8k/22",
+      "domain": "gsm8k",
+      "mean_correct": 0.0,
+      "maj_correct": false,
+      "any_correct": false,
+      "n_correct": 0,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 276,
+      "prompt_tok": 103,
+      "s0_tok": 221
+    },
+    {
+      "task_id": "gsm8k/23",
+      "domain": "gsm8k",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 176,
+      "prompt_tok": 88,
+      "s0_tok": 221
+    },
+    {
+      "task_id": "gsm8k/24",
+      "domain": "gsm8k",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 255,
+      "prompt_tok": 97,
+      "s0_tok": 221
+    },
+    {
+      "task_id": "gsm8k/25",
+      "domain": "gsm8k",
+      "mean_correct": 1.0,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 4,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 194,
+      "prompt_tok": 81,
+      "s0_tok": 217
+    },
+    {
+      "task_id": "gsm8k/26",
+      "domain": "gsm8k",
+      "mean_correct": 0.5,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 2,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 431,
+      "prompt_tok": 151,
+      "s0_tok": 219
+    },
+    {
+      "task_id": "gsm8k/27",
+      "domain": "gsm8k",
+      "mean_correct": 1.0,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 4,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 198,
+      "prompt_tok": 83,
+      "s0_tok": 217
+    },
+    {
+      "task_id": "gsm8k/28",
+      "domain": "gsm8k",
+      "mean_correct": 0.75,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 3,
+      "n_samples": 4,
+      "s0_correct": false,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": false
+      },
+      "question_chars": 230,
+      "prompt_tok": 103,
+      "s0_tok": 221
+    },
+    {
+      "task_id": "gsm8k/29",
+      "domain": "gsm8k",
+      "mean_correct": 1.0,
+      "maj_correct": true,
+      "any_correct": true,
+      "n_correct": 4,
+      "n_samples": 4,
+      "s0_correct": true,
+      "cuts_present": [
+        "prompt_only",
+        "gen16",
+        "gen32",
+        "preanswer",
+        "full"
+      ],
+      "cut_leak": {
+        "prompt_only": false,
+        "gen16": false,
+        "gen32": false,
+        "preanswer": false,
+        "full": true
+      },
+      "question_chars": 100,
+      "prompt_tok": 56,
+      "s0_tok": 217
+    }
+  ]
+}

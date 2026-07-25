@@ -1,0 +1,9 @@
+task_id,domain,n_candidates,n_positive,uniform_random_success_probability
+math_0313a1abc4,math,10,7,0.7
+math_075309bae2,math,10,1,0.1
+reasoning_00bf397683,reasoning,10,3,0.3
+reasoning_00ddfcee6a,reasoning,10,2,0.2
+reasoning_012f9d1412,reasoning,10,4,0.4
+reasoning_025b686a87,reasoning,10,2,0.2
+logic_00158d8d9c,logic,10,8,0.8
+logic_00013d9d03,logic,10,2,0.2

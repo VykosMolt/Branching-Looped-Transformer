@@ -1,0 +1,332 @@
+{
+  "report": "proto_introspection_evidence_matrix",
+  "date": "2026-06-17",
+  "compiled": "2026-06-22",
+  "scope": "read-only audit of existing evaluator/tap/trajectory/branching artifacts; no new experiments; no checkpoint changes",
+  "operational_definition": {
+    "weak_claim": "Looped-model hidden states expose readable process-quality signals about the model's own ongoing computation.",
+    "requirements": [
+      "readable internal signal recovered by a tiny external readout",
+      "about the model's own ongoing computation (success/quality of its own trajectory)",
+      "present in intermediate hidden states (loops/prefix), not only the final token",
+      "before or not reducible to final external judgment"
+    ],
+    "explicitly_not_claimed": [
+      "consciousness",
+      "self-awareness",
+      "verbal self-report",
+      "generic answer correctness",
+      "external evaluator capability equated with model self-knowledge",
+      "autonomous internal use of the signal for self-control"
+    ]
+  },
+  "final_verdict_constants": {
+    "PROTO_INTROSPECTION_WEAK_CLAIM_VERDICT": "SUBSTANTIALLY_SUPPORTED_REQUIRES_TARGETED_CONTROLS",
+    "PREDICTION_EVIDENCE_VERDICT": "HIDDEN_STATES_PREDICT_PROCESS_QUALITY",
+    "TIMING_EVIDENCE_VERDICT": "TIMING_SIGNAL_PARTIAL_PREFIX_EVIDENCE",
+    "SPECIFICITY_EVIDENCE_VERDICT": "SHORTCUT_CONTROLS_PARTIAL",
+    "UTILITY_EVIDENCE_VERDICT": "WEAK_UTILITY_SUPPORTED_STRONG_CAPABILITY_UTILITY_NOT_PROVEN",
+    "ROLE_SEPARATION_VERDICT": "VALIDITY_CONTENT_CORRECTNESS_SEPARATED",
+    "CONTROL_BOUNDARY_VERDICT": "READOUT_SUPPORTED_CONTROL_NOT_SOLVED",
+    "NEXT_STEP_VERDICT": "RUN_MINIMAL_PREFIX_AND_SHORTCUT_CONTROLS_THEN_WRITE_PAPER"
+  },
+  "pillars": [
+    {
+      "id": "P1",
+      "name": "Prediction",
+      "status": "STRONG",
+      "key_numbers": {
+        "hh_pairwise_acc_full_test": 0.952,
+        "hh_pairwise_acc_count": "8141/8552",
+        "hh_pairwise_acc_subset_thinking": 0.95,
+        "hh_pairwise_acc_subset_rltt": 0.945,
+        "hh_pairwise_linear_diff_probe": 0.845,
+        "trajectory_best_cell_domain": "reasoning",
+        "trajectory_best_prefix": 256,
+        "trajectory_best_pairwise_acc": 0.8536585365853658,
+        "trajectory_best_top1_lift": 0.16249999999999998,
+        "trajectory_best_top2_lift": 0.04166666666666663,
+        "trajectory_best_oracle": 0.9,
+        "trajectory_auc_margin_success": 0.7265454545454545,
+        "trajectory_margin_success_spearman": 0.3637820532426427,
+        "trajectory_top1_lift_bootstrap_ci": [0.0625, 0.2625],
+        "trajectory_strong_cells": 368,
+        "trajectory_top1_lift_ge_0.10_cells": 300
+      },
+      "supporting_artifacts": [
+        "artifacts/reports/evaluator/probe_loop_geometry_hh.json",
+        "artifacts/reports/probes/bg_trajectory_prediction_2026-05-18/summary.json",
+        "artifacts/reports/probes/bg_trajectory_prediction_2026-05-18/predictive_power.md",
+        "artifacts/checkpoints/evaluator/pairwise_epoch2.pt",
+        "docs/evaluator/flip-test-interpretation.md"
+      ],
+      "caveats": "trajectory cell n small (20 tasks / 41 comparisons in best cell); preference is fixed-order; long prefixes may include partial answer",
+      "allowed_claim": "Frozen Ouro hidden states contain readable information that predicts human-preference ordering and eventual branch success via a tiny antisymmetric/relational readout.",
+      "missing_controls": ["shortcut baselines (P3-B)", "task-grouped heldout (P3-C)"]
+    },
+    {
+      "id": "P2",
+      "name": "Timing",
+      "status": "PARTIAL",
+      "key_numbers": {
+        "prefix_lengths": [32, 64, 128, 256],
+        "branches_per_task": 4,
+        "n_prefixes": 960,
+        "evaluable_rate": 1.0,
+        "reasoning_top1_lift_at_64": 0.262,
+        "science_top1_lift_at_32": 0.188,
+        "gsm8k_top1_lift_at_256": 0.200,
+        "L1_only_canonical_acc": 0.915,
+        "L1_only_centered_acc": 0.575,
+        "feature_shape": "[3 layers x 4 loops x 2048] captured at prefix position"
+      },
+      "supporting_artifacts": [
+        "artifacts/reports/probes/bg_trajectory_prediction_2026-05-18/task_suite.md",
+        "artifacts/reports/probes/bg_trajectory_prediction_2026-05-18/continued_prefixes.md",
+        "artifacts/reports/probes/bg_trajectory_prediction_2026-05-18/prefix_features.pt",
+        "artifacts/reports/evaluator/probe_l1_ablation.json"
+      ],
+      "caveats": "predictor reads prefix-position states and predicts continuations not yet generated (genuine pre-completion); but long prefixes on short tasks can contain the answer and no strictly-pre-answer-token control exists yet",
+      "allowed_claim": "Predictive signal is present in intermediate loop states and partial-trajectory prefixes, including short (32-64 token) prefixes preceding most of the answer; partial pre-answer evidence, not airtight.",
+      "missing_controls": ["pre-answer leakage audit (P2/P3-A)"]
+    },
+    {
+      "id": "P3",
+      "name": "Specificity",
+      "status": "PARTIAL",
+      "key_numbers": {
+        "pairwise_nonlinear": 0.952,
+        "pointwise_nonlinear": 0.65,
+        "pointwise_linear": 0.2175,
+        "antisymmetry_correlation_rho": -0.94,
+        "score_range": [-1.51, 4.56],
+        "strict_sign_flip_epoch2": 0.25,
+        "strict_sign_flip_epoch4_5": 0.96,
+        "acc_collapse_epoch4_5": [0.672, 0.624],
+        "centered_antisym_acc_L4": 0.595,
+        "centered_antisym_acc_meanL1L4": 0.62
+      },
+      "supporting_artifacts": [
+        "docs/evaluator/flip-test-interpretation.md",
+        "artifacts/reports/evaluator/probe_l1_ablation.json",
+        "artifacts/reports/evaluator/probe_loop_geometry_hh.json"
+      ],
+      "caveats": "relational/antisymmetry/label-separation controls strong; length/logprob/prompt-family/domain shortcuts not run as comparators for branch-success predictor",
+      "allowed_claim": "The preference signal is relational and order-sensitive (not pointwise quality, not constant-output, not pair-order artifact); trivial-shortcut controls for the success predictor are incomplete.",
+      "missing_controls": ["shortcut baselines (P3-B)", "task-grouped heldout (P3-C)"]
+    },
+    {
+      "id": "P4",
+      "name": "Utility",
+      "status": "PARTIAL_WEAK_YES_STRONG_NO",
+      "key_numbers": {
+        "stage_oracle_retention_v3": 0.9848,
+        "terminal_oracle_retained_v3": 1.0,
+        "false_prune_recovery_v3": "8/8",
+        "perturbation_oracle_retained": 0.9496402877697842,
+        "trajectory_top1_lift": 0.16249999999999998,
+        "corecontent_v2_in_dist": 0.6691,
+        "mix_hh_in_dist": 0.5525,
+        "survivor_top5_corecontent": 0.658,
+        "survivor_top5_mix_hh": 0.552,
+        "survivor_top5_dualanchor_forced_top1": 0.379,
+        "forced_terminal_perturbed_count_normalized_lift": -0.0764388489208633,
+        "s1_kmatched_plain_sampling_oracle": 0.75,
+        "s1_kmatched_sample_fork_oracle": 0.611,
+        "s1_kmatched_greedy_fork_new_correct": 0.0,
+        "s1_fork_adds_over_sampling": false,
+        "bounded_lora_macro_before": 0.708,
+        "bounded_lora_macro_after": 0.688
+      },
+      "supporting_artifacts": [
+        "artifacts/reports/probes/bg_dualanchor_perturbation_lift_v1_2026-05-31/perturbation_lift.md",
+        "docs/evaluator/current-state.md",
+        "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4b_kmatched_sampling.json",
+        "artifacts/reports/probes/bg_corecontent_dataset_expansion_refit_v2_2026-06-04/"
+      ],
+      "caveats": "forced top1 is diagnostic; survivor-set retention is the headline; CoreContent in-dist edge ~half constructed-negative artifact (real-negative +0.063), drops to 0.417 OOD",
+      "allowed_claim": "Signal is useful for external ranking, retention, survivor-set pruning, and diagnosis (weak utility). End-to-end capability gain over sampling not shown (strong utility unproven).",
+      "missing_controls": []
+    },
+    {
+      "id": "P5",
+      "name": "Role separation",
+      "status": "STRONG",
+      "key_numbers": {
+        "dualanchor_survival": "CONFIRMED",
+        "dualanchor_forced_top1_selection": 0.379,
+        "corecontent_in_dist": 0.6691,
+        "corecontent_generated_ood": 0.417,
+        "s3b1_generated_branch_correctness": "near-chance",
+        "gate3_dualanchor_channels": 6,
+        "gate3_corecontent_channels": 3
+      },
+      "supporting_artifacts": [
+        "artifacts/reports/probes/mpn_s3_closure_2026-06-17/s3_closure_and_sokac_validity_bundle.md",
+        "docs/evaluator/content-selection-taps.md",
+        "docs/evaluator/dualanchor-architecture-baseline.md",
+        "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4_gate3_prune_integration.json"
+      ],
+      "caveats": "none material",
+      "allowed_claim": "Validity/survivability (DualAnchor), relational content quality (CoreContent), and correctness (external verifier) are empirically and conceptually distinct; tap scores are not correctness labels.",
+      "missing_controls": []
+    },
+    {
+      "id": "P6",
+      "name": "Cross-domain",
+      "status": "PARTIAL",
+      "key_numbers": {
+        "hh": 0.855,
+        "clean_gsm8k_range": [0.778, 0.893],
+        "code_strict_clean_all16_code_trained": 0.875,
+        "code_strict_clean_all16_hh_trained": 0.750,
+        "reasoning_trajectory": 0.854,
+        "science": 0.811,
+        "generalist_specialist_verdict": "DOMAIN_SPECIALISTS_NEEDED",
+        "shared_coherence_axis": "weak"
+      },
+      "supporting_artifacts": [
+        "artifacts/reports/probes/bg_cross_domain_eval_matrix_2026-05-17.md",
+        "artifacts/reports/probes/bg_fixed_config_cross_domain_audit_2026-05-17.md",
+        "docs/evaluator/current-state.md"
+      ],
+      "caveats": "single universal head weak; HH->code transfer weak; code-specific heads win on code; science diagnostic-only; coding-correctness transfer fails",
+      "allowed_claim": "Readable process-quality signal is not HH-only; it appears across objective domains but is best read by domain-specialized heads, not one universal probe.",
+      "missing_controls": []
+    },
+    {
+      "id": "P7",
+      "name": "Control boundary",
+      "status": "STRONG_AS_BOUNDARY",
+      "key_numbers": {
+        "sequence_level_adapter_verdict": "NO_FROZEN_BACKBONE_WRITE_PATH",
+        "frozen_backbone_steering_status": "CLOSED_UNDER_TESTED_METHODS",
+        "frozen_fork_greedy_new_correct": 0.0
+      },
+      "supporting_artifacts": [
+        "docs/evaluator/steering-and-adapters.md",
+        "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4b_kmatched_sampling.json",
+        "artifacts/reports/probes/mpn_s3_closure_2026-06-17/s3_closure_and_sokac_validity_bundle.md"
+      ],
+      "caveats": "'closed under tested methods' is a bounded negative, not impossibility; training-time integration (S3A) untested",
+      "allowed_claim": "Hidden states are readable (readout exists), but no tested frozen-backbone steering produced reliable write-control; readout and autonomous control are different problems; control requires training-time integration.",
+      "missing_controls": []
+    }
+  ],
+  "specificity_controls": {
+    "pair_order_flip_antisymmetry": "PASS",
+    "pointwise_vs_pairwise": "PASS",
+    "train_test_split": "PARTIAL",
+    "prompt_family_leakage": "MISSING",
+    "length_style_shortcuts": "MISSING",
+    "domain_shortcuts": "PARTIAL",
+    "candidate_source_shortcuts": "PARTIAL",
+    "logprob_entropy_baseline": "MISSING",
+    "raw_text_baseline": "MISSING",
+    "verifier_gold_label_separation": "PASS"
+  },
+  "evidence_inventory": [
+    {"name": "HH pairwise evaluator / loop geometry", "json": "artifacts/reports/evaluator/probe_loop_geometry_hh.json", "supports": ["P1", "P3"], "load_bearing": true, "exists": true},
+    {"name": "Evaluator head checkpoint", "json": "artifacts/checkpoints/evaluator/pairwise_epoch2.pt", "supports": ["P1"], "load_bearing": true, "exists": true},
+    {"name": "Flip-test interpretation", "report": "docs/evaluator/flip-test-interpretation.md", "supports": ["P3"], "load_bearing": true, "exists": true},
+    {"name": "L1 ablation", "json": "artifacts/reports/evaluator/probe_l1_ablation.json", "script": "utilities/tests/manual/probe_l1_ablation.py", "supports": ["P2", "P3"], "load_bearing": true, "exists": "json_yes_script_missing"},
+    {"name": "L1 alpha sweep", "json": "artifacts/reports/evaluator/probe_l1_alpha_sweep.json", "script": "utilities/tests/manual/probe_l1_alpha_sweep.py", "supports": ["P1", "P2"], "load_bearing": false, "exists": "json_yes_script_missing"},
+    {"name": "Bipartite layer probe", "json": "artifacts/reports/evaluator/probe_bipartite_layers_24_36.json", "supports": ["P2"], "load_bearing": true, "exists": true},
+    {"name": "Trajectory prediction suite", "report": "artifacts/reports/probes/bg_trajectory_prediction_2026-05-18/predictive_power.md", "json": "artifacts/reports/probes/bg_trajectory_prediction_2026-05-18/summary.json", "supports": ["P1", "P2"], "load_bearing": true, "exists": true},
+    {"name": "Trajectory prefix features", "json": "artifacts/reports/probes/bg_trajectory_prediction_2026-05-18/prefix_features.pt", "supports": ["P2"], "load_bearing": true, "exists": true, "note": "reusable for pre-answer control"},
+    {"name": "Cross-domain eval matrix", "report": "artifacts/reports/probes/bg_cross_domain_eval_matrix_2026-05-17.md", "supports": ["P6"], "load_bearing": true, "exists": true},
+    {"name": "Fixed-config cross-domain audit", "report": "artifacts/reports/probes/bg_fixed_config_cross_domain_audit_2026-05-17.md", "supports": ["P6"], "load_bearing": true, "exists": true},
+    {"name": "DualAnchor perturbation lift", "report": "artifacts/reports/probes/bg_dualanchor_perturbation_lift_v1_2026-05-31/perturbation_lift.md", "supports": ["P4", "P5"], "load_bearing": true, "exists": true},
+    {"name": "DualAnchor architecture-looped v3", "report": "docs/evaluator/dualanchor-architecture-baseline.md", "supports": ["P4", "P5"], "load_bearing": true, "exists": true},
+    {"name": "CoreContent v2 refit", "report": "docs/evaluator/corecontent-dataset-expansion-v2.md", "supports": ["P4", "P5"], "load_bearing": true, "exists": true},
+    {"name": "S1 K-matched sampling", "json": "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4b_kmatched_sampling.json", "supports": ["P4", "P7"], "load_bearing": true, "exists": true},
+    {"name": "Steering / adapters", "report": "docs/evaluator/steering-and-adapters.md", "supports": ["P7"], "load_bearing": true, "exists": true},
+    {"name": "S3 closure + Sokac bundle", "report": "artifacts/reports/probes/mpn_s3_closure_2026-06-17/s3_closure_and_sokac_validity_bundle.md", "json": "artifacts/reports/probes/mpn_s3_closure_2026-06-17/s3_closure_verdicts.json", "supports": ["P4", "P5", "P7"], "load_bearing": true, "exists": true}
+  ],
+  "missing": [
+    "MISSING: utilities/tests/manual/probe_l1_ablation.py and probe_l1_alpha_sweep.py — consequence: result JSONs survive and are load-bearing, but generating scripts removed from worktree; result stands, script reproducibility weakened",
+    "MISSING: dedicated pre-answer-leakage control artifact — consequence: P2 timing claim not yet airtight; highest-value missing control",
+    "MISSING: shortcut-baseline comparison for trajectory predictor — consequence: P3 cannot exclude length/logprob/prompt-family shortcuts for branch-success prediction",
+    "MISSING: Barbados loop-state success/failure predictability — consequence: no small-looped-transformer cross-check; optional; must NOT be invented"
+  ],
+  "timing_verdict": "TIMING_SIGNAL_PARTIAL_PREFIX_EVIDENCE",
+  "minimal_remaining_controls": [
+    {
+      "id": "A",
+      "name": "pre-answer leakage audit",
+      "priority": "highest",
+      "question": "Does branch-success prediction survive when the readout sees only hidden states captured strictly before any answer token is emitted?",
+      "input_artifacts": ["bg_trajectory_prediction_2026-05-18/prefix_features.pt", "bg_trajectory_prediction_2026-05-18/prefix_scores.json", "bg_trajectory_prediction_2026-05-18/continued_prefixes.json", "bg_trajectory_prediction_2026-05-18/task_suite.json"],
+      "gpu_needed": "mostly_no_optional_tiny_recapture",
+      "estimated_cost": "CPU hours or <1 GPU-hour if recapture needed",
+      "pass_criterion": "pairwise acc and top1 lift stay above random and shortcut baselines at strictly-pre-answer cut",
+      "effect_on_claim": "converts P2 PARTIAL->STRONG; timing verdict -> STRONG_PREANSWER_CONTROLLED"
+    },
+    {
+      "id": "B",
+      "name": "shortcut baseline audit",
+      "priority": "high",
+      "question": "Does the hidden-state probe beat simple baselines: length, domain, prompt family, candidate source, logprob/entropy?",
+      "input_artifacts": ["trajectory features + scores + task suite", "logprobs from existing continuations or tiny re-score"],
+      "gpu_needed": "no_for_text_baselines_optional_tiny_for_logprob",
+      "estimated_cost": "CPU hours + optional <1 GPU-hour",
+      "pass_criterion": "hidden-state probe lift exceeds every simple baseline lift",
+      "effect_on_claim": "converts P3 PARTIAL->STRONG or honestly downgrades prediction claim"
+    },
+    {
+      "id": "C",
+      "name": "task-grouped heldout audit",
+      "priority": "medium",
+      "question": "Does prediction survive when train/test split by task/prompt family (no task in both)?",
+      "input_artifacts": ["bg_trajectory_prediction_2026-05-18/prefix_scores.json", "bg_trajectory_prediction_2026-05-18/task_suite.json"],
+      "gpu_needed": "no",
+      "estimated_cost": "CPU minutes-hours",
+      "pass_criterion": "pairwise acc stays above chance under task-grouped heldout",
+      "effect_on_claim": "strengthens generalization for P1/P3/P6"
+    },
+    {
+      "id": "D",
+      "name": "optional Barbados replication",
+      "priority": "optional",
+      "question": "Do Barbados loop states predict final exactness / boundary failure / repair?",
+      "input_artifacts": ["Barbados modular-expr harness (capability-replication only; NO loop-state introspection result currently exists)"],
+      "gpu_needed": "yes_small",
+      "estimated_cost": "modest GPU; only if Barbados already instruments loop-state dumps",
+      "pass_criterion": "loop-state probe predicts final exactness above chance",
+      "effect_on_claim": "second-architecture cross-check; nice-to-have, not gating",
+      "do_not_invent": true
+    }
+  ],
+  "paper_claim_readiness": [
+    {"claim": "Weak proto-introspection exists in Ouro-RLTT hidden states", "readiness": "READY_WITH_CAVEAT", "caveat": "timing not airtight until control A"},
+    {"claim": "Signal predicts quality/success", "readiness": "READY", "caveat": "small n in trajectory cells"},
+    {"claim": "Signal appears in intermediate loop states", "readiness": "READY_WITH_CAVEAT", "caveat": "pre-answer control pending; converged layers carry less loop-distinct info"},
+    {"claim": "Signal is not merely a pair-order artifact", "readiness": "READY", "caveat": "none"},
+    {"claim": "Signal is not fully explained by trivial shortcuts", "readiness": "NOT_READY", "caveat": "length/logprob/prompt-family baselines missing (control B)"},
+    {"claim": "Signal is useful for external readout/scaffolding", "readiness": "READY", "caveat": "weak utility only"},
+    {"claim": "Signal does not yet imply autonomous self-control", "readiness": "READY", "caveat": "bounded negative, not impossibility"},
+    {"claim": "Training-time integration is needed for control", "readiness": "READY_WITH_CAVEAT", "caveat": "S3A not yet run"}
+  ],
+  "pillar_status_rollup": {"P1": "STRONG", "P2": "PARTIAL", "P3": "PARTIAL", "P4": "PARTIAL_WEAK_YES_STRONG_NO", "P5": "STRONG", "P6": "PARTIAL", "P7": "STRONG"},
+  "recommendation": {
+    "weak_claim_paper_ready_now": "yes_with_caveats",
+    "controls_before_airtight_timing_specificity": ["A_pre_answer_leakage", "B_shortcut_baselines", "C_task_grouped_heldout"],
+    "writable_immediately": ["prediction", "role_separation", "control_boundary", "operational_definition", "relational_antisymmetry_specificity", "weak_utility", "readout_precedes_control_narrative"],
+    "must_not_claim": ["consciousness", "self_awareness", "verbal_self_understanding", "autonomous_self_control", "capability_or_jormungandr_improvement", "airtight_pre_answer_timing_until_A", "shortcut_free_specificity_until_B", "tap_scores_as_correctness_labels"],
+    "new_expensive_gpu_required_for_first_draft": false,
+    "paper_writing_in_parallel_with_controls": true
+  },
+  "hard_rules_honored": [
+    "no new expensive experiments run",
+    "no consciousness/self-awareness claim",
+    "no strong autonomous self-control claim",
+    "no Jormungandr/capability-improvement claim",
+    "preference/correctness/validity/content not conflated",
+    "tap scores not used as correctness labels",
+    "no invented artifact paths or numbers",
+    "underpowered and missing controls disclosed",
+    "every claim marked READY/READY_WITH_CAVEAT/NOT_READY",
+    "Barbados proto-introspection not invented",
+    "no model checkpoints modified"
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "draft_read_only": "/home/moloch/Downloads/ouro_paper_draft_v3_16.md",
+  "s3b2_matched_random": {
+    "source": "artifacts/reports/probes/mpn_s3b_2026-06-17/s3b1_loop_pools.pt",
+    "n_all_groups": 16,
+    "n_all_candidates": 160,
+    "n_oracle_present_groups": 8,
+    "observed_selector_hits": 5,
+    "observed_selector_rate": 0.625,
+    "matched_uniform_random_expectation": 0.3625,
+    "expected_random_hits": 2.9,
+    "exact_null_probability_at_least_observed": 0.08690239999999999,
+    "exact_null_probability_exactly_observed": 0.07166304,
+    "poisson_binomial_pmf": [
+      0.011612160000000002,
+      0.09626112,
+      0.26967168,
+      0.32904544,
+      0.2065072,
+      0.07166304,
+      0.01381408,
+      0.0013715200000000002,
+      5.376000000000001e-05
+    ],
+    "interpretation": "Observed 5/8 exceeds the native matched-random expectation 2.9/8, but the exact one-sided heterogeneous Bernoulli p-value is 0.0869."
+  },
+  "s1_kmatched_spotcheck": {
+    "paths": [
+      "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4_reference_loop.json",
+      "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4a_fork_param_screen.json",
+      "artifacts/reports/probes/mpn_s1_baseline_2026-06-13/s1_4b_kmatched_sampling.json"
+    ],
+    "reference_config": {
+      "N_PER": 1,
+      "K": 2,
+      "BUDGET": 4,
+      "alpha": 0.02,
+      "loci": 12,
+      "terminal": "loop4_L47",
+      "mnt_inter": 64,
+      "mnt_term": 160,
+      "token_range": "fixed last-token suffix (plen-1, plen), stored per lineage entry",
+      "validity_threshold": -1000000000.0,
+      "progressive": false,
+      "terminal_confidence": -1000000000.0,
+      "content_thresholds": {
+        "24": -1000000000.0,
+        "36": -1000000000.0,
+        "47": -1000000000.0
+      }
+    },
+    "reference_n_tasks": 4,
+    "reference_aggregate": {
+      "oracle_over_survivors": 0.25,
+      "base_acc": 0.25,
+      "selected_acc": 0.25,
+      "selected_acc_committed": 0.25,
+      "defer_rate": 0.0,
+      "mean_terminal_survivors": 4.0,
+      "mean_survivors_correct": 1.0
+    },
+    "screen_config": {
+      "N_PER": 1,
+      "K": 4,
+      "MNT": 96,
+      "alphas": [
+        0.02,
+        0.05,
+        0.1
+      ],
+      "tr_set": "full",
+      "token_ranges": [
+        "last",
+        "last8",
+        "secondhalf"
+      ],
+      "decodes": [
+        "greedy",
+        "sample"
+      ],
+      "temp": 0.7,
+      "top_p": 0.95,
+      "score_input_mode": "prompt_plus_answer",
+      "grid_loci": "loop1_L24/L36/L47",
+      "sentinel_loci": "loop4_L36/L47 (a=0.10, secondhalf, sample)"
+    },
+    "kmatched_config": {
+      "N_PER": 1,
+      "N_SAMPLES": 12,
+      "mnt": 96,
+      "mnt_long": 160,
+      "temp": 0.7,
+      "top_p": 0.95,
+      "score_input_mode": "prompt_plus_answer"
+    },
+    "kmatched_aggregate": {
+      "base_acc_160": 0.25,
+      "base_acc_96": 0.0,
+      "sampling_oracle": 0.75,
+      "sampling_new_correct_vs_base160": 0.667,
+      "sampling_new_correct_vs_base96": 0.75,
+      "sampling_selected_acc": 0.0,
+      "mean_unique_finals": 11.25,
+      "parse_invalid_rate": 0.0
+    },
+    "kmatched_decision": {
+      "screen_sample_cells": {
+        "sample_oracle_mean": 0.611,
+        "sample_new_correct_mean": 0.611,
+        "greedy_oracle_mean": 0.0,
+        "greedy_new_correct_mean": 0.0
+      },
+      "plain_sampling_oracle": 0.75,
+      "sample_fork_minus_plain_sampling_oracle": -0.139,
+      "greedy_fork_new_correct": 0.0,
+      "verdict": "FROZEN_FORK_CLOSED__SAMPLING_EXPLAINS_SCREEN__S3_IS_LEVER",
+      "note": "greedy/deterministic fork = 0 new-correct AND plain-sampling oracle (0.75) >= sample-fork oracle (0.611): fork does NOT exceed sampling -> fork adds nothing beyond stochastic decoding; the S1.4a win is sampling. Frozen FORK branching closed for local purposes; move to S3/backbone.",
+      "fork_adds_over_sampling": false,
+      "correction_note": "verdict recomputed: prior auto-string mis-fired on abs(diff)<=TOL; negative diff (sampling>=fork) is pro-CLOSED"
+    },
+    "status": "VERIFIED_AGAINST_JSON_ARTIFACTS"
+  },
+  "steering_spotcheck": {
+    "paths": [
+      "docs/evaluator/history/steering-and-adapters/steering-consolidation.md",
+      "artifacts/reports/probes/bg_causal_intervention_adapter_2026-05-18/analysis.json",
+      "artifacts/reports/probes/bg_sequence_level_adapter_2026-05-18/diagnostics.json"
+    ],
+    "method_count": 7,
+    "methods": [
+      {
+        "index": 1,
+        "method": "Raw NoNorm readout-vector steering",
+        "result": "UNSIGNED_ONLY"
+      },
+      {
+        "index": 2,
+        "method": "Empirical mean-diff / whitened / logistic success directions",
+        "result": "EMPIRICAL_UNSIGNED_ONLY"
+      },
+      {
+        "index": 3,
+        "method": "RMS-calibrated static directions",
+        "result": "RMS_UNSIGNED_ONLY"
+      },
+      {
+        "index": 4,
+        "method": "Local BG-score gradient",
+        "result": "GRADIENT_NO_BETTER_THAN_RANDOM"
+      },
+      {
+        "index": 5,
+        "method": "Tiny classifier-style adapter",
+        "result": "NO_BETTER_THAN_STATIC"
+      },
+      {
+        "index": 6,
+        "method": "Teacher-forced causal adapter (differentiable logit-margin proxy)",
+        "result": "LOCAL_LOGIT_CONTROL_ONLY"
+      },
+      {
+        "index": 7,
+        "method": "Sequence-level adapter (black-box REINFORCE reward)",
+        "result": "NO_FROZEN_BACKBONE_WRITE_PATH"
+      }
+    ],
+    "teacher_forced_geometry": {
+      "adapter_proxy_direction_kind": "LowRankDeltaAdapter_up_weight_mean",
+      "cosine_adapter_proxy_empirical_mean_diff": -0.0042940625214685476,
+      "cosine_adapter_proxy_raw_nonorm": -0.0005529620521149163,
+      "cosine_raw_nonorm_empirical_mean_diff": 0.1010015667081813,
+      "geometry_note": "LowRank adapter geometry is input-conditioned; cosine values use a static up-weight proxy, not a full hidden-state average delta."
+    },
+    "two_adapter_cosine": 0.951094388961792,
+    "status": "VERIFIED_AGAINST_SOURCE_ARTIFACTS"
+  },
+  "second_powered_domain": {
+    "path": "artifacts/reports/proto_introspection/proto_introspection_second_domain_preflight_2026-06-17.md",
+    "verdict": "REJECTED_AT_PREFLIGHT_BOTH_CANDIDATES",
+    "cross_domain_verdict": "PARTIAL_NOT_FULLY_ESTABLISHED",
+    "action": "STOP_AND_DOCUMENT",
+    "svamp_reason": "Front-loaded answers and parser/label mismatch made the cut invalid.",
+    "math_reason": "Parseable runs were approximately 21/22 correct; failures were mainly truncations, leaving no clean negative class."
+  },
+  "math_transfer_historical": {
+    "claimed_values": {
+      "selected_correct": "47/100",
+      "single_shot_ratio": "~2.7x lower"
+    },
+    "raw_denominator_table_found": false,
+    "status": "NOT_RECOVERABLE_NON_LOAD_BEARING",
+    "paper_action": "Retain only as explicitly unarchived origin motivation, or remove the exact numbers."
+  },
+  "path_audit": {
+    "draft": "/home/moloch/Downloads/ouro_paper_draft_v3_16.md",
+    "n_explicit_paths": 5,
+    "n_exists_or_glob": 5,
+    "n_missing": 0,
+    "missing": [],
+    "csv": "artifacts/reports/paper_verification/remaining_todos_resolution_20260710_183700/draft_explicit_path_audit.csv",
+    "n_artifact_file_tokens": 23,
+    "n_unresolved_file_tokens": 1,
+    "unresolved_file_tokens": [
+      "changelog.md"
+    ],
+    "token_csv": "artifacts/reports/paper_verification/remaining_todos_resolution_20260710_183700/draft_artifact_token_audit.csv"
+  },
+  "git_state": {
+    "head_at_verification": "e4776dd41a85cad699ac36f309b5986ab48bd171",
+    "dirty_entry_count": 1067,
+    "status_manifest": "artifacts/reports/paper_verification/remaining_todos_resolution_20260710_183700/git_status_short.txt",
+    "reproducibility_commit_status": "NOT_CREATED_DIRTY_SHARED_WORKTREE",
+    "reason": "Creating a publication commit would mix extensive pre-existing user changes; the verification pins HEAD plus a status manifest instead."
+  },
+  "figures": [
+    "artifacts/reports/paper_verification/remaining_todos_resolution_20260710_183700/figures/preanswer_auroc_bars.png",
+    "artifacts/reports/paper_verification/remaining_todos_resolution_20260710_183700/figures/domain_transfer_matrix.png",
+    "artifacts/reports/paper_verification/remaining_todos_resolution_20260710_183700/figures/corecontent_dualanchor_roles.png",
+    "artifacts/reports/paper_verification/remaining_todos_resolution_20260710_183700/figures/cache_branch_schematic.png",
+    "artifacts/reports/paper_verification/remaining_todos_resolution_20260710_183700/figures/s3b2_detection_vs_selection.png",
+    "artifacts/reports/paper_verification/remaining_todos_resolution_20260710_183700/figures/two_null_orthogonality.png"
+  ]
+}

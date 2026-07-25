@@ -1,0 +1,100 @@
+{
+  "report": "within_domain_strict_preanswer_specificity",
+  "date": "2026-06-17",
+  "run": "2026-06-22/23",
+  "question": "Within a single domain, at a strict pre-answer cut, do Ouro-RLTT hidden states predict final success beyond length/logprob/metadata baselines?",
+  "scope": "read-only weights; one bounded GPU recapture; external verifier labels only; frozen Ouro; no checkpoint changes; no S3A",
+  "process_check": {"jobs": "empty", "stale_processes": "none", "gpu_before": "851 MiB idle", "action": "none needed"},
+  "final_verdict_constants": {
+    "WITHIN_DOMAIN_PREANSWER_SPECIFICITY_VERDICT": "PARTIAL",
+    "TIMING_EVIDENCE_VERDICT": "PREANSWER_TIMING_CONTROL_PASS",
+    "SPECIFICITY_EVIDENCE_VERDICT": "HIDDEN_BEATS_SHORTCUTS_WITHIN_DOMAIN",
+    "PROTO_INTROSPECTION_WEAK_CLAIM_VERDICT": "NARROW_DEFENSIBLE_CLAIM_ONLY",
+    "NEXT_STEP_VERDICT": "WRITE_PAPER_DRAFT",
+    "PREDICTION_EVIDENCE_VERDICT": "HIDDEN_STATES_PREDICT_PROCESS_QUALITY",
+    "UTILITY_EVIDENCE_VERDICT": "WEAK_UTILITY_SUPPORTED_STRONG_CAPABILITY_UTILITY_NOT_PROVEN",
+    "ROLE_SEPARATION_VERDICT": "VALIDITY_CONTENT_CORRECTNESS_SEPARATED",
+    "CONTROL_BOUNDARY_VERDICT": "READOUT_SUPPORTED_CONTROL_NOT_SOLVED",
+    "BARBADOS_REPLICATION_VERDICT": "BARBADOS_PROTO_INTROSPECTION_NOT_RUN"
+  },
+  "verdict_rationale": {
+    "within_domain_specificity": "PARTIAL by the task's own >=0.03 rule applied to hidden-minus-best-shortcut (+0.014, in the 0.00-0.02 band, ns). BUT the incremental-validity test (hidden+all minus shortcuts) is +0.066 with group-bootstrap CI [+0.017,+0.114] (significant), and hidden beats length-only by +0.059 (strong-margin point estimate). So: positive-leaning PARTIAL.",
+    "timing": "PASS: strict leakage-controlled pre-answer cut (gsm8k median 163 tok, answer value excluded) predicts at AUROC 0.745, CI excludes 0.5, powered domain, grouped CV.",
+    "specificity_evidence": "HIDDEN_BEATS_SHORTCUTS_WITHIN_DOMAIN via significant incremental validity; caveat: hidden-alone ties the length+logprob composite (not standalone-dominant).",
+    "weak_claim": "NARROW_DEFENSIBLE_CLAIM_ONLY: upgrade from prior SUBSTANTIALLY_SUPPORTED_REQUIRES_MORE_CONTROLS; one powered domain with significant incremental effect supports a narrow caveated proto-introspection claim, not a broad one."
+  },
+  "datasets": {
+    "gsm8k": {"source": "openai/gsm8k test (local HF cache, 1319 available)", "verifier": "numeric_exact", "n_tasks": 170, "powered": true},
+    "reasoning": {"source": "allenai/ai2_arc ARC-Challenge test (local HF cache, 1172 available)", "verifier": "mcq_letter", "n_tasks": 105, "powered": false, "note": "budget-capped; UNDERPOWERED (<150); pre-answer front-loaded median 14 tok"}
+  },
+  "recapture": {
+    "artifact": "artifacts/reports/proto_introspection/within_domain_recapture.pt",
+    "script": "utilities/tests/manual/proto_introspection_within_domain_recapture.py",
+    "model": "models/ouro_rltt_local", "tap_layers": [24, 36, 47], "num_loops": 4, "feature_shape": [3, 4, 2048],
+    "samples_per_task": 4, "seed": 20260617, "temperature": 0.7, "top_p": 0.95, "elapsed_seconds": 6322.3, "errors": 0,
+    "preanswer_cut": "text before min(FINAL-ANSWER marker, first occurrence of gold answer value) -> answer value excluded",
+    "labels": "external verifier / gold answer only; tap scores never labels"
+  },
+  "split": {"method": "5-fold task-grouped CV (group=task_id)", "hard_rule": "no task's samples split across folds", "groups_dropped": 0, "domains_mixed": false},
+  "results": {
+    "gsm8k": {
+      "powered": true, "n_examples": 680, "n_groups": 170, "base_rate": 0.599, "class_balance": {"pos": 407, "neg": 273},
+      "n_pre_tok": {"mean": 154.8, "median": 163.0, "p10": 61.0, "p90": 224.0, "min": 3.0, "max": 224.0},
+      "preanswer_auroc": {"random": 0.5, "shortcut_length": 0.687, "logprob_entropy": 0.569, "length_plus_logprob": 0.731,
+                          "hidden": 0.745, "hidden_ci95": [0.707, 0.783], "hidden_plus_all": 0.797},
+      "balanced_acc_hidden": 0.66,
+      "paired_deltas_groupbootstrap": {
+        "hidden_minus_length": {"delta": 0.0586, "ci95": [-0.0005, 0.1203], "significant": false},
+        "hidden_minus_logprob": {"delta": 0.1759, "significant": true},
+        "hidden_minus_length_logprob_composite": {"delta": 0.0139, "ci95": [-0.0542, 0.0798], "significant": false},
+        "hidden_all_minus_composite": {"delta": 0.0658, "ci95": [0.0172, 0.1144], "significant": true},
+        "hidden_all_minus_length": {"delta": 0.1105, "ci95": [0.0603, 0.1672], "significant": true}
+      },
+      "prompt_only": {"hidden": 0.6992, "hidden_ci95": [0.6106, 0.7876], "shortcut": 0.6893, "delta": 0.0099}
+    },
+    "reasoning": {
+      "powered": false, "verdict": "UNDERPOWERED", "n_examples": 420, "n_groups": 105, "base_rate": 0.429,
+      "class_balance": {"pos": 180, "neg": 240},
+      "n_pre_tok": {"mean": 67.6, "median": 14.0, "p10": 6.0, "p90": 192.0},
+      "preanswer_auroc": {"shortcut_length": 0.590, "logprob_entropy": 0.528, "length_plus_logprob": 0.597,
+                          "hidden": 0.690, "hidden_ci95": [0.634, 0.741], "hidden_plus_all": 0.690},
+      "paired_deltas_groupbootstrap": {
+        "hidden_minus_length": {"delta": 0.0998, "ci95": [0.0392, 0.1624], "significant": true},
+        "hidden_minus_composite": {"delta": 0.0931, "ci95": [0.0254, 0.1589], "significant": true},
+        "hidden_all_minus_composite": {"delta": 0.0932, "ci95": [0.0371, 0.1496], "significant": true}
+      },
+      "prompt_only": {"hidden": 0.6227, "hidden_ci95": [0.5163, 0.7273], "shortcut": 0.4357, "delta": 0.187}
+    }
+  },
+  "pillar_status_updated": {
+    "P1_prediction": {"prior": "PARTIAL", "updated": "STRONG_POWERED", "note": "GSM8K powered hidden 0.745; prior deflation was underpower artifact"},
+    "P2_timing": {"prior": "PARTIAL", "updated": "PASS", "note": "strict leakage-controlled pre-answer cut predicts 0.745 in powered domain"},
+    "P3_specificity": {"prior": "WEAK", "updated": "PARTIAL_POSITIVE", "note": "significant incremental validity +0.066; hidden-alone ties composite; one powered domain"},
+    "P4_utility": {"prior": "WEAK_YES_STRONG_NO", "updated": "WEAK_YES_STRONG_NO", "note": "unchanged"},
+    "P5_role_separation": {"prior": "STRONG", "updated": "STRONG", "note": "unchanged"},
+    "P6_cross_domain": {"prior": "PARTIAL", "updated": "PARTIAL_IMPROVED", "note": "powered gsm8k + significant underpowered reasoning, same direction"},
+    "P7_control_boundary": {"prior": "STRONG", "updated": "STRONG", "note": "unchanged"}
+  },
+  "key_auroc_delta_table": [
+    {"domain": "gsm8k", "powered": true, "hidden": 0.745, "length": 0.687, "logprob": 0.569, "len+logprob": 0.731, "hidden+all": 0.797, "incremental_gain_sig": "+0.066 [0.017,0.114] SIG"},
+    {"domain": "reasoning", "powered": false, "hidden": 0.690, "length": 0.590, "logprob": 0.528, "len+logprob": 0.597, "hidden+all": 0.690, "incremental_gain_sig": "+0.093 [0.037,0.150] SIG"}
+  ],
+  "missing_artifacts": [
+    "MISSING: second powered domain (reasoning reached 105<150, budget-capped, front-loaded) -- consequence: powered specificity rests on one domain",
+    "MISSING: Barbados loop-state cross-check -- NOT_RUN, out of scope"
+  ],
+  "next_recommendation": {
+    "primary": "WRITE_PAPER_DRAFT for a narrow, caveated proto-introspection claim (pre-answer hidden states carry readable, significantly-shortcut-independent process-quality signal in a powered domain)",
+    "optional_strengthener": "power a second domain (reasoning >=150 tasks, with real pre-answer reasoning) to confirm the incremental effect replicates and lift specificity toward a clean PASS",
+    "must_not_claim": ["hidden dominates trivial predictors (it ties the length+logprob composite)", "cross-domain establishment (only one powered domain)", "consciousness", "self_awareness", "autonomous_control", "capability_gain"]
+  },
+  "hard_rules_honored": [
+    "no Ouro training; no checkpoint modification",
+    "external verifier/gold labels only; tap scores never labels",
+    "no domain mixing for the primary within-domain result",
+    "no task/problem split across train/val/test (task-grouped CV)",
+    "shortcut baseline that outperforms hidden NOT hidden: length+logprob composite (0.731) reported prominently; hidden-alone ties it",
+    "every result marked PASS/PARTIAL/FAIL/UNDERPOWERED",
+    "no consciousness/self-awareness/autonomous-control/capability claims"
+  ]
+}

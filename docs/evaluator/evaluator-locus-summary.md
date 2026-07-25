@@ -137,7 +137,7 @@ Survival is strong; the limiter is reward-diverse hard slices at the terminal, w
 - reward-diverse rate 0.5714
 - terminal oracle retained 1.0000
 
-## Current Readout Policy
+## Current Recommendation
 
 Use a general-plus-specialist readout policy inside the locked architecture-looped baseline:
 

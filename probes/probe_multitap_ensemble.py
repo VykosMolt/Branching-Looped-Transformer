@@ -42,9 +42,10 @@ import torch
 from datasets import concatenate_datasets, load_dataset
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+SRC_ROOT = PROJECT_ROOT / "src"
+if str(SRC_ROOT) not in sys.path:
+    sys.path.insert(0, str(SRC_ROOT))
 
 from evaluator_core.pairwise_evaluator import PairwiseEvaluator, validate_hook_output
 
@@ -78,8 +79,8 @@ def load_helper(module_name: str, rel_path: str):
     return module
 
 
-DOMAIN = load_helper("probe_layer_tap_cached_domains_helper", "probes/probe_layer_tap_cached_domains.py")
-MATH = load_helper("probe_layer_tap_math_actual_helper", "probes/probe_layer_tap_math_actual.py")
+DOMAIN = load_helper("probe_layer_tap_cached_domains_helper", "utilities/evaluator/probes/probe_layer_tap_cached_domains.py")
+MATH = load_helper("probe_layer_tap_math_actual_helper", "utilities/evaluator/probes/probe_layer_tap_math_actual.py")
 
 
 def parse_args() -> argparse.Namespace:

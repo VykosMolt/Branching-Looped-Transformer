@@ -1,0 +1,35 @@
+{
+  "model_id": "openbmb/MiniCPM-2B-sft-bf16",
+  "revision": "4ec16344ac13e6ef5010aeecaa533369ac8eb53c",
+  "feature_dim": 2304,
+  "feature": "mean-pooled post-final-norm physical layer 40",
+  "historical_row_split": {
+    "accuracy": 0.925,
+    "ci95_source_pair_clustered": [
+      0.8518518518518519,
+      0.987012987012987
+    ],
+    "n_rows": 80,
+    "unique_pairs": 74
+  },
+  "clean_pair_disjoint": {
+    "accuracy": 0.575,
+    "ci95_pair_bootstrap": [
+      0.425,
+      0.725
+    ],
+    "train_pairs": 160,
+    "eval_pairs": 40
+  },
+  "exact_antisymmetry": true,
+  "bias": false,
+  "normalization": "NoNorm/raw difference",
+  "environment": {
+    "torch": "2.12.0.dev20260407+cu128",
+    "transformers": "4.54.1",
+    "datasets": "4.8.5",
+    "device": "NVIDIA GeForce RTX 5070 Ti Laptop GPU",
+    "dtype": "bfloat16",
+    "quantization": "none"
+  }
+}

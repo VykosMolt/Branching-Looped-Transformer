@@ -1,0 +1,63 @@
+{
+  "audit": "full_hh_strict_antisymmetry",
+  "status": "COMPLETE",
+  "n_pairs": 8552,
+  "expected_pairs": 8552,
+  "dataset": "Anthropic/hh-rlhf test",
+  "dataset_revision": "cached datasets builder 09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa",
+  "backbone": "/home/moloch/ouro_project/models/ouro_rltt_local",
+  "backbone_revision": "local checkpoint; shard hashes pinned below",
+  "model_shard_sha256": [
+    "9f49e55b0d0ea368f2942cfd3fa256836ea7fa9002c6f860ca2d85ac1de252a1",
+    "97a0d531a2c624dd98e60c0ebc46a7cc0413642f8cba6df7dac8df01a432df19",
+    "0bf3d0c111c876ccc7f7ebaeb7cabc8dfccffde30acb4cd780a4c364d3679aad"
+  ],
+  "evaluator": "/home/moloch/ouro_project/artifacts/checkpoints/evaluator/pairwise_epoch2.pt",
+  "evaluator_sha256": "3630c2092eca8db13239f763bc9c212f4b673866e47f811c3095efc57409ec96",
+  "tokenizer": "/home/moloch/ouro_project/models/ouro_rltt_local",
+  "tokenizer_settings": {
+    "padding_side": "left",
+    "truncation": true
+  },
+  "max_length": 768,
+  "batch_size": 4,
+  "length_bucketed": true,
+  "early_exit_threshold": 1.0,
+  "model_forward_dtype": "bfloat16",
+  "evaluator_dtype": "float32",
+  "quantization": "none",
+  "device": "NVIDIA GeForce RTX 5070 Ti Laptop GPU",
+  "torch_version": "2.12.0.dev20260407+cu128",
+  "transformers_version": "4.54.1",
+  "datasets_version": "4.8.5",
+  "bootstrap_seed": 20260710,
+  "bootstrap_draws": 10000,
+  "metrics": {
+    "fixed_order_accuracy": 0.9478484565014031,
+    "fixed_order_accuracy_ci95": [
+      0.9430542563143124,
+      0.9525257249766137
+    ],
+    "swapped_direction_accuracy": 0.1953928905519177,
+    "strict_antisym_accuracy": 0.6391487371375117,
+    "strict_antisym_accuracy_ci95": [
+      0.6290926099158092,
+      0.6493217960710945
+    ],
+    "strict_sign_flip_rate": 0.2475444340505145,
+    "normal_flipped_pearson": -0.9246817540601061,
+    "normal_mean": 1.6431700132553744,
+    "flipped_mean": 0.8866168683779428,
+    "antisym_mean": 0.37827657243871576,
+    "antisym_std": 0.9683054002902081,
+    "symmetric_order_mean": 1.2648934408166586,
+    "symmetric_order_std": 0.19292348739360676,
+    "symmetric_order_abs_mean": 1.2648934408166586,
+    "antisym_abs_mean": 0.8434599617360442,
+    "symmetric_to_antisym_abs_ratio": 1.4996484696359536,
+    "both_orders_prefer_first_rate": 0.7524555659494855,
+    "both_orders_prefer_second_rate": 0.0
+  },
+  "elapsed_seconds_this_invocation": 3021.4660761356354,
+  "rows_csv": "/home/moloch/ouro_project/artifacts/reports/paper_verification/remaining_todos_resolution_20260710_183700/full_hh_audit/full_hh_antisymmetry_rows.csv"
+}

@@ -1,0 +1,169 @@
+{
+ "schema_version": "xloop_early.feat.1",
+ "n_shards": 18,
+ "total_groups": 2150,
+ "total_candidates": 8592,
+ "extraction_seconds": 1148.5,
+ "layers": [
+  8,
+  16,
+  24,
+  36,
+  47
+ ],
+ "loops": [
+  1,
+  2,
+  3,
+  4
+ ],
+ "hidden": 2048,
+ "dtype": "float16",
+ "pooling": "attention-mask-valid mean, fp32 compute",
+ "per_shard": [
+  {
+   "file": "xloop_0000.pt",
+   "domain": "coding",
+   "split": "heldout",
+   "groups": 120,
+   "candidates": 600,
+   "sha256": "eb3b31b49088ccec05b934196e5c97f97fc34485c1cd2d9170191e4367edcab9"
+  },
+  {
+   "file": "xloop_0001.pt",
+   "domain": "coding",
+   "split": "train",
+   "groups": 218,
+   "candidates": 1002,
+   "sha256": "3423abbdcc8f5f123ff55e2f0d9426862181e8b6931e1daaa6aca83360674ad6"
+  },
+  {
+   "file": "xloop_0002.pt",
+   "domain": "coding",
+   "split": "train",
+   "groups": 32,
+   "candidates": 161,
+   "sha256": "12a02c1555c2258a999afe6c5bb089de8d75097761f4cb1993bd1234cad36e2a"
+  },
+  {
+   "file": "xloop_0003.pt",
+   "domain": "coding",
+   "split": "val",
+   "groups": 60,
+   "candidates": 278,
+   "sha256": "1d41708182b620d6040e4fc0f3d753dd910adf395e8ec2f42955308c3334b369"
+  },
+  {
+   "file": "xloop_0004.pt",
+   "domain": "math",
+   "split": "heldout",
+   "groups": 120,
+   "candidates": 600,
+   "sha256": "b090f578060003e24058bd8dd471dfe835d4ca56225d95433e58aec0979198a6"
+  },
+  {
+   "file": "xloop_0005.pt",
+   "domain": "math",
+   "split": "train",
+   "groups": 201,
+   "candidates": 1004,
+   "sha256": "4bdffe4ad459726324cebb73cbcaf096da93b931b50d4436f56c6e999f0bf2b1"
+  },
+  {
+   "file": "xloop_0006.pt",
+   "domain": "math",
+   "split": "train",
+   "groups": 49,
+   "candidates": 245,
+   "sha256": "136eee13d390cdbfb5062460e59243dda5e3efd10d36b28936ebf690fa2bf329"
+  },
+  {
+   "file": "xloop_0007.pt",
+   "domain": "math",
+   "split": "val",
+   "groups": 60,
+   "candidates": 300,
+   "sha256": "ed9f390b18f03c22855a274f520555420ff73205c636392be6d07c50392461ad"
+  },
+  {
+   "file": "xloop_0008.pt",
+   "domain": "logic",
+   "split": "heldout",
+   "groups": 120,
+   "candidates": 480,
+   "sha256": "ff3a39480df20e014cd01f84e17cfba1d3569c33173e09ecf1f76ebc61cfb110"
+  },
+  {
+   "file": "xloop_0009.pt",
+   "domain": "logic",
+   "split": "train",
+   "groups": 250,
+   "candidates": 1000,
+   "sha256": "99189835547493369cc471122302cbed4143d677b7371bf5d77051d72c131383"
+  },
+  {
+   "file": "xloop_0010.pt",
+   "domain": "logic",
+   "split": "val",
+   "groups": 60,
+   "candidates": 240,
+   "sha256": "fee404c6bf02451c7d98e857b4e02a5c88636f659afa5fef4fef5ced838d5936"
+  },
+  {
+   "file": "xloop_0011.pt",
+   "domain": "reasoning",
+   "split": "heldout",
+   "groups": 120,
+   "candidates": 514,
+   "sha256": "21ec70df314d48ec8cb7f1784634a9dde25cd52f876f4c623590629dbc6a4789"
+  },
+  {
+   "file": "xloop_0012.pt",
+   "domain": "reasoning",
+   "split": "train",
+   "groups": 239,
+   "candidates": 1004,
+   "sha256": "a63e20404259b3c5d7f1c3d7e029ab996a422e8ecd405357f36010f43626094e"
+  },
+  {
+   "file": "xloop_0013.pt",
+   "domain": "reasoning",
+   "split": "train",
+   "groups": 11,
+   "candidates": 47,
+   "sha256": "d4b07ec921d2aabd74080de8f99158e232813af1f661ff578998f40cd9344fe0"
+  },
+  {
+   "file": "xloop_0014.pt",
+   "domain": "reasoning",
+   "split": "val",
+   "groups": 60,
+   "candidates": 257,
+   "sha256": "b582dd26d5c9351d1b1658176cf358daad653641eac4d8b5a1f09ed13960b6c1"
+  },
+  {
+   "file": "xloop_0015.pt",
+   "domain": "alignment",
+   "split": "heldout",
+   "groups": 120,
+   "candidates": 240,
+   "sha256": "3bcfb136182a5bb67b29fe6b6e03aa915803f495a492da4d45cd9a9b3bbc8cd9"
+  },
+  {
+   "file": "xloop_0016.pt",
+   "domain": "alignment",
+   "split": "train",
+   "groups": 250,
+   "candidates": 500,
+   "sha256": "1cbe13c66ff40f4b2c27e0c2a85d3cad9c59f57b687ee157aca871a6ea6888cd"
+  },
+  {
+   "file": "xloop_0017.pt",
+   "domain": "alignment",
+   "split": "val",
+   "groups": 60,
+   "candidates": 120,
+   "sha256": "df71f6af2675735f4ccc5a13afce617877bfccf7370f0a1807c95e7064ef61d5"
+  }
+ ]
+}

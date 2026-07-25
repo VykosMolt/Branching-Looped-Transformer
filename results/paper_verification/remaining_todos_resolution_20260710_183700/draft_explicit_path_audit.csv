@@ -1,0 +1,6 @@
+draft_path,status,resolved_matches
+artifacts/reports/paper_verification/pending_items_resolution_20260703_214531.*,GLOB_MATCH,2
+artifacts/reports/probes/bg_steering_suite_2026-05-18/analysis.md,EXISTS,1
+artifacts/reports/probes/bg_steering_suite_2026-05-18/summary.md,EXISTS,1
+tools/s1_s3_exact_injection_null_audit_2026_06_17.py,EXISTS,1
+utilities/tests/manual/mpn_s3b1_loop_pool_transfer.py,EXISTS,1
