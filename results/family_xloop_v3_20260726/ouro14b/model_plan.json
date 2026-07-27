@@ -1,0 +1,21 @@
+{
+  "model_key": "ouro14b",
+  "snapshot": "/home/moloch/ouro_project/artifacts/hf_cache/hub/models--ByteDance--Ouro-1.4B/snapshots/574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+  "n_layers": 24,
+  "hidden": 2048,
+  "layers": [
+    4,
+    8,
+    12,
+    18,
+    23
+  ],
+  "capture_idx": {
+    "4": 3,
+    "8": 7,
+    "12": 11,
+    "18": 17
+  },
+  "boundary": 23,
+  "total_ut_steps": 4
+}

@@ -3,15 +3,20 @@
 Evaluator probes and branch-selection scaffolding for reading hidden-state
 signals in Princeton Ouro-RLTT loop states.
 
-> **Current status:** Phase 2a branch survival is ready under DualAnchor with
-> terminal survivor-set handoff. Autoregressive KV/cache branch-carry and
-> partial-cache splice are validated in test harnesses. The full
-> inject -> carry -> prune -> loop-back -> terminal branch loop has now been
-> assembled and validated as a measurement harness; on the **frozen** model it is
-> correctness-preserving but reachability-neutral (locally closed under tested
-> perturbation regimes), which scopes training as the next lever. Steering/model
-> training has not started. Broad science is diagnostic; the active core domains
-> are coding, reasoning, math, logic, and alignment/preference.
+> **Current status (paper v3, 2026-07-27):** the readout--control boundary has been
+> *located* rather than merely observed. Five sealed, pre-registered conversions asked
+> where a frozen readout turns into an outcome gain. **Decision-level use converts:**
+> calibrated abstention improves the risk--coverage trade-off in all four sealed arms
+> across both domains, and forced terminal selection clears an exact matched-random null
+> even on a pool where every candidate is well-formed by construction (27/32 vs 64.8%
+> expected, exact *p* = 0.0086) -- which resolves the content-sensitivity question the
+> v2 pool could not. **Generative control does not:** directional steering is an
+> established negative, the four-task fork screen is bounded, per-task recurrent-depth
+> allocation is a sealed null (neither the tap nor the model's own exit gate beats a
+> matched-histogram random control, on both checkpoints), and a minimal sign-conditioned
+> LoRA returns a bounded no-detected-gain result. Phase 2a branch survival remains locked
+> under DualAnchor, and the branch-carry substrate and bit-exact splice remain validated.
+> Full training-time integration is still the next lever and has not been run.
 
 > ## ⚠️ Correction notice (2026-07-25)
 >
@@ -462,6 +467,17 @@ Branch loop:
   full inject->carry->prune->loop-back->terminal reference loop validated (5 gates);
   frozen-model capability is reachability-neutral, locally closed under tested regimes
 
+Frozen conversions (paper v3):
+  abstention           -> converts (all four sealed arms)
+  content selection    -> converts (all-well-formed pool; hidden-vs-surface open)
+  loop allocation      -> sealed null (tap and native gate, both checkpoints)
+  prefix-prune tourney -> pool could not be powered (0.978 any-of-6 ceiling)
+  trained binding      -> bounded no-detected-gain result (one direction, one locus)
+
+Cross-checkpoint:
+  Thinking pre-answer transfer is inconclusive/underpowered, not null;
+  a powered sealed replication is pre-registered and running
+
 Next lever:
   training-time integration (outcome-distinct branches + correctness-readable selector)
 
@@ -475,7 +491,10 @@ Steering:
 
 | File | Pages | Contents |
 |---|---:|---|
-| `kirin2026_paper1_v1.pdf` | 49 | *Operational Proto-Introspection in Looped Language Models* — process-quality taps, the executable branching substrate, and the readout–control boundary. |
+| `kirin2026_paper1_v3.pdf` | 72 | **Current version.** *Operational Proto-Introspection in Looped Language Models* — process-quality taps, the executable branching substrate, and the readout–control boundary, now located between decision-level use and generative control by five sealed conversions (§8.6). |
+| `kirin2026_paper1_v3_source.tar.gz` | — | Self-contained XeLaTeX source for the v3 PDF (figures, styles, bibliography); builds in three passes with no network access. |
+| `figures_v3/` | — | The v3 figure PDFs and `make_figures.py`, which regenerates every one of them from the values quoted in the paper. |
+| `kirin2026_paper1_v1.pdf` | 49 | Superseded first version, retained for provenance. Its magnitudes predate the audit summarised above; read v3 for any current claim. |
 | `kirin2026_paper2.pdf` | 13 | *Two Evaluation Traps in Constructed-Row Pipelines* — source-item leakage, presentation-order shortcuts, and the audit protocol behind the corrections above. |
 
 `results/` contains the experiment records the papers cite, minus model weights and
@@ -488,14 +507,43 @@ extracted feature tensors. Paths map onto the papers' artifact index by dropping
 | `results/paper1_v2_overnight_20260724/` | Horizon Logic strict pre-answer study, the powered terminal-selection evaluation, and the subspace-vs-subspace geometry audit, each with its run manifest, integrity records, and results JSON. |
 | `results/paper_verification/` | The re-audits behind the corrected values: powered pair-disjoint probes, the full 8,552-pair antisymmetry audit, the task-disjoint CoreContent refit, and the non-looped architecture control. |
 | `results/proto_introspection/` | Strict pre-answer GSM8K records and the artifact reconciliation index. |
+| `results/horizon_power_v3_20260726/` | Powered Horizon Logic extension: 510 prospectively sealed task-disjoint tasks, raising the held-out negative class from ≈19 to 84. Pooled increment +0.111 [+0.056, +0.169]; the new cohort alone independently replicates at +0.095, and both survive the adversarial malformed-sibling composite that the original 170-task cohort did not. |
+| `results/family_xloop_v3_20260726/` | Within-family replication of the recurrent-depth readability trend on base-2.6B, Thinking-2.6B, and the 1.4B (layers mapped proportionally), plus frozen cross-checkpoint tap transfer at parity (\|Δ\| ≤ 0.028, score correlation 0.97–0.99). |
+| `results/huginn_probe_v3_20260726/` | Out-of-family probe on Huginn-0125, a depth-recurrent architecture: readability rises with recurrence depth (step 8 − step 1 = +0.107 [+0.058, +0.157]) at a lower absolute level, with no comparable first-pass rotation detected. |
+| `results/thinking_preanswer_v3_20260726/` | Sealed pre-answer attempt on the Thinking sibling. Reported as **inconclusive / underpowered**, not null: +0.027 with a 95% CI of [−0.13, +0.21] that contains both zero and the RLTT-sized effect, power lost to 45.6% truncation-malformedness at the deliberately matched 448-token budget. |
+| `results/selective_prediction_v3_20260726/` | **Conversion C1** — selective prediction (abstention). Computed entirely from preserved out-of-fold predictions with no new generation; ΔAUARC excludes zero in all four sealed arms across both domains. |
+| `results/depth_alloc_v3_20260726/` | **Conversion C2** — tap-gated recurrent-depth allocation on RLTT and Thinking. Fixed-depth tables let every policy be scored as row selection at exactly matched compute; verdict `ALLOCATION_NOT_SIGNAL_DRIVEN` on both checkpoints, for the tap *and* the model's own exit gate. |
+| `results/tournament_v4_20260727/` | **Conversion C3** — matched-budget prefix-prune tournament. Hit its pre-registered feasibility floor (0.978 any-of-6 ceiling), so no claim is made in either direction; the internals are preserved for the harder-domain re-run the design now awaits. |
+| `results/wellformed_terminal_v4_20260727/` | **Conversion C4** — terminal selection on a pool where every candidate is well-formed *by construction*, so malformedness cannot carry the margin. 27/32 informative held-out groups against 64.8% matched-random (exact *p* = 0.0086), establishing content-sensitive selection; the hidden-versus-surface increment remains unresolved at this sample size. Includes the sealed extension declared before any selector was fit. |
+| `results/lora_s3a_pilot_20260727/` | **Conversion C5** — sign-conditioned LoRA binding pilot: one curated writable direction, one locus, ≤400 steps, against a coin-flipped twin adapter. Binding not detected; scope is deliberately narrow, so this bounds the cheapest form of binding rather than training-time integration generally. |
+| `results/thinking_preanswer_power_v5_20260727/` | **Pre-registration, run in flight.** The sealed plan and formal sizing simulation for a powered Thinking-only pre-answer replication (N = 900, chosen for ≥ 0.8 power at the RLTT-sized alternative), with replication / equivalence / negative-transfer verdicts and the ±0.05 SESOI fixed before generation. Published ahead of its own result. |
+| `results/v3_overnight_20260726_logs/` | Orchestration logs and the summary of record for the v3 overnight programme. |
 
 Excluded by design: `*.pt` tensors, extracted feature shards, datasets, and model
 weights. Every published run directory ships the `SHA256SUMS` covering its **full**
 contents, so the omitted files are still enumerable and verifiable at their source.
 
+### Access to the Ouro-RLTT weights
+
+The Ouro-RLTT weights used as this project's primary experimental backbone are not
+redistributed in this repository. I can share them **for research purposes on a
+case-by-case basis** — including, explicitly, for anyone who wants to check this work.
+
+Message me and say who you are, what you are working on, and why you need them. Checking
+or attempting to falsify a result in these papers is a perfectly good reason, and I would
+rather hand the weights to someone auditing the numbers than have the claims go untested.
+Requests are answered individually and at my discretion.
+
 `tools/` holds the verification scripts named in the papers' reproducibility index, and
 `probes/` now also carries the scripts that produced the two newest runs
 (`bg_xloop_early_v1_*`, `bg_v2_overnight_*`).
+
+`tools/paper1_v3/` carries the 22 generators, analysers, and orchestrators behind the v3
+results above — the Horizon power extension, the family and Huginn replications, the
+Thinking attempt, all five frozen conversions, and the pre-registered v5 power
+replication including its sizing simulation. Each sealed run's `EXPERIMENT_PLAN.md` names
+the scripts that produced it, and the analysis stages carry the Stage-A gates that
+reproduce prior published numbers to 1e-9 before touching new data.
 
 ## Repository Layout
 

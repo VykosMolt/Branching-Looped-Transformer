@@ -1,0 +1,90 @@
+{
+  "seed": 20260724,
+  "n_candidates": 680,
+  "n_malformed": 310,
+  "malformed_rate": 0.45588235294117646,
+  "n_scorable": 370,
+  "n_heldout_scorable": 130,
+  "n_heldout_negatives": 20,
+  "rltt_reference_malformed_rate": 0.25,
+  "task_set_gate": "PASSED",
+  "arm_4sc": {
+    "hyperparams": {
+      "hidden": {
+        "auroc_cv": 0.6880797773654916,
+        "k_pca": 16,
+        "l2": 1.0
+      },
+      "shortcut": {
+        "auroc_cv": 0.6174628942486086,
+        "k_pca": 16,
+        "l2": 4.0
+      },
+      "combined": {
+        "auroc_cv": 0.6883116883116883,
+        "k_pca": 16,
+        "l2": 4.0
+      }
+    },
+    "shortcut_n_features": 4,
+    "auroc_shortcut_only": 0.6522727272727272,
+    "auroc_hidden_only": 0.6695454545454546,
+    "auroc_hidden_plus_shortcuts": 0.6690909090909091,
+    "incremental_auroc_combined_minus_shortcut": 0.016818181818181843,
+    "headroom_normalized_increment": 0.04836601307189549,
+    "acc_at_half_combined": 0.8461538553237915,
+    "paired_task_clustered_bootstrap_combined_minus_shortcut": {
+      "n_rounds_used": 2000,
+      "mean_delta": 0.023466286622007608,
+      "ci95": [
+        -0.14397046759639043,
+        0.20611111111111113
+      ],
+      "excludes_zero": false
+    },
+    "n_heldout": 130,
+    "n_heldout_tasks": 56,
+    "n_heldout_negatives": 20,
+    "heldout_base_rate": 0.8461538553237915
+  },
+  "arm_5sc": {
+    "hyperparams": {
+      "hidden": {
+        "auroc_cv": 0.6880797773654916,
+        "k_pca": 16,
+        "l2": 1.0
+      },
+      "shortcut": {
+        "auroc_cv": 0.6066790352504638,
+        "k_pca": 16,
+        "l2": 4.0
+      },
+      "combined": {
+        "auroc_cv": 0.68819573283859,
+        "k_pca": 16,
+        "l2": 1.0
+      }
+    },
+    "shortcut_n_features": 5,
+    "auroc_shortcut_only": 0.6418181818181818,
+    "auroc_hidden_only": 0.6695454545454546,
+    "auroc_hidden_plus_shortcuts": 0.6690909090909091,
+    "incremental_auroc_combined_minus_shortcut": 0.027272727272727226,
+    "headroom_normalized_increment": 0.07614213197969531,
+    "acc_at_half_combined": 0.8461538553237915,
+    "paired_task_clustered_bootstrap_combined_minus_shortcut": {
+      "n_rounds_used": 2000,
+      "mean_delta": 0.033905981752529714,
+      "ci95": [
+        -0.12848484848484842,
+        0.21056547619047628
+      ],
+      "excludes_zero": false
+    },
+    "n_heldout": 130,
+    "n_heldout_tasks": 56,
+    "n_heldout_negatives": 20,
+    "heldout_base_rate": 0.8461538553237915
+  },
+  "verdict": "THINKING_PREANSWER_NULL"
+}

@@ -1,0 +1,188 @@
+{
+  "sim_seed": 20260727,
+  "bootstrap_seed": 20260727,
+  "boot_rounds": 2000,
+  "reps": 500,
+  "n_grid": [
+    600,
+    900,
+    1200
+  ],
+  "p_heldout": 0.34705882352941175,
+  "true_effect_alt": 0.095,
+  "tost_margin": 0.05,
+  "plugin_population_increment": 0.027272727272727226,
+  "shift_alt": {
+    "delta": 0.03893882036209101,
+    "achieved_increment": 0.09522727272727272
+  },
+  "shift_null": {
+    "delta": -0.014296829700469912,
+    "achieved_increment": 0.0
+  },
+  "sensitivity_tilt": {
+    "a": -0.2687499225139618,
+    "b": 0.2062499225139618,
+    "achieved_malformed": 0.37821565440071114,
+    "achieved_neg_of_scorable": 0.18813493912802087
+  },
+  "cells": {
+    "pilot_rates|600|hw": {
+      "tag": "pilot_rates-hw",
+      "n_total_tasks": 600,
+      "reps": 500,
+      "degenerate": 0,
+      "median_halfwidth95": 0.08840879757655107,
+      "p10_halfwidth95": 0.0803965679677813,
+      "p90_halfwidth95": 0.09803274472310977,
+      "mean_point_increment": 0.027748869734697385,
+      "power_lower95_gt0": 0.07,
+      "tost_pass_rate": 0.0,
+      "elapsed_s": 8.1
+    },
+    "pilot_rates|900|hw": {
+      "tag": "pilot_rates-hw",
+      "n_total_tasks": 900,
+      "reps": 500,
+      "degenerate": 0,
+      "median_halfwidth95": 0.0722035850562901,
+      "p10_halfwidth95": 0.06604079619956639,
+      "p90_halfwidth95": 0.0785077417958835,
+      "mean_point_increment": 0.02804027140152224,
+      "power_lower95_gt0": 0.132,
+      "tost_pass_rate": 0.0,
+      "elapsed_s": 9.1
+    },
+    "pilot_rates|1200|hw": {
+      "tag": "pilot_rates-hw",
+      "n_total_tasks": 1200,
+      "reps": 500,
+      "degenerate": 0,
+      "median_halfwidth95": 0.06250926800428758,
+      "p10_halfwidth95": 0.05768399313247702,
+      "p90_halfwidth95": 0.06792845517376736,
+      "mean_point_increment": 0.02904270613723357,
+      "power_lower95_gt0": 0.152,
+      "tost_pass_rate": 0.012,
+      "elapsed_s": 10.8
+    },
+    "c2d4_rates|600|hw": {
+      "tag": "c2d4_rates-hw",
+      "n_total_tasks": 600,
+      "reps": 500,
+      "degenerate": 0,
+      "median_halfwidth95": 0.07633149155127383,
+      "p10_halfwidth95": 0.07002191391218816,
+      "p90_halfwidth95": 0.08519311195255695,
+      "mean_point_increment": 0.03190695257216533,
+      "power_lower95_gt0": 0.114,
+      "tost_pass_rate": 0.0,
+      "elapsed_s": 8.0
+    },
+    "c2d4_rates|900|hw": {
+      "tag": "c2d4_rates-hw",
+      "n_total_tasks": 900,
+      "reps": 500,
+      "degenerate": 0,
+      "median_halfwidth95": 0.06249670344586705,
+      "p10_halfwidth95": 0.057599714272007524,
+      "p90_halfwidth95": 0.06709053626848066,
+      "mean_point_increment": 0.029588476771149827,
+      "power_lower95_gt0": 0.142,
+      "tost_pass_rate": 0.01,
+      "elapsed_s": 9.8
+    },
+    "c2d4_rates|1200|hw": {
+      "tag": "c2d4_rates-hw",
+      "n_total_tasks": 1200,
+      "reps": 500,
+      "degenerate": 0,
+      "median_halfwidth95": 0.05369580582329045,
+      "p10_halfwidth95": 0.05044804024090867,
+      "p90_halfwidth95": 0.05760134356519658,
+      "mean_point_increment": 0.03037658631424542,
+      "power_lower95_gt0": 0.202,
+      "tost_pass_rate": 0.076,
+      "elapsed_s": 11.6
+    },
+    "pilot_rates|600|power": {
+      "tag": "pilot-power",
+      "n_total_tasks": 600,
+      "reps": 500,
+      "degenerate": 0,
+      "median_halfwidth95": 0.08106855190376622,
+      "p10_halfwidth95": 0.07332946161002696,
+      "p90_halfwidth95": 0.09203340878935713,
+      "mean_point_increment": 0.09321274119141602,
+      "power_lower95_gt0": 0.642,
+      "tost_pass_rate": 0.0,
+      "elapsed_s": 7.7
+    },
+    "pilot_rates|600|tost": {
+      "tag": "pilot-tost",
+      "n_total_tasks": 600,
+      "reps": 500,
+      "degenerate": 0,
+      "median_halfwidth95": 0.08909948264668285,
+      "p10_halfwidth95": 0.08056605199105397,
+      "p90_halfwidth95": 0.10011534303740385,
+      "mean_point_increment": 0.0018268150585943267,
+      "power_lower95_gt0": 0.032,
+      "tost_pass_rate": 0.0,
+      "elapsed_s": 7.7
+    },
+    "pilot_rates|900|power": {
+      "tag": "pilot-power",
+      "n_total_tasks": 900,
+      "reps": 500,
+      "degenerate": 0,
+      "median_halfwidth95": 0.06610028978089874,
+      "p10_halfwidth95": 0.06069535041791298,
+      "p90_halfwidth95": 0.07264369413142412,
+      "mean_point_increment": 0.09507430412847848,
+      "power_lower95_gt0": 0.816,
+      "tost_pass_rate": 0.0,
+      "elapsed_s": 9.2
+    },
+    "pilot_rates|900|tost": {
+      "tag": "pilot-tost",
+      "n_total_tasks": 900,
+      "reps": 500,
+      "degenerate": 0,
+      "median_halfwidth95": 0.07255633223067043,
+      "p10_halfwidth95": 0.06661925513270202,
+      "p90_halfwidth95": 0.07951104886723533,
+      "mean_point_increment": 0.001390612800712497,
+      "power_lower95_gt0": 0.03,
+      "tost_pass_rate": 0.0,
+      "elapsed_s": 25.0
+    },
+    "pilot_rates|1200|power": {
+      "tag": "pilot-power",
+      "n_total_tasks": 1200,
+      "reps": 500,
+      "degenerate": 0,
+      "median_halfwidth95": 0.05716853967146457,
+      "p10_halfwidth95": 0.052907980040969624,
+      "p90_halfwidth95": 0.06214309772202497,
+      "mean_point_increment": 0.09346005708590491,
+      "power_lower95_gt0": 0.906,
+      "tost_pass_rate": 0.0,
+      "elapsed_s": 28.7
+    },
+    "pilot_rates|1200|tost": {
+      "tag": "pilot-tost",
+      "n_total_tasks": 1200,
+      "reps": 500,
+      "degenerate": 0,
+      "median_halfwidth95": 0.06289854259738384,
+      "p10_halfwidth95": 0.05780449635305196,
+      "p90_halfwidth95": 0.06778364306811419,
+      "mean_point_increment": -0.00034577222819023244,
+      "power_lower95_gt0": 0.024,
+      "tost_pass_rate": 0.012,
+      "elapsed_s": 10.6
+    }
+  },
+  "table": "scenario         N  E[hoT]  E[hoC]  E[neg]  med_hw95     p10     p90  pow(+.095)  TOST(0)\n-----------------------------------------------------------------------------------------\npilot_rates    600   208.2   458.8    70.6    0.0884  0.0804  0.0980       0.642    0.000\npilot_rates    900   312.4   688.2   105.9    0.0722  0.0660  0.0785       0.816    0.000\npilot_rates   1200   416.5   917.6   141.2    0.0625  0.0577  0.0679       0.906    0.012\nc2d4_rates     600   208.2   517.9    97.4    0.0763  0.0700  0.0852          --       --\nc2d4_rates     900   312.4   776.9   146.2    0.0625  0.0576  0.0671          --       --\nc2d4_rates    1200   416.5  1035.8   194.9    0.0537  0.0504  0.0576          --       --"
+}

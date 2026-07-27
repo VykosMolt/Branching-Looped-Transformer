@@ -1,0 +1,57 @@
+{
+  "seed": 20260727,
+  "n_tasks": 180,
+  "B": 6,
+  "S": 2,
+  "P": 80,
+  "pool_ceiling_any_of_6": 0.9777777777777777,
+  "oracle_any_of_first3": 0.8722222222222222,
+  "survivor_oracle_retention": 0.85,
+  "tournament_rate": 0.7055555555555556,
+  "baseline_bestof3_rate": 0.6444444444444445,
+  "baseline_bestof4_rate": 0.6611111111111111,
+  "random_prune_mean": 0.5878555572032929,
+  "random_prune_p95": 0.6388888955116272,
+  "paired_diff_vs_bestof3": 0.061111111111111116,
+  "paired_diff_vs_bestof3_ci95": [
+    -0.011111111111111112,
+    0.12777777777777777
+  ],
+  "paired_diff_vs_bestof4": 0.04444444444444451,
+  "paired_diff_vs_bestof4_ci95": [
+    -0.03333333333333333,
+    0.11666666666666667
+  ],
+  "mean_tokens_tournament": 833.7611111111111,
+  "mean_tokens_bestof3": 759.8666666666667,
+  "mean_tokens_bestof4": 1006.8111111111111,
+  "prefix_score_final_success_auroc": 0.6164585753000387,
+  "channels": [
+    [
+      "AntisymLinear",
+      "24_L4"
+    ],
+    [
+      "AntisymLinear",
+      "36_L4"
+    ],
+    [
+      "AntisymLinear",
+      "47_L4"
+    ],
+    [
+      "AntisymLinear",
+      "24_L4"
+    ],
+    [
+      "AntisymLinear",
+      "36_L4"
+    ],
+    [
+      "AntisymLinear",
+      "47_L4"
+    ]
+  ],
+  "spend_guard_triggered": true,
+  "verdict": "POOL_CANNOT_DIFFERENTIATE"
+}

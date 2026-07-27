@@ -1,0 +1,14 @@
+{
+  "family": "high_yield_recipe_direction",
+  "name": "high_yield_recipe_direction:salvage_tap_aligned:24_L4:AntisymLinear:hidden_origin_split_salvage_heads",
+  "source": "v4_driver_l24_l36_alpha_0_005::artifacts/reports/probes/bg_hidden_origin_split_salvage_2026-05-18/salvage_heads.pt",
+  "target_config": "24_L4",
+  "recommended_alpha_bucket": "alpha_0_005",
+  "bank": "artifacts/reports/probes/bg_hidden_origin_branch_generator_v1_2026-05-18/basis_bank_v1.pt",
+  "alpha": 0.02,
+  "target_layer": 24,
+  "target_loops": [
+    1
+  ],
+  "position": "last prompt token (absolute plen-1)"
+}

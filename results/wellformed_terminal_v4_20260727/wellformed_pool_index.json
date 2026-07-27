@@ -1,0 +1,27 @@
+{
+  "seed": 20260727,
+  "task_offset": 860,
+  "n_tasks": 220,
+  "k_wf": 4,
+  "round_k": 4,
+  "max_rounds": 4,
+  "max_new": 320,
+  "model": "models/ouro_rltt_local",
+  "feature_shape": [
+    3,
+    4,
+    2048
+  ],
+  "n_records": 875,
+  "n_draws_total": 1760,
+  "dropped_tasks": [],
+  "errors": [
+    "synthlogic::synthetic_propositional::714: OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB. GPU 0 has a total capacity of 11.51 GiB of which 14.44 MiB is free. Including non-PyTorch memory, this process has 6.32 GiB memory in use. Process 2212200 has 4.15 GiB memory in use. Of the allocated memory 5.95 GiB is allocated by PyTorch, and 181.71 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)"
+  ],
+  "elapsed_seconds": 11484.0,
+  "n_success": 749,
+  "group_size_hist": {
+    "3": 1,
+    "4": 218
+  }
+}

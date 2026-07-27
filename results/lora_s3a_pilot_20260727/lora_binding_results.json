@@ -1,0 +1,69 @@
+{
+  "seed": 20260727,
+  "rounds": 2000,
+  "k": 4,
+  "alpha": 0.02,
+  "target_layer": 24,
+  "target_loops": [
+    1
+  ],
+  "eval_slice": [
+    1260,
+    1350
+  ],
+  "train_slice": [
+    1080,
+    1260
+  ],
+  "direction": {
+    "family": "high_yield_recipe_direction",
+    "name": "high_yield_recipe_direction:salvage_tap_aligned:24_L4:AntisymLinear:hidden_origin_split_salvage_heads",
+    "source": "v4_driver_l24_l36_alpha_0_005::artifacts/reports/probes/bg_hidden_origin_split_salvage_2026-05-18/salvage_heads.pt",
+    "target_config": "24_L4",
+    "recommended_alpha_bucket": "alpha_0_005",
+    "bank": "artifacts/reports/probes/bg_hidden_origin_branch_generator_v1_2026-05-18/basis_bank_v1.pt",
+    "alpha": 0.02,
+    "target_layer": 24,
+    "target_loops": [
+      1
+    ],
+    "position": "last prompt token (absolute plen-1)"
+  },
+  "unstable_reasons": [],
+  "optional_secondary_arm_minus_alpha": "not_run (optional in sealed plan)",
+  "n_tasks": 90,
+  "arm_rates": {
+    "arm1": 0.4222222222222222,
+    "arm2": 0.41388888888888886,
+    "arm3": 0.425,
+    "arm4": 0.4361111111111111,
+    "arm5": 0.5527777777777778,
+    "arm6": 0.5083333333333333
+  },
+  "delta_bind": 0.00833333333333336,
+  "delta_bind_ci95": [
+    -0.03611111111111115,
+    0.050000000000000044
+  ],
+  "delta_ctrl": -0.011111111111111127,
+  "delta_ctrl_ci95": [
+    -0.05555555555555558,
+    0.036111111111111094
+  ],
+  "delta_frozen": 0.04444444444444451,
+  "delta_frozen_ci95": [
+    -0.005555555555555647,
+    0.10000000000000003
+  ],
+  "diff_of_diffs_bind_vs_ctrl": 0.019444444444444486,
+  "diff_of_diffs_ci95": [
+    -0.0444444444444444,
+    0.08055555555555555
+  ],
+  "adapter_vs_frozen": -0.09444444444444444,
+  "adapter_vs_frozen_ci95": [
+    -0.16388888888888892,
+    -0.019444444444444486
+  ],
+  "verdict": "BINDING_NOT_DETECTED"
+}

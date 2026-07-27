@@ -1,0 +1,220 @@
+{
+  "stage_a_gate": "PASSED",
+  "gate_arm": {
+    "hyperparams": {
+      "hidden": {
+        "auroc_cv": 0.5913280830499373,
+        "k_pca": 24,
+        "l2": 4.0
+      },
+      "shortcut": {
+        "auroc_cv": 0.6108376588509039,
+        "k_pca": 16,
+        "l2": 2.0
+      },
+      "combined": {
+        "auroc_cv": 0.5915070699838911,
+        "k_pca": 24,
+        "l2": 2.0
+      }
+    },
+    "shortcut_n_features": 4,
+    "auroc_shortcut_only": 0.5851800554016621,
+    "auroc_hidden_only": 0.7261080332409973,
+    "auroc_hidden_plus_shortcuts": 0.7261080332409973,
+    "incremental_auroc_combined_minus_shortcut": 0.1409279778393352,
+    "headroom_normalized_increment": 0.33973288814691155,
+    "acc_at_half_combined": 0.8830409646034241,
+    "paired_task_clustered_bootstrap_combined_minus_shortcut": {
+      "n_rounds_used": 2000,
+      "mean_delta": 0.1395318322281882,
+      "ci95": [
+        0.004388714733542298,
+        0.2899408284023669
+      ],
+      "excludes_zero": true
+    },
+    "n_heldout": 171,
+    "n_heldout_tasks": 56,
+    "n_heldout_negatives": 19,
+    "heldout_base_rate": 0.8888888955116272
+  },
+  "new_only_4sc": {
+    "hyperparams": {
+      "hidden": {
+        "auroc_cv": 0.7575308463466358,
+        "k_pca": 24,
+        "l2": 4.0
+      },
+      "shortcut": {
+        "auroc_cv": 0.68860452413084,
+        "k_pca": 16,
+        "l2": 1.0
+      },
+      "combined": {
+        "auroc_cv": 0.7575629779577148,
+        "k_pca": 24,
+        "l2": 2.0
+      }
+    },
+    "shortcut_n_features": 4,
+    "auroc_shortcut_only": 0.6772486772486772,
+    "auroc_hidden_only": 0.7724053724053724,
+    "auroc_hidden_plus_shortcuts": 0.7725274725274726,
+    "incremental_auroc_combined_minus_shortcut": 0.09527879527879535,
+    "headroom_normalized_increment": 0.2952080706179069,
+    "acc_at_half_combined": 0.8577877879142761,
+    "paired_task_clustered_bootstrap_combined_minus_shortcut": {
+      "n_rounds_used": 2000,
+      "mean_delta": 0.0949498904432031,
+      "ci95": [
+        0.0376443260230922,
+        0.15685096153846156
+      ],
+      "excludes_zero": true
+    },
+    "n_heldout": 443,
+    "n_heldout_tasks": 145,
+    "n_heldout_negatives": 65,
+    "heldout_base_rate": 0.8532731533050537
+  },
+  "pooled_4sc": {
+    "hyperparams": {
+      "hidden": {
+        "auroc_cv": 0.7302896276216293,
+        "k_pca": 24,
+        "l2": 1.0
+      },
+      "shortcut": {
+        "auroc_cv": 0.6575783516431255,
+        "k_pca": 16,
+        "l2": 1.0
+      },
+      "combined": {
+        "auroc_cv": 0.7302492034051458,
+        "k_pca": 24,
+        "l2": 2.0
+      }
+    },
+    "shortcut_n_features": 4,
+    "auroc_shortcut_only": 0.6519654088050314,
+    "auroc_hidden_only": 0.7634097035040431,
+    "auroc_hidden_plus_shortcuts": 0.7633872416891285,
+    "incremental_auroc_combined_minus_shortcut": 0.11142183288409713,
+    "headroom_normalized_increment": 0.3201458582077514,
+    "acc_at_half_combined": 0.8648208379745483,
+    "paired_task_clustered_bootstrap_combined_minus_shortcut": {
+      "n_rounds_used": 2000,
+      "mean_delta": 0.11123243528606565,
+      "ci95": [
+        0.05628860828488369,
+        0.1689460544882232
+      ],
+      "excludes_zero": true
+    },
+    "n_heldout": 614,
+    "n_heldout_tasks": 201,
+    "n_heldout_negatives": 84,
+    "heldout_base_rate": 0.8631922006607056
+  },
+  "new_only_5sc": {
+    "hyperparams": {
+      "hidden": {
+        "auroc_cv": 0.7575308463466358,
+        "k_pca": 24,
+        "l2": 4.0
+      },
+      "shortcut": {
+        "auroc_cv": 0.6808126084441873,
+        "k_pca": 16,
+        "l2": 1.0
+      },
+      "combined": {
+        "auroc_cv": 0.7575308463466358,
+        "k_pca": 24,
+        "l2": 2.0
+      }
+    },
+    "shortcut_n_features": 5,
+    "auroc_shortcut_only": 0.6814407814407815,
+    "auroc_hidden_only": 0.7724053724053724,
+    "auroc_hidden_plus_shortcuts": 0.7724867724867724,
+    "incremental_auroc_combined_minus_shortcut": 0.09104599104599098,
+    "headroom_normalized_increment": 0.28580554490864934,
+    "acc_at_half_combined": 0.8577877879142761,
+    "paired_task_clustered_bootstrap_combined_minus_shortcut": {
+      "n_rounds_used": 2000,
+      "mean_delta": 0.09063851614117939,
+      "ci95": [
+        0.03448148148148156,
+        0.15306723617350326
+      ],
+      "excludes_zero": true
+    },
+    "n_heldout": 443,
+    "n_heldout_tasks": 145,
+    "n_heldout_negatives": 65,
+    "heldout_base_rate": 0.8532731533050537
+  },
+  "pooled_5sc": {
+    "hyperparams": {
+      "hidden": {
+        "auroc_cv": 0.7302896276216293,
+        "k_pca": 24,
+        "l2": 1.0
+      },
+      "shortcut": {
+        "auroc_cv": 0.6551338754934132,
+        "k_pca": 16,
+        "l2": 1.0
+      },
+      "combined": {
+        "auroc_cv": 0.7302658486707566,
+        "k_pca": 24,
+        "l2": 4.0
+      }
+    },
+    "shortcut_n_features": 5,
+    "auroc_shortcut_only": 0.6560085354896675,
+    "auroc_hidden_only": 0.7634097035040431,
+    "auroc_hidden_plus_shortcuts": 0.7633872416891285,
+    "incremental_auroc_combined_minus_shortcut": 0.107378706199461,
+    "headroom_normalized_increment": 0.3121551470828302,
+    "acc_at_half_combined": 0.8648208379745483,
+    "paired_task_clustered_bootstrap_combined_minus_shortcut": {
+      "n_rounds_used": 2000,
+      "mean_delta": 0.10720797144626727,
+      "ci95": [
+        0.05278779350980567,
+        0.164347804972805
+      ],
+      "excludes_zero": true
+    },
+    "n_heldout": 614,
+    "n_heldout_tasks": 201,
+    "n_heldout_negatives": 84,
+    "heldout_base_rate": 0.8631922006607056
+  },
+  "controls": {
+    "shuffled_label_auroc_combined": 0.5414869721473495,
+    "loto_max_abs_influence": 0.00807392053796796,
+    "loto_max_task": "synthlogic::synthetic_propositional::5178",
+    "drop_high_malformed_increment": 0.10268170486724593,
+    "drop_high_malformed_n_tasks_dropped": 12,
+    "v2_scorable": 510,
+    "v2_heldout_scorable": 171,
+    "v2_heldout_negatives": 19,
+    "v2_malformed_rate": 0.25,
+    "v3_scorable": 1557,
+    "v3_heldout_scorable": 443,
+    "v3_heldout_negatives": 65,
+    "v3_malformed_rate": 0.23676470588235293,
+    "pooled_scorable": 2067,
+    "pooled_heldout_scorable": 614,
+    "pooled_heldout_negatives": 84,
+    "pooled_malformed_rate": 0.2400735294117647
+  },
+  "verdict": "REPLICATED_AND_ROBUST_TO_MALFORMED_SIBLING_SHORTCUT",
+  "seed": 20260724,
+  "protocol": "identical to bg_v2_overnight_horizon_analysis + malformed_sibling_control"
+}

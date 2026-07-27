@@ -1,0 +1,32 @@
+{
+  "adapter": "binding",
+  "n_examples": 1176,
+  "planned_steps": 147,
+  "steps_done": 147,
+  "loss_finite": true,
+  "unstable": false,
+  "final_loss": 0.435348903760314,
+  "direction": {
+    "family": "high_yield_recipe_direction",
+    "name": "high_yield_recipe_direction:salvage_tap_aligned:24_L4:AntisymLinear:hidden_origin_split_salvage_heads",
+    "source": "v4_driver_l24_l36_alpha_0_005::artifacts/reports/probes/bg_hidden_origin_split_salvage_2026-05-18/salvage_heads.pt",
+    "target_config": "24_L4",
+    "recommended_alpha_bucket": "alpha_0_005",
+    "bank": "artifacts/reports/probes/bg_hidden_origin_branch_generator_v1_2026-05-18/basis_bank_v1.pt"
+  },
+  "alpha": 0.02,
+  "target_layer": 24,
+  "target_loops": [
+    1
+  ],
+  "lora": {
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "target_modules": "all-linear"
+  },
+  "lr": 0.0001,
+  "grad_accum": 8,
+  "max_steps": 400,
+  "elapsed_seconds": 1971.9
+}

@@ -1,0 +1,49 @@
+{
+  "gate_pass": true,
+  "failed": [],
+  "skipped": [],
+  "cpu_partial": false,
+  "checks": {
+    "synthetic_abs_position_hook": {
+      "zero_delta_bitwise_noop": true,
+      "prefill_only_last_prompt_token": true,
+      "residual_cosine_to_direction": 1.0,
+      "residual_rms_fraction": 0.02,
+      "residual_math_ok": true,
+      "negative_sign_flips_residual": true,
+      "off_target_loop_untouched": true,
+      "decode_step_skipped": true,
+      "train_forward_pos_plen_minus_1_only": true,
+      "pass": true
+    },
+    "loss_finite_binding": {
+      "pass": true,
+      "n_steps": 147
+    },
+    "loss_finite_control": {
+      "pass": true,
+      "n_steps": 147
+    },
+    "zero_delta_noop_real_model": {
+      "pass": true,
+      "per_probe": [
+        true,
+        true,
+        true
+      ],
+      "probes": [
+        "synthlogic::synthetic_propositional::3245",
+        "synthlogic::synthetic_propositional::854",
+        "synthlogic::synthetic_propositional::6654"
+      ]
+    },
+    "adapter_load": {
+      "pass": true,
+      "detail": {
+        "binding": true,
+        "control": true
+      }
+    }
+  },
+  "seed": 20260727
+}

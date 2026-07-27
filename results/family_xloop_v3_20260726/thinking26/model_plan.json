@@ -1,0 +1,21 @@
+{
+  "model_key": "thinking26",
+  "snapshot": "/home/moloch/ouro_project/artifacts/hf_cache/hub/models--ByteDance--Ouro-2.6B-Thinking/snapshots/f1edd81e7ac41355db670500ceaf204e0f73af68",
+  "n_layers": 48,
+  "hidden": 2048,
+  "layers": [
+    8,
+    16,
+    24,
+    36,
+    47
+  ],
+  "capture_idx": {
+    "8": 7,
+    "16": 15,
+    "24": 23,
+    "36": 35
+  },
+  "boundary": 47,
+  "total_ut_steps": 4
+}

@@ -1,0 +1,9 @@
+{
+  "model": "tomg-group-umd/huginn-0125",
+  "snapshot": "/home/moloch/ouro_project/artifacts/hf_cache/hub/models--tomg-group-umd--huginn-0125/snapshots/bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+  "n_embd": 5280,
+  "r_max": 8,
+  "capture": "last core_block module output per recurrence step",
+  "pooling": "masked mean, sealed convention",
+  "dtype": "bfloat16"
+}

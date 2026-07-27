@@ -1,0 +1,25 @@
+{
+  "seed": 20260727,
+  "task_offset": 1350,
+  "n_tasks": 150,
+  "k_wf": 4,
+  "round_k": 4,
+  "max_rounds": 4,
+  "max_new": 320,
+  "model": "models/ouro_rltt_local",
+  "feature_shape": [
+    3,
+    4,
+    2048
+  ],
+  "n_records": 599,
+  "n_draws_total": 1172,
+  "dropped_tasks": [],
+  "errors": [],
+  "elapsed_seconds": 8067.4,
+  "n_success": 518,
+  "group_size_hist": {
+    "3": 1,
+    "4": 149
+  }
+}

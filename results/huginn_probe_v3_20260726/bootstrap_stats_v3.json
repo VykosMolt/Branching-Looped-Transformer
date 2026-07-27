@@ -1,0 +1,291 @@
+{
+ "points": {
+  "refit:0_L1": 0.3317,
+  "refit:0_L2": 0.32,
+  "refit:0_L3": 0.3033,
+  "refit:0_L4": 0.3617,
+  "refit:0_L5": 0.3833,
+  "refit:0_L6": 0.3783,
+  "refit:0_L7": 0.4017,
+  "refit:0_L8": 0.4383,
+  "transfer:0:L1->L2": 0.3367,
+  "transfer:0:L1->L3": 0.32,
+  "transfer:0:L1->L4": 0.3433,
+  "transfer:0:L1->L5": 0.3233,
+  "transfer:0:L1->L6": 0.355,
+  "transfer:0:L1->L7": 0.365,
+  "transfer:0:L1->L8": 0.345,
+  "transfer:0:L2->L3": 0.3417,
+  "transfer:0:L2->L4": 0.3483,
+  "transfer:0:L2->L5": 0.3417,
+  "transfer:0:L2->L6": 0.3383,
+  "transfer:0:L2->L7": 0.37,
+  "transfer:0:L2->L8": 0.3483,
+  "transfer:0:L4->L5": 0.365,
+  "transfer:0:L4->L6": 0.385,
+  "transfer:0:L4->L7": 0.4,
+  "transfer:0:L4->L8": 0.4117,
+  "chance": 0.2818
+ },
+ "paired_deltas": {
+  "refit:0_L1 - chance": {
+   "point": 0.0498,
+   "ci95": [
+    0.0136,
+    0.0863
+   ],
+   "excludes_zero": true
+  },
+  "refit:0_L1 - refit:0_L8": {
+   "point": -0.1067,
+   "ci95": [
+    -0.1567,
+    -0.0583
+   ],
+   "excludes_zero": true
+  },
+  "refit:0_L2 - chance": {
+   "point": 0.0382,
+   "ci95": [
+    0.001,
+    0.0748
+   ],
+   "excludes_zero": true
+  },
+  "refit:0_L2 - refit:0_L8": {
+   "point": -0.1183,
+   "ci95": [
+    -0.1683,
+    -0.0683
+   ],
+   "excludes_zero": true
+  },
+  "refit:0_L3 - chance": {
+   "point": 0.0215,
+   "ci95": [
+    -0.0134,
+    0.0571
+   ],
+   "excludes_zero": false
+  },
+  "refit:0_L3 - refit:0_L8": {
+   "point": -0.135,
+   "ci95": [
+    -0.185,
+    -0.085
+   ],
+   "excludes_zero": true
+  },
+  "refit:0_L4 - chance": {
+   "point": 0.0798,
+   "ci95": [
+    0.0416,
+    0.1176
+   ],
+   "excludes_zero": true
+  },
+  "refit:0_L4 - refit:0_L8": {
+   "point": -0.0767,
+   "ci95": [
+    -0.125,
+    -0.0267
+   ],
+   "excludes_zero": true
+  },
+  "refit:0_L5 - chance": {
+   "point": 0.1015,
+   "ci95": [
+    0.0637,
+    0.1397
+   ],
+   "excludes_zero": true
+  },
+  "refit:0_L5 - refit:0_L8": {
+   "point": -0.055,
+   "ci95": [
+    -0.1033,
+    -0.0067
+   ],
+   "excludes_zero": true
+  },
+  "refit:0_L6 - chance": {
+   "point": 0.0965,
+   "ci95": [
+    0.0603,
+    0.1328
+   ],
+   "excludes_zero": true
+  },
+  "refit:0_L6 - refit:0_L8": {
+   "point": -0.06,
+   "ci95": [
+    -0.105,
+    -0.015
+   ],
+   "excludes_zero": true
+  },
+  "refit:0_L7 - chance": {
+   "point": 0.1198,
+   "ci95": [
+    0.0821,
+    0.1578
+   ],
+   "excludes_zero": true
+  },
+  "refit:0_L7 - refit:0_L8": {
+   "point": -0.0367,
+   "ci95": [
+    -0.0717,
+    -0.0017
+   ],
+   "excludes_zero": true
+  },
+  "refit:0_L8 - chance": {
+   "point": 0.1565,
+   "ci95": [
+    0.1194,
+    0.1947
+   ],
+   "excludes_zero": true
+  },
+  "transfer:0:L1->L2 - refit:0_L2": {
+   "point": 0.0167,
+   "ci95": [
+    -0.03,
+    0.0633
+   ],
+   "excludes_zero": false
+  },
+  "transfer:0:L1->L3 - refit:0_L3": {
+   "point": 0.0167,
+   "ci95": [
+    -0.0267,
+    0.0617
+   ],
+   "excludes_zero": false
+  },
+  "transfer:0:L1->L4 - refit:0_L4": {
+   "point": -0.0183,
+   "ci95": [
+    -0.0683,
+    0.03
+   ],
+   "excludes_zero": false
+  },
+  "transfer:0:L1->L5 - refit:0_L5": {
+   "point": -0.06,
+   "ci95": [
+    -0.11,
+    -0.0117
+   ],
+   "excludes_zero": true
+  },
+  "transfer:0:L1->L6 - refit:0_L6": {
+   "point": -0.0233,
+   "ci95": [
+    -0.0733,
+    0.0267
+   ],
+   "excludes_zero": false
+  },
+  "transfer:0:L1->L7 - refit:0_L7": {
+   "point": -0.0367,
+   "ci95": [
+    -0.0867,
+    0.0133
+   ],
+   "excludes_zero": false
+  },
+  "transfer:0:L1->L8 - refit:0_L8": {
+   "point": -0.0933,
+   "ci95": [
+    -0.1417,
+    -0.045
+   ],
+   "excludes_zero": true
+  },
+  "transfer:0:L2->L3 - refit:0_L3": {
+   "point": 0.0383,
+   "ci95": [
+    -0.0083,
+    0.085
+   ],
+   "excludes_zero": false
+  },
+  "transfer:0:L2->L4 - refit:0_L4": {
+   "point": -0.0133,
+   "ci95": [
+    -0.0633,
+    0.0367
+   ],
+   "excludes_zero": false
+  },
+  "transfer:0:L2->L5 - refit:0_L5": {
+   "point": -0.0417,
+   "ci95": [
+    -0.09,
+    0.0067
+   ],
+   "excludes_zero": false
+  },
+  "transfer:0:L2->L6 - refit:0_L6": {
+   "point": -0.04,
+   "ci95": [
+    -0.0883,
+    0.0083
+   ],
+   "excludes_zero": false
+  },
+  "transfer:0:L2->L7 - refit:0_L7": {
+   "point": -0.0317,
+   "ci95": [
+    -0.0784,
+    0.0167
+   ],
+   "excludes_zero": false
+  },
+  "transfer:0:L2->L8 - refit:0_L8": {
+   "point": -0.09,
+   "ci95": [
+    -0.1383,
+    -0.0417
+   ],
+   "excludes_zero": true
+  },
+  "transfer:0:L4->L5 - refit:0_L5": {
+   "point": -0.0183,
+   "ci95": [
+    -0.0583,
+    0.0217
+   ],
+   "excludes_zero": false
+  },
+  "transfer:0:L4->L6 - refit:0_L6": {
+   "point": 0.0067,
+   "ci95": [
+    -0.0383,
+    0.0517
+   ],
+   "excludes_zero": false
+  },
+  "transfer:0:L4->L7 - refit:0_L7": {
+   "point": -0.0017,
+   "ci95": [
+    -0.0433,
+    0.0383
+   ],
+   "excludes_zero": false
+  },
+  "transfer:0:L4->L8 - refit:0_L8": {
+   "point": -0.0267,
+   "ci95": [
+    -0.07,
+    0.015
+   ],
+   "excludes_zero": false
+  }
+ },
+ "reference_cells": [
+  "0_L8"
+ ]
+}
