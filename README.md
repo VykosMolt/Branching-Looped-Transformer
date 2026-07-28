@@ -476,8 +476,8 @@ Frozen conversions (paper v3):
 
 Cross-checkpoint:
   Thinking pre-answer transfer remains unresolved after a powered replication:
-  +0.042 [-0.017, +0.104] on 900 fresh tasks, verdict UNRESOLVED -- rules out an
-  RLTT-sized effect on Thinking, leaves a smaller one open
+  +0.042 [-0.017, +0.104] on 900 fresh tasks, verdict UNRESOLVED -- failed to
+  replicate the RLTT-sized effect, which the interval does not formally exclude
 
 Next lever:
   training-time integration (outcome-distinct branches + correctness-readable selector)
@@ -517,7 +517,7 @@ extracted feature tensors. Paths map onto the papers' artifact index by dropping
 | `results/tournament_v4_20260727/` | **Conversion C3** — matched-budget prefix-prune tournament. Hit its pre-registered feasibility floor (0.978 any-of-6 ceiling), so no claim is made in either direction; the internals are preserved for the harder-domain re-run the design now awaits. |
 | `results/wellformed_terminal_v4_20260727/` | **Conversion C4** — terminal selection on a pool where every candidate is well-formed *by construction*, so malformedness cannot carry the margin. 27/32 informative held-out groups against 64.8% matched-random (exact *p* = 0.0086), establishing content-sensitive selection; the hidden-versus-surface increment remains unresolved at this sample size. Includes the sealed extension declared before any selector was fit. |
 | `results/lora_s3a_pilot_20260727/` | **Conversion C5** — sign-conditioned LoRA binding pilot: one curated writable direction, one locus, ≤400 steps, against a coin-flipped twin adapter. Binding not detected; scope is deliberately narrow, so this bounds the cheapest form of binding rather than training-time integration generally. |
-| `results/thinking_preanswer_power_v5_20260727/` | **Complete.** The powered Thinking-only pre-answer replication, pre-registered in this repository before it ran: the sealed plan, the formal sizing simulation behind N = 900, and now the result. 900 fresh task-disjoint tasks yielded 99 held-out negatives against a pre-registered target of 80–100; the new-cohort increment is **+0.042, 95% CI [−0.017, +0.104]**, sealed verdict **`UNRESOLVED`**. Roughly three times tighter than the pilot interval and still crossing zero: the run rules out a Thinking effect as large as RLTT's (+0.095, which it was powered at 0.816 to detect) without establishing either the effect or its practical absence at the ±0.05 margin. |
+| `results/thinking_preanswer_power_v5_20260727/` | **Complete.** The powered Thinking-only pre-answer replication, pre-registered in this repository before it ran: the sealed plan, the formal sizing simulation behind N = 900, and now the result. 900 fresh task-disjoint tasks yielded 99 held-out negatives against a pre-registered target of 80–100; the new-cohort increment is **+0.042, 95% CI [−0.017, +0.104]**, sealed verdict **`UNRESOLVED`**. Roughly three times tighter than the pilot interval and still crossing zero. The design had 0.816 power to detect the pre-registered +0.095 target, but +0.095 itself lies inside the observed interval, so an RLTT-sized effect is **not formally excluded** — the run failed to replicate it rather than ruling it out, and establishes neither the effect nor its practical absence at the ±0.05 margin. |
 | `results/v3_overnight_20260726_logs/` | Orchestration logs and the summary of record for the v3 overnight programme. |
 
 Excluded by design: `*.pt` tensors, extracted feature shards, datasets, and model
