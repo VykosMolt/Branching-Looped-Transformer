@@ -1,0 +1,268 @@
+{
+  "protocol": "sealed v3 Thinking generator protocol; analysis machinery identical to bg_v3_thinking_preanswer_analysis (fit family, grouped CV, grid, split, adversarial 5-shortcut composite); primary bootstrap seed 20260727",
+  "bootstrap_seed": 20260727,
+  "min_new_offset": 1500,
+  "stage_a_gate": "PASSED",
+  "stage_a_report": {
+    "arm_4sc": {
+      "auroc_shortcut_only": {
+        "reproduced": 0.6522727272727272,
+        "published": 0.6522727272727272,
+        "abs_diff": 0.0,
+        "match": true
+      },
+      "auroc_hidden_only": {
+        "reproduced": 0.6695454545454546,
+        "published": 0.6695454545454546,
+        "abs_diff": 0.0,
+        "match": true
+      },
+      "auroc_combined": {
+        "reproduced": 0.6690909090909091,
+        "published": 0.6690909090909091,
+        "abs_diff": 0.0,
+        "match": true
+      },
+      "incremental": {
+        "reproduced": 0.016818181818181843,
+        "published": 0.016818181818181843,
+        "abs_diff": 0.0,
+        "match": true
+      },
+      "boot_mean": {
+        "reproduced": 0.023466286622007608,
+        "published": 0.023466286622007608,
+        "abs_diff": 0.0,
+        "match": true
+      },
+      "boot_ci_lo": {
+        "reproduced": -0.14397046759639043,
+        "published": -0.14397046759639043,
+        "abs_diff": 0.0,
+        "match": true
+      },
+      "boot_ci_hi": {
+        "reproduced": 0.20611111111111113,
+        "published": 0.20611111111111113,
+        "abs_diff": 0.0,
+        "match": true
+      },
+      "scores_hidden_max_abs_diff": 0.0,
+      "scores_shortcut_max_abs_diff": 0.0,
+      "scores_combined_max_abs_diff": 0.0
+    },
+    "arm_5sc": {
+      "auroc_shortcut_only": {
+        "reproduced": 0.6418181818181818,
+        "published": 0.6418181818181818,
+        "abs_diff": 0.0,
+        "match": true
+      },
+      "auroc_hidden_only": {
+        "reproduced": 0.6695454545454546,
+        "published": 0.6695454545454546,
+        "abs_diff": 0.0,
+        "match": true
+      },
+      "auroc_combined": {
+        "reproduced": 0.6690909090909091,
+        "published": 0.6690909090909091,
+        "abs_diff": 0.0,
+        "match": true
+      },
+      "incremental": {
+        "reproduced": 0.027272727272727226,
+        "published": 0.027272727272727226,
+        "abs_diff": 0.0,
+        "match": true
+      },
+      "boot_mean": {
+        "reproduced": 0.033905981752529714,
+        "published": 0.033905981752529714,
+        "abs_diff": 0.0,
+        "match": true
+      },
+      "boot_ci_lo": {
+        "reproduced": -0.12848484848484842,
+        "published": -0.12848484848484842,
+        "abs_diff": 0.0,
+        "match": true
+      },
+      "boot_ci_hi": {
+        "reproduced": 0.21056547619047628,
+        "published": 0.21056547619047628,
+        "abs_diff": 0.0,
+        "match": true
+      },
+      "scores_hidden_max_abs_diff": 0.0,
+      "scores_shortcut_max_abs_diff": 0.0,
+      "scores_combined_max_abs_diff": 0.0
+    }
+  },
+  "n_candidates": 3600,
+  "n_tasks": 900,
+  "n_malformed": 1563,
+  "malformed_rate": 0.43416666666666665,
+  "n_scorable": 2037,
+  "n_trainval_scorable": 1493,
+  "n_heldout_scorable": 544,
+  "n_heldout_negatives": 99,
+  "pilot_reference_malformed_rate": 0.45588235294117646,
+  "primary_new_only_5sc": {
+    "hyperparams": {
+      "hidden": {
+        "auroc_cv": 0.7366253658664637,
+        "k_pca": 24,
+        "l2": 1.0
+      },
+      "shortcut": {
+        "auroc_cv": 0.6584333040202653,
+        "k_pca": 16,
+        "l2": 4.0
+      },
+      "combined": {
+        "auroc_cv": 0.7362808279410413,
+        "k_pca": 24,
+        "l2": 1.0
+      }
+    },
+    "shortcut_n_features": 5,
+    "auroc_shortcut_only": 0.6926228577913971,
+    "auroc_hidden_only": 0.7347860628759505,
+    "auroc_hidden_plus_shortcuts": 0.7348768584723641,
+    "incremental_auroc_combined_minus_shortcut": 0.04225400068096696,
+    "headroom_normalized_increment": 0.13746630727762799,
+    "acc_at_half_combined": 0.814338207244873,
+    "paired_task_clustered_bootstrap_combined_minus_shortcut": {
+      "n_rounds_used": 2000,
+      "mean_delta": 0.04193739846973723,
+      "ci95": [
+        -0.01674641148325362,
+        0.10051546391752575
+      ],
+      "excludes_zero": false
+    },
+    "n_heldout": 544,
+    "n_heldout_tasks": 230,
+    "n_heldout_negatives": 99,
+    "heldout_base_rate": 0.8180146813392639
+  },
+  "primary_bootstrap_seed20260727": {
+    "n_rounds_used": 2000,
+    "seed": 20260727,
+    "mean_delta": 0.042799520534214146,
+    "ci95": [
+      -0.016609392898052744,
+      0.10382931951559404
+    ],
+    "ci90": [
+      -0.008286445012787635,
+      0.09322585309427422
+    ],
+    "excludes_zero_95": false
+  },
+  "secondary_pooled_5sc": {
+    "label": "pooled precision estimate -- NOT independent replication",
+    "arm": {
+      "hyperparams": {
+        "hidden": {
+          "auroc_cv": 0.7165585351787774,
+          "k_pca": 24,
+          "l2": 2.0
+        },
+        "shortcut": {
+          "auroc_cv": 0.6560289311803152,
+          "k_pca": 16,
+          "l2": 4.0
+        },
+        "combined": {
+          "auroc_cv": 0.7165056708958093,
+          "k_pca": 24,
+          "l2": 4.0
+        }
+      },
+      "shortcut_n_features": 5,
+      "auroc_shortcut_only": 0.6941782118252706,
+      "auroc_hidden_only": 0.7444621091679915,
+      "auroc_hidden_plus_shortcuts": 0.7444469679763798,
+      "incremental_auroc_combined_minus_shortcut": 0.05026875615110915,
+      "headroom_normalized_increment": 0.16437271016932387,
+      "acc_at_half_combined": 0.8219584822654724,
+      "paired_task_clustered_bootstrap_combined_minus_shortcut": {
+        "n_rounds_used": 2000,
+        "mean_delta": 0.04957583824937231,
+        "ci95": [
+          -0.005027436800203011,
+          0.10484324324324323
+        ],
+        "excludes_zero": false
+      },
+      "n_heldout": 674,
+      "n_heldout_tasks": 286,
+      "n_heldout_negatives": 119,
+      "heldout_base_rate": 0.8234421610832214
+    },
+    "bootstrap_seed20260727": {
+      "n_rounds_used": 2000,
+      "seed": 20260727,
+      "mean_delta": 0.05046960973536532,
+      "ci95": [
+        -0.004364829946225335,
+        0.10591465677179968
+      ],
+      "ci90": [
+        0.004235335814283259,
+        0.09630816170861933
+      ],
+      "excludes_zero_95": false
+    }
+  },
+  "controls": {
+    "drop_high_malformed_tasks": {
+      "threshold": 0.75,
+      "n_heldout_tasks_dropped": 48,
+      "n_candidates_remaining": 496,
+      "incremental": 0.05198585115864529,
+      "bootstrap_seed20260727": {
+        "n_rounds_used": 2000,
+        "seed": 20260727,
+        "mean_delta": 0.051757332455504956,
+        "ci95": [
+          -0.01367362623286783,
+          0.11697857101599962
+        ],
+        "ci90": [
+          -0.0035032861403051507,
+          0.10675530892008467
+        ],
+        "excludes_zero_95": false
+      }
+    },
+    "malformed_vs_clean_hidden_auroc": 0.8405932174271578,
+    "malformed_vs_clean_note": "hidden-state grouped-CV AUROC for predicting malformed(1)/clean(0) on the new held-out records -- a DIFFERENT label than correctness; reported so a reader can check the correctness increment is not this signal in disguise"
+  },
+  "verdict": "UNRESOLVED",
+  "flags": {
+    "PRACTICALLY_SMALL": false,
+    "equivalence_condition_held": false
+  },
+  "verdict_basis": {
+    "point_estimate": 0.04225400068096696,
+    "ci95": [
+      -0.016609392898052744,
+      0.10382931951559404
+    ],
+    "ci90": [
+      -0.008286445012787635,
+      0.09322585309427422
+    ],
+    "margin": 0.05,
+    "small_point_threshold": 0.05,
+    "order": [
+      "NEGATIVE_TRANSFER",
+      "POSITIVE_REPLICATION",
+      "PRACTICAL_EQUIVALENCE",
+      "UNRESOLVED"
+    ]
+  }
+}
