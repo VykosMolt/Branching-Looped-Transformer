@@ -1,5 +1,7 @@
 # DualAnchor Tap Evolution
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 Updated: 2026-05-31
 
 This document collapses the two-tap, old-anchored, layer-native, repair, and DualAnchor probe line into one readable history.
@@ -71,7 +73,7 @@ HH-RLHF comparison v1:
 
 Architecture-looped v3:
 
-- stage oracle retention: `0.9848`
+- stage oracle retention: `0.9848` [superseded: 0.9697 task-disjoint]
 - terminal oracle retained: `1.0000`
 - forced terminal top1 oracle: `0.9167`
 - reward-diverse forced top1 oracle: `0.6364`

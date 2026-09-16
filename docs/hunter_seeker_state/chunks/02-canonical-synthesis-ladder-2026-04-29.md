@@ -1,6 +1,8 @@
 <!-- Source: PROJECT_STATE_HUNTER_SEEKER.md lines 1022-1750 before the 2026-05-14 split. -->
 <!-- Source chunk SHA256: d575b3620f151d4d9e5e3df93fcfa5df92e30046110aa1b6662bc40903e3bca8 -->
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 ## 0. Canonical Synthesis - 2026-04-29
 
 This section is the current working truth after reading the project markdown, the nested `claude_sandbox` and `codex_sandbox` notes, the active `claude_sandbox` source surface, and the current arXiv Ouro paper. Older sections below remain useful historical detail, but when there is tension, this section is the latest handoff.
@@ -85,7 +87,7 @@ Project implication:
 The CLT evaluator finding remains foundational:
 
 - Pairwise preference over Ouro loop states works strongly.
-- Absolute single-sequence valuation is weak/below chance.
+- Absolute single-sequence valuation is weak/below chance. [superseded: the below-chance pointwise result (21.75%) was a leakage artifact; the clean pointwise probe reads 0.5418, above chance]
 - The useful signal is relational: "this trajectory/response is better than that one," not "this one is good in isolation."
 
 The best CLT checkpoint remains:

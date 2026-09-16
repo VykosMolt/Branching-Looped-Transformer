@@ -1,5 +1,7 @@
 # Current Evaluator / BG State
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 ## Current Consolidated State (2026-05-31)
 
 Canonical navigation now starts at `evaluator-navigation-map.md`.
@@ -27,7 +29,7 @@ Latest 48-task v3 metrics:
 | domains | 24 reasoning / 24 science |
 | rows generated/evaluated | 3454 |
 | nonterminal stage decisions | 528 |
-| stage oracle retention | 0.9848 |
+| stage oracle retention | 0.9848 [superseded: 0.9697 task-disjoint] |
 | terminal oracle retained | 1.0000 |
 | forced terminal top1 oracle | 0.9167 |
 | forced terminal top1 reward | 0.2625 |
@@ -1068,7 +1070,7 @@ This run scaled the DualAnchor architecture-shaped loop without steering. Taps w
 Headline metrics:
 
 - tasks: `48`
-- stage oracle retention: `0.9848484848484849`
+- stage oracle retention: `0.9848484848484849` [superseded: 0.9697 task-disjoint]
 - terminal oracle retained: `1.0`
 - terminal forced top1 oracle: `0.9166666666666666`
 - terminal reward-diverse rate: `0.22916666666666666`

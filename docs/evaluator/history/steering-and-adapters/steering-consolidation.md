@@ -1,5 +1,7 @@
 # BG Steering Consolidation — inference-time closure and Phase 2 framing
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 **Date:** 2026-05-18
 **Status:** Consolidation document. Locks the completed frozen-backbone inference-time steering investigation. Supersedes the standalone `steering-findings.md` by incorporating the final sequence-level adapter result. Feeds the eventual v9 synthesis. Cross-references `phase1-progress-addendum.md`.
 **Parent spec:** `phase1-routing-policy-locked.md` (v8.1, Phase 1 architecture locked, unchanged).
@@ -16,7 +18,7 @@ This does NOT touch:
 - Phase 1 validated capabilities (BG readout, candidate selection, trajectory prediction) — unchanged.
 - Phase 1.5 promising capabilities (text-prefix branch allocation, BG-guided compute routing) — unchanged.
 - The v8.1 locked Phase 1 head architecture and routing — unchanged.
-- The CLT paper's headline (95.2% HH-RLHF readout/selection) — unchanged.
+- The CLT paper's headline (95.2% [superseded: 0.6392 strict antisymmetrized] HH-RLHF readout/selection) — unchanged.
 - Hunter-Seeker ARC agent or Ouro depth expansion — separate tracks, untouched.
 
 The closure is narrow and precisely scoped. It rules out a specific class of methods, not the architecture.
@@ -197,7 +199,7 @@ This was pre-committed: if the final sequence-level test failed with the optimiz
 ### Phase 1 — validated, unchanged
 
 ```
-BG readout                      (CLT: 95.2% HH-RLHF pairwise)
+BG readout                      (CLT: 95.2% HH-RLHF pairwise)  [superseded: 0.6392 strict antisymmetrized]
 BG candidate selection          (simulator, controller; replay-exact)
 BG trajectory prediction        (Stage 1: STRONG, 368 strong cells, up to 85% pairwise)
 ```

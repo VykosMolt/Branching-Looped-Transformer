@@ -1,6 +1,8 @@
 <!-- Source: PROJECT_STATE_HUNTER_SEEKER.md lines 8032-9001 before the 2026-05-14 split. -->
 <!-- Source chunk SHA256: b7a4957181904aaa7e49c1d736bd76930714d1689471650e36195df0ccd3467f -->
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 ## RLTT Weights Located In Downloads (2026-05-04)
 
 ### Files Found
@@ -187,7 +189,7 @@
 - This is the original CLT/text-preference evaluator path, not the ARC GridEncoder path.
 - The result is a major compatibility confirmation:
   - RLTT loop states are not merely shape-compatible with the frozen epoch-2 evaluator;
-  - the epoch-2 evaluator still gets the expected ~95% HH-RLHF preference accuracy through the converted RLTT model.
+  - the epoch-2 evaluator still gets the expected ~95% [superseded: 0.6392 strict antisymmetrized] HH-RLHF preference accuracy through the converted RLTT model.
 - Current compatibility status:
   - converted RLTT weights are mechanically compatible with the active loader;
   - semantically compatible with the published pairwise evaluator distribution at the thinking-loop level;

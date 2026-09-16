@@ -1,5 +1,7 @@
 # Current Evaluator / BG State
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 ## Offline Verifier-Backed Branch Generator v2 — Rounds 1–4 (2026-06-13)
 
 `branch_training_offline_verifier_generator_v2` (follow-up to the v1 run below). Goal: train a
@@ -59,7 +61,7 @@ only under the v2 model root; no steering; no git). Detail: `round4_format_align
 `BG_CORECONTENT_V2_PHASE2B_READINESS_VERDICT = READY_FOR_PHASE2B_WITH_V2_CORECONTENT`
 
 - **Content / final selection** is the only thing this run changed; **DualAnchor branch survival unchanged**, terminal survivor-set handoff retained, science/anatomy diagnostic-only.
-- v1 kept the broad-objective baseline because per-domain data was tiny (coding 30, reasoning 5, math 66, logic 80, alignment 200 reward-diverse). v2 expanded these 27–520× (coding 1,733 · reasoning 2,600 · math 3,200 · logic 2,199 · alignment ~26,000), re-extracted frozen features (64 shards, 4.87 GB, 0 errors), and a crafted tap finally beat the baseline on untouched heldout: **CoreContent v2 blockwise 0.6691 [0.645–0.690] vs `mixedhead_MIX_HH_OBJECTIVE` 0.5525 [0.526–0.577]** (core macro top1).
+- v1 kept the broad-objective baseline because per-domain data was tiny (coding 30, reasoning 5, math 66, logic 80, alignment 200 reward-diverse). v2 expanded these 27–520× (coding 1,733 · reasoning 2,600 · math 3,200 · logic 2,199 · alignment ~26,000), re-extracted frozen features (64 shards, 4.87 GB, 0 errors), and a crafted tap finally beat the baseline on untouched heldout: **CoreContent v2 blockwise 0.6691 [0.645–0.690] [superseded: 0.6310 task-disjoint] vs `mixedhead_MIX_HH_OBJECTIVE` 0.5525 [0.526–0.577]** (core macro top1).
 - **Honest caveats (follow-up stress tests):** the +0.117 is ~half a constructed-negative artifact — on real-negative domains (reasoning/logic/alignment) the edge is **+0.063**; the coding tap is a *corruption detector* (~0.94 vs mutants but **0.58** vs real wrong-problem code), and retraining with relevance negatives did not close that gap (relevance not linearly accessible in pooled L24/36/47). Layer 47 is dead weight.
 - **Re-locked selector:** `CoreContent_v2_blockwise_pruned_24_36` (2-channel tap, layers 24+36; L47 pruned). Fallback `mixedhead_MIX_HH_OBJECTIVE`. No steering, no Ouro training, no registry mutation; pure/transplanted taps untouched. Entry: `content-selection-taps.md`; detail: `corecontent-dataset-expansion-v2.md`.
 
@@ -73,7 +75,7 @@ only under the v2 model root; no steering; no git). Detail: `round4_format_align
 
 - Locked **DualAnchor** baseline carried into Phase 2b **unchanged**; core domains coding/reasoning/math/logic/alignment ready (clean verifier/exact/MCQ/preference labels; logic added via pulled LogiQA + bounded encode-only feature extraction).
 - DualAnchor confirmed for branch survival (`DUALANCHOR_SURVIVAL_CONFIRMED`); broad-objective tiny heads marginally lead *pure* content selection (`MIX_OBJECTIVE_DOMINATES`); terminal stays `FULL_HANDOFF_REQUIRED` (confidence-gated top1 else top5/full handoff).
-- Science/anatomy taps: geometrically independent (`SCIENCE_RESIDUAL_INDEPENDENT`) with a marginal, small-n selection edge but **zero** survival benefit (`SCIENCE_ANCHOR_NOT_USEFUL`) → **diagnostic only**. Tiny heads are exactly antisymmetric; the published HH evaluator's ~62% pointwise vs 95.2% pairwise distinction is preserved. No steering run/claimed. Report: `core-domain-tap-audit.md`.
+- Science/anatomy taps: geometrically independent (`SCIENCE_RESIDUAL_INDEPENDENT`) with a marginal, small-n selection edge but **zero** survival benefit (`SCIENCE_ANCHOR_NOT_USEFUL`) → **diagnostic only**. Tiny heads are exactly antisymmetric; the published HH evaluator's ~62% pointwise vs 95.2% [superseded: 0.6392 strict antisymmetrized] pairwise distinction is preserved. No steering run/claimed. Report: `core-domain-tap-audit.md`.
 
 ## Pre-Steering Domain Update (2026-06-04)
 
@@ -119,7 +121,7 @@ Latest 48-task v3 metrics:
 | domains | 24 reasoning / 24 science |
 | rows generated/evaluated | 3454 |
 | nonterminal stage decisions | 528 |
-| stage oracle retention | 0.9848 |
+| stage oracle retention | 0.9848 [superseded: 0.9697 task-disjoint] |
 | terminal oracle retained | 1.0000 |
 | forced terminal top1 oracle | 0.9167 |
 | forced terminal top1 reward | 0.2625 |
@@ -1177,7 +1179,7 @@ This run scaled the DualAnchor architecture-shaped loop without steering. Taps w
 Headline metrics:
 
 - tasks: `48`
-- stage oracle retention: `0.9848484848484849`
+- stage oracle retention: `0.9848484848484849` [superseded: 0.9697 task-disjoint]
 - terminal oracle retained: `1.0`
 - terminal forced top1 oracle: `0.9166666666666666`
 - terminal reward-diverse rate: `0.22916666666666666`

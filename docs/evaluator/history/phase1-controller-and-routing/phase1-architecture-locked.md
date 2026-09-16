@@ -1,5 +1,7 @@
 # Post-v10 synthesis v8 — locked Phase 1 architecture
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 **Date:** 2026-05-18
 **Status:** Supersedes v4, v5, v7, and the v7 handoff as the canonical BG architecture spec.
 **Scope:** Locks Phase 1 head set, projection-direction framing, and routing principle. Names controller-policy simulator as the next experimental question. Defers prior open items explicitly.
@@ -208,6 +210,6 @@ The historical documents remain in the archive for the paper trail. v8 is the ca
 For clarity:
 
 - The locus memo v3-v10 remains the authoritative reference for HH-RLHF readout work prior to the BG pivot.
-- The CLT paper (95.2% on HH-RLHF with 5M-param GRU head) remains the published reference; v8 doesn't republish anything.
+- The CLT paper (95.2% [superseded: 0.6392 strict antisymmetrized] on HH-RLHF with 5M-param GRU head) remains the published reference; v8 doesn't republish anything.
 - The math BG-gate pilot from 2026-05-15 remains in the historical record, with the validity caveats from the truncation-confounded pilot already documented.
 - The Hunter-Seeker ARC agent work and Ouro depth expansion plans are separate tracks, not affected by v8.

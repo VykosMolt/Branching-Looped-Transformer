@@ -1,5 +1,7 @@
 # Current Evaluator / BG State
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 **Date:** 2026-05-29  
 **Refactored:** 2026-05-18 for readability; updated through steering, adapter, and hidden-origin branch work  
 **Raw originals:** `raw_archive_2026-05-18/bg_after_v7_handoff_2026-05-17.md`, `raw_archive_2026-05-18/post_v10_synthesis_2026-05-17_v7_actual_state_and_next.md`
@@ -1011,7 +1013,7 @@ This run scaled the DualAnchor architecture-shaped loop without steering. Taps w
 Headline metrics:
 
 - tasks: `48`
-- stage oracle retention: `0.9848484848484849`
+- stage oracle retention: `0.9848484848484849` [superseded: 0.9697 task-disjoint]
 - terminal oracle retained: `1.0`
 - terminal forced top1 oracle: `0.9166666666666666`
 - terminal reward-diverse rate: `0.22916666666666666`

@@ -1,5 +1,7 @@
 # Post-v10 synthesis v8.1 — BG Phase 1 controller policy locked
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 ## 2026-06-02 Supersession Note
 
 The DualAnchor science/reasoning repair v2 run adds the current pre-steering domain
@@ -686,7 +688,7 @@ This run scaled the DualAnchor architecture-shaped loop without steering. Taps w
 Headline metrics:
 
 - tasks: `48`
-- stage oracle retention: `0.9848484848484849`
+- stage oracle retention: `0.9848484848484849` [superseded: 0.9697 task-disjoint]
 - terminal oracle retained: `1.0`
 - terminal forced top1 oracle: `0.9166666666666666`
 - terminal reward-diverse rate: `0.22916666666666666`

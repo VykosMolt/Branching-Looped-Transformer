@@ -3,6 +3,8 @@
 
 # Where does the pairwise evaluator's preference signal live? — probe results
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 **Date:** 2026-05-11
 **Author:** Claude (Opus 4.7), at illjaesterhazy's request
 **Code:** `/home/moloch/ouro_project/tests/manual/probe_evaluator_hypothesis.py`
@@ -52,7 +54,7 @@ This means:
 - If accuracy at depth L is well above chance, that is direct evidence the **boundary-trained relational geometry is already present at depth L**, not just "the preference signal is extractable there with a different head." This is the stronger mechanistic claim.
 - If accuracy at depth L is at chance, that does **not** rule out extractability — it only rules out that the boundary geometry transfers. A new probe head trained at depth L might still find the signal.
 
-The arxiv paper's "linear probe on pairwise differences: 84.5 %" was its weakest informational floor; this run's mid-loop accuracies (up to 88 % at layer 47, ~76 % at layer 24) are zero-shot transfers of the *full* boundary geometry. They are not directly comparable to the 84.5 % linear baseline.
+The arxiv paper's "linear probe on pairwise differences: 84.5 % [superseded: 0.5653 pair-disjoint]" was its weakest informational floor; this run's mid-loop accuracies (up to 88 % at layer 47, ~76 % at layer 24) are zero-shot transfers of the *full* boundary geometry. They are not directly comparable to the 84.5 % [superseded: 0.5653 pair-disjoint] linear baseline.
 
 ---
 
@@ -178,7 +180,7 @@ The convergence hypothesis predicted: signal is encoded in *how* states change a
 
 **The proto-introspection hypothesis is confirmed in its strong form.** A specific point in the looped computation (post-loop-2) carries the most discriminable preference geometry. The arxiv:2604.09870 architecture extracts a clean signal from that point; the temporal GRU then mixes it with three other loops' signals, of which two are essentially equivalent and one (loop 1) is significantly noisier.
 
-**Architectural consequence:** if we trained a simpler evaluator that pooled only loop 2's hidden state (no GRU, no temporal processing), we should expect at least 96 % accuracy on HH-RLHF — better than the published 95.2 % and substantially simpler.
+**Architectural consequence:** if we trained a simpler evaluator that pooled only loop 2's hidden state (no GRU, no temporal processing), we should expect at least 96 % accuracy on HH-RLHF — better than the published 95.2 % [superseded: 0.6392 strict antisymmetrized] and substantially simpler.
 
 This finding belongs in any updated version of arxiv:2604.09870. It is a direct empirical refinement of the paper's locus claim.
 
@@ -248,7 +250,7 @@ This run extends the paper's claims in three directions:
 
 1. **The paper's "relational" claim is confirmed and refined.** Antisymmetry holds at every depth (Finding 3). The diff-norm scaffold is doing the load-bearing relational work, not the GRU.
 2. **The paper's "looped" claim is qualified.** The temporal GRU over 4 loops, when given the right single loop's state, adds nothing useful (Finding 4). The four-loop architecture *delivers* the signal to the evaluator; the *signal itself* lives at one specific loop boundary.
-3. **A simpler architecture appears to dominate the paper's.** A single-loop-2 pooled-and-scored evaluator should beat the published 95.2 % on HH-RLHF (Finding 4: 96.1 %). This is testable cheaply — same training pipeline, just feed only loop 2's states.
+3. **A simpler architecture appears to dominate the paper's.** A single-loop-2 pooled-and-scored evaluator should beat the published 95.2 % [superseded: 0.6392 strict antisymmetrized] on HH-RLHF (Finding 4: 96.1 %). This is testable cheaply — same training pipeline, just feed only loop 2's states.
 
 This isn't a contradiction of the paper. It's a sharpening of which mechanistic claim is doing the work. The paper established that relational preference encoding exists in looped-transformer internal states; this probe localizes that encoding to a specific point in the loop and shows that the temporal GRU is incidental rather than essential.
 

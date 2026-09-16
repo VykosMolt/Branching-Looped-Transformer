@@ -51,3 +51,7 @@ This manifest records the source-to-destination mapping for the Hunter-Seeker Ma
 - `docs/evaluator/pairwise_evaluator_locus_memo_v2_2026-05-11.md`
 - `docs/local_agent/PROJECT_STATE_LOCAL_AGENT.md`
 - `docs/project/PROJECT_STATE.md`
+
+## Correction tags added 2026-09-16
+
+On 2026-09-16, figures superseded by the 2026-07-25 evaluation audit were tagged inline in seven preserved files, each of which also gained a one-line correction notice: `chunks/02-canonical-synthesis-ladder-2026-04-29.md`, `chunks/03-architecture-roadmap-v17-history.md`, `chunks/06-rltt-evaluator-probes-acquisition.md`, `imported/claude_sandbox/CLAUDE_SESSION_SUMMARY.md`, `imported/docs/root_notes_20260429_143517/ouro_project_state.md`, `imported/root/es_integration_plan.md` and `imported/root/pairwise_evaluator_locus_memo_2026-05-11.md`. No text was removed. The SHA256 values and line counts above describe the content before tagging, which is in git history at commit `cb174ef`.

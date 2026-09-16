@@ -1,5 +1,7 @@
 # DualAnchor architecture-looped stratified probe v3
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 This document records the v3 architecture-shaped DualAnchor branch/prune probe.
 
 ## DualAnchor architecture-looped stratified probe v3 (2026-05-31)
@@ -11,7 +13,7 @@ This run scaled the DualAnchor architecture-shaped loop without steering. Taps w
 Headline metrics:
 
 - tasks: `48`
-- stage oracle retention: `0.9848484848484849`
+- stage oracle retention: `0.9848484848484849` [superseded: 0.9697 task-disjoint]
 - terminal oracle retained: `1.0`
 - terminal forced top1 oracle: `0.9166666666666666`
 - terminal reward-diverse rate: `0.22916666666666666`

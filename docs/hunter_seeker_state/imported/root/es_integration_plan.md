@@ -3,6 +3,8 @@
 
 # ES Integration Plan for Hunter Seeker
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 **Status:** Planning · **Date:** 2026-05-08 · **Author:** Johann Hirschner (synthesis with Claude Opus 4.7 + GPT 5.5 Pro)
 
 **Sources:**
@@ -171,7 +173,7 @@ R = env_score
 - Fitness shaping: yes (rank transformation)
 
 ### Phase 3 — CLT pairwise auxiliary
-Add `λ * CLT_pairwise_tournament_winrate` to the fitness. The pairwise tournament is between two complete trajectories under the frozen CLT evaluator, leveraging the relational-not-absolute finding from the CLT paper (84.5% pairwise vs 21.75% independent). Random pairings within each generation are sufficient for an auxiliary signal — O(N) cost rather than the O(N²) of a full bracket.
+Add `λ * CLT_pairwise_tournament_winrate` to the fitness. The pairwise tournament is between two complete trajectories under the frozen CLT evaluator, leveraging the relational-not-absolute finding from the CLT paper (84.5% [superseded: 0.5653 pair-disjoint] pairwise vs 21.75% [superseded: 0.5418, above chance, not inverted] independent). Random pairings within each generation are sufficient for an auxiliary signal — O(N) cost rather than the O(N²) of a full bracket.
 
 This is the closest match to Qiu et al.'s "ES on internal-representation reward" suggestion (Section 5) and the structural fit with CLT's central thesis.
 

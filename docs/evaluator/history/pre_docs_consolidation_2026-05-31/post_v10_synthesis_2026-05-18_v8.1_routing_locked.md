@@ -1,5 +1,7 @@
 # Post-v10 synthesis v8.1 — BG Phase 1 controller policy locked
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 **Date:** 2026-05-18
 **Status:** Supersedes v8 by adding the BG controller-policy simulator result and locking §3. Otherwise identical to v8.
 **Scope:** Closes the open routing question from v8 §3. Updates §1 head set role, §2 architectural principle, §3 routing policy, §7 Phase 2 implications, §8 next actions. Adds new §3a on experimental vote mode. Updates the §9 thesis paragraph.
@@ -649,7 +651,7 @@ This run scaled the DualAnchor architecture-shaped loop without steering. Taps w
 Headline metrics:
 
 - tasks: `48`
-- stage oracle retention: `0.9848484848484849`
+- stage oracle retention: `0.9848484848484849` [superseded: 0.9697 task-disjoint]
 - terminal oracle retained: `1.0`
 - terminal forced top1 oracle: `0.9166666666666666`
 - terminal reward-diverse rate: `0.22916666666666666`

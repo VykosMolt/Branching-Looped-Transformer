@@ -11,3 +11,7 @@ The consolidation added memorable entry-point docs and source-note headers, but 
 Checksum manifest:
 
 `manifest.sha256`
+
+## Correction tags added 2026-09-16
+
+On 2026-09-16, figures superseded by the 2026-07-25 evaluation audit were tagged inline in 18 files of this snapshot, and each of those files gained a one-line correction notice under its title. No text was removed. `manifest.sha256` is left as recorded and still describes the 2026-05-31 content, so those 18 files no longer match it; `sha256sum -c` lists them. The untagged content is in git history at commit `cb174ef`.

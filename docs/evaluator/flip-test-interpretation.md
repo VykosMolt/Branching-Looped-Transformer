@@ -1,16 +1,27 @@
 # HH-RLHF Evaluator Flip-Test Interpretation
 
+> **Superseded (2026-07-25).** The conclusions of this document were withdrawn by the
+> project's evaluation audit. The text is kept for the record, with superseded figures
+> tagged inline. The antisymmetrized audit recommended below was run: strict
+> antisymmetrized accuracy is **0.6392**, the "much lower" outcome in this document's
+> own decision table. The positive offset read here as benign scorer bias is a
+> presentation-order prior; under fixed ordering it is what inflated the 95.2%. The
+> pointwise figures were leakage artifacts: on clean pair-disjoint splits the pointwise
+> linear probe reads 0.5418, above chance, against 0.5653 for the relational linear
+> probe. See the correction notice in the top-level `README.md` and
+> `papers/kirin2026_paper2.pdf`.
+
 ## Executive summary
 
-The earlier claim that the evaluator’s “real” accuracy might be roughly **65%** was incorrect.
+The earlier claim that the evaluator’s “real” accuracy might be roughly **65%** was incorrect [withdrawn: the audit measured 0.6392 strict antisymmetrized].
 
 The correct distinction is:
 
 ```text
-65%:
+65%:  [superseded: retracted, no corrected value]
   the best independent / pointwise evaluator test accuracy
 
-95.2%:
+95.2%:  [superseded: 0.6392 strict antisymmetrized]
   the pairwise relational evaluator’s fixed-order HH-RLHF test accuracy
 ```
 
@@ -27,9 +38,9 @@ The relational preference encoding thesis remains intact.
 
 ---
 
-## What the 95.2% result actually measured
+## What the 95.2% [superseded: 0.6392 strict antisymmetrized] result actually measured
 
-The 95.2% result was measured in canonical HH-RLHF order:
+The 95.2% [superseded: 0.6392 strict antisymmetrized] result was measured in canonical HH-RLHF order:
 
 ```text
 score(chosen, rejected) > 0
@@ -39,7 +50,7 @@ with the chosen response always supplied as the first argument and rejected as t
 
 ```text
 Test accuracy:
-  95.2% = 8,141 / 8,552
+  95.2% = 8,141 / 8,552  [superseded: 0.6392 strict antisymmetrized]
 
 Average score:
   +1.6445
@@ -54,9 +65,9 @@ It is fixed-order preference discrimination accuracy.
 
 ---
 
-## Why 65% is not the corrected pairwise accuracy
+## Why 65% is not the corrected pairwise accuracy [withdrawn: the audit measured 0.6392 strict antisymmetrized]
 
-The 65% figure belongs to a different experiment: the best nonlinear **independent / pointwise** evaluator.
+The 65% [superseded: retracted, no corrected value] figure belongs to a different experiment: the best nonlinear **independent / pointwise** evaluator.
 
 That model sees one response representation at a time and tries to classify it as chosen or rejected without direct access to the paired response. The paper’s point is that this independent access is much weaker than pairwise relational access.
 
@@ -64,19 +75,19 @@ The important pattern is:
 
 ```text
 Pairwise nonlinear evaluator:
-  95.2%
+  95.2%  [superseded: 0.6392 strict antisymmetrized]
 
 Pairwise linear difference probe:
-  84.5%
+  84.5%  [superseded: 0.5653 pair-disjoint]
 
 Independent nonlinear evaluator:
-  ~65%
+  ~65%  [superseded: retracted, no corrected value]
 
 Independent linear classifier:
-  21.75%, below chance, inverted polarity
+  21.75%, below chance, inverted polarity  [superseded: 0.5418, above chance, not inverted]
 ```
 
-So the 65% result is not a correction to the 95.2% result. It is part of the evidence that preference is much more accessible relationally than absolutely.
+~~So the 65% result is not a correction to the 95.2% result. It is part of the evidence that preference is much more accessible relationally than absolutely.~~ [withdrawn: see the note at the top of this file]
 
 ---
 
@@ -236,7 +247,7 @@ The paper’s cross-epoch result confirms this:
 
 ```text
 Epoch 2:
-  test accuracy = 95.2%
+  test accuracy = 95.2%  [superseded: 0.6392 strict antisymmetrized]
   strict sign flip = 25%
   mean sum bias = +2.51
 
@@ -279,12 +290,14 @@ So the model is not a constant positive-output trick. It has a strong relational
 
 ## Corrected interpretation
 
+> **Withdrawn (2026-07-25):** see the note at the top of this file.
+
 The correct statement is:
 
 ```text
-The HH-RLHF evaluator reached 95.2% fixed-order pairwise preference accuracy.
-The low strict flip rate does not reduce that to 65%.
-The 65% figure belongs to independent pointwise evaluation.
+The HH-RLHF evaluator reached 95.2% fixed-order pairwise preference accuracy.  [superseded: 0.6392 strict antisymmetrized]
+The low strict flip rate does not reduce that to 65%.  [withdrawn: the audit measured 0.6392 strict antisymmetrized]
+The 65% figure belongs to independent pointwise evaluation.  [superseded: retracted, no corrected value]
 The flip test exposes positive scorer bias in the raw pairwise scalar.
 Antisymmetry correlation shows the relational component is strongly order-sensitive.
 ```
@@ -352,6 +365,8 @@ antisym accuracy much lower:
 
 Given the reported `ρ ≈ -0.94`, the expectation is that antisymmetrized accuracy remains strong, but this should be measured directly.
 
+> **Outcome (2026-07-25 audit):** strict antisymmetrized accuracy is 0.6392, the third case above.
+
 ---
 
 ## Practical implications for later branch/action selectors
@@ -372,13 +387,15 @@ For fixed-order evaluation tasks, raw scores may remain valid if the ordering co
 
 ## Final conclusion
 
+> **Withdrawn (2026-07-25):** see the note at the top of this file.
+
 The evaluator conversation resolves to this:
 
 ```text
-The pairwise evaluator is not secretly 65%.
-The 95.2% fixed-order HH-RLHF result is real.
+The pairwise evaluator is not secretly 65%.  [withdrawn: the audit measured 0.6392 strict antisymmetrized]
+The 95.2% fixed-order HH-RLHF result is real.  [superseded: 0.6392 strict antisymmetrized]
 The low flip-sign rate reflects scorer bias, not a 30-point accuracy collapse.
-The 65% figure belongs to independent pointwise evaluation.
+The 65% figure belongs to independent pointwise evaluation.  [superseded: retracted, no corrected value]
 The relational preference encoding thesis remains supported.
 The raw scorer should be antisymmetrized or calibrated before being used as a general bidirectional comparator.
 ```

@@ -1,5 +1,7 @@
 # BG Steering: findings and architectural status
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 **Date:** 2026-05-18
 **Status:** Topic document consolidating all BG steering work to date. Feeds the eventual v9 synthesis. Companion to `phase1-progress-addendum.md`.
 **Scope:** What "steering" means in this project, what was tested, what was found, and what the result forces architecturally.
@@ -12,7 +14,7 @@ BG readouts are predictive of trajectory quality, and the layer-hook interventio
 
 The project's vocabulary has used "steering" loosely. Three distinct things must be kept separate:
 
-**Selection (best-of-N).** Generate N candidates, score each with BG, pick the best. The model produces options; BG picks one externally. This is what the BG controller does and what the CLT paper validated (95.2% on HH-RLHF). It is not steering — the model was not influenced, a selector chose among its outputs.
+**Selection (best-of-N).** Generate N candidates, score each with BG, pick the best. The model produces options; BG picks one externally. This is what the BG controller does and what the CLT paper validated (95.2% [superseded: 0.6392 strict antisymmetrized] on HH-RLHF). It is not steering — the model was not influenced, a selector chose among its outputs.
 
 **Output steering.** Modify the model's output distribution to bias toward desirable outputs — logit-level intervention, contrastive decoding, classifier-free guidance. The model's behavior changes but only at the output layer.
 

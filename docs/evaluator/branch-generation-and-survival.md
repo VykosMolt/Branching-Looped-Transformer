@@ -1,5 +1,7 @@
 # Branch Generation And Survival
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 Updated: 2026-05-31
 
 This document collapses the hidden-origin branch-generation, universal/gated selector, fixed-composite survival, selection-only prototype, and DualAnchor survival line.
@@ -70,7 +72,7 @@ V3 all-loop run:
 
 - tasks: `48`
 - nonterminal stage decisions: `528`
-- stage oracle retention: `0.9848`
+- stage oracle retention: `0.9848` [superseded: 0.9697 task-disjoint]
 - terminal oracle retained: `1.0000`
 - false prunes: `8`
 - false-prune recovery: `8/8`

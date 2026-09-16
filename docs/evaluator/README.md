@@ -1,5 +1,7 @@
 # Evaluator Docs
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 Updated: 2026-06-07
 
 This directory has three layers:
@@ -41,7 +43,7 @@ The older 2026-05-18 raw archive is now under:
 **Mechanisms and foundations**
 
 - `evaluator-locus-summary.md` — pairwise-locus / readout-geometry summary (v2-v10 foundation through the current baseline).
-- `flip-test-interpretation.md` — what the 95.2% pairwise accuracy (vs ~65% pointwise) actually means.
+- `flip-test-interpretation.md` — what the 95.2% [superseded: 0.6392 strict antisymmetrized] pairwise accuracy (vs ~65% [superseded: retracted, no corrected value] pointwise) actually means. Superseded: its conclusions were withdrawn by the 2026-07-25 correction.
 - `dualanchor-tap-evolution.md` — how the old two taps became DualAnchor.
 - `branch-generation-and-survival.md` — hidden-origin, fixed-composite, and architecture-looped survival.
 - `terminal-selection-and-arbiters.md` — final-arbiter and terminal-confidence work.
@@ -86,7 +88,7 @@ V3 metrics:
 | --- | ---: |
 | tasks | 48 |
 | domains | 24 reasoning / 24 science |
-| stage oracle retention | 0.9848 |
+| stage oracle retention | 0.9848 [superseded: 0.9697 task-disjoint] |
 | terminal oracle retained | 1.0000 |
 | forced terminal top1 oracle | 0.9167 |
 | reward-diverse forced top1 oracle | 0.6364 |

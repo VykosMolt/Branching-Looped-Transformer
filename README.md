@@ -103,12 +103,20 @@ Terminal top5/full handoff prevents unsafe early collapse.
 
 ### 1. Frozen Ouro-RLTT loop states contain relational preference signal
 
-The pairwise HH-RLHF evaluator achieved **95.2% fixed-order test accuracy** on
+> **Superseded (2026-07-25).** The struck paragraph below is the original claim, kept
+> for the record. The 95.2% was a fixed-order accuracy inflated by a presentation-order
+> prior; the evaluator's strict antisymmetrized accuracy is **0.6392**. The pointwise
+> comparison was a leakage artifact: on clean pair-disjoint splits the relational linear
+> probe reads **0.5653** and the pointwise linear probe **0.5418**, above chance. The
+> relational route is still better, by about two points, and the pointwise channel is
+> present rather than absent.
+
+~~The pairwise HH-RLHF evaluator achieved **95.2% fixed-order test accuracy** on
 heldout HH-RLHF examples when scoring `chosen` against `rejected`. This is not
 the same as pointwise scoring: independent pointwise evaluators were much
 weaker. The correct interpretation is that Ouro-RLTT loop states encode
 preference primarily **relationally**, not as a clean absolute scalar on one
-response.
+response.~~
 
 ### 2. DualAnchor survives architecture-shaped branching
 
@@ -272,18 +280,27 @@ Steering:
 ### Relational HH-RLHF evaluator
 
 The pairwise evaluator uses hidden-state differences across Ouro-RLTT loop
-states. It is not a pointwise scorer. The core pattern is:
+states. It is not a pointwise scorer. The core pattern, as originally reported with
+the 2026-07-25 correction under each superseded figure, is:
 
 ```text
 pairwise nonlinear evaluator:       95.2% fixed-order HH-RLHF test accuracy
+                                    superseded -> 0.6392 strict antisymmetrized
 pairwise linear difference probe:   84.5%
+                                    superseded -> 0.5653
 independent nonlinear evaluator:    ~65%
+                                    superseded -> retracted, no corrected value
 independent linear classifier:      21.75%, inverted polarity
+                                    superseded -> 0.5418, above chance, not inverted
 ```
 
-The flip test revealed a positive scalar offset in the raw scorer. Low strict
+The flip test revealed a positive scalar offset in the raw scorer. ~~Low strict
 sign-flip rate is therefore a bias/calibration issue, not a collapse of the
-95.2% fixed-order result.
+95.2% fixed-order result.~~
+
+> **Withdrawn (2026-07-25).** The offset is not benign scorer bias. Under fixed
+> ordering it is a presentation-order prior, and it is what inflated the 95.2%;
+> scored in both orders, the evaluator's strict antisymmetrized accuracy is 0.6392.
 
 ### DualAnchor architecture-looped survival
 
@@ -292,6 +309,7 @@ The architecture-looped v3 run established strong repeated branch survival:
 ```text
 tasks:                         48
 stage oracle retention:         0.9848
+                                superseded -> 0.9697 task-disjoint
 terminal oracle retained:       1.0000
 forced terminal top1 oracle:    0.9167
 reward-diverse top1 oracle:     0.6364

@@ -1,12 +1,14 @@
 # CoreContent Dataset Expansion + Content Tap Refit v2
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 ## CoreContent dataset expansion and refit v2 (2026-06-04)
 
 - Status: `V2_CORECONTENT_READY`.
 - Why: v1 kept the broad-objective baseline (mixedhead_MIX_HH_OBJECTIVE); bottleneck was dataset scale, not head design. v1 reward-diverse coverage {'alignment': 200, 'logic': 80, 'math': 66, 'coding': 30, 'reasoning': 5}.
 - Data expanded (reward-diverse): {'alignment': 25993, 'coding': 1733, 'logic': 2199, 'math': 3200, 'reasoning': 2600} ; feature storage 4.87 GB, 64 shards. Datasets: coding(mbpp/apps/verifiable/humaneval), math(gsm8k/hendrycks/svamp), logic(logiqa), reasoning(arc/openbookqa/commonsenseqa/strategyqa), alignment(hh/ultrafeedback/shp/pku).
 - Parser/verifier: CORE_LABELS_CLEAN; dedup/leakage: LEAKAGE_FOUND_FIXED.
-- Heldout: best v2 `CoreContent_v2_blockwise` = 0.6691 vs mixedhead_MIX_HH_OBJECTIVE 0.5525 (verdict V2_CORECONTENT_READY).
+- Heldout: best v2 `CoreContent_v2_blockwise` = 0.6691 [superseded: 0.6310 task-disjoint] vs mixedhead_MIX_HH_OBJECTIVE 0.5525 (verdict V2_CORECONTENT_READY).
 - Selected content selector: `CoreContent_v2_blockwise` (LOCK_V2_CORECONTENT_POLICY). Phase 2b: READY_FOR_PHASE2B_WITH_V2_CORECONTENT.
 - No steering trained/applied/claimed. No Ouro training, no weight/tokenizer/checkpoint edits, no tap-registry mutation. pure_content_taps.pt / transplanted_taps.pt untouched. Science/anatomy diagnostic-only; terminal survivor-set handoff retained; DualAnchor branch survival unchanged.
 - Artifacts: `artifacts/reports/probes/bg_corecontent_dataset_expansion_refit_v2_2026-06-04`.

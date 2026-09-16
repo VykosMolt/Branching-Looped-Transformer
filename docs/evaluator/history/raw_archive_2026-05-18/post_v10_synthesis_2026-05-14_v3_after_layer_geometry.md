@@ -1,5 +1,7 @@
 # Post-v10 synthesis — Experiment 2 spec + Ouro-RLTT-BG architecture (v3, after layer geometry)
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 **Date:** 2026-05-14
 **Updated:** 2026-05-15 after the layer-24/36 geometry blocker resolved and the corrected math BG-gate pilot completed.
 **Status:** v3 supersedes the uniform BG tap-interface assumption in v2. Experiment 2 remains pre-registered for the late fused readout; Ouro-RLTT-BG Phase 1 now uses heterogeneous tap interfaces. The corrected math pilot is directional only, not a Phase-2 gate decision.
@@ -90,7 +92,7 @@ The current framing is: *Can a looped model expose relational branch-selection s
 Three sentences worth banning from the codebase and the next paper:
 
 1. "`score(x)` means quality." It does not. The object is `score(a, b)`, ideally debiased as `score(a, b) − score(b, a)`. The evaluator is a comparator, not a judge.
-2. "The evaluator's preference signal." There is no preference signal in single-candidate hidden states (the 21.75% below-chance independent probe in the original CLT paper established this). What exists is a *relational* signal between candidates.
+2. "The evaluator's preference signal." ~~There is no preference signal in single-candidate hidden states (the 21.75% below-chance independent probe in the original CLT paper established this).~~ [superseded: the 21.75% was a leakage artifact; the clean pointwise probe reads 0.5418, above chance, so single-candidate states do carry preference signal] What exists is a *relational* signal between candidates.
 3. "Loop 2 is special." Refuted by v6 onwards. All four loops carry comparable signal under proper readout; v10 settles that L2-L4 are functionally one state and L1 is a different state.
 
 The basal-ganglia metaphor is appropriate only when implemented as selection/gating over alternatives, not judgment over individuals. Early tap proposes/prunes, mid tap detects uncertainty/disagreement, late tap selects. Not "average all taps and hope."

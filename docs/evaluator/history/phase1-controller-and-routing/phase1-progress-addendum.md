@@ -1,5 +1,7 @@
 # Post-v8.1 progress addendum
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 **Date:** 2026-05-18
 **Status:** Tracking document, not a synthesis revision. Captures what has happened between v8.1 locking and the present moment. When the next synthesis revision is warranted (v8.2 or v9), this addendum becomes one of its inputs.
 **Parent:** `phase1-routing-policy-locked.md`
@@ -136,7 +138,7 @@ This is a domain-dependent pattern: abstract/categorical reasoning benefits from
 
 **Architectural implications:**
 
-*BG operates at the trajectory level, not just the finished-candidate level.* The CLT paper established BG works on finished pairwise selection (95.2%). This experiment establishes BG also works on partial-trajectory pairwise selection (85.4% pairwise on the best cell). This is the first transformer-native validation of the broader BG architecture thesis.
+*BG operates at the trajectory level, not just the finished-candidate level.* The CLT paper established BG works on finished pairwise selection (95.2% [superseded: 0.6392 strict antisymmetrized]). This experiment establishes BG also works on partial-trajectory pairwise selection (85.4% pairwise on the best cell). This is the first transformer-native validation of the broader BG architecture thesis.
 
 *Trajectory-level BG operations may need different head configurations than finished-candidate operations.* The locked production head (objective_mixed = MIX_CODE_REASONING / 36_L4 / AntisymLinearNoNorm) is NOT the same as the trajectory-prediction peak (MIX_CODE_REASONING / 36_mean / AntisymLinear). If Phase 2 ever deploys BG at the trajectory level, 36_mean and/or AntisymLinear may be the relevant choices, not the v8.1-locked 36_L4 / NoNorm. The locked v8.1 architecture remains correct for finished-candidate selection; trajectory-level operation is a separate configuration question.
 
@@ -197,7 +199,7 @@ If Phase 2 wants BG to operate at the trajectory level (not just finished-candid
 - v8.1's locked Phase 1 head set (HH_GENERAL + OBJECTIVE_MIXED_PRIMARY + CODE_SPECIALIST_BACKUP) is unchanged.
 - v8.1's conservative routing rules are unchanged.
 - v8.1's contrast-type architectural principle is unchanged.
-- The CLT paper's headline result (95.2% on HH) is unchanged.
+- The CLT paper's headline result (95.2% [superseded: 0.6392 strict antisymmetrized] on HH) is unchanged.
 - The Hunter-Seeker ARC agent and Ouro depth expansion remain separate tracks.
 
 ## 11. Next synthesis revision trigger

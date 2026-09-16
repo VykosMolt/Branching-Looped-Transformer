@@ -1,6 +1,8 @@
 <!-- Source: PROJECT_STATE_HUNTER_SEEKER.md lines 1751-2889 before the 2026-05-14 split. -->
 <!-- Source chunk SHA256: 168da48a5c1ab4d4f870c21af2ec5c3b5ca75edb00263a998890f60e51fc2ece -->
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 ## 1. Who and What
 
 **Johann Hirschner**, 20, first-year software engineering student, AI researcher. Building a brain-ontological AGI architecture on top of a frozen Ouro-2.6B-Thinking backbone. The CLT paper (Constitutional Looped Transformer evaluator) is published and endorsed. The ARC-AGI-3 agent is active research. The basal ganglia / self-model component is designed and queued.
@@ -15,7 +17,7 @@
 
 **Ouro-2.6B-Thinking** (ByteDance Universal Transformer / LoopLM) performs 4 iterative refinement passes per forward step. These are not chain-of-thought tokens — they are silent per-forward-step computations inside a shared-weight transformer that loops 4 times. Each pass refines the representation. The L1→L4 cosine similarity on custom embeddings is ~0.08, confirming massive refinement across iterations.
 
-The **CLT finding** (95.2% pairwise accuracy on HH-RLHF, 21.75% absolute — below chance): Ouro's loop states encode preference *relationally*, not absolutely. The evaluator knows "this sequence is better than that one" but not "this is good" in isolation. This is the architectural foundation everything else is built on.
+The **CLT finding** (95.2% [superseded: 0.6392 strict antisymmetrized] pairwise accuracy on HH-RLHF, 21.75% [superseded: 0.5418, above chance, not inverted] absolute — below chance): Ouro's loop states encode preference *relationally*, not absolutely. The evaluator knows "this sequence is better than that one" but not "this is good" in isolation. This is the architectural foundation everything else is built on.
 
 **The architecture is brain-ontological:**
 
@@ -24,7 +26,7 @@ The **CLT finding** (95.2% pairwise accuracy on HH-RLHF, 21.75% absolute — bel
 | ObservationAdapter | Retina | Done — Protocol + ArcObservationAdapter + MockSymbolicAdapter (see §19) |
 | GridEncoder | Visual cortex (V1) | Done — 1.85M params, trains via NextFramePredictor, n_values now adapter-derived |
 | Ouro loop states | Thinking substrate / shared cortex | Frozen, 2.6B params |
-| CLT evaluator (GRU over loop states) | Amygdala | Published, 95.2% pairwise |
+| CLT evaluator (GRU over loop states) | Amygdala | Published, 95.2% [superseded: 0.6392 strict antisymmetrized] pairwise |
 | HunterSeekerAgent world model | Hippocampus / perception | Active — Sprint 4 complete |
 | ObjectActionabilityHead (8-head affordance) | Parietal/IT affordance layer | Done — Sprint 4 with directional supervision |
 | Stockfish beam search + ranker | Prefrontal cortex / planning | Active — weights domain-agnostic (Sprint 4 refactor) |
@@ -60,7 +62,7 @@ The affective states — joy, sadness, curiosity, fear, frustration, satisfactio
 | `observation_adapters.py` | Retina layer — ObservationAdapter Protocol + ARC/Mock concrete adapters | 295 | ✅ new, Sprint 4 adapter refactor |
 | `action_adapters.py` | Motor cortex — ActionAdapter Protocol + ActionHead/ClickHead/ActionTypeHead + ARC/Mock adapters | 470 | ✅ new, dynamic output shape |
 | `train_arc.py` | ARC-specific training harness (explicitly named in docstring) | 780 | ✅ cumulative checkpoint chain |
-| `evaluator_pairwise.py` | CLT evaluator — 95.2% | — | published |
+| `evaluator_pairwise.py` | CLT evaluator — 95.2% [superseded: 0.6392 strict antisymmetrized] | — | published |
 | `test_adapters.py` | Interface tests + full-stack mock-domain integration test (`--full`) | 620 | ✅ 8 interface tests + Part B |
 | `test_checkpoint_policy.py` | Three-tier load + freeze_as behavioral test | 210 | ✅ 6 scenarios |
 | `test_checkpoint_reset.py` | reset_optimizer / weights_only semantics test | 220 | ✅ 6 scenarios |
@@ -364,7 +366,7 @@ No new loss required initially — ranker loss already flows gradient through GR
 
 ### Connection to CLT paper
 
-The 95.2% pairwise / 21.75% absolute finding means loop states encode *comparative* valence, not absolute. The affective state is a running integral of those comparisons over time — converting relational preference encoding into something that behaves like felt experience: a background of accumulated experience against which new situations are judged.
+The 95.2% [superseded: 0.6392 strict antisymmetrized] pairwise / 21.75% [superseded: 0.5418, above chance, not inverted] absolute finding means loop states encode *comparative* valence, not absolute. The affective state is a running integral of those comparisons over time — converting relational preference encoding into something that behaves like felt experience: a background of accumulated experience against which new situations are judged.
 
 **Paper claim:** "We show that closing the loop between Ouro's relational preference encoding and a learned affective state produces more stable and context-sensitive action selection than either component alone. The context token functions as a persistent emotional prior that shapes iterative refinement, not just as a feature."
 
@@ -436,7 +438,7 @@ Sprint 8 reads these dumps, performs replay + gradient updates, and does not its
 - **`GameAction(int)` silently fails** — always use `action_map = {a.value: a for a in GameAction}`. The ArcActionAdapter now encapsulates this pattern, so new call sites should use `action_adapter.decode(...)` rather than reconstructing the map.
 - **`obs.frame` can be empty list** — handle with `obs.frame[-1]` guard, or better: use `obs_adapter.current_frame(obs)` which returns None cleanly on empty frames.
 - **Ouro loop iterations are not chain-of-thought tokens** — 4 passes of iterative computation per forward step, not autoregressive
-- **Swap protocol deflation** — 50% random swap means training accuracy ~64% = test accuracy 95.2%. Monitor test accuracy, not training accuracy
+- **Swap protocol deflation** — 50% random swap means training accuracy ~64% = test accuracy 95.2% [superseded: 0.6392 strict antisymmetrized]. Monitor test accuracy, not training accuracy
 - **Feature decoupling** — extracting features before training reduces runtime from ~9 hours to minutes/epoch
 - **SOLAR middle insertion** — correct form is [A|B'|B], NOT [A|B|copy of A]
 - **use_cache=False** — required in `encode_and_think_batch` to prevent KV cache accumulation during beam search (~34MB per candidate)
@@ -450,7 +452,7 @@ Sprint 8 reads these dumps, performs replay + gradient updates, and does not its
 
 ## 13. Papers
 
-**Published:** CLT evaluator — 95.2% pairwise preference accuracy on HH-RLHF with frozen Ouro. Key finding: loop states encode preference relationally (95.2%) but not absolutely (21.75% — below chance). Endorsed by Rui Jie.
+**Published:** CLT evaluator — 95.2% [superseded: 0.6392 strict antisymmetrized] pairwise preference accuracy on HH-RLHF with frozen Ouro. Key finding: loop states encode preference relationally (95.2% [superseded: 0.6392 strict antisymmetrized]) but not absolutely (21.75% [superseded: 0.5418, above chance, not inverted] — below chance). Endorsed by Rui Jie.
 
 **Next (Sprint 4 / multi-head affordance paper):** Object-level affordance learning with structural supervision. Core claims:
 - Eight heads learn distinct object-action relationships from the transition event log alone — no reward shaping, no human-labeled affordances
@@ -575,7 +577,7 @@ Biological parallel: subcortical systems (basal ganglia) develop before and cons
 Δloop = sum of cosine distances between consecutive loop states (L1→L2→L3→L4). In v17b Δloop ≈ 6.3 consistently. In v17c Δloop ≈ 14.4. This ~2.3× jump warrants monitoring:
 - If it reflects richer reasoning (encoder producing more informative embeddings after training), it's good
 - If it reflects distributional drift (encoder moving away from Ouro's pretraining distribution), it's bad
-- Diagnostic: compare loop state quality on held-out HH-RLHF pairs — does pairwise accuracy hold at 95.2% with the new encoder? If it drops, encoder is drifting.
+- Diagnostic: compare loop state quality on held-out HH-RLHF pairs — does pairwise accuracy hold at 95.2% [superseded: 0.6392 strict antisymmetrized] with the new encoder? If it drops, encoder is drifting.
 
 ### What ar25 and wa30 tell us about Sprint 5
 
@@ -918,7 +920,7 @@ Regardless: su15 produces the same Sprint 6 diagnostic pattern — high-confiden
 
 §16 explicitly flagged this as a health signal: *"if Δloop keeps climbing it suggests the encoder is drifting away from Ouro's pretraining distribution."* At Δloop=21, the encoder's output embeddings are almost certainly outside Ouro's training manifold. The loop states from subsequent iterations would be refining garbage-in-garbage-out.
 
-**Diagnostic proposed in §16**: compare loop state quality on held-out HH-RLHF pairs. Does pairwise accuracy hold at 95.2% with the current encoder? If it drops, the encoder has drifted.
+**Diagnostic proposed in §16**: compare loop state quality on held-out HH-RLHF pairs. Does pairwise accuracy hold at 95.2% [superseded: 0.6392 strict antisymmetrized] with the current encoder? If it drops, the encoder has drifted.
 
 This needs to run before any more overnight sweeps. If the encoder has drifted, Sprint 5 work on top of it will just drift further. Possible remediation if drift confirmed: (a) revert encoder weights to a pre-drift checkpoint and freeze them during Sprint 5, (b) add a KL anchor loss that keeps the encoder's token distribution close to Ouro's embedding distribution, (c) reduce the encoder learning rate relative to other modules.
 
@@ -937,7 +939,7 @@ Negative / structural:
 
 ### Action items before resuming overnight sweeps
 
-**IMPORTANT correction to an earlier plan:** running `evaluate_pairwise.py` on the current checkpoint would return ≈95.2% trivially — that script feeds tokenized TEXT through Ouro, reads Ouro's loop states, and scores via CLT. The GridEncoder is never involved. Since Ouro is frozen, text-path accuracy is invariant to any GridEncoder drift. That measurement doesn't answer the drift question.
+**IMPORTANT correction to an earlier plan:** running `evaluate_pairwise.py` on the current checkpoint would return ≈95.2% [superseded: 0.6392 strict antisymmetrized] trivially — that script feeds tokenized TEXT through Ouro, reads Ouro's loop states, and scores via CLT. The GridEncoder is never involved. Since Ouro is frozen, text-path accuracy is invariant to any GridEncoder drift. That measurement doesn't answer the drift question.
 
 The real drift diagnostic needs to compare encoder outputs directly, and/or feed encoded ARC frames through Ouro and check whether the loop iterations still show structured refinement. `encoder_drift_check.py` (see §27) implements both.
 
@@ -1006,7 +1008,7 @@ The current GridEncoder has essentially replaced the v17b encoder wholesale. The
 
 The encoder is trained by `NextFramePredictor` + `SpatialClickPredictor` + `patch_color_head` gradients alone. Those objectives optimize for "what will frame_t+1 look like" and "which cells change when clicked," which are useful ARC-specific signals but have no relationship to "produce tokens Ouro's pretrained attention can reason over." With ~6 runs × 9 games of cumulative training, the encoder followed its gradient to whatever minimizes its local losses. Ouro's usefulness as a downstream refiner was never in the loss.
 
-Put another way: the NextFrame/Spatial/Color heads don't care what Ouro thinks. If the encoder finds a representation where NextFrame loss drops but Ouro can't reason over it, that's still a gradient descent step on the encoder's explicit objectives. Nothing was anchoring the encoder to Ouro-compatible space. The anchoring should have existed — the CLT paper's 95.2% result depends on it — but it was never built in for this training regime.
+Put another way: the NextFrame/Spatial/Color heads don't care what Ouro thinks. If the encoder finds a representation where NextFrame loss drops but Ouro can't reason over it, that's still a gradient descent step on the encoder's explicit objectives. Nothing was anchoring the encoder to Ouro-compatible space. The anchoring should have existed — the CLT paper's 95.2% [superseded: 0.6392 strict antisymmetrized] result depends on it — but it was never built in for this training regime.
 
 ### What the loop-state signature test would confirm (OOM'd, needs fix)
 
@@ -1084,13 +1086,13 @@ Purpose: answer whether Δloop=21 reflects healthy richer-reasoning or pathologi
 
 ### Key insight about what the CLT evaluator does NOT measure
 
-The published CLT evaluator achieves 95.2% pairwise accuracy on HH-RLHF by reading Ouro's loop states on **tokenized text input**. The path is:
+The published CLT evaluator achieves 95.2% [superseded: 0.6392 strict antisymmetrized] pairwise accuracy on HH-RLHF by reading Ouro's loop states on **tokenized text input**. The path is:
 
 ```
 HH-RLHF text → tokenizer → Ouro (frozen) → 4 loop states (hooked) → PairwiseEvaluator → score
 ```
 
-The GridEncoder is never involved. If you run `evaluate_pairwise.py` on any Sprint 4 checkpoint, you'll get ≈95.2% regardless of how much GridEncoder has drifted, because the text path doesn't touch GridEncoder. Ouro is frozen; tokenization hasn't changed; the evaluator has the same weights it had when published. That accuracy is invariant by construction.
+The GridEncoder is never involved. If you run `evaluate_pairwise.py` on any Sprint 4 checkpoint, you'll get ≈95.2% [superseded: 0.6392 strict antisymmetrized] regardless of how much GridEncoder has drifted, because the text path doesn't touch GridEncoder. Ouro is frozen; tokenization hasn't changed; the evaluator has the same weights it had when published. That accuracy is invariant by construction.
 
 **Implication:** the CLT evaluator's accuracy on text is a good sanity check that nothing catastrophic happened to Ouro itself, but it is NOT a drift measurement for the GridEncoder. The diagnostic must be constructed differently.
 

@@ -1,5 +1,7 @@
 # Core-Domain Tap Audit and DualAnchor Readiness v1 (2026-06-04)
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 Output root: `artifacts/reports/probes/bg_core_domain_tap_audit_dualanchor_readiness_v1_2026-06-04/`
 Short name: `core_domain_tap_audit_dualanchor_readiness_v1`
 
@@ -69,7 +71,7 @@ The tiny `AntisymLinear` / `AntisymLinearNoNorm` heads are **exactly antisymmetr
 construction (LayerNorm-no-affine + bias-free linear): strict sign-flip 0, antisymmetry
 correlation 1.0, raw == antisymmetrized accuracy. Low sign-flip is therefore a construction fact,
 not an accuracy estimate. The **published HH evaluator's stored accuracy is 0.621** — i.e. the
-~62% pointwise number, *not* the 95.2% pairwise fixed-order figure; that distinction is preserved.
+~62% pointwise number, *not* the 95.2% [superseded: 0.6392 strict antisymmetrized] pairwise fixed-order figure; that distinction is preserved.
 
 ## Action/content selection (Part D — `SCIENCE_TAPS_HELP`)
 

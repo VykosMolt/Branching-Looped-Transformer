@@ -1,5 +1,7 @@
 # Content-Selection Taps (CoreContent)
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 Updated: 2026-06-06
 
 Memorable entry point for the **content / final-selection** tap line. This is the component
@@ -45,7 +47,7 @@ tap scores are never used as labels.
 
 | Policy | macro | 95% CI |
 | --- | ---: | --- |
-| **CoreContent v2 blockwise (24/36/47)** | **0.6691** | 0.645–0.690 |
+| **CoreContent v2 blockwise (24/36/47)** | **0.6691** [superseded: 0.6310 task-disjoint] | 0.645–0.690 |
 | domain-gated router | 0.6610 | |
 | `mixedhead_MIX_HH_OBJECTIVE` (v1 winner) | 0.5525 | 0.526–0.577 |
 

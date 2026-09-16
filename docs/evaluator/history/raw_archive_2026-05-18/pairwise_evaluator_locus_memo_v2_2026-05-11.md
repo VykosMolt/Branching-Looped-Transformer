@@ -1,5 +1,7 @@
 # Pairwise evaluator locus — v2 (post-ablation-table, with v4-redo, v5–v9, and v10 cross-backbone update)
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 **Date:** 2026-05-11 (multi-pass, same day) — extended through 2026-05-14 with the loop-geometry / cross-backbone chapter (v10)
 **Author:** Claude (Opus 4.7)
 **Code:**
@@ -244,9 +246,9 @@ GPT's items 1, 2, 3 propose retraining evaluator variants to confirm by direct t
 | **loop-2-only no-GRU**| Pool loop 2 → diff-norm → Linear → scorer (no GRU) |             ≥ 96.8 % |
 | **mean-pool**      | Pool each loop → diff-norm per loop → mean → scorer  |             ≈ 95.5 — 96.5 % |
 | **learned softmax**| Pool each loop → diff-norm per loop → softmax(w)·proj → scorer | ≥ 96 % (learned to converge on loop 2) |
-| **control: re-trained GRU**| Same as published architecture, retrained on identical data | ≈ 95 % (matches published 95.2 %) |
+| **control: re-trained GRU**| Same as published architecture, retrained on identical data | ≈ 95 % (matches published 95.2 % [superseded: 0.6392 strict antisymmetrized]) |
 
-The hypothesis the zero-shot probe makes: a loop-2-only no-GRU evaluator, trained on HH-RLHF, will hit ≥ 96.8 % — better than the published 95.2 % and architecturally simpler.
+The hypothesis the zero-shot probe makes: a loop-2-only no-GRU evaluator, trained on HH-RLHF, will hit ≥ 96.8 % — better than the published 95.2 % [superseded: 0.6392 strict antisymmetrized] and architecturally simpler.
 
 To run this fairly, all four variants should share:
 
@@ -460,7 +462,7 @@ The accuracy floor for the recommended architecture has gone 96.1 % → 96.8 % �
 
 ## What this means for the published paper (arxiv:2604.09870)
 
-The paper's claim was "Relational preference encoding exists in looped-transformer internal states; pairwise evaluator reads it at 95.2 %." That claim survives intact — the relational geometry is real and antisymmetry holds at every depth (Finding 3 from v3, Finding 9 from v4-redo). What we've added:
+The paper's claim was "Relational preference encoding exists in looped-transformer internal states; pairwise evaluator reads it at 95.2 % [superseded: 0.6392 strict antisymmetrized]." ~~That claim survives intact~~ [superseded by the 2026-07-25 audit] — the relational geometry is real and antisymmetry holds at every depth (Finding 3 from v3, Finding 9 from v4-redo). What we've added:
 
 1. **The signal locus is sharper than the paper documented.** It lives in an iteratively-RMSNorm-aligned subspace of loops 1/2/4's hidden states. Loop 2 has a slight edge under canonical norming, but loops 1 and 4 are not far behind.
 2. **The temporal GRU is incidental, not load-bearing.** Mean-pool beats it; replication beats it further; iterated-norm-then-replicate beats it most. The original architecture was carrying unnecessary temporal baggage.
@@ -1550,7 +1552,7 @@ captured states (n=200):
 
 The 0.5 pp canonical-accuracy gap on this 200-pair subsample is consistent with
 the ~0.2 pp full-test-set transfer gap referenced in the handoff — within sampling
-noise. The published 95.2% on the full 8,552-test split maps to 0.950 here.
+noise. The published 95.2% [superseded: 0.6392 strict antisymmetrized] on the full 8,552-test split maps to 0.950 here.
 
 The readout-direction decomposition (handoff §6 Experiment 1B step h) was **skipped**:
 with mean cos(h_T, h_R) = 0.9992, the deltas are too small to support a meaningful

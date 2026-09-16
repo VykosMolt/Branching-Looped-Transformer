@@ -1,5 +1,7 @@
 # Evaluator Navigation Map
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 Updated: 2026-06-04
 
 This is the current navigation layer for evaluator, branch-generation, tap, and DualAnchor work. Detailed run notes live under `history/`; new readers should start from the canonical docs below.
@@ -30,7 +32,7 @@ The checksum manifest is:
 | CoreContent dataset expansion + refit v2 (detail) | `corecontent-dataset-expansion-v2.md` |
 | Branch training + logic expansion (toward model-internal branching) | `branch-training-logic-expansion.md` |
 | Generation-time KV/cache branch-carry + compute-saving splice | `kv-cache-branch-carry.md` |
-| What the 95.2% pairwise accuracy means (flip test) | `flip-test-interpretation.md` |
+| What the 95.2% [superseded: 0.6392 strict antisymmetrized] pairwise accuracy means (flip test; conclusions withdrawn 2026-07-25) | `flip-test-interpretation.md` |
 | Long chronological story | `chronological-evaluator-summary.md` |
 | Phase 1 controller/routing | `phase1-controller-and-routing.md` |
 | Steering/adapters boundary | `steering-and-adapters.md` |

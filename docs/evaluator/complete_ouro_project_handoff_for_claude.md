@@ -1,5 +1,7 @@
 # Complete Ouro-RLTT / BG / Proto-Introspection Project Handoff for Claude
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 **Prepared for:** Claude or another external research assistant/model.  
 **Prepared by:** ChatGPT from the current project conversation, preserved project memory, and currently mounted project documents.  
 **Date prepared:** 2026-07-01.  
@@ -187,20 +189,21 @@ Key verified paper/pdf numbers:
 - Base model: Ouro-2.6B-Thinking, frozen.
 - Trainable evaluator: about 5M parameters.
 - Dataset: Anthropic HH-RLHF chosen/rejected pairs.
-- Pairwise evaluator test accuracy: **95.2%** on **8,552** unseen examples.
-- L-BFGS linear pairwise-difference probe: **84.5%**.
-- Best nonlinear independent / pointwise evaluator: about **65%** test accuracy.
-- Linear independent / pointwise classification: **21.75%**, below chance/inverted polarity.
-- Epoch behavior: test accuracy rose from **83.3% epoch 1** to **95.2% epoch 2**, then degraded to **62.4% epoch 5** while misleading/deflated training metric increased.
+- Pairwise evaluator test accuracy: **95.2%** [superseded: 0.6392 strict antisymmetrized] on **8,552** unseen examples.
+- L-BFGS linear pairwise-difference probe: **84.5%** [superseded: 0.5653 pair-disjoint].
+- Best nonlinear independent / pointwise evaluator: about **65%** [superseded: retracted, no corrected value] test accuracy.
+- Linear independent / pointwise classification: **21.75%** [superseded: 0.5418, above chance, not inverted], below chance/inverted polarity.
+- Epoch behavior: test accuracy rose from **83.3% epoch 1** to **95.2% epoch 2** [superseded: 0.6392 strict antisymmetrized], then degraded to **62.4% epoch 5** while misleading/deflated training metric increased.
 - Flip/antisymmetry correlation stable roughly **ρ = −0.92 to −0.97** across epochs.
 - Degenerate pairwise failure mode was discovered: constant output could yield 100% if protocol was flawed; flip test became mandatory.
 
 Interpretation:
 
 - The preference signal is strongly relational.
-- Pairwise difference geometry is much more powerful than pointwise scoring.
+- ~~Pairwise difference geometry is much more powerful than pointwise scoring.~~
 - Scorer bias can cause low strict sign-flip rate even when relational component reverses properly.
-- The evaluator is a strong fixed-order pairwise relational evaluator with scorer bias, not necessarily a perfectly zero-centered antisymmetric comparator.
+- ~~The evaluator is a strong fixed-order pairwise relational evaluator with scorer bias, not necessarily a perfectly zero-centered antisymmetric comparator.~~
+- **Superseded (2026-07-25):** the pointwise figures above were leakage artifacts and the fixed-order figure was inflated by a presentation-order prior. On clean splits the relational linear probe reads 0.5653 against 0.5418 pointwise, and the evaluator's strict antisymmetrized accuracy is 0.6392.
 
 ### 6.2 Evaluator architecture lineage
 
@@ -213,7 +216,7 @@ The pairwise evaluator architecture in `evaluator_pairwise.py` includes:
 - 2-layer GRU over loop-state sequence.
 - Scorer on concatenation of GRU final state and final projected state.
 
-The code comment says “architecture that reached 70%,” but the later paper/current project interpretation separates older architecture comments from the final pairwise result. The stable load-bearing result is the 95.2% pairwise evaluator in the paper and flip-test documents.
+The code comment says “architecture that reached 70%,” but the later paper/current project interpretation separates older architecture comments from the final pairwise result. The stable load-bearing result is the 95.2% [superseded: 0.6392 strict antisymmetrized] pairwise evaluator in the paper and flip-test documents.
 
 ### 6.3 AntisymLinear / tiny tap pivot
 
@@ -346,7 +349,7 @@ V3 metrics (48 tasks, 24 reasoning / 24 science):
 
 | Metric | Value |
 | --- | ---: |
-| stage oracle retention | 0.9848 |
+| stage oracle retention | 0.9848 [superseded: 0.9697 task-disjoint] |
 | terminal oracle retained | 1.0000 |
 | forced terminal top1 oracle | 0.9167 |
 | forced terminal top1 reward | 0.2625 |
@@ -386,7 +389,7 @@ Core-domain tap audit added/confirmed:
 - Core domains ready: coding, reasoning, math, logic, alignment.
 - Science/anatomy diagnostic-only.
 - Tiny heads exactly antisymmetric.
-- HH evaluator distinction preserved: roughly 62–65% pointwise vs 95.2% pairwise.
+- HH evaluator distinction preserved: roughly 62–65% pointwise vs 95.2% [superseded: 0.6392 strict antisymmetrized] pairwise.
 
 ### 6.12 CoreContent v2 dataset expansion and refit
 
@@ -403,9 +406,9 @@ Key numbers from `current-state.md` / `corecontent-dataset-expansion-v2.md`:
   - math: 3,200;
   - reasoning: 2,600.
 - Feature storage: **4.87 GB**, **64 shards**, **0 errors**.
-- Heldout best: `CoreContent_v2_blockwise` = **0.6691** with CI about **[0.645, 0.690]**.
+- Heldout best: `CoreContent_v2_blockwise` = **0.6691** with CI about **[0.645, 0.690]** [superseded: 0.6310 task-disjoint].
 - Baseline `mixedhead_MIX_HH_OBJECTIVE` = **0.5525** with CI about **[0.526, 0.577]**.
-- Edge: +0.117 on constructed heldout.
+- Edge: +0.117 on constructed heldout [derived from the superseded 0.6691].
 - Real-negative-domain edge (reasoning/logic/alignment): about **+0.063**.
 - Coding tap is partly a corruption detector: about **0.94 vs mutants**, but only about **0.58 vs real wrong-problem code**.
 - Relevance negatives did not fix coding relevance; relevance not linearly accessible in pooled L24/36/47.
@@ -641,7 +644,7 @@ Existing reusable assets:
 Results:
 
 - ORACLE sel@oracle: **1.000**, regret 0, top4_ret 1.
-- CoreContent_v2_blockwise frozen: **0.6691** sel@oracle, regret 0.331, top4_ret 0.997.
+- CoreContent_v2_blockwise frozen: **0.6691** [superseded: 0.6310 task-disjoint] sel@oracle, regret 0.331 [derived from the superseded 0.6691], top4_ret 0.997.
 - S3B0_listwise refit: **0.6512**.
 - S3B0_pairwise refit: **0.6399**.
 - MIX_HH: **0.5526**.
@@ -681,7 +684,7 @@ Corrected numbers:
 - Separability for real taps: about **0.49–0.57**.
 - Random separability: **0.46**.
 - Oracle separability: **1.0**.
-- CoreContent_v2 in-distribution: **0.6691** → generated transfer **0.417**.
+- CoreContent_v2 in-distribution: **0.6691** [superseded: 0.6310 task-disjoint] → generated transfer **0.417**.
 - Generated transfer carried by math (1.0), collapses reasoning (0.25) and logic (0).
 - Usable pools: 8 (math 2, reasoning 4, logic 2; coding 0/4 oracle-present).
 
@@ -709,7 +712,7 @@ Validated: 8 verdict constants, 7 pillars all with status, 10 specificity contro
 Pillar statuses from user report:
 
 - P1 Prediction — STRONG initially.
-  - HH pairwise preference 95.2%.
+  - HH pairwise preference 95.2% [superseded: 0.6392 strict antisymmetrized].
   - Prefix→branch-success pair acc 0.854.
   - Top1 lift +0.162.
   - Oracle 0.90 reasoning@256.
@@ -719,7 +722,7 @@ Pillar statuses from user report:
   - Positive lift at 32–64-token prefixes and L1-only 0.915.
   - No strictly-pre-answer-token control yet.
 - P3 Specificity — PARTIAL.
-  - Strong relational/antisymmetry: pairwise 95.2 vs pointwise 65 vs pointwise-linear 21.75; rho about −0.94.
+  - Strong relational/antisymmetry: pairwise 95.2 [superseded: 0.6392 strict antisymmetrized] vs pointwise 65 [superseded: retracted, no corrected value] vs pointwise-linear 21.75 [superseded: 0.5418, above chance, not inverted]; rho about −0.94.
   - length/logprob/prompt-family baselines missing.
 - P4 Utility — weak yes / strong no.
   - Retention 0.95–1.0, ranking lift, live tap consumption.
@@ -826,7 +829,7 @@ Verdicts:
 
 Package locked in:
 
-- Relational readout 0.952; pointwise-linear control 0.2175; rho≈−0.94.
+- Relational readout 0.952 [superseded: 0.6392 strict antisymmetrized]; pointwise-linear control 0.2175 [superseded: 0.5418, above chance, not inverted]; rho≈−0.94.
 - Strict pre-answer GSM8K AUROC 0.745 [0.707,0.783].
 - Significant incremental specificity +0.066 [+0.017,+0.114].
 - Honesty ledger:
@@ -857,10 +860,10 @@ Purpose:
 
 Use:
 
-- HH 95.2 pairwise.
-- L-BFGS 84.5.
-- pointwise 65.
-- pointwise-linear 21.75.
+- HH 95.2 [superseded: 0.6392 strict antisymmetrized] pairwise.
+- L-BFGS 84.5 [superseded: 0.5653 pair-disjoint].
+- pointwise 65 [superseded: retracted, no corrected value].
+- pointwise-linear 21.75 [superseded: 0.5418, above chance, not inverted].
 - flip rho −0.92 to −0.97 / about −0.94.
 
 Do not overclaim:
@@ -1003,7 +1006,7 @@ Do not push engineering to appendices. Use something like:
 
 4. **From Linear Probe to Relational Evaluator**
    - pairwise difference;
-   - HH 0.952;
+   - HH 0.952 [superseded: 0.6392 strict antisymmetrized];
    - pointwise controls;
    - flip tests.
 
@@ -1119,8 +1122,8 @@ Suggested criterion:
 
 | Claim | Status | Notes |
 | --- | --- | --- |
-| Ouro hidden states encode relational preference/quality | Safe | HH 95.2, L-BFGS 84.5, pointwise weaker, flip correlation strong. |
-| Signal is mostly relational, not pointwise | Safe | Pointwise 65 / pointwise-linear 21.75 contrast. |
+| Ouro hidden states encode relational preference/quality | Safe | HH 95.2 [superseded: 0.6392 strict antisymmetrized], L-BFGS 84.5 [superseded: 0.5653 pair-disjoint], pointwise weaker, flip correlation strong. |
+| Signal is mostly relational, not pointwise | ~~Safe~~ Superseded | Pointwise 65 [superseded: retracted, no corrected value] / pointwise-linear 21.75 [superseded: 0.5418, above chance, not inverted] contrast. Clean splits: relational 0.5653 vs pointwise 0.5418. |
 | Tiny taps can read useful hidden-state process signals | Safe | Multiple tap/domain audits; low-capacity heads. |
 | Taps transfer across domains | Safe with caveat | Transfer partial; specialists needed. |
 | DualAnchor is a branch survival signal | Safe | V3 retention strong. |
@@ -1145,19 +1148,19 @@ Suggested criterion:
 
 ### Relational evaluator / paper
 
-- Pairwise evaluator: **95.2%** on **8,552** unseen HH-RLHF examples.
-- L-BFGS pairwise-difference probe: **84.5%**.
-- Best independent nonlinear pointwise evaluator: **65%**.
-- Linear independent classification: **21.75%** below chance/inverted polarity.
+- Pairwise evaluator: **95.2%** [superseded: 0.6392 strict antisymmetrized] on **8,552** unseen HH-RLHF examples.
+- L-BFGS pairwise-difference probe: **84.5%** [superseded: 0.5653 pair-disjoint].
+- Best independent nonlinear pointwise evaluator: **65%** [superseded: retracted, no corrected value].
+- Linear independent classification: **21.75%** [superseded: 0.5418, above chance, not inverted] below chance/inverted polarity.
 - Epoch 1: **83.3%**.
-- Epoch 2: **95.2%**.
+- Epoch 2: **95.2%** [superseded: 0.6392 strict antisymmetrized].
 - Epoch 5: **62.4%**.
 - Flip correlation: **ρ = −0.92 to −0.97**, often summarized as ~−0.94.
 
 ### DualAnchor V3
 
 - Tasks: 48 total, 24 reasoning / 24 science.
-- Stage oracle retention: **0.9848**.
+- Stage oracle retention: **0.9848** [superseded: 0.9697 task-disjoint].
 - Terminal oracle retained: **1.0000**.
 - Forced terminal top1 oracle: **0.9167**.
 - Forced terminal top1 reward: **0.2625**.
@@ -1170,7 +1173,7 @@ Suggested criterion:
 
 - Expanded data: coding 1,733; reasoning 2,600; math 3,200; logic 2,199; alignment ~26k.
 - Feature storage: **4.87 GB**, **64 shards**, **0 errors**.
-- CoreContent v2 blockwise: **0.6691 [0.645, 0.690]**.
+- CoreContent v2 blockwise: **0.6691 [0.645, 0.690]** [superseded: 0.6310 task-disjoint].
 - Mixed HH/objective baseline: **0.5525 [0.526, 0.577]**.
 - Real-negative edge: **+0.063**.
 - Coding mutant/corruption detector: ~**0.94** vs mutants, ~**0.58** vs real wrong-problem code.
@@ -1215,7 +1218,7 @@ Suggested criterion:
 
 ### S3B
 
-- CoreContent_v2 frozen: **0.6691**.
+- CoreContent_v2 frozen: **0.6691** [superseded: 0.6310 task-disjoint].
 - S3B0 listwise: **0.6512**.
 - S3B0 pairwise: **0.6399**.
 - MIX_HH: **0.5526**.
@@ -1425,7 +1428,7 @@ Interpretation:
 
 ## 17. Shortest possible correct summary
 
-The project began with a strong relational HH-RLHF hidden-state evaluator in frozen Ouro-RLTT: 95.2% pairwise vs much weaker pointwise controls. It then compressed the signal into tiny layer/loop taps, showed partial cross-domain transfer, separated branch survival from content/correctness, built DualAnchor survival and CoreContent selection, validated generation-time KV/cache branch-carry and compute-saving suffix splice, built a live branch/carry/prune scaffold, and found that frozen steering/branching does not yield capability gains beyond sampling. A strict preanswer GSM8K audit showed hidden states predict future success before the answer and add significant information beyond length/logprob shortcuts. Therefore the defensible claim is weak operational proto-introspection: Ouro-RLTT exposes readable process-quality information about its own ongoing computation, but does not yet show autonomous self-control. S3A is the future training step to turn readout into control.
+The project began with a strong relational HH-RLHF hidden-state evaluator in frozen Ouro-RLTT: 95.2% [superseded: 0.6392 strict antisymmetrized] pairwise vs ~~much weaker~~ pointwise controls [superseded: clean pointwise probe 0.5418 vs relational 0.5653]. It then compressed the signal into tiny layer/loop taps, showed partial cross-domain transfer, separated branch survival from content/correctness, built DualAnchor survival and CoreContent selection, validated generation-time KV/cache branch-carry and compute-saving suffix splice, built a live branch/carry/prune scaffold, and found that frozen steering/branching does not yield capability gains beyond sampling. A strict preanswer GSM8K audit showed hidden states predict future success before the answer and add significant information beyond length/logprob shortcuts. Therefore the defensible claim is weak operational proto-introspection: Ouro-RLTT exposes readable process-quality information about its own ongoing computation, but does not yet show autonomous self-control. S3A is the future training step to turn readout into control.
 
 ---
 

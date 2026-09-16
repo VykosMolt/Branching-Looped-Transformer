@@ -1,5 +1,7 @@
 # Core-Domain Tap Audit and DualAnchor Readiness v1 (2026-06-04)
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 Output root: `artifacts/reports/probes/bg_core_domain_tap_audit_dualanchor_readiness_v1_2026-06-04/`
 Short name: `core_domain_tap_audit_dualanchor_readiness_v1`
 
@@ -69,7 +71,7 @@ The tiny `AntisymLinear` / `AntisymLinearNoNorm` heads are **exactly antisymmetr
 construction (LayerNorm-no-affine + bias-free linear): strict sign-flip 0, antisymmetry
 correlation 1.0, raw == antisymmetrized accuracy. Low sign-flip is therefore a construction fact,
 not an accuracy estimate. The **published HH evaluator's stored accuracy is 0.621** — i.e. the
-~62% pointwise number, *not* the 95.2% pairwise fixed-order figure; that distinction is preserved.
+~62% pointwise number, *not* the 95.2% [superseded: 0.6392 strict antisymmetrized] pairwise fixed-order figure; that distinction is preserved.
 
 ## Action/content selection (Part D — `SCIENCE_TAPS_HELP`)
 
@@ -181,7 +183,7 @@ written only under this run's output root.
 - Why: v1 kept the broad-objective baseline (mixedhead_MIX_HH_OBJECTIVE); bottleneck was dataset scale, not head design. v1 reward-diverse coverage {'alignment': 200, 'logic': 80, 'math': 66, 'coding': 30, 'reasoning': 5}.
 - Data expanded (reward-diverse): {'alignment': 25993, 'coding': 1733, 'logic': 2199, 'math': 3200, 'reasoning': 2600} ; feature storage 4.87 GB, 64 shards. Datasets: coding(mbpp/apps/verifiable/humaneval), math(gsm8k/hendrycks/svamp), logic(logiqa), reasoning(arc/openbookqa/commonsenseqa/strategyqa), alignment(hh/ultrafeedback/shp/pku).
 - Parser/verifier: CORE_LABELS_CLEAN; dedup/leakage: LEAKAGE_FOUND_FIXED.
-- Heldout: best v2 `CoreContent_v2_blockwise` = 0.6691 vs mixedhead_MIX_HH_OBJECTIVE 0.5525 (verdict V2_CORECONTENT_READY).
+- Heldout: best v2 `CoreContent_v2_blockwise` = 0.6691 [superseded: 0.6310 task-disjoint] vs mixedhead_MIX_HH_OBJECTIVE 0.5525 (verdict V2_CORECONTENT_READY).
 - Selected content selector: `CoreContent_v2_blockwise` (LOCK_V2_CORECONTENT_POLICY). Phase 2b: READY_FOR_PHASE2B_WITH_V2_CORECONTENT.
 - No steering trained/applied/claimed. No Ouro training, no weight/tokenizer/checkpoint edits, no tap-registry mutation. pure_content_taps.pt / transplanted_taps.pt untouched. Science/anatomy diagnostic-only; terminal survivor-set handoff retained; DualAnchor branch survival unchanged.
 - Artifacts: `artifacts/reports/probes/bg_corecontent_dataset_expansion_refit_v2_2026-06-04`.

@@ -1,5 +1,7 @@
 # Post-v10 synthesis — Experiment 2 Redux + Ouro-RLTT-BG architecture (v4, after AntisymLinear pivot)
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 **Date:** 2026-05-15
 **Status:** Locked plan after the math BG-gate pilot, the layer 24/36 geometry blocker resolution, and the AntisymLinear architecture pivot. Supersedes v3.
 **Scope:** Everything decided after v10 of the locus memo. Captures L1 ablation, α-sweep, layer 24/36 geometry, math BG-gate pilot, the AntisymLinear architecture decision, and the publication-strategy decision tree.
@@ -79,7 +81,7 @@ The current framing: *Ouro-RLTT exposes trajectory-distributed relational eviden
 Three sentences banned from the codebase and the next paper:
 
 1. "`score(x)` means quality." It does not. The object is `score(a, b)`, antisymmetric by construction in the locked architecture. The evaluator is a comparator, not a judge.
-2. "The evaluator's preference signal." There is no preference signal in single-candidate hidden states (the 21.75% below-chance independent probe in the original CLT paper established this). What exists is a *relational* signal between candidates.
+2. "The evaluator's preference signal." ~~There is no preference signal in single-candidate hidden states (the 21.75% below-chance independent probe in the original CLT paper established this).~~ [superseded: the 21.75% was a leakage artifact; the clean pointwise probe reads 0.5418, above chance, so single-candidate states do carry preference signal] What exists is a *relational* signal between candidates.
 3. "Loop 2 is special." Refuted by v6 onwards. All four loops carry comparable signal under proper readout; v10 settles that L2-L4 are functionally one state at the boundary on HH text. The math-domain geometry differs (see §4).
 
 The basal-ganglia metaphor is appropriate only when implemented as selection/gating over alternatives, not judgment over individuals. Early tap proposes/prunes, mid tap detects uncertainty/disagreement, late tap selects. Not "average all taps and hope." Not "compute correctness from scratch."

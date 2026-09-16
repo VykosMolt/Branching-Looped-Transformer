@@ -1,5 +1,7 @@
 # Evaluator Locus Summary
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 **Original date:** 2026-05-11, extended through 2026-05-14
 **Refactored:** 2026-05-18 for readability
 **Refreshed and promoted to root:** 2026-06-03 — brought current through the DualAnchor architecture-looped v3 baseline, the science/reasoning repair v2 decision, and the in-progress (paused) MMLU science branch + parser repair v3 run.
@@ -111,7 +113,7 @@ Reasoning pilot:
 
 48 tasks (24 reasoning / 24 science):
 
-- stage oracle retention 0.9848
+- stage oracle retention 0.9848 [superseded: 0.9697 task-disjoint]
 - terminal oracle retained 1.0000
 - forced terminal top1 oracle 0.9167
 - reward-diverse forced top1 oracle 0.6364

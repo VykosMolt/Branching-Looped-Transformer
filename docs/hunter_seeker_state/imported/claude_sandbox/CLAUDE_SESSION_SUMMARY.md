@@ -3,6 +3,8 @@
 
 # Claude Sandbox Session Summary
 
+> **Correction notice (2026-07-25).** Figures tagged `[superseded: …]` in this file were corrected by the project's evaluation audit. The original values are kept for the record; the correction table is in the top-level `README.md`.
+
 Companion log to `SESSION_SUMMARY.md` (which is Codex's handoff record — not edited by Claude). This file is Claude's own session log. Append-only, dated entries, newest at top.
 
 Rules for this sandbox (mirror of codex_sandbox policy):
@@ -1269,7 +1271,7 @@ New module: `claude_sandbox/anchor_loss.py`.
   symmetric-breaking. Gradients reach caller inputs (encoder, GRU, etc.) but
   never accumulate on evaluator weights.
 - Verified against the real `artifacts/checkpoints/evaluator/pairwise_epoch2.pt` — the
-  95.2% pairwise / 2.7×-better-at-math evaluator loads cleanly and produces
+  95.2% [superseded: 0.6392 strict antisymmetrized] pairwise / 2.7×-better-at-math evaluator loads cleanly and produces
   finite scores on synthetic inputs.
 
 Tests: `test_anchor_loss.py` (10 tests) — includes the real-checkpoint load
