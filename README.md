@@ -557,6 +557,15 @@ Requests are answered individually and at my discretion.
 `probes/` now also carries the scripts that produced the two newest runs
 (`bg_xloop_early_v1_*`, `bg_v2_overnight_*`).
 
+`utilities/` is the working script archive, added 2026-09-20: `utilities/tests/manual/`
+holds the 614 experiment drivers and analysers (`bg_*`, `analyze_*`, `build_*`,
+`evaluate_*`, `run_*`, …) from the research tree, with the few unit tests and tools that
+had not been published elsewhere. They are here as the record of what was run; paths
+inside them refer to the working tree's `shared/` layout rather than this repository's.
+`ouro_rltt/` is the RLTT-modified Ouro model code and tokenizer files (Apache-2.0
+derived; no weights), and `requirements/requirements-pop-freeze.txt` is a pip freeze of
+the working environment.
+
 `tools/paper1_v3/` carries the 22 generators, analysers, and orchestrators behind the v3
 results above — the Horizon power extension, the family and Huginn replications, the
 Thinking attempt, all five frozen conversions, and the pre-registered v5 power
