@@ -1,0 +1,183 @@
+{
+  "n_primary_cohort": 1387,
+  "n_inwindow_r1_inwindow_definition": 15,
+  "inwindow": [
+    {
+      "task_uid": "synthlogic::synthetic_propositional::1589",
+      "candidate_idx": 1,
+      "split": "val",
+      "success": true,
+      "in_window_answer": "B",
+      "published_label": "B",
+      "gold": "B",
+      "prefix48_tail": "\nD.\n\nFINAL ANSWE\n\n**Final Answer**\n\nB. False\n\n**Reasoning:** The fact states that the fan is running. According to the rule, if the fan is running, the"
+    },
+    {
+      "task_uid": "synthlogic::synthetic_propositional::6522",
+      "candidate_idx": 1,
+      "split": "train",
+      "success": false,
+      "in_window_answer": "B",
+      "published_label": "B",
+      "gold": "C",
+      "prefix48_tail": "\nD. A or B\nE.\n\nFinal Answer:\n\n**Final Answer:**\n\nB. False\n\nExplanation:\n\nThe facts state that the valve is closed. According to the first rule, if the"
+    },
+    {
+      "task_uid": "synthlogic::synthetic_propositional::461",
+      "candidate_idx": 3,
+      "split": "val",
+      "success": true,
+      "in_window_answer": "C",
+      "published_label": "C",
+      "gold": "C",
+      "prefix48_tail": "\nD.\n\nFinal Answer:\n\n**Final Answer:**\nC. Unknown\n\n\n**Final Answer:**\nC. Unknown\n\nOkay, let's try to figure this out. So, the"
+    },
+    {
+      "task_uid": "synthlogic::synthetic_propositional::5109",
+      "candidate_idx": 2,
+      "split": "val",
+      "success": true,
+      "in_window_answer": "C",
+      "published_label": "C",
+      "gold": "C",
+      "prefix48_tail": "n\nF.\n\nFinal Answer:\n\n**Final Answer**\nC. Unknown\n\nThe question provides two facts and two rules. The facts state that the engine does not start and the valve is"
+    },
+    {
+      "task_uid": "synthlogic::synthetic_propositional::2255",
+      "candidate_idx": 2,
+      "split": "val",
+      "success": true,
+      "in_window_answer": "A",
+      "published_label": "A",
+      "gold": "A",
+      "prefix48_tail": "\nD.\n\nFINAL ANSW\n\n**Final Answer**\n\nA. True\n\n\n**Final Answer**\nA. True\n\nOkay, let's see. The problem gives two facts:"
+    },
+    {
+      "task_uid": "synthlogic::synthetic_propositional::6419",
+      "candidate_idx": 2,
+      "split": "val",
+      "success": true,
+      "in_window_answer": "C",
+      "published_label": "C",
+      "gold": "C",
+      "prefix48_tail": "nal Answer:** C. Unknown\n\n**Reasoning:** The facts state that the engine starts and the battery is charged. The rules state that if the signal is not sent, then"
+    },
+    {
+      "task_uid": "synthlogic::synthetic_propositional::6030",
+      "candidate_idx": 3,
+      "split": "train",
+      "success": false,
+      "in_window_answer": "A",
+      "published_label": "A",
+      "gold": "C",
+      "prefix48_tail": "\n\nPlease reason step by logical steps,\n\n\"\n\n\n\"\n\n**Final Answer**\n\nA. True\n\n**Final Answer**\n\nA. True\n\n**Final Answer**\n\nA. True"
+    },
+    {
+      "task_uid": "synthlogic::synthetic_propositional::585",
+      "candidate_idx": 0,
+      "split": "train",
+      "success": true,
+      "in_window_answer": "A",
+      "published_label": "A",
+      "gold": "A",
+      "prefix48_tail": "\nD.\n\nFinal Answer:\n\n**Final Answer**\n\nA. True\n\n**Step-by-Step Explanation:**\n\nThe given fact is that the light is green. The first rule states that if the"
+    },
+    {
+      "task_uid": "synthlogic::synthetic_propositional::6340",
+      "candidate_idx": 1,
+      "split": "heldout",
+      "success": true,
+      "in_window_answer": "A",
+      "published_label": "A",
+      "gold": "A",
+      "prefix48_tail": "\n\nPlease reason step by step and step-by-step, and then provide the first line of output as\n\n**Final Answer**\n\n**Final Answer**\n\n\n**Final Answer**\nA. True"
+    },
+    {
+      "task_uid": "synthlogic::synthetic_propositional::2422",
+      "candidate_idx": 1,
+      "split": "train",
+      "success": true,
+      "in_window_answer": "A",
+      "published_label": "A",
+      "gold": "A",
+      "prefix48_tail": "\nD. None of the above\nE. None of the above\nF.\n\nFinal Answer:\n\n**Final Answer:**\nA. True\n\n**Step-by-Step Explanation:**\nThe given facts state that"
+    },
+    {
+      "task_uid": "synthlogic::synthetic_propositional::5262",
+      "candidate_idx": 0,
+      "split": "train",
+      "success": true,
+      "in_window_answer": "A",
+      "published_label": "A",
+      "gold": "A",
+      "prefix48_tail": "NSW\n\n**Final Answer**\n\nA. True\n\n**Step-by-Step Explanation:**\nThe question provides two facts: the tank is full and the battery is charged. The rules state that"
+    },
+    {
+      "task_uid": "synthlogic::synthetic_propositional::6414",
+      "candidate_idx": 1,
+      "split": "heldout",
+      "success": true,
+      "in_window_answer": "A",
+      "published_label": "A",
+      "gold": "A",
+      "prefix48_tail": " Answer:**\n\nA. True\n\nExplanation:\nThe fact is that the alarm is on. The rules only provide conditional statements about the signal being sent based on the alarm"
+    },
+    {
+      "task_uid": "synthlogic::synthetic_propositional::1933",
+      "candidate_idx": 1,
+      "split": "train",
+      "success": true,
+      "in_window_answer": "A",
+      "published_label": "A",
+      "gold": "A",
+      "prefix48_tail": "Final Answer:\n\n**Final Answer**\nA. True\n\n**Step-by-Step Explanation:**\nThe fact given is that \"it is raining,\" which directly matches the statement in question."
+    },
+    {
+      "task_uid": "synthlogic::synthetic_propositional::1830",
+      "candidate_idx": 0,
+      "split": "train",
+      "success": false,
+      "in_window_answer": "B",
+      "published_label": "B",
+      "gold": "C",
+      "prefix48_tail": "D. All of the above\nE. Nothing\n\nFinal Answer:\n\n**Final Answer**\n\n**Final Answer:** B\n\n**Reasoning:** The given fact states that the signal is not sent. Based on"
+    },
+    {
+      "task_uid": "synthlogic::synthetic_propositional::4080",
+      "candidate_idx": 0,
+      "split": "train",
+      "success": true,
+      "in_window_answer": "A",
+      "published_label": "A",
+      "gold": "A",
+      "prefix48_tail": ":\n\n**Final Answer:**\n\nA. True\n\n**Step-by-Step Explanation:**\nThe fact provided states directly that \"the fan is running.\" This matches the statement in question"
+    }
+  ],
+  "by_split_success": {
+    "val|True": 5,
+    "train|False": 3,
+    "train|True": 5,
+    "heldout|True": 2
+  },
+  "in_window_answer_equals_published_label": 15,
+  "chronological_scan_n": 15,
+  "chronological_scan_extra_beyond_inwindow": [],
+  "chronological_scan_missing_vs_inwindow": [],
+  "n_star_rule": {
+    "sealed_n_star": 48,
+    "train_share_48_sealed": 0.7572815533980582,
+    "n_train": 1236,
+    "n_train_free48": 936,
+    "a_the_15_flagged": {
+      "n_train_among_15": 8,
+      "train_share_48": 0.7508090614886731,
+      "still_chooses_48": true
+    },
+    "b_all_train_answers_with_inwindow_strict_answer_flagged_incl_malformed": {
+      "n": 8,
+      "train_share_48": 0.7508090614886731,
+      "still_chooses_48": true
+    },
+    "threshold": 0.75
+  }
+}

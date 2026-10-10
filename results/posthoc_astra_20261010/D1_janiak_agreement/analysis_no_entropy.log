@@ -1,0 +1,31 @@
+[run4] loading
+[run4] probe on 3512 answer-free answers
+  probe fold 0: train 1992, scored 582, k=[24] C=1.0 inner AUROC 0.742
+  probe fold 1: train 1906, scored 678, k=[24] C=1.0 inner AUROC 0.741
+  probe fold 2: train 1847, scored 802, k=[16] C=1.0 inner AUROC 0.739
+  probe fold 3: train 1870, scored 756, k=[24] C=1.0 inner AUROC 0.706
+  probe fold 4: train 1889, scored 694, k=[16] C=1.0 inner AUROC 0.742
+[run4] T1
+[run4] T2
+[run4] T1 B1-B0 AURC -0.0005 [-0.0016, +0.0006] p=0.376; T2 full B1-B0 AURC -0.0006 [-0.0036, +0.0019] p=0.626
+[run6] loading
+[run6] probe on 6691 answer-free answers
+  probe fold 0: train 5305, scored 1239, k=[24] C=0.1 inner AUROC 0.719
+  probe fold 1: train 5132, scored 1425, k=[16] C=0.1 inner AUROC 0.685
+  probe fold 2: train 5151, scored 1407, k=[24] C=0.01 inner AUROC 0.713
+  probe fold 3: train 5179, scored 1361, k=[16] C=1.0 inner AUROC 0.716
+  probe fold 4: train 5289, scored 1259, k=[16] C=1.0 inner AUROC 0.734
+[run6] T1
+[run6] T2
+[run6] T1 B1-B0 AURC +0.0003 [-0.0004, +0.0010] p=0.482; T2 full B1-B0 AURC +0.0008 [+0.0000, +0.0017] p=0.046
+[run1] loading
+[run1] probe on 1815 answer-free answers
+  probe fold 0: train 1070, scored 364, k=[16] C=1.0 inner AUROC 0.712
+  probe fold 1: train 1047, scored 386, k=[16] C=1.0 inner AUROC 0.712
+  probe fold 2: train 1055, scored 394, k=[24] C=1.0 inner AUROC 0.707
+  probe fold 3: train 1096, scored 323, k=[16] C=1.0 inner AUROC 0.714
+  probe fold 4: train 1088, scored 348, k=[16] C=1.0 inner AUROC 0.708
+[run1] T1
+[run1] T2
+[run1] T1 B1-B0 AURC +0.0013 [-0.0011, +0.0054] p=0.488; T2 full B1-B0 AURC -0.0161 [-0.0340, +0.0002] p=0.052
+wrote results.json and SUMMARY_FOR_DENIS.md

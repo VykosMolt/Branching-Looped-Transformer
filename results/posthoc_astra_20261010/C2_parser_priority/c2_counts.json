@@ -1,0 +1,198 @@
+{
+  "run1": {
+    "all": {
+      "n_answers": 2396,
+      "n_labelled_executed": 1841,
+      "n_label_string_differs": 0,
+      "n_label_value_differs": 0,
+      "n_labelled_status_changes": 0,
+      "n_correctness_flips": 0,
+      "flips": {}
+    },
+    "primary": {
+      "n_answers": 1339,
+      "n_labelled_executed": 1339,
+      "n_label_string_differs": 0,
+      "n_label_value_differs": 0,
+      "n_labelled_status_changes": 0,
+      "n_correctness_flips": 0,
+      "flips": {}
+    },
+    "heldout": {
+      "n_answers": 680,
+      "n_labelled_executed": 524,
+      "n_label_string_differs": 0,
+      "n_label_value_differs": 0,
+      "n_labelled_status_changes": 0,
+      "n_correctness_flips": 0,
+      "flips": {}
+    },
+    "primary_heldout": {
+      "n_answers": 399,
+      "n_labelled_executed": 399,
+      "n_label_string_differs": 0,
+      "n_label_value_differs": 0,
+      "n_labelled_status_changes": 0,
+      "n_correctness_flips": 0,
+      "flips": {}
+    },
+    "n_star": 48,
+    "executed_parser_vs_stored_labels_mismatches": 0,
+    "n_examples_total": 0,
+    "examples": []
+  },
+  "run4": {
+    "all": {
+      "n_answers": 4656,
+      "n_labelled_executed": 3277,
+      "n_label_string_differs": 0,
+      "n_label_value_differs": 0,
+      "n_labelled_status_changes": 0,
+      "n_correctness_flips": 0,
+      "flips": {}
+    },
+    "primary": {
+      "n_answers": 2376,
+      "n_labelled_executed": 2376,
+      "n_label_string_differs": 0,
+      "n_label_value_differs": 0,
+      "n_labelled_status_changes": 0,
+      "n_correctness_flips": 0,
+      "flips": {}
+    },
+    "heldout": {
+      "n_answers": 1424,
+      "n_labelled_executed": 996,
+      "n_label_string_differs": 0,
+      "n_label_value_differs": 0,
+      "n_labelled_status_changes": 0,
+      "n_correctness_flips": 0,
+      "flips": {}
+    },
+    "primary_heldout": {
+      "n_answers": 735,
+      "n_labelled_executed": 735,
+      "n_label_string_differs": 0,
+      "n_label_value_differs": 0,
+      "n_labelled_status_changes": 0,
+      "n_correctness_flips": 0,
+      "flips": {}
+    },
+    "n_star": 48,
+    "executed_parser_vs_stored_labels_mismatches": 0,
+    "n_examples_total": 0,
+    "examples": []
+  },
+  "run3": {
+    "all": {
+      "n_answers": 2400,
+      "n_labelled_executed": 2327,
+      "n_label_string_differs": 10,
+      "n_label_value_differs": 8,
+      "n_labelled_status_changes": 0,
+      "n_correctness_flips": 7,
+      "flips": {
+        "True->False": 6,
+        "False->True": 1
+      }
+    },
+    "primary": {
+      "n_answers": 1863,
+      "n_labelled_executed": 1863,
+      "n_label_string_differs": 8,
+      "n_label_value_differs": 6,
+      "n_labelled_status_changes": 0,
+      "n_correctness_flips": 5,
+      "flips": {
+        "True->False": 4,
+        "False->True": 1
+      }
+    },
+    "heldout": {
+      "n_answers": 764,
+      "n_labelled_executed": 740,
+      "n_label_string_differs": 0,
+      "n_label_value_differs": 0,
+      "n_labelled_status_changes": 0,
+      "n_correctness_flips": 0,
+      "flips": {}
+    },
+    "primary_heldout": {
+      "n_answers": 577,
+      "n_labelled_executed": 577,
+      "n_label_string_differs": 0,
+      "n_label_value_differs": 0,
+      "n_labelled_status_changes": 0,
+      "n_correctness_flips": 0,
+      "flips": {}
+    },
+    "n_star": 96,
+    "executed_parser_vs_stored_labels_mismatches": 0,
+    "primary_membership_changes_with_chrono_own_answer": 1,
+    "n_examples_total": 10,
+    "examples": [
+      "- [gsm8k/423 #0, train, primary=True] executed '8' (char 1332), chronological '-8,' (char 1122), gold '8': `...e jogger is cheaper, the answer is -8, but since it's asking how much more, maybe the answer is $8 less, so the difference is $8. So the answer is 8. So the jogger jeans originally cost $8 less than the tattered, so the answer is 8.\\n\\n\\nFINAL ANSWER: 8\\n\\nThe tattered jeans were on sale for $28, and the jogg...`",
+      "- [gsm8k/988 #2, val, primary=True] executed '6' (char 1120), chronological '0' (char 616), gold '6': `...y half a pair, maybe the answer is 0. But wait, maybe the question expects us to consider the total yearly amount. Let me check again.\\n\\nWait, the problem asks for how many shoes in a year. So let's calculate the total she saves in a year. 2000 * 12 months = 24,000. Then 25% of that is 24,000 * 0.25 = 6,000. Then 6,000 divided by 1,000 per pair is 6. So she can buy 6 pairs in a year. Oh, right! Because even though each month she only has 500, over a year the total is 6,000, which is enough for 6 pairs. So the answer is 6.\\n\\n\\nFINAL ANSWER: 6\\n\\nTo determine how many pairs`",
+      "- [gsm8k/876 #2, train, primary=True] executed '41' (char 812), chronological '5' (char 649), gold '41': `...8 points.\\n\\nThen the long-answer: 5 questions. 60% correct. 5 * 0.6 is 3. Each is 5 points, so 3 * 5 = 15 points.\\n\\nAdding them all up: 8 + 18 + 15 = 41. So the final answer should be 41.\\n\\n\\nFINAL ANSWER: 41\\n\\nOkay, let`",
+      "- [gsm8k/876 #3, train, primary=True] executed '41' (char 527), chronological '5' (char 344), gold '41': `...* 0.9 = 18 points.\\n\\nLong-answer: 5 questions, each 5 points. 60% correct. So 5 * 0.6 = 3 questions right. Then 3 * 5 = 15 points.\\n\\nAdd them all together: 8 + 18 + 15 = 41. So the final answer should be 41.\\n\\n\\nFINAL ANSWER: 41\\n\\nOkay, let's break down Amy's scoring. \\n\\nFirst, the m...`",
+      "- [gsm8k/1084 #3, train, primary=True] executed '2' (char 1465), chronological '20' (char 1436), gold '20': `...ing, which is 20. So the answer is 20. Therefore, the FINAL ANSWER: 2`"
+    ]
+  },
+  "run6": {
+    "all": {
+      "n_answers": 8000,
+      "n_labelled_executed": 7823,
+      "n_label_string_differs": 28,
+      "n_label_value_differs": 11,
+      "n_labelled_status_changes": 0,
+      "n_correctness_flips": 10,
+      "flips": {
+        "True->False": 10
+      }
+    },
+    "primary": {
+      "n_answers": 6514,
+      "n_labelled_executed": 6514,
+      "n_label_string_differs": 18,
+      "n_label_value_differs": 5,
+      "n_labelled_status_changes": 0,
+      "n_correctness_flips": 4,
+      "flips": {
+        "True->False": 4
+      }
+    },
+    "heldout": {
+      "n_answers": 2352,
+      "n_labelled_executed": 2301,
+      "n_label_string_differs": 8,
+      "n_label_value_differs": 1,
+      "n_labelled_status_changes": 0,
+      "n_correctness_flips": 1,
+      "flips": {
+        "True->False": 1
+      }
+    },
+    "primary_heldout": {
+      "n_answers": 1907,
+      "n_labelled_executed": 1907,
+      "n_label_string_differs": 6,
+      "n_label_value_differs": 1,
+      "n_labelled_status_changes": 0,
+      "n_correctness_flips": 1,
+      "flips": {
+        "True->False": 1
+      }
+    },
+    "n_star": 96,
+    "executed_parser_vs_stored_labels_mismatches": 0,
+    "primary_membership_changes_with_chrono_own_answer": 4,
+    "n_examples_total": 28,
+    "examples": [
+      "- [gsm8k-train/7236 #0, train, primary=True] executed '17' (char 516), chronological '10' (char 478), gold '17': `...at's right. So the final answer is 10 boys and 7 girls left.\\n\\n\\nFINAL ANSWER: 17\\n\\nWait, the problem asks for the total number of boys ...`",
+      "- [gsm8k-train/3063 #1, train, primary=True] executed '8' (char 1245), chronological '50' (char 573), gold '8': `... work equals 50. So, the answer would be 50 - R.\\n\\nNext, Peter's info: when he joined the company, his daughter was 7, and now she's 19. That means Peter has been working for 19 - 7 = 12 years. So P = 12.\\n\\nTom said he has twice as much experience as Robert. So T = 2*Ro.\\n\\nRobert said he has 4 years less than Peter but 2 more than Mike. So, Ro = P - 4. Since P is 12, Ro = 12 - 4 = 8. Then, since Robert has 2 more than Mike, Mike's experience M = Ro - 2 = 8 - 2 = 6.\\n\\nNow, Tom's experience is twice Robert's: T = 2*8 = 16.\\n\\nNow, let's sum up the other four's experience: P + T + Ro + M = 12 + 16 + 8 + 6 = 42. So Roger's experience R is 42. Therefore, he needs 50 - 42 = 8 more years to retire.\\n\\n\\nFINAL ANSWER: 8\\n\\n\\boxed{8`",
+      "- [gsm8k-train/2658 #1, heldout, primary=True] executed '44' (char 1415), chronological '20' (char 1145), gold '44': `...he way it's phrased, the answer would be 20 + 24 = 44. So the answer is 44. But the question says \"Andrew give to his two friends\". That's confusing. Unless there's a mistake in the problem. Maybe it's a translation error. But given the problem as stated, perhaps the answer is 20 + 24 = 44. So FINAL ANSWER: 44.\\n\\n\\nFINAL ANSWER: 44\\n\\n\\boxed{44}\\n\\nOkay, let's break do...`",
+      "- [gsm8k-train/3688 #2, train, primary=True] executed '90' (char 1542), chronological '30' (char 1174), gold '90': `...er, perhaps the intended answer is 30 (Noa) + 60 (Phillip) = 90, and the mention of Tom is a mistake. Or maybe Tom is supposed to be included, but since there's no info, maybe the answer is 60 + 0 = 60. But that doesn't make sense. Alternatively, maybe the problem meant Noa and Phillip. Let me proceed with that assumption. So 30 + 60 = 90. So the total is 90. Therefore, the answer is 90.\\n\\n\\nFINAL ANSWER: 90\\n\\nThe problem states that Noa scored 30 points, and Ph...`",
+      "- [gsm8k-train/7236 #2, train, primary=False] executed '17' (char 877), chronological '10' (char 15), gold '17': `FINAL ANSWER: \\boxed{10}\\n\\n\\nOkay, let's see. The problem says the school has 14 boys and 10 girls. Then, 4 boys and 3 girls drop out. We need to find out how many boys and girls are left.\\n\\nSo first, subtract the number of boys who dropped out from the total boys. 14 boys minus 4 boys is 10 boys left. Then for the girls, subtract 3 from 10, which gives 7 girls left. The question asks for the total number of students left. So adding the remaining boys and girls: 10 + 7 equals 17. Therefore, the answer should be 17.\\n\\n\\n\\boxed{17}\\n\\nOkay, let's see. The problem is about a school with some boys and girls, and then some drop out. We need to find the total number left.\\n\\nFirst, there are 14 boys. If 4 drop out, subtract that from 14: 14 - 4 = 10 boys remaining. Then there are 10 girls, and 3 leave. So 10 - 3 = 7 girls left. Add those two numbers together: 10 + 7 = 17. So the answer is 17.\\n\\n\\n\\boxed{17}\\n\\nOkay, let's tackle this problem step by st...`"
+    ]
+  }
+}

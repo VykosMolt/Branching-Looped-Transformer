@@ -1,0 +1,32 @@
+run6 run6_shard_0000.pt 400 answers, 314 answer-free
+run6 run6_shard_0100.pt 800 answers, 637 answer-free
+run6 run6_shard_0200.pt 1200 answers, 996 answer-free
+run6 run6_shard_0300.pt 1600 answers, 1320 answer-free
+run6 run6_shard_0400.pt 2000 answers, 1656 answer-free
+run6 run6_shard_0500.pt 2400 answers, 2007 answer-free
+run6 run6_shard_0600.pt 2800 answers, 2341 answer-free
+run6 run6_shard_0700.pt 3200 answers, 2667 answer-free
+run6 run6_shard_0800.pt 3600 answers, 3001 answer-free
+run6 run6_shard_0900.pt 4000 answers, 3347 answer-free
+run6 run6_shard_1000.pt 4400 answers, 3682 answer-free
+run6 run6_shard_1100.pt 4800 answers, 4030 answer-free
+run6 run6_shard_1200.pt 5200 answers, 4357 answer-free
+run6 run6_shard_1300.pt 5600 answers, 4707 answer-free
+run6 run6_shard_1400.pt 6000 answers, 5037 answer-free
+run6 run6_shard_1500.pt 6400 answers, 5365 answer-free
+run6 run6_shard_1600.pt 6800 answers, 5704 answer-free
+run6 run6_shard_1700.pt 7200 answers, 6033 answer-free
+run6 run6_shard_1800.pt 7600 answers, 6348 answer-free
+run6 run6_shard_1900.pt 8000 answers, 6691 answer-free
+run6 done: 8000 answers; 6691 answer-free; 3014248 prompt+generated tokens
+Traceback (most recent call last):
+  File "/home/moloch/ouro_project/opi/posthoc_astra_20261010/D1_janiak_agreement/extract.py", line 110, in <module>
+    main(sys.argv[1])
+    ~~~~^^^^^^^^^^^^^
+  File "/home/moloch/ouro_project/opi/posthoc_astra_20261010/D1_janiak_agreement/extract.py", line 57, in main
+    tasks = horizon_task_lookup() if run == "run1" else None
+            ~~~~~~~~~~~~~~~~~~~^^
+  File "/home/moloch/ouro_project/opi/posthoc_astra_20261010/D1_janiak_agreement/extract.py", line 43, in horizon_task_lookup
+    out[d["task_uid"]] = (d["verifier"]["n_vars"], len(d["symbolic"]["facts"]), len(d["symbolic"]["rules"]))
+                          ~~~~~~~~~~~~~^^^^^^^^^^
+KeyError: 'n_vars'

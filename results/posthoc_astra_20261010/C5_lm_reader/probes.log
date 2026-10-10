@@ -1,0 +1,17 @@
+[gate] r1_tfidf_heldout_auroc: got 0.640508628520 published 0.640508628520 OK
+[c5_repro] shortcut=0.514926 hidden=0.758280 combined=0.758280 incremental=+0.243355
+[c5_repro] bootstrap mean=+0.244981 ci95=[+0.128561, +0.364728] excludes_zero=True
+[gate] r1_arm_combined_heldout_auroc: got 0.758280351196 published 0.758280351196 OK
+[info] r1_arm_hidden_heldout_auroc: got 0.758280351196 published 0.758340902210 FAIL
+[gate] r1_A3_hidden_wq_heldout: got 0.719298245614 published 0.719298245614 OK
+[r1] hash-fold OOF probe config 16, 1.0
+[c5_repro] shortcut=0.523206 hidden=0.777167 combined=0.777167 incremental=+0.253961
+[c5_repro] bootstrap mean=+0.254409 ci95=[+0.104922, +0.407032] excludes_zero=True
+[gate] r1s_arm_combined_heldout_auroc: got 0.777166821994 published 0.777166821994 OK
+[gate] r4_tfidf_plus_S_heldout_auroc: got 0.720088255942 published 0.720088255942 OK
+[gate] r4_hidden_heldout_auroc: got 0.683356734530 published 0.683356734530 OK
+[gate] r4_combined_heldout_auroc: got 0.734204192157 published 0.734204192157 OK
+[gate] r4_hidden_wq_heldout: got 0.739726027397 published 0.739726027397 OK
+[r4] hash-fold OOF probe config 24, 0.1
+all gates passed []
+exit 0

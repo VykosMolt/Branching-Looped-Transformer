@@ -1,0 +1,52 @@
+loaded /run/media/moloch/ARCH_BACKUP/OURO_COLD_ARCHIVE_20260927/tree/opi/preanswer/fixed_prefix_rerun_20260927/run1_shard_off2400.pt 400
+loaded /run/media/moloch/ARCH_BACKUP/OURO_COLD_ARCHIVE_20260927/tree/opi/preanswer/fixed_prefix_rerun_20260927/run1_shard_off2500.pt 800
+loaded /run/media/moloch/ARCH_BACKUP/OURO_COLD_ARCHIVE_20260927/tree/opi/preanswer/fixed_prefix_rerun_20260927/run1_shard_off2600.pt 1200
+loaded /run/media/moloch/ARCH_BACKUP/OURO_COLD_ARCHIVE_20260927/tree/opi/preanswer/fixed_prefix_rerun_20260927/run1_shard_off2700.pt 1600
+loaded /run/media/moloch/ARCH_BACKUP/OURO_COLD_ARCHIVE_20260927/tree/opi/preanswer/fixed_prefix_rerun_20260927/run1_shard_off2800.pt 2000
+loaded /run/media/moloch/ARCH_BACKUP/OURO_COLD_ARCHIVE_20260927/tree/opi/preanswer/fixed_prefix_rerun_20260927/run1_shard_off2900.pt 2396
+{
+ "n_primary_cohort": 1387,
+ "n_inwindow_r1_inwindow_definition": 15,
+ "by_split_success": {
+  "val|True": 5,
+  "train|False": 3,
+  "train|True": 5,
+  "heldout|True": 2
+ },
+ "in_window_answer_equals_published_label": 15,
+ "chronological_scan_n": 15,
+ "chronological_scan_extra_beyond_inwindow": [],
+ "chronological_scan_missing_vs_inwindow": [],
+ "n_star_rule": {
+  "sealed_n_star": 48,
+  "train_share_48_sealed": 0.7572815533980582,
+  "n_train": 1236,
+  "n_train_free48": 936,
+  "a_the_15_flagged": {
+   "n_train_among_15": 8,
+   "train_share_48": 0.7508090614886731,
+   "still_chooses_48": true
+  },
+  "b_all_train_answers_with_inwindow_strict_answer_flagged_incl_malformed": {
+   "n": 8,
+   "train_share_48": 0.7508090614886731,
+   "still_chooses_48": true
+  },
+  "threshold": 0.75
+ }
+}
+val True B B B 'The fact states that the fan is running. According to the rule, if the fan is running, the'
+train False B B C 'xplanation:\n\nThe facts state that the valve is closed. According to the first rule, if the'
+val True C C C ":**\nC. Unknown\n\n\n**Final Answer:**\nC. Unknown\n\nOkay, let's try to figure this out. So, the"
+val True C C C 's two facts and two rules. The facts state that the engine does not start and the valve is'
+val True A A A "nswer**\n\nA. True\n\n\n**Final Answer**\nA. True\n\nOkay, let's see. The problem gives two facts:"
+val True C C C 'ne starts and the battery is charged. The rules state that if the signal is not sent, then'
+train False A A C 's,\n\n"\n\n\n"\n\n**Final Answer**\n\nA. True\n\n**Final Answer**\n\nA. True\n\n**Final Answer**\n\nA. True'
+train True A A A 'planation:**\n\nThe given fact is that the light is green. The first rule states that if the'
+heldout True A A A 'the first line of output as\n\n**Final Answer**\n\n**Final Answer**\n\n\n**Final Answer**\nA. True'
+train True A A A 'swer:\n\n**Final Answer:**\nA. True\n\n**Step-by-Step Explanation:**\nThe given facts state that'
+train True A A A 'tion provides two facts: the tank is full and the battery is charged. The rules state that'
+heldout True A A A 'e rules only provide conditional statements about the signal being sent based on the alarm'
+train True A A A '\nThe fact given is that "it is raining," which directly matches the statement in question.'
+train False B B C 'al Answer:** B\n\n**Reasoning:** The given fact states that the signal is not sent. Based on'
+train True A A A 'provided states directly that "the fan is running." This matches the statement in question'

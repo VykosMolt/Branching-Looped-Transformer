@@ -1,0 +1,237 @@
+[r1] 66 rows, 42 train+val, 24 held-out, max 222 tokens
+  [r1] CV lr 0.0001 fold 0
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+    fit: 29 rows, lr 0.0001, 4 epochs, 15.6 samples/s, peak GPU nan GiB
+  [r1] CV lr 0.0001 fold 1
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 40 rows, lr 0.0001, 4 epochs, 10.9 samples/s, peak GPU nan GiB
+  [r1] CV lr 0.0001 fold 2
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 26 rows, lr 0.0001, 4 epochs, 13.7 samples/s, peak GPU nan GiB
+  [r1] CV lr 0.0001 fold 3
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 40 rows, lr 0.0001, 4 epochs, 13.6 samples/s, peak GPU nan GiB
+  [r1] CV lr 0.0001 fold 4
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 33 rows, lr 0.0001, 4 epochs, 11.9 samples/s, peak GPU nan GiB
+  [r1] CV lr 0.0002 fold 0
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 29 rows, lr 0.0002, 4 epochs, 11.6 samples/s, peak GPU nan GiB
+  [r1] CV lr 0.0002 fold 1
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 40 rows, lr 0.0002, 4 epochs, 10.3 samples/s, peak GPU nan GiB
+  [r1] CV lr 0.0002 fold 2
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 26 rows, lr 0.0002, 4 epochs, 12.7 samples/s, peak GPU nan GiB
+  [r1] CV lr 0.0002 fold 3
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 40 rows, lr 0.0002, 4 epochs, 13.0 samples/s, peak GPU nan GiB
+  [r1] CV lr 0.0002 fold 4
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 33 rows, lr 0.0002, 4 epochs, 16.8 samples/s, peak GPU nan GiB
+  [r1] CV lr 0.0004 fold 0
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 29 rows, lr 0.0004, 4 epochs, 19.2 samples/s, peak GPU nan GiB
+  [r1] CV lr 0.0004 fold 1
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 40 rows, lr 0.0004, 4 epochs, 12.4 samples/s, peak GPU nan GiB
+  [r1] CV lr 0.0004 fold 2
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 26 rows, lr 0.0004, 4 epochs, 14.1 samples/s, peak GPU nan GiB
+  [r1] CV lr 0.0004 fold 3
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 40 rows, lr 0.0004, 4 epochs, 16.0 samples/s, peak GPU nan GiB
+  [r1] CV lr 0.0004 fold 4
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 33 rows, lr 0.0004, 4 epochs, 9.0 samples/s, peak GPU nan GiB
+[r1] selected lr 0.0001, 2 epochs (CV AUROC 0.4747)
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 42 rows, lr 0.0001, 2 epochs, 9.2 samples/s, peak GPU nan GiB
+  [r1] OOF fold 0
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 43 rows, lr 0.0001, 2 epochs, 8.5 samples/s, peak GPU nan GiB
+  [r1] OOF fold 1
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 60 rows, lr 0.0001, 2 epochs, 10.3 samples/s, peak GPU nan GiB
+  [r1] OOF fold 2
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 47 rows, lr 0.0001, 2 epochs, 12.4 samples/s, peak GPU nan GiB
+  [r1] OOF fold 3
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 60 rows, lr 0.0001, 2 epochs, 10.5 samples/s, peak GPU nan GiB
+  [r1] OOF fold 4
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 54 rows, lr 0.0001, 2 epochs, 8.5 samples/s, peak GPU nan GiB
+[r1s] 63 rows, 41 train+val, 22 held-out, max 222 tokens
+  [r1s] CV lr 0.0001 fold 0
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 31 rows, lr 0.0001, 4 epochs, 11.1 samples/s, peak GPU nan GiB
+  [r1s] CV lr 0.0001 fold 1
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 32 rows, lr 0.0001, 4 epochs, 12.3 samples/s, peak GPU nan GiB
+  [r1s] CV lr 0.0001 fold 2
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 28 rows, lr 0.0001, 4 epochs, 13.2 samples/s, peak GPU nan GiB
+  [r1s] CV lr 0.0001 fold 3
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 37 rows, lr 0.0001, 4 epochs, 13.6 samples/s, peak GPU nan GiB
+  [r1s] CV lr 0.0001 fold 4
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 36 rows, lr 0.0001, 4 epochs, 20.8 samples/s, peak GPU nan GiB
+  [r1s] CV lr 0.0002 fold 0
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 31 rows, lr 0.0002, 4 epochs, 12.1 samples/s, peak GPU nan GiB
+  [r1s] CV lr 0.0002 fold 1
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 32 rows, lr 0.0002, 4 epochs, 12.9 samples/s, peak GPU nan GiB
+  [r1s] CV lr 0.0002 fold 2
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 28 rows, lr 0.0002, 4 epochs, 10.1 samples/s, peak GPU nan GiB
+  [r1s] CV lr 0.0002 fold 3
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 37 rows, lr 0.0002, 4 epochs, 9.2 samples/s, peak GPU nan GiB
+  [r1s] CV lr 0.0002 fold 4
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 36 rows, lr 0.0002, 4 epochs, 12.3 samples/s, peak GPU nan GiB
+  [r1s] CV lr 0.0004 fold 0
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 31 rows, lr 0.0004, 4 epochs, 12.1 samples/s, peak GPU nan GiB
+  [r1s] CV lr 0.0004 fold 1
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 32 rows, lr 0.0004, 4 epochs, 11.3 samples/s, peak GPU nan GiB
+  [r1s] CV lr 0.0004 fold 2
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 28 rows, lr 0.0004, 4 epochs, 14.0 samples/s, peak GPU nan GiB
+  [r1s] CV lr 0.0004 fold 3
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 37 rows, lr 0.0004, 4 epochs, 14.9 samples/s, peak GPU nan GiB
+  [r1s] CV lr 0.0004 fold 4
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 36 rows, lr 0.0004, 4 epochs, 11.8 samples/s, peak GPU nan GiB
+[r1s] selected lr 0.0001, 2 epochs (CV AUROC 0.4271)
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 41 rows, lr 0.0001, 2 epochs, 10.2 samples/s, peak GPU nan GiB
+[r4] 65 rows, 44 train+val, 21 held-out, max 222 tokens
+  [r4] CV lr 0.0001 fold 0
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 41 rows, lr 0.0001, 4 epochs, 11.7 samples/s, peak GPU nan GiB
+  [r4] CV lr 0.0001 fold 1
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 32 rows, lr 0.0001, 4 epochs, 13.3 samples/s, peak GPU nan GiB
+  [r4] CV lr 0.0001 fold 2
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 24 rows, lr 0.0001, 4 epochs, 9.9 samples/s, peak GPU nan GiB
+  [r4] CV lr 0.0001 fold 3
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 41 rows, lr 0.0001, 4 epochs, 14.0 samples/s, peak GPU nan GiB
+  [r4] CV lr 0.0001 fold 4
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 38 rows, lr 0.0001, 4 epochs, 13.6 samples/s, peak GPU nan GiB
+  [r4] CV lr 0.0002 fold 0
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 41 rows, lr 0.0002, 4 epochs, 15.3 samples/s, peak GPU nan GiB
+  [r4] CV lr 0.0002 fold 1
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 32 rows, lr 0.0002, 4 epochs, 14.4 samples/s, peak GPU nan GiB
+  [r4] CV lr 0.0002 fold 2
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 24 rows, lr 0.0002, 4 epochs, 10.0 samples/s, peak GPU nan GiB
+  [r4] CV lr 0.0002 fold 3
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 41 rows, lr 0.0002, 4 epochs, 11.2 samples/s, peak GPU nan GiB
+  [r4] CV lr 0.0002 fold 4
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 38 rows, lr 0.0002, 4 epochs, 15.4 samples/s, peak GPU nan GiB
+  [r4] CV lr 0.0004 fold 0
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 41 rows, lr 0.0004, 4 epochs, 21.6 samples/s, peak GPU nan GiB
+  [r4] CV lr 0.0004 fold 1
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 32 rows, lr 0.0004, 4 epochs, 11.8 samples/s, peak GPU nan GiB
+  [r4] CV lr 0.0004 fold 2
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 24 rows, lr 0.0004, 4 epochs, 13.2 samples/s, peak GPU nan GiB
+  [r4] CV lr 0.0004 fold 3
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 41 rows, lr 0.0004, 4 epochs, 19.0 samples/s, peak GPU nan GiB
+  [r4] CV lr 0.0004 fold 4
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 38 rows, lr 0.0004, 4 epochs, 12.0 samples/s, peak GPU nan GiB
+[r4] selected lr 0.0004, 3 epochs (CV AUROC 0.5048)
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 44 rows, lr 0.0004, 3 epochs, 12.6 samples/s, peak GPU nan GiB
+  [r4] OOF fold 0
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 55 rows, lr 0.0004, 3 epochs, 13.5 samples/s, peak GPU nan GiB
+  [r4] OOF fold 1
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 51 rows, lr 0.0004, 3 epochs, 13.3 samples/s, peak GPU nan GiB
+  [r4] OOF fold 2
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 45 rows, lr 0.0004, 3 epochs, 18.2 samples/s, peak GPU nan GiB
+  [r4] OOF fold 3
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 57 rows, lr 0.0004, 3 epochs, 14.7 samples/s, peak GPU nan GiB
+  [r4] OOF fold 4
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 52 rows, lr 0.0004, 3 epochs, 11.1 samples/s, peak GPU nan GiB
+wrote /home/moloch/ouro_project/opi/posthoc_astra_20261010/C5_lm_reader/smoke/qwen/reader_scores.json

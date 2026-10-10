@@ -1,0 +1,21 @@
+loaded run6_shard_0000.pt 400
+loaded run6_shard_0100.pt 800
+loaded run6_shard_0200.pt 1200
+loaded run6_shard_0300.pt 1600
+loaded run6_shard_0400.pt 2000
+loaded run6_shard_0500.pt 2400
+loaded run6_shard_0600.pt 2800
+loaded run6_shard_0700.pt 3200
+loaded run6_shard_0800.pt 3600
+loaded run6_shard_0900.pt 4000
+loaded run6_shard_1000.pt 4400
+loaded run6_shard_1100.pt 4800
+loaded run6_shard_1200.pt 5200
+loaded run6_shard_1300.pt 5600
+loaded run6_shard_1400.pt 6000
+loaded run6_shard_1500.pt 6400
+loaded run6_shard_1600.pt 6800
+loaded run6_shard_1700.pt 7200
+loaded run6_shard_1800.pt 7600
+loaded run6_shard_1900.pt 8000
+8000 records; 6515 with N=96 features

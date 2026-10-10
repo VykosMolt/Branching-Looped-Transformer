@@ -1,0 +1,50 @@
+stage0: shards ok=True (18), SHA256SUMS rc=0
+  refit 8_L1: best val=0.4633 (code_reasoning, lr=0.0003, seed=0)
+    8_L1 heldout=0.4100 checks=OK
+  refit 8_L2: best val=0.5667 (code_reasoning, lr=0.0003, seed=0)
+    8_L2 heldout=0.5683 checks=OK
+  refit 8_L3: best val=0.6100 (all_core, lr=0.0003, seed=0)
+    8_L3 heldout=0.6333 checks={'rows_equal_saved_file': False, 'macro_top1': True, 'weight_sha': False, 'weight_equal_xloop_taps': False, 'selected': True, 'grid_equal': True}
+  refit 8_L4: best val=0.6233 (code_reasoning, lr=0.0003, seed=0)
+    8_L4 heldout=0.6217 checks=OK
+  refit 16_L1: best val=0.4400 (code_reasoning, lr=0.001, seed=0)
+    16_L1 heldout=0.4400 checks=OK
+  refit 16_L2: best val=0.5767 (code_reasoning, lr=0.001, seed=0)
+    16_L2 heldout=0.5833 checks=OK
+  refit 16_L3: best val=0.6300 (code_reasoning, lr=0.001, seed=0)
+    16_L3 heldout=0.6167 checks=OK
+  refit 16_L4: best val=0.6267 (code_reasoning, lr=0.001, seed=0)
+    16_L4 heldout=0.6283 checks=OK
+  refit 24_L1: best val=0.4433 (code_reasoning, lr=0.0003, seed=0)
+    24_L1 heldout=0.4283 checks=OK
+  refit 24_L2: best val=0.5700 (code_reasoning, lr=0.001, seed=0)
+    24_L2 heldout=0.5683 checks=OK
+  refit 24_L3: best val=0.6100 (code_reasoning, lr=0.0003, seed=0)
+    24_L3 heldout=0.6100 checks=OK
+  refit 24_L4: best val=0.6233 (code_reasoning, lr=0.0003, seed=0)
+    24_L4 heldout=0.6183 checks=OK
+  forward 8:L1->L2: 0.4667
+  forward 8:L1->L3: 0.4000
+  forward 8:L1->L4: 0.4100
+  forward 8:L2->L3: 0.6100
+  forward 8:L2->L4: 0.6283
+  forward 8:L3->L4: 0.6283
+  forward 16:L1->L2: 0.4717
+  forward 16:L1->L3: 0.4817
+  forward 16:L1->L4: 0.4967
+  forward 16:L2->L3: 0.6117
+  forward 16:L2->L4: 0.6283
+  forward 16:L3->L4: 0.6300
+  forward 24:L1->L2: 0.4833
+  forward 24:L1->L3: 0.5233
+  forward 24:L1->L4: 0.5100
+  forward 24:L2->L3: 0.6100
+  forward 24:L2->L4: 0.6100
+  forward 24:L3->L4: 0.6367
+GATE: FAILED (5 mismatches)
+  MISMATCH refit 8_L3: rows_equal_saved_file
+  MISMATCH refit 8_L3: weight_sha
+  MISMATCH refit 8_L3: weight_equal_xloop_taps
+  MISMATCH transfer 8:L3->L4: rows differ from saved file
+  MISMATCH transfer 8:L3->L4: weight_sha 6f9515ee9bfe7f30 != 054b4b013917d7c7
+wrote /home/moloch/ouro_project/opi/posthoc_astra_20261010/C3_reverse_transfer/reverse_transfer_results.json

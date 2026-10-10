@@ -1,0 +1,7 @@
+run1 run1_shard_off2400.pt 400 answers, 299 answer-free
+run1 run1_shard_off2500.pt 800 answers, 605 answer-free
+run1 run1_shard_off2600.pt 1200 answers, 924 answer-free
+run1 run1_shard_off2700.pt 1600 answers, 1226 answer-free
+run1 run1_shard_off2800.pt 2000 answers, 1528 answer-free
+run1 run1_shard_off2900.pt 2396 answers, 1815 answer-free
+run1 done: 2396 answers; 1815 answer-free; 1065988 prompt+generated tokens

@@ -1,0 +1,13 @@
+run4 run4_shard_0000.pt 400 answers, 302 answer-free
+run4 run4_shard_0100.pt 800 answers, 622 answer-free
+run4 run4_shard_0200.pt 1200 answers, 926 answer-free
+run4 run4_shard_0300.pt 1600 answers, 1228 answer-free
+run4 run4_shard_0400.pt 2000 answers, 1547 answer-free
+run4 run4_shard_0500.pt 2400 answers, 1850 answer-free
+run4 run4_shard_0600.pt 2800 answers, 2144 answer-free
+run4 run4_shard_0700.pt 3200 answers, 2439 answer-free
+run4 run4_shard_0800.pt 3600 answers, 2742 answer-free
+run4 run4_shard_0900.pt 4000 answers, 3040 answer-free
+run4 run4_shard_1000.pt 4400 answers, 3330 answer-free
+run4 run4_shard_1100.pt 4656 answers, 3512 answer-free
+run4 done: 4656 answers; 3512 answer-free; 2272740 prompt+generated tokens

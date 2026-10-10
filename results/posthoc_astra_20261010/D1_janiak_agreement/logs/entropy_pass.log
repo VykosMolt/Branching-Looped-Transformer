@@ -1,0 +1,43 @@
+2026-10-10T15:29:51+02:00
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 93.42it/s]
+model loaded (eager attention, 4 loops, last-loop logits); sampling warpers T=0.7 top_k=50 top_p=0.95
+[run4] run4_shard_0000.pt done, skipping
+[run4] run4_shard_0100.pt: 400 answers, 193220 tokens, lp_check_mad median 0.0134; 1330 tok/s overall, 2.4 min elapsed
+[run4] run4_shard_0200.pt: 400 answers, 208476 tokens, lp_check_mad median 0.0134; 1357 tok/s overall, 4.9 min elapsed
+[run4] run4_shard_0300.pt: 400 answers, 183940 tokens, lp_check_mad median 0.0135; 1328 tok/s overall, 7.4 min elapsed
+[run4] run4_shard_0400.pt: 400 answers, 187104 tokens, lp_check_mad median 0.0138; 1326 tok/s overall, 9.7 min elapsed
+[run4] run4_shard_0500.pt: 400 answers, 202000 tokens, lp_check_mad median 0.0135; 1312 tok/s overall, 12.4 min elapsed
+[run4] run4_shard_0600.pt: 400 answers, 190744 tokens, lp_check_mad median 0.0135; 1297 tok/s overall, 15.0 min elapsed
+[run4] run4_shard_0700.pt: 400 answers, 193824 tokens, lp_check_mad median 0.0134; 1288 tok/s overall, 17.6 min elapsed
+[run4] run4_shard_0800.pt: 400 answers, 203028 tokens, lp_check_mad median 0.0131; 1280 tok/s overall, 20.3 min elapsed
+[run4] run4_shard_0900.pt: 400 answers, 196580 tokens, lp_check_mad median 0.0135; 1273 tok/s overall, 23.0 min elapsed
+[run4] run4_shard_1000.pt: 400 answers, 191108 tokens, lp_check_mad median 0.0133; 1269 tok/s overall, 25.6 min elapsed
+[run4] run4_shard_1100.pt: 256 answers, 124420 tokens, lp_check_mad median 0.0147; 1265 tok/s overall, 27.3 min elapsed
+[run6] run6_shard_0000.pt: 400 answers, 145408 tokens, lp_check_mad median 0.0076; 1263 tok/s overall, 29.3 min elapsed
+[run6] run6_shard_0100.pt: 400 answers, 148148 tokens, lp_check_mad median 0.0076; 1261 tok/s overall, 31.3 min elapsed
+[run6] run6_shard_0200.pt: 400 answers, 158884 tokens, lp_check_mad median 0.0074; 1258 tok/s overall, 33.5 min elapsed
+[run6] run6_shard_0300.pt: 400 answers, 147180 tokens, lp_check_mad median 0.0072; 1257 tok/s overall, 35.5 min elapsed
+[run6] run6_shard_0400.pt: 400 answers, 148992 tokens, lp_check_mad median 0.0079; 1255 tok/s overall, 37.5 min elapsed
+[run6] run6_shard_0500.pt: 400 answers, 155400 tokens, lp_check_mad median 0.0073; 1252 tok/s overall, 39.6 min elapsed
+[run6] run6_shard_0600.pt: 400 answers, 144768 tokens, lp_check_mad median 0.0075; 1251 tok/s overall, 41.6 min elapsed
+[run6] run6_shard_0700.pt: 400 answers, 153152 tokens, lp_check_mad median 0.0075; 1249 tok/s overall, 43.7 min elapsed
+[run6] run6_shard_0800.pt: 400 answers, 153100 tokens, lp_check_mad median 0.0074; 1248 tok/s overall, 45.8 min elapsed
+[run6] run6_shard_0900.pt: 400 answers, 146296 tokens, lp_check_mad median 0.0072; 1247 tok/s overall, 47.8 min elapsed
+[run6] run6_shard_1000.pt: 400 answers, 153720 tokens, lp_check_mad median 0.0077; 1247 tok/s overall, 49.9 min elapsed
+[run6] run6_shard_1100.pt: 400 answers, 153732 tokens, lp_check_mad median 0.0077; 1246 tok/s overall, 52.0 min elapsed
+[run6] run6_shard_1200.pt: 400 answers, 151152 tokens, lp_check_mad median 0.0074; 1245 tok/s overall, 54.0 min elapsed
+[run6] run6_shard_1300.pt: 400 answers, 155156 tokens, lp_check_mad median 0.0074; 1245 tok/s overall, 56.1 min elapsed
+[run6] run6_shard_1400.pt: 400 answers, 149572 tokens, lp_check_mad median 0.0073; 1244 tok/s overall, 58.1 min elapsed
+[run6] run6_shard_1500.pt: 400 answers, 146216 tokens, lp_check_mad median 0.0075; 1243 tok/s overall, 60.1 min elapsed
+[run6] run6_shard_1600.pt: 400 answers, 149180 tokens, lp_check_mad median 0.0075; 1243 tok/s overall, 62.1 min elapsed
+[run6] run6_shard_1700.pt: 400 answers, 155680 tokens, lp_check_mad median 0.0074; 1242 tok/s overall, 64.3 min elapsed
+[run6] run6_shard_1800.pt: 400 answers, 146476 tokens, lp_check_mad median 0.0075; 1242 tok/s overall, 66.3 min elapsed
+[run6] run6_shard_1900.pt: 400 answers, 152036 tokens, lp_check_mad median 0.0074; 1241 tok/s overall, 68.4 min elapsed
+[run1] run1_shard_off2400.pt: 400 answers, 177012 tokens, lp_check_mad median 0.0133; 1240 tok/s overall, 70.8 min elapsed
+[run1] run1_shard_off2500.pt: 400 answers, 176996 tokens, lp_check_mad median 0.0130; 1240 tok/s overall, 73.2 min elapsed
+[run1] run1_shard_off2600.pt: 400 answers, 183160 tokens, lp_check_mad median 0.0127; 1239 tok/s overall, 75.7 min elapsed
+[run1] run1_shard_off2700.pt: 400 answers, 175820 tokens, lp_check_mad median 0.0132; 1239 tok/s overall, 78.0 min elapsed
+[run1] run1_shard_off2800.pt: 400 answers, 173468 tokens, lp_check_mad median 0.0130; 1239 tok/s overall, 80.4 min elapsed
+[run1] run1_shard_off2900.pt: 396 answers, 179532 tokens, lp_check_mad median 0.0130; 1239 tok/s overall, 82.8 min elapsed
+merged 38 parts, 15052 answers -> entropy/entropy_ouro_rltt.npz; lp_check_mad median 0.0097, 99th pct 0.0333
+exit 0 2026-10-10T16:52:50+02:00

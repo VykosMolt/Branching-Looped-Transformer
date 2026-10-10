@@ -1,0 +1,60 @@
+{
+ "checks": {
+  "r1_tfidf_heldout_auroc": {
+   "got": 0.6405086285195277,
+   "published": 0.6405086285195277,
+   "ok": true,
+   "protocol_gate": true
+  },
+  "r1_arm_combined_heldout_auroc": {
+   "got": 0.7582803511958824,
+   "published": 0.7582803511958826,
+   "ok": true,
+   "protocol_gate": true
+  },
+  "r1_arm_hidden_heldout_auroc": {
+   "got": 0.7582803511958826,
+   "published": 0.758340902210112,
+   "ok": false,
+   "protocol_gate": false,
+   "note": "selection near-tie; equals published when refit at published k=16, l2=1; unused by C5"
+  },
+  "r1_A3_hidden_wq_heldout": {
+   "got": 0.7192982456140351,
+   "published": 0.7192982456140351,
+   "ok": true,
+   "protocol_gate": true
+  },
+  "r1s_arm_combined_heldout_auroc": {
+   "got": 0.7771668219944082,
+   "published": 0.7771668219944082,
+   "ok": true,
+   "protocol_gate": true
+  },
+  "r4_tfidf_plus_S_heldout_auroc": {
+   "got": 0.7200882559422325,
+   "published": 0.7200882559422325,
+   "ok": true,
+   "protocol_gate": true
+  },
+  "r4_hidden_heldout_auroc": {
+   "got": 0.6833567345301375,
+   "published": 0.6833567345301373,
+   "ok": true,
+   "protocol_gate": true
+  },
+  "r4_combined_heldout_auroc": {
+   "got": 0.7342041921572562,
+   "published": 0.7342041921572561,
+   "ok": true,
+   "protocol_gate": true
+  },
+  "r4_hidden_wq_heldout": {
+   "got": 0.7397260273972602,
+   "published": 0.7397260273972602,
+   "ok": true,
+   "protocol_gate": true
+  }
+ },
+ "failed": []
+}

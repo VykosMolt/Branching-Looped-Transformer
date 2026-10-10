@@ -1,0 +1,236 @@
+[r1] 1387 rows, 975 train+val, 412 held-out, max 221 tokens
+  [r1] CV lr 5e-06 fold 0
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 788 rows, lr 5e-06, 4 epochs, 11.0 samples/s, peak GPU 8.17 GiB
+  [r1] CV lr 5e-06 fold 1
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 731 rows, lr 5e-06, 4 epochs, 11.4 samples/s, peak GPU 8.17 GiB
+  [r1] CV lr 5e-06 fold 2
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 799 rows, lr 5e-06, 4 epochs, 14.6 samples/s, peak GPU 8.17 GiB
+  [r1] CV lr 5e-06 fold 3
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 796 rows, lr 5e-06, 4 epochs, 23.1 samples/s, peak GPU 8.17 GiB
+  [r1] CV lr 5e-06 fold 4
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 786 rows, lr 5e-06, 4 epochs, 24.3 samples/s, peak GPU 8.17 GiB
+  [r1] CV lr 1e-05 fold 0
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 788 rows, lr 1e-05, 4 epochs, 24.5 samples/s, peak GPU 8.17 GiB
+  [r1] CV lr 1e-05 fold 1
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 731 rows, lr 1e-05, 4 epochs, 24.4 samples/s, peak GPU 8.17 GiB
+  [r1] CV lr 1e-05 fold 2
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 799 rows, lr 1e-05, 4 epochs, 13.5 samples/s, peak GPU 8.17 GiB
+  [r1] CV lr 1e-05 fold 3
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 796 rows, lr 1e-05, 4 epochs, 24.7 samples/s, peak GPU 8.17 GiB
+  [r1] CV lr 1e-05 fold 4
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 786 rows, lr 1e-05, 4 epochs, 24.7 samples/s, peak GPU 8.17 GiB
+  [r1] CV lr 2e-05 fold 0
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 788 rows, lr 2e-05, 4 epochs, 24.6 samples/s, peak GPU 8.17 GiB
+  [r1] CV lr 2e-05 fold 1
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 731 rows, lr 2e-05, 4 epochs, 24.2 samples/s, peak GPU 8.17 GiB
+  [r1] CV lr 2e-05 fold 2
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 799 rows, lr 2e-05, 4 epochs, 21.9 samples/s, peak GPU 8.17 GiB
+  [r1] CV lr 2e-05 fold 3
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 796 rows, lr 2e-05, 4 epochs, 16.5 samples/s, peak GPU 8.17 GiB
+  [r1] CV lr 2e-05 fold 4
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 786 rows, lr 2e-05, 4 epochs, 23.3 samples/s, peak GPU 8.17 GiB
+[r1] selected lr 1e-05, 4 epochs (CV AUROC 0.6007)
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 975 rows, lr 1e-05, 4 epochs, 25.0 samples/s, peak GPU 8.17 GiB
+  [r1] OOF fold 0
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1109 rows, lr 1e-05, 4 epochs, 25.5 samples/s, peak GPU 8.17 GiB
+  [r1] OOF fold 1
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1041 rows, lr 1e-05, 4 epochs, 25.4 samples/s, peak GPU 8.17 GiB
+  [r1] OOF fold 2
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1148 rows, lr 1e-05, 4 epochs, 25.7 samples/s, peak GPU 8.17 GiB
+  [r1] OOF fold 3
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1133 rows, lr 1e-05, 4 epochs, 25.3 samples/s, peak GPU 8.17 GiB
+  [r1] OOF fold 4
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1117 rows, lr 1e-05, 4 epochs, 25.2 samples/s, peak GPU 8.17 GiB
+[r1s] 1339 rows, 940 train+val, 399 held-out, max 221 tokens
+  [r1s] CV lr 5e-06 fold 0
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 763 rows, lr 5e-06, 4 epochs, 24.5 samples/s, peak GPU 8.17 GiB
+  [r1s] CV lr 5e-06 fold 1
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 703 rows, lr 5e-06, 4 epochs, 24.1 samples/s, peak GPU 8.17 GiB
+  [r1s] CV lr 5e-06 fold 2
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 773 rows, lr 5e-06, 4 epochs, 24.5 samples/s, peak GPU 8.17 GiB
+  [r1s] CV lr 5e-06 fold 3
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 769 rows, lr 5e-06, 4 epochs, 24.5 samples/s, peak GPU 8.17 GiB
+  [r1s] CV lr 5e-06 fold 4
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 752 rows, lr 5e-06, 4 epochs, 24.7 samples/s, peak GPU 8.17 GiB
+  [r1s] CV lr 1e-05 fold 0
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 763 rows, lr 1e-05, 4 epochs, 24.7 samples/s, peak GPU 8.17 GiB
+  [r1s] CV lr 1e-05 fold 1
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 703 rows, lr 1e-05, 4 epochs, 19.0 samples/s, peak GPU 8.17 GiB
+  [r1s] CV lr 1e-05 fold 2
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 773 rows, lr 1e-05, 4 epochs, 20.6 samples/s, peak GPU 8.17 GiB
+  [r1s] CV lr 1e-05 fold 3
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 769 rows, lr 1e-05, 4 epochs, 19.7 samples/s, peak GPU 8.17 GiB
+  [r1s] CV lr 1e-05 fold 4
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 752 rows, lr 1e-05, 4 epochs, 24.4 samples/s, peak GPU 8.17 GiB
+  [r1s] CV lr 2e-05 fold 0
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 763 rows, lr 2e-05, 4 epochs, 24.8 samples/s, peak GPU 8.17 GiB
+  [r1s] CV lr 2e-05 fold 1
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 703 rows, lr 2e-05, 4 epochs, 24.6 samples/s, peak GPU 8.17 GiB
+  [r1s] CV lr 2e-05 fold 2
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 773 rows, lr 2e-05, 4 epochs, 25.1 samples/s, peak GPU 8.17 GiB
+  [r1s] CV lr 2e-05 fold 3
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 769 rows, lr 2e-05, 4 epochs, 25.4 samples/s, peak GPU 8.17 GiB
+  [r1s] CV lr 2e-05 fold 4
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 752 rows, lr 2e-05, 4 epochs, 25.4 samples/s, peak GPU 8.17 GiB
+[r1s] selected lr 2e-05, 4 epochs (CV AUROC 0.6131)
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 940 rows, lr 2e-05, 4 epochs, 25.4 samples/s, peak GPU 8.17 GiB
+[r4] 2376 rows, 1641 train+val, 735 held-out, max 239 tokens
+  [r4] CV lr 5e-06 fold 0
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1273 rows, lr 5e-06, 4 epochs, 24.2 samples/s, peak GPU 8.17 GiB
+  [r4] CV lr 5e-06 fold 1
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1316 rows, lr 5e-06, 4 epochs, 24.4 samples/s, peak GPU 8.17 GiB
+  [r4] CV lr 5e-06 fold 2
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1328 rows, lr 5e-06, 4 epochs, 24.5 samples/s, peak GPU 8.17 GiB
+  [r4] CV lr 5e-06 fold 3
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1347 rows, lr 5e-06, 4 epochs, 24.8 samples/s, peak GPU 8.17 GiB
+  [r4] CV lr 5e-06 fold 4
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1300 rows, lr 5e-06, 4 epochs, 24.8 samples/s, peak GPU 8.17 GiB
+  [r4] CV lr 1e-05 fold 0
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1273 rows, lr 1e-05, 4 epochs, 12.2 samples/s, peak GPU 8.17 GiB
+  [r4] CV lr 1e-05 fold 1
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1316 rows, lr 1e-05, 4 epochs, 8.1 samples/s, peak GPU 8.17 GiB
+  [r4] CV lr 1e-05 fold 2
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1328 rows, lr 1e-05, 4 epochs, 8.2 samples/s, peak GPU 8.17 GiB
+  [r4] CV lr 1e-05 fold 3
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1347 rows, lr 1e-05, 4 epochs, 8.1 samples/s, peak GPU 8.17 GiB
+  [r4] CV lr 1e-05 fold 4
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1300 rows, lr 1e-05, 4 epochs, 8.1 samples/s, peak GPU 8.17 GiB
+  [r4] CV lr 2e-05 fold 0
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1273 rows, lr 2e-05, 4 epochs, 8.1 samples/s, peak GPU 8.17 GiB
+  [r4] CV lr 2e-05 fold 1
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1316 rows, lr 2e-05, 4 epochs, 11.9 samples/s, peak GPU 8.17 GiB
+  [r4] CV lr 2e-05 fold 2
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1328 rows, lr 2e-05, 4 epochs, 25.2 samples/s, peak GPU 8.17 GiB
+  [r4] CV lr 2e-05 fold 3
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1347 rows, lr 2e-05, 4 epochs, 25.4 samples/s, peak GPU 8.17 GiB
+  [r4] CV lr 2e-05 fold 4
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1300 rows, lr 2e-05, 4 epochs, 25.0 samples/s, peak GPU 8.17 GiB
+[r4] selected lr 5e-06, 4 epochs (CV AUROC 0.6614)
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1641 rows, lr 5e-06, 4 epochs, 25.5 samples/s, peak GPU 8.17 GiB
+  [r4] OOF fold 0
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1850 rows, lr 5e-06, 4 epochs, 24.7 samples/s, peak GPU 8.17 GiB
+  [r4] OOF fold 1
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1914 rows, lr 5e-06, 4 epochs, 11.7 samples/s, peak GPU 8.17 GiB
+  [r4] OOF fold 2
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1903 rows, lr 5e-06, 4 epochs, 17.9 samples/s, peak GPU 8.17 GiB
+  [r4] OOF fold 3
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1928 rows, lr 5e-06, 4 epochs, 13.5 samples/s, peak GPU 8.17 GiB
+  [r4] OOF fold 4
+Some weights of DebertaV2ForSequenceClassification were not initialized from the model checkpoint at microsoft/deberta-v3-large and are newly initialized: ['classifier.bias', 'classifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1909 rows, lr 5e-06, 4 epochs, 23.5 samples/s, peak GPU 8.17 GiB
+wrote /home/moloch/ouro_project/opi/posthoc_astra_20261010/C5_lm_reader/runs/deberta/reader_scores.json

@@ -1,0 +1,46 @@
+=== 2026-10-10T12:50:26+02:00 C5 preflights. GPU SHARED with kurisutina e2 processes (user-approved); samples/s are lower bounds.
+name, memory.used [MiB], memory.total [MiB], utilization.gpu [%], power.draw [W]
+NVIDIA GeForce RTX 5070 Ti Laptop GPU, 1478 MiB, 12227 MiB, 16 %, 67.47 W
+pid, process_name, used_gpu_memory [MiB]
+2234523, /home/moloch/kurisutina/research/e2/.venv/bin/python, 972 MiB
+2235798, /home/moloch/kurisutina/research/e2/.venv/bin/python, 490 MiB
+--- deberta --preflight (micro-batch 4, grad ckpt on) 2026-10-10T12:50:34+02:00
+    fit: 48 rows, lr 2e-05, 1 epochs, 2.2 samples/s, peak GPU 8.17 GiB
+preflight deberta: longest text 239 tokens; budget 11 GiB
+exit 0
+peak nvidia-smi total (incl. co-tenants ~1478 MiB): 2026/10/10 12:54:17.783, 10192 MiB, 78 %
+--- note: first preflight's 2.2 samples/s was 48 samples incl. CUDA warm-up; preflight changed to add a 12-step timed fit after warm-up. Rerun 2026-10-10T12:57:40+02:00
+before: 1478 MiB, 42 %
+    fit: 48 rows, lr 2e-05, 1 epochs, 2.4 samples/s, peak GPU 8.17 GiB
+  timed fit (12 steps, after warm-up; longest texts, so slower than the real mean of ~175 tokens):
+    fit: 192 rows, lr 2e-05, 1 epochs, 11.4 samples/s, peak GPU 8.17 GiB
+preflight deberta: longest text 239 tokens; budget 11 GiB
+exit 0
+peak nvidia-smi total incl. co-tenants: 2026/10/10 12:58:27.745, 10210 MiB, 61 %
+mean total GPU util during run: 45.9091 %
+=== 2026-10-10T15:12:24+02:00 idle-GPU preflights (kurisutina jobs ended); timed fit now on 192 random real texts
+--- deberta_idle: lm_reader.py --reader deberta --preflight 2026-10-10T15:12:24+02:00
+before (GPU total): 3 MiB, 0 %
+    fit: 48 rows, lr 2e-05, 1 epochs, 3.1 samples/s, peak GPU 8.17 GiB
+  timed fit: 12 steps on 192 random texts, mean 173 tokens
+    fit: 192 rows, lr 2e-05, 1 epochs, 26.6 samples/s, peak GPU 8.17 GiB
+preflight deberta: longest text 239 tokens; budget 11 GiB
+exit 0
+peak nvidia-smi GPU total: 2026/10/10 15:12:53.840, 8737 MiB, 100 %
+--- qwen_idle: lm_reader.py --reader qwen --preflight 2026-10-10T15:13:04+02:00
+before (GPU total): 3 MiB, 0 %
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+    fit: 48 rows, lr 0.0004, 1 epochs, 2.5 samples/s, peak GPU 3.60 GiB
+  timed fit: 12 steps on 192 random texts, mean 174 tokens
+    fit: 192 rows, lr 0.0004, 1 epochs, 17.0 samples/s, peak GPU 3.60 GiB
+preflight qwen: longest text 237 tokens; budget 11 GiB
+exit 0
+peak nvidia-smi GPU total: 2026/10/10 15:23:19.882, 4063 MiB, 97 %
+--- qwen_idle_nockpt: lm_reader.py --reader qwen --preflight --no-grad-ckpt 2026-10-10T15:23:45+02:00
+before (GPU total): 3 MiB, 0 %
+    fit: 48 rows, lr 0.0004, 1 epochs, 2.9 samples/s, peak GPU 6.66 GiB
+  timed fit: 12 steps on 192 random texts, mean 174 tokens
+    fit: 192 rows, lr 0.0004, 1 epochs, 24.2 samples/s, peak GPU 6.66 GiB
+preflight qwen: longest text 237 tokens; budget 11 GiB
+exit 0
+peak nvidia-smi GPU total: 2026/10/10 15:24:09.629, 7111 MiB, 96 %

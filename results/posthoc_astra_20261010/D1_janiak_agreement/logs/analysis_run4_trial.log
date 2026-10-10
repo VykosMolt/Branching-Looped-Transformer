@@ -1,0 +1,11 @@
+[run4] loading
+[run4] probe on 3512 answer-free answers
+  probe fold 0: train 1992, scored 582, k=[24] C=1.0 inner AUROC 0.742
+  probe fold 1: train 1906, scored 678, k=[24] C=1.0 inner AUROC 0.741
+  probe fold 2: train 1847, scored 802, k=[16] C=1.0 inner AUROC 0.739
+  probe fold 3: train 1870, scored 756, k=[24] C=1.0 inner AUROC 0.706
+  probe fold 4: train 1889, scored 694, k=[16] C=1.0 inner AUROC 0.742
+[run4] T1
+[run4] T2
+[run4] T1 B1-B0 AURC -0.0005 [-0.0016, +0.0006] p=0.376; T2 full B1-B0 AURC -0.0006 [-0.0036, +0.0019] p=0.626
+wrote results.json and SUMMARY_FOR_DENIS.md

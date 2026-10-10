@@ -1,0 +1,148 @@
+{
+ "post_hoc": true,
+ "torch": "2.12.0.dev20260407+cu128",
+ "threads": 4,
+ "source_run": "/run/media/moloch/ARCH_BACKUP/OURO_COLD_ARCHIVE_20260729/historical_experiments/paper_v3_audit_evidence/artifacts/reports/cross_loop_early_layer_taps_20260720",
+ "stage0": {
+  "n_shards": 18,
+  "manifest_n_shards": 18,
+  "all_shards_match_both_manifests": true,
+  "shards": [
+   {
+    "file": "xloop_0000.pt",
+    "sha256": "eb3b31b49088ccec05b934196e5c97f97fc34485c1cd2d9170191e4367edcab9",
+    "manifest_root": true,
+    "manifest_features": true
+   },
+   {
+    "file": "xloop_0001.pt",
+    "sha256": "3423abbdcc8f5f123ff55e2f0d9426862181e8b6931e1daaa6aca83360674ad6",
+    "manifest_root": true,
+    "manifest_features": true
+   },
+   {
+    "file": "xloop_0002.pt",
+    "sha256": "12a02c1555c2258a999afe6c5bb089de8d75097761f4cb1993bd1234cad36e2a",
+    "manifest_root": true,
+    "manifest_features": true
+   },
+   {
+    "file": "xloop_0003.pt",
+    "sha256": "1d41708182b620d6040e4fc0f3d753dd910adf395e8ec2f42955308c3334b369",
+    "manifest_root": true,
+    "manifest_features": true
+   },
+   {
+    "file": "xloop_0004.pt",
+    "sha256": "b090f578060003e24058bd8dd471dfe835d4ca56225d95433e58aec0979198a6",
+    "manifest_root": true,
+    "manifest_features": true
+   },
+   {
+    "file": "xloop_0005.pt",
+    "sha256": "4bdffe4ad459726324cebb73cbcaf096da93b931b50d4436f56c6e999f0bf2b1",
+    "manifest_root": true,
+    "manifest_features": true
+   },
+   {
+    "file": "xloop_0006.pt",
+    "sha256": "136eee13d390cdbfb5062460e59243dda5e3efd10d36b28936ebf690fa2bf329",
+    "manifest_root": true,
+    "manifest_features": true
+   },
+   {
+    "file": "xloop_0007.pt",
+    "sha256": "ed9f390b18f03c22855a274f520555420ff73205c636392be6d07c50392461ad",
+    "manifest_root": true,
+    "manifest_features": true
+   },
+   {
+    "file": "xloop_0008.pt",
+    "sha256": "ff3a39480df20e014cd01f84e17cfba1d3569c33173e09ecf1f76ebc61cfb110",
+    "manifest_root": true,
+    "manifest_features": true
+   },
+   {
+    "file": "xloop_0009.pt",
+    "sha256": "99189835547493369cc471122302cbed4143d677b7371bf5d77051d72c131383",
+    "manifest_root": true,
+    "manifest_features": true
+   },
+   {
+    "file": "xloop_0010.pt",
+    "sha256": "fee404c6bf02451c7d98e857b4e02a5c88636f659afa5fef4fef5ced838d5936",
+    "manifest_root": true,
+    "manifest_features": true
+   },
+   {
+    "file": "xloop_0011.pt",
+    "sha256": "21ec70df314d48ec8cb7f1784634a9dde25cd52f876f4c623590629dbc6a4789",
+    "manifest_root": true,
+    "manifest_features": true
+   },
+   {
+    "file": "xloop_0012.pt",
+    "sha256": "a63e20404259b3c5d7f1c3d7e029ab996a422e8ecd405357f36010f43626094e",
+    "manifest_root": true,
+    "manifest_features": true
+   },
+   {
+    "file": "xloop_0013.pt",
+    "sha256": "d4b07ec921d2aabd74080de8f99158e232813af1f661ff578998f40cd9344fe0",
+    "manifest_root": true,
+    "manifest_features": true
+   },
+   {
+    "file": "xloop_0014.pt",
+    "sha256": "b582dd26d5c9351d1b1658176cf358daad653641eac4d8b5a1f09ed13960b6c1",
+    "manifest_root": true,
+    "manifest_features": true
+   },
+   {
+    "file": "xloop_0015.pt",
+    "sha256": "3bcfb136182a5bb67b29fe6b6e03aa915803f495a492da4d45cd9a9b3bbc8cd9",
+    "manifest_root": true,
+    "manifest_features": true
+   },
+   {
+    "file": "xloop_0016.pt",
+    "sha256": "1cbe13c66ff40f4b2c27e0c2a85d3cad9c59f57b687ee157aca871a6ea6888cd",
+    "manifest_root": true,
+    "manifest_features": true
+   },
+   {
+    "file": "xloop_0017.pt",
+    "sha256": "df71f6af2675735f4ccc5a13afce617877bfccf7370f0a1807c95e7064ef61d5",
+    "manifest_root": true,
+    "manifest_features": true
+   }
+  ],
+  "SHA256SUMS_entries": 100,
+  "SHA256SUMS_check_rc": 0,
+  "SHA256SUMS_check_output": ""
+ },
+ "gate": {
+  "mismatches": [
+   "refit 8_L3: rows_equal_saved_file",
+   "refit 8_L3: weight_sha",
+   "refit 8_L3: weight_equal_xloop_taps",
+   "transfer 8:L3->L4: rows differ from saved file",
+   "transfer 8:L3->L4: weight_sha 6f9515ee9bfe7f30 != 054b4b013917d7c7"
+  ],
+  "refit_top1": {
+   "8_L1": 0.41,
+   "8_L2": 0.5683333333333334,
+   "8_L3": 0.6333333333333333,
+   "8_L4": 0.6216666666666667,
+   "16_L1": 0.44000000000000006,
+   "16_L2": 0.5833333333333333,
+   "16_L3": 0.6166666666666667,
+   "16_L4": 0.6283333333333333,
+   "24_L1": 0.42833333333333334,
+   "24_L2": 0.5683333333333334,
+   "24_L3": 0.61,
+   "24_L4": 0.6183333333333334
+  },
+  "exact": false
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "run1": {
+  "n": 2396,
+  "letter": 1694,
+  "boxed": 190,
+  "word": 0,
+  "word_and_letter_or_boxed": 0,
+  "word_before_letter_or_boxed": 0
+ },
+ "run4": {
+  "n": 4656,
+  "letter": 2976,
+  "boxed": 408,
+  "word": 1,
+  "word_and_letter_or_boxed": 1,
+  "word_before_letter_or_boxed": 0
+ }
+}

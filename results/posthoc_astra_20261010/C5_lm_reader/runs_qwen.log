@@ -1,0 +1,236 @@
+[r1] 1387 rows, 975 train+val, 412 held-out, max 222 tokens
+  [r1] CV lr 0.0001 fold 0
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 788 rows, lr 0.0001, 4 epochs, 20.5 samples/s, peak GPU 6.31 GiB
+  [r1] CV lr 0.0001 fold 1
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 731 rows, lr 0.0001, 4 epochs, 20.4 samples/s, peak GPU 6.33 GiB
+  [r1] CV lr 0.0001 fold 2
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 799 rows, lr 0.0001, 4 epochs, 20.5 samples/s, peak GPU 6.33 GiB
+  [r1] CV lr 0.0001 fold 3
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 796 rows, lr 0.0001, 4 epochs, 20.6 samples/s, peak GPU 6.33 GiB
+  [r1] CV lr 0.0001 fold 4
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 786 rows, lr 0.0001, 4 epochs, 20.4 samples/s, peak GPU 6.33 GiB
+  [r1] CV lr 0.0002 fold 0
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 788 rows, lr 0.0002, 4 epochs, 20.3 samples/s, peak GPU 6.33 GiB
+  [r1] CV lr 0.0002 fold 1
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 731 rows, lr 0.0002, 4 epochs, 19.7 samples/s, peak GPU 6.33 GiB
+  [r1] CV lr 0.0002 fold 2
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 799 rows, lr 0.0002, 4 epochs, 20.3 samples/s, peak GPU 6.33 GiB
+  [r1] CV lr 0.0002 fold 3
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 796 rows, lr 0.0002, 4 epochs, 20.7 samples/s, peak GPU 6.33 GiB
+  [r1] CV lr 0.0002 fold 4
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 786 rows, lr 0.0002, 4 epochs, 21.3 samples/s, peak GPU 6.33 GiB
+  [r1] CV lr 0.0004 fold 0
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 788 rows, lr 0.0004, 4 epochs, 19.3 samples/s, peak GPU 6.33 GiB
+  [r1] CV lr 0.0004 fold 1
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 731 rows, lr 0.0004, 4 epochs, 18.7 samples/s, peak GPU 6.33 GiB
+  [r1] CV lr 0.0004 fold 2
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 799 rows, lr 0.0004, 4 epochs, 19.5 samples/s, peak GPU 6.33 GiB
+  [r1] CV lr 0.0004 fold 3
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 796 rows, lr 0.0004, 4 epochs, 21.4 samples/s, peak GPU 6.33 GiB
+  [r1] CV lr 0.0004 fold 4
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 786 rows, lr 0.0004, 4 epochs, 21.9 samples/s, peak GPU 6.33 GiB
+[r1] selected lr 0.0002, 4 epochs (CV AUROC 0.5707)
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 975 rows, lr 0.0002, 4 epochs, 22.7 samples/s, peak GPU 6.33 GiB
+  [r1] OOF fold 0
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1109 rows, lr 0.0002, 4 epochs, 23.2 samples/s, peak GPU 6.33 GiB
+  [r1] OOF fold 1
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1041 rows, lr 0.0002, 4 epochs, 22.9 samples/s, peak GPU 6.44 GiB
+  [r1] OOF fold 2
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1148 rows, lr 0.0002, 4 epochs, 23.2 samples/s, peak GPU 6.44 GiB
+  [r1] OOF fold 3
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1133 rows, lr 0.0002, 4 epochs, 23.2 samples/s, peak GPU 6.44 GiB
+  [r1] OOF fold 4
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1117 rows, lr 0.0002, 4 epochs, 23.1 samples/s, peak GPU 6.44 GiB
+[r1s] 1339 rows, 940 train+val, 399 held-out, max 222 tokens
+  [r1s] CV lr 0.0001 fold 0
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 763 rows, lr 0.0001, 4 epochs, 22.0 samples/s, peak GPU 6.44 GiB
+  [r1s] CV lr 0.0001 fold 1
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 703 rows, lr 0.0001, 4 epochs, 21.4 samples/s, peak GPU 6.44 GiB
+  [r1s] CV lr 0.0001 fold 2
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 773 rows, lr 0.0001, 4 epochs, 22.2 samples/s, peak GPU 6.44 GiB
+  [r1s] CV lr 0.0001 fold 3
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 769 rows, lr 0.0001, 4 epochs, 22.1 samples/s, peak GPU 6.44 GiB
+  [r1s] CV lr 0.0001 fold 4
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 752 rows, lr 0.0001, 4 epochs, 15.5 samples/s, peak GPU 6.44 GiB
+  [r1s] CV lr 0.0002 fold 0
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 763 rows, lr 0.0002, 4 epochs, 10.1 samples/s, peak GPU 6.44 GiB
+  [r1s] CV lr 0.0002 fold 1
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 703 rows, lr 0.0002, 4 epochs, 10.1 samples/s, peak GPU 6.44 GiB
+  [r1s] CV lr 0.0002 fold 2
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 773 rows, lr 0.0002, 4 epochs, 9.8 samples/s, peak GPU 6.44 GiB
+  [r1s] CV lr 0.0002 fold 3
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 769 rows, lr 0.0002, 4 epochs, 9.8 samples/s, peak GPU 6.44 GiB
+  [r1s] CV lr 0.0002 fold 4
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 752 rows, lr 0.0002, 4 epochs, 10.1 samples/s, peak GPU 6.44 GiB
+  [r1s] CV lr 0.0004 fold 0
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 763 rows, lr 0.0004, 4 epochs, 9.8 samples/s, peak GPU 6.44 GiB
+  [r1s] CV lr 0.0004 fold 1
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 703 rows, lr 0.0004, 4 epochs, 9.1 samples/s, peak GPU 6.44 GiB
+  [r1s] CV lr 0.0004 fold 2
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 773 rows, lr 0.0004, 4 epochs, 9.4 samples/s, peak GPU 6.44 GiB
+  [r1s] CV lr 0.0004 fold 3
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 769 rows, lr 0.0004, 4 epochs, 9.8 samples/s, peak GPU 6.44 GiB
+  [r1s] CV lr 0.0004 fold 4
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 752 rows, lr 0.0004, 4 epochs, 9.7 samples/s, peak GPU 6.44 GiB
+[r1s] selected lr 0.0001, 4 epochs (CV AUROC 0.5920)
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 940 rows, lr 0.0001, 4 epochs, 10.7 samples/s, peak GPU 6.44 GiB
+[r4] 2376 rows, 1641 train+val, 735 held-out, max 237 tokens
+  [r4] CV lr 0.0001 fold 0
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1273 rows, lr 0.0001, 4 epochs, 10.2 samples/s, peak GPU 6.66 GiB
+  [r4] CV lr 0.0001 fold 1
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1316 rows, lr 0.0001, 4 epochs, 11.0 samples/s, peak GPU 6.66 GiB
+  [r4] CV lr 0.0001 fold 2
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1328 rows, lr 0.0001, 4 epochs, 21.0 samples/s, peak GPU 6.66 GiB
+  [r4] CV lr 0.0001 fold 3
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1347 rows, lr 0.0001, 4 epochs, 21.6 samples/s, peak GPU 6.66 GiB
+  [r4] CV lr 0.0001 fold 4
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1300 rows, lr 0.0001, 4 epochs, 21.7 samples/s, peak GPU 6.66 GiB
+  [r4] CV lr 0.0002 fold 0
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1273 rows, lr 0.0002, 4 epochs, 21.4 samples/s, peak GPU 6.66 GiB
+  [r4] CV lr 0.0002 fold 1
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1316 rows, lr 0.0002, 4 epochs, 21.7 samples/s, peak GPU 6.66 GiB
+  [r4] CV lr 0.0002 fold 2
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1328 rows, lr 0.0002, 4 epochs, 21.8 samples/s, peak GPU 6.66 GiB
+  [r4] CV lr 0.0002 fold 3
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1347 rows, lr 0.0002, 4 epochs, 21.7 samples/s, peak GPU 6.66 GiB
+  [r4] CV lr 0.0002 fold 4
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1300 rows, lr 0.0002, 4 epochs, 21.5 samples/s, peak GPU 6.66 GiB
+  [r4] CV lr 0.0004 fold 0
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1273 rows, lr 0.0004, 4 epochs, 21.2 samples/s, peak GPU 6.66 GiB
+  [r4] CV lr 0.0004 fold 1
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1316 rows, lr 0.0004, 4 epochs, 21.5 samples/s, peak GPU 6.66 GiB
+  [r4] CV lr 0.0004 fold 2
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1328 rows, lr 0.0004, 4 epochs, 21.5 samples/s, peak GPU 6.66 GiB
+  [r4] CV lr 0.0004 fold 3
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1347 rows, lr 0.0004, 4 epochs, 21.7 samples/s, peak GPU 6.66 GiB
+  [r4] CV lr 0.0004 fold 4
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1300 rows, lr 0.0004, 4 epochs, 21.5 samples/s, peak GPU 6.66 GiB
+[r4] selected lr 0.0002, 4 epochs (CV AUROC 0.6304)
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1641 rows, lr 0.0002, 4 epochs, 22.1 samples/s, peak GPU 6.66 GiB
+  [r4] OOF fold 0
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1850 rows, lr 0.0002, 4 epochs, 22.5 samples/s, peak GPU 6.66 GiB
+  [r4] OOF fold 1
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1914 rows, lr 0.0002, 4 epochs, 22.7 samples/s, peak GPU 6.66 GiB
+  [r4] OOF fold 2
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1903 rows, lr 0.0002, 4 epochs, 22.6 samples/s, peak GPU 6.66 GiB
+  [r4] OOF fold 3
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1928 rows, lr 0.0002, 4 epochs, 22.7 samples/s, peak GPU 6.66 GiB
+  [r4] OOF fold 4
+Some weights of Qwen2ForSequenceClassification were not initialized from the model checkpoint at Qwen/Qwen2.5-1.5B and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+    fit: 1909 rows, lr 0.0002, 4 epochs, 22.8 samples/s, peak GPU 6.66 GiB
+wrote /home/moloch/ouro_project/opi/posthoc_astra_20261010/C5_lm_reader/runs/qwen/reader_scores.json
