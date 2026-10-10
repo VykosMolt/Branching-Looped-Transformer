@@ -1,0 +1,8 @@
+{
+  "exact_prefix_manifest_sha256": "1d0cf9ab9d0bb8d4c9194c4b7177ea4034d4a64e23b194e2dd5df9b91d77a7ee",
+  "gsm8k": "VISIBLE_PREFIX_NOT_ADJUDICABLE",
+  "horizon_new_only": "VISIBLE_PREFIX_NOT_ADJUDICABLE",
+  "horizon_pooled": "VISIBLE_PREFIX_NOT_ADJUDICABLE",
+  "leakage_audit_sha256": "8f1fece96268227fd5fb46f7cc22e3b5d0519ef42e36df494f19edd36183d566",
+  "preregistration_sha256": "1cf90fe1c26ca462c261489dba207af82828d6ff648b15d0a930d0db76f629b0"
+}

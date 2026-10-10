@@ -1,0 +1,24 @@
+{
+  "V3": [
+    {
+      "heldout_auroc": null,
+      "seed": 20260729,
+      "status": "NOT_RUN_UPSTREAM_VISIBLE_PREFIX_GATE",
+      "validation_auroc": null
+    },
+    {
+      "heldout_auroc": null,
+      "seed": 20260730,
+      "status": "NOT_RUN_UPSTREAM_VISIBLE_PREFIX_GATE",
+      "validation_auroc": null
+    },
+    {
+      "heldout_auroc": null,
+      "seed": 20260731,
+      "status": "NOT_RUN_UPSTREAM_VISIBLE_PREFIX_GATE",
+      "validation_auroc": null
+    }
+  ],
+  "execution_failure_type": "PREREGISTERED_UPSTREAM_STOPPING_RULE",
+  "resource_failure": false
+}

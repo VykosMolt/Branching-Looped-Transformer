@@ -1,0 +1,14 @@
+{
+  "checkpoint_identity": "NOT_CRYPTOGRAPHICALLY_PINNED_BY_HISTORICAL_PACKAGE",
+  "classifier_fits": 0,
+  "generation_calls": 0,
+  "max_absolute_error": null,
+  "model_loaded": false,
+  "reason": "exact prompt-plus-preserved-prefix sequences are unavailable",
+  "replay_calls": 0,
+  "rms_error": null,
+  "status": "NOT_RUN_INVENTORY_GATE_FAILURE",
+  "token_agreement": null,
+  "training_sample_size": 0,
+  "verdict": "FIXED_PREFIX_HORIZON_NOT_ADJUDICABLE"
+}

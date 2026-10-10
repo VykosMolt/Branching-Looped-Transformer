@@ -1,0 +1,257 @@
+{
+  "final_line_first170": {
+    "sealed_arm_4_shortcuts": {
+      "skipped": "below the adjudicability minimums",
+      "n_rows": 510,
+      "n_heldout_tasks": 56,
+      "n_heldout_negatives": 19
+    },
+    "fixed_model_4_shortcuts": {
+      "skipped": "below the adjudicability minimums",
+      "n_rows": 510,
+      "n_heldout_tasks": 56,
+      "n_heldout_negatives": 19
+    },
+    "fixed_model_4_shortcuts_plus_difficulty": {
+      "skipped": "below the adjudicability minimums",
+      "n_rows": 510,
+      "n_heldout_tasks": 56,
+      "n_heldout_negatives": 19
+    }
+  },
+  "final_line_new510": {
+    "sealed_arm_4_shortcuts": {
+      "auroc_shortcut_only": 0.677,
+      "auroc_hidden_only": 0.773,
+      "auroc_hidden_plus_shortcuts": 0.772,
+      "incremental_auroc_combined_minus_shortcut": 0.095,
+      "ci95": [
+        0.037,
+        0.157
+      ],
+      "n_heldout": 443,
+      "neg": 65
+    },
+    "fixed_model_4_shortcuts": {
+      "auroc_shortcut_only": 0.679,
+      "auroc_hidden_only": 0.772,
+      "auroc_hidden_plus_shortcuts": 0.779,
+      "incremental_auroc_combined_minus_shortcut": 0.1,
+      "ci95": [
+        0.046,
+        0.16
+      ],
+      "n_heldout": 443,
+      "neg": 65
+    },
+    "fixed_model_4_shortcuts_plus_difficulty": {
+      "auroc_shortcut_only": 0.682,
+      "auroc_hidden_only": 0.772,
+      "auroc_hidden_plus_shortcuts": 0.776,
+      "incremental_auroc_combined_minus_shortcut": 0.093,
+      "ci95": [
+        0.041,
+        0.15
+      ],
+      "n_heldout": 443,
+      "neg": 65
+    }
+  },
+  "final_line_pooled680": {
+    "sealed_arm_4_shortcuts": {
+      "auroc_shortcut_only": 0.652,
+      "auroc_hidden_only": 0.763,
+      "auroc_hidden_plus_shortcuts": 0.763,
+      "incremental_auroc_combined_minus_shortcut": 0.111,
+      "ci95": [
+        0.056,
+        0.169
+      ],
+      "n_heldout": 614,
+      "neg": 84
+    },
+    "fixed_model_4_shortcuts": {
+      "auroc_shortcut_only": 0.653,
+      "auroc_hidden_only": 0.763,
+      "auroc_hidden_plus_shortcuts": 0.759,
+      "incremental_auroc_combined_minus_shortcut": 0.107,
+      "ci95": [
+        0.051,
+        0.166
+      ],
+      "n_heldout": 614,
+      "neg": 84
+    },
+    "fixed_model_4_shortcuts_plus_difficulty": {
+      "auroc_shortcut_only": 0.655,
+      "auroc_hidden_only": 0.763,
+      "auroc_hidden_plus_shortcuts": 0.761,
+      "incremental_auroc_combined_minus_shortcut": 0.106,
+      "ci95": [
+        0.054,
+        0.165
+      ],
+      "n_heldout": 614,
+      "neg": 84
+    }
+  },
+  "final_line_fresh599": {
+    "sealed_arm_4_shortcuts": {
+      "auroc_shortcut_only": 0.687,
+      "auroc_hidden_only": 0.782,
+      "auroc_hidden_plus_shortcuts": 0.782,
+      "incremental_auroc_combined_minus_shortcut": 0.095,
+      "ci95": [
+        0.012,
+        0.177
+      ],
+      "n_heldout": 530,
+      "neg": 68
+    },
+    "fixed_model_4_shortcuts": {
+      "auroc_shortcut_only": 0.685,
+      "auroc_hidden_only": 0.782,
+      "auroc_hidden_plus_shortcuts": 0.781,
+      "incremental_auroc_combined_minus_shortcut": 0.096,
+      "ci95": [
+        0.017,
+        0.176
+      ],
+      "n_heldout": 530,
+      "neg": 68
+    },
+    "fixed_model_4_shortcuts_plus_difficulty": {
+      "auroc_shortcut_only": 0.751,
+      "auroc_hidden_only": 0.782,
+      "auroc_hidden_plus_shortcuts": 0.783,
+      "incremental_auroc_combined_minus_shortcut": 0.032,
+      "ci95": [
+        -0.031,
+        0.098
+      ],
+      "n_heldout": 530,
+      "neg": 68
+    }
+  },
+  "primary_fixed_model_with_difficulty": {
+    "auroc_shortcut_only": 0.672,
+    "auroc_hidden_only": 0.758,
+    "auroc_hidden_plus_shortcuts": 0.745,
+    "incremental_auroc_combined_minus_shortcut": 0.073,
+    "ci95": [
+      -0.014,
+      0.162
+    ],
+    "n_heldout": 412,
+    "neg": 45
+  },
+  "within_question_heldout": {
+    "combined": {
+      "estimate": 0.6842105263157895,
+      "ci95": [
+        0.5294117647058824,
+        0.8275862068965517
+      ],
+      "n_mixed_tasks": 30,
+      "n_pairs": 57
+    },
+    "hidden": {
+      "estimate": 0.7192982456140351,
+      "ci95": [
+        0.5740740740740741,
+        0.847457627118644
+      ],
+      "n_mixed_tasks": 30,
+      "n_pairs": 57
+    },
+    "shortcut": {
+      "estimate": 0.5263157894736842,
+      "ci95": [
+        0.36363636363636365,
+        0.6909090909090909
+      ],
+      "n_mixed_tasks": 30,
+      "n_pairs": 57
+    }
+  },
+  "interim_prompt_control_meanpooled": {
+    "auroc_shortcut_only": 0.633,
+    "auroc_hidden_only": 0.758,
+    "auroc_hidden_plus_shortcuts": 0.695,
+    "incremental_auroc_combined_minus_shortcut": 0.063,
+    "ci95": [
+      0.015,
+      0.111
+    ],
+    "n_heldout": 412,
+    "neg": 45
+  },
+  "within_question_oof_all_splits": {
+    "combined": {
+      "estimate": 0.6650717703349283,
+      "ci95": [
+        0.59375,
+        0.7376237623762376
+      ],
+      "n_mixed_tasks": 108,
+      "n_pairs": 209
+    },
+    "hidden": {
+      "estimate": 0.6794258373205742,
+      "ci95": [
+        0.6018957345971564,
+        0.7549019607843137
+      ],
+      "n_mixed_tasks": 108,
+      "n_pairs": 209
+    },
+    "shortcut": {
+      "estimate": 0.4880382775119617,
+      "ci95": [
+        0.4079601990049751,
+        0.5619047619047619
+      ],
+      "n_mixed_tasks": 108,
+      "n_pairs": 209
+    }
+  },
+  "verdict_on_wrong_answers_trained_on_all": {
+    "n_wrong": 155,
+    "argmax_is_own_verdict": 0.174,
+    "ci_own": [
+      0.108,
+      0.247
+    ],
+    "argmax_is_gold_verdict": 0.697,
+    "ci_gold": [
+      0.616,
+      0.776
+    ],
+    "mean_p_own": 0.269,
+    "mean_p_gold": 0.561
+  },
+  "verdict_siblings_different_verdicts": {
+    "n_questions": 110,
+    "n_pairs": 214,
+    "share_tracking_own_verdict": 0.332,
+    "ci95": [
+      0.295,
+      0.368
+    ]
+  },
+  "verdict_on_wrong_answers_trained_on_correct_only": {
+    "n_wrong": 155,
+    "argmax_is_own_verdict": 0.161,
+    "ci_own": [
+      0.101,
+      0.223
+    ],
+    "argmax_is_gold_verdict": 0.742,
+    "ci_gold": [
+      0.664,
+      0.809
+    ],
+    "mean_p_own": 0.206,
+    "mean_p_gold": 0.653
+  }
+}

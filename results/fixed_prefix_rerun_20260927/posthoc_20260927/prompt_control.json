@@ -1,0 +1,129 @@
+{
+  "control_prompt_end_block": {
+    "auroc_shortcut_only": 0.698,
+    "auroc_hidden_only": 0.758,
+    "auroc_hidden_plus_shortcuts": 0.754,
+    "incremental_auroc_combined_minus_shortcut": 0.056,
+    "ci95": [
+      -0.011,
+      0.128
+    ],
+    "hyperparams": {
+      "baseline": {
+        "k": [
+          16
+        ],
+        "C": 0.1,
+        "cv_auroc": 0.6351445086705202
+      },
+      "combined": {
+        "k": [
+          16,
+          16
+        ],
+        "C": 0.1,
+        "cv_auroc": 0.6818392012611667
+      },
+      "hidden": {
+        "k": [
+          16
+        ],
+        "C": 1.0,
+        "cv_auroc": 0.6582238570677877
+      }
+    }
+  },
+  "prompt_end_vs_difficulty_parseable": {
+    "auroc_shortcut_only": 0.632,
+    "auroc_hidden_only": 0.632,
+    "auroc_hidden_plus_shortcuts": 0.643,
+    "incremental_auroc_combined_minus_shortcut": 0.011,
+    "ci95": [
+      -0.055,
+      0.074
+    ],
+    "hyperparams": {
+      "baseline": {
+        "k": [],
+        "C": 1.0,
+        "cv_auroc": 0.5566288693035254
+      },
+      "combined": {
+        "k": [
+          24
+        ],
+        "C": 0.1,
+        "cv_auroc": 0.6328729578675839
+      },
+      "hidden": {
+        "k": [
+          24
+        ],
+        "C": 1.0,
+        "cv_auroc": 0.6347538693035253
+      }
+    }
+  },
+  "prompt_end_vs_difficulty_primary_cohort": {
+    "auroc_shortcut_only": 0.686,
+    "auroc_hidden_only": 0.701,
+    "auroc_hidden_plus_shortcuts": 0.707,
+    "incremental_auroc_combined_minus_shortcut": 0.021,
+    "ci95": [
+      -0.051,
+      0.084
+    ],
+    "hyperparams": {
+      "baseline": {
+        "k": [],
+        "C": 0.1,
+        "cv_auroc": 0.580194429847609
+      },
+      "combined": {
+        "k": [
+          16
+        ],
+        "C": 0.1,
+        "cv_auroc": 0.626684182869154
+      },
+      "hidden": {
+        "k": [
+          16
+        ],
+        "C": 1.0,
+        "cv_auroc": 0.6297320021019441
+      }
+    }
+  },
+  "control_prompt_end_scalar": {
+    "auroc_shortcut_only": 0.698,
+    "auroc_hidden_only": 0.758,
+    "auroc_hidden_plus_shortcuts": 0.77,
+    "incremental_auroc_combined_minus_shortcut": 0.071,
+    "ci95": [
+      -0.011,
+      0.16
+    ],
+    "hyperparams": {
+      "baseline": {
+        "k": [],
+        "C": 0.1,
+        "cv_auroc": 0.6173200210194429
+      },
+      "combined": {
+        "k": [
+          16
+        ],
+        "C": 1.0,
+        "cv_auroc": 0.6497845507094062
+      },
+      "hidden": {
+        "k": [
+          16
+        ],
+        "C": 1.0,
+        "cv_auroc": 0.6582238570677877
+      }
+    }
+  }
+}

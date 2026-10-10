@@ -1,0 +1,29 @@
+[tour2-gen] 180 depth-4 tasks
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 95.30it/s]
+[tour2-gen] 1/180 tasks elapsed=75s
+[tour2-gen] 10/180 tasks elapsed=508s
+[tour2-gen] 20/180 tasks elapsed=1102s
+[tour2-gen] 30/180 tasks elapsed=1681s
+[tour2-gen] 40/180 tasks elapsed=2145s
+[tour2-gen] 50/180 tasks elapsed=2606s
+[tour2-gen] 60/180 tasks elapsed=12691s
+[tour2-gen] 70/180 tasks elapsed=13209s
+[tour2-gen] 80/180 tasks elapsed=13708s
+[tour2-gen] 90/180 tasks elapsed=14310s
+[tour2-gen] 100/180 tasks elapsed=14864s
+[tour2-gen] 110/180 tasks elapsed=15308s
+[tour2-gen] 120/180 tasks elapsed=15790s
+[tour2-gen] 130/180 tasks elapsed=16261s
+[tour2-gen] 140/180 tasks elapsed=16777s
+[tour2-gen] 150/180 tasks elapsed=17248s
+[tour2-gen] 160/180 tasks elapsed=17774s
+[tour2-gen] 170/180 tasks elapsed=18216s
+[tour2-gen] 180/180 tasks elapsed=18731s
+[tour2-gen] wrote table: 1080 records, 0 errors
+run2 generate exit 0 2026-09-27T12:15:42+02:00
+[tour-an] 180 complete tasks of 180
+[tour-an] loaded 6 frozen DualAnchor channels: [('AntisymLinear', '24_L4'), ('AntisymLinear', '36_L4'), ('AntisymLinear', '47_L4'), ('AntisymLinear', '24_L4'), ('AntisymLinear', '36_L4'), ('AntisymLinear', '47_L4')]
+[tour-an] tournament 0.456 vs bestof3 0.406 (Δ +0.050 [-0.022,+0.122]) vs bestof4 0.422 (Δ +0.033 [-0.039,+0.100]) random-prune p95 0.439 ceiling 0.833
+[tour-an] tokens/task: tournament 868 bestof3 814 bestof4 1076 spend_guard=True; prefix AUROC 0.5612252273088654
+[tour-an] VERDICT: TOURNAMENT_MATCHES_MATCHED_BASELINE
+run2 analyze exit 0 2026-09-27T12:16:13+02:00

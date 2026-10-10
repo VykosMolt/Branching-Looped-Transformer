@@ -1,0 +1,49 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 69.59it/s]
+[run4] shard 0: 1/100 tasks, 129s
+[run4] shard 0: 10/100 tasks, 935s
+[run4] shard 0: 20/100 tasks, 1970s
+[run4] shard 0: 30/100 tasks, 2956s
+[run4] shard 0: 40/100 tasks, 3790s
+[run4] shard 0: 50/100 tasks, 4783s
+[run4] shard 0: 60/100 tasks, 5778s
+[run4] shard 0: 70/100 tasks, 6682s
+[run4] shard 0: 80/100 tasks, 7775s
+[run4] shard 0: 90/100 tasks, 8787s
+[run4] shard 0: 100/100 tasks, 9846s
+[run4] wrote run4_shard_0000.pt: 400 records, 0 errors, equivalence max 0.0
+[run4] shard 300: 1/100 tasks, 59s
+[run4] shard 300: 10/100 tasks, 937s
+[run4] shard 300: 20/100 tasks, 1725s
+[run4] shard 300: 30/100 tasks, 2601s
+[run4] shard 300: 40/100 tasks, 3429s
+[run4] shard 300: 50/100 tasks, 4419s
+[run4] shard 300: 60/100 tasks, 5437s
+[run4] shard 300: 70/100 tasks, 5992s
+[run4] shard 300: 80/100 tasks, 6812s
+[run4] shard 300: 90/100 tasks, 7918s
+[run4] shard 300: 100/100 tasks, 8871s
+[run4] wrote run4_shard_0300.pt: 400 records, 0 errors, equivalence max 0.0
+[run4] shard 600: 1/100 tasks, 108s
+[run4] shard 600: 10/100 tasks, 930s
+[run4] shard 600: 20/100 tasks, 1724s
+[run4] shard 600: 30/100 tasks, 2605s
+[run4] shard 600: 40/100 tasks, 3623s
+[run4] shard 600: 50/100 tasks, 4536s
+[run4] shard 600: 60/100 tasks, 5458s
+[run4] shard 600: 70/100 tasks, 6352s
+[run4] shard 600: 80/100 tasks, 7375s
+[run4] shard 600: 90/100 tasks, 8344s
+[run4] shard 600: 100/100 tasks, 9334s
+[run4] wrote run4_shard_0600.pt: 400 records, 0 errors, equivalence max 0.0
+[run4] shard 900: 1/100 tasks, 129s
+[run4] shard 900: 10/100 tasks, 948s
+[run4] shard 900: 20/100 tasks, 1964s
+[run4] shard 900: 30/100 tasks, 2851s
+[run4] shard 900: 40/100 tasks, 3824s
+[run4] shard 900: 50/100 tasks, 4914s
+[run4] shard 900: 60/100 tasks, 5797s
+[run4] shard 900: 70/100 tasks, 6702s
+[run4] shard 900: 80/100 tasks, 7844s
+[run4] shard 900: 90/100 tasks, 8756s
+[run4] shard 900: 100/100 tasks, 9394s
+[run4] wrote run4_shard_0900.pt: 400 records, 0 errors, equivalence max 0.0

@@ -1,0 +1,24 @@
+{
+  "V3": [
+    {
+      "heldout_auroc": null,
+      "seed": 20260729,
+      "status": "NOT_RUN_INVENTORY_GATE_FAILURE",
+      "validation_auroc": null
+    },
+    {
+      "heldout_auroc": null,
+      "seed": 20260730,
+      "status": "NOT_RUN_INVENTORY_GATE_FAILURE",
+      "validation_auroc": null
+    },
+    {
+      "heldout_auroc": null,
+      "seed": 20260731,
+      "status": "NOT_RUN_INVENTORY_GATE_FAILURE",
+      "validation_auroc": null
+    }
+  ],
+  "technical_execution_failure": false,
+  "upstream_artifact_gate_failure": true
+}

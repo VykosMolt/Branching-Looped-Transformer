@@ -1,0 +1,14 @@
+{
+  "completed_at_utc": "2026-07-29T08:15:46.838453+00:00",
+  "device": "cpu",
+  "finalizer_elapsed_seconds": 4.691749811172485,
+  "inventory_to_final_package_seconds": 971.476584,
+  "platform": "Linux-7.1.5-1-cachyos-x86_64-with-glibc2.44",
+  "python": "3.14.6 (main, Jun 15 2026, 11:36:54) [GCC 16.1.1 20260430]",
+  "verdicts": {
+    "aggregate": "VISIBLE_PREFIX_AGGREGATE_NOT_ADJUDICABLE",
+    "gsm8k": "VISIBLE_PREFIX_NOT_ADJUDICABLE",
+    "horizon_new_only": "VISIBLE_PREFIX_NOT_ADJUDICABLE",
+    "horizon_pooled": "VISIBLE_PREFIX_NOT_ADJUDICABLE"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "checkpoints": [
+    {
+      "H": null,
+      "HV": null,
+      "HV_minus_V": null,
+      "H_minus_V0": null,
+      "N": 16,
+      "V": null,
+      "status": "NOT_EVALUABLE_GENERATED_TOKEN_IDS_ABSENT",
+      "strict_clean_retention": null
+    },
+    {
+      "H": null,
+      "HV": null,
+      "HV_minus_V": null,
+      "H_minus_V0": null,
+      "N": 32,
+      "V": null,
+      "status": "NOT_EVALUABLE_GENERATED_TOKEN_IDS_ABSENT",
+      "strict_clean_retention": null
+    },
+    {
+      "H": null,
+      "HV": null,
+      "HV_minus_V": null,
+      "H_minus_V0": null,
+      "N": 48,
+      "V": null,
+      "status": "NOT_EVALUABLE_GENERATED_TOKEN_IDS_ABSENT",
+      "strict_clean_retention": null
+    },
+    {
+      "H": null,
+      "HV": null,
+      "HV_minus_V": null,
+      "H_minus_V0": null,
+      "N": 64,
+      "V": null,
+      "status": "NOT_EVALUABLE_GENERATED_TOKEN_IDS_ABSENT",
+      "strict_clean_retention": null
+    },
+    {
+      "H": null,
+      "HV": null,
+      "HV_minus_V": null,
+      "H_minus_V0": null,
+      "N": 96,
+      "V": null,
+      "status": "NOT_EVALUABLE_GENERATED_TOKEN_IDS_ABSENT",
+      "strict_clean_retention": null
+    },
+    {
+      "H": null,
+      "HV": null,
+      "HV_minus_V": null,
+      "H_minus_V0": null,
+      "N": 128,
+      "V": null,
+      "status": "NOT_EVALUABLE_GENERATED_TOKEN_IDS_ABSENT",
+      "strict_clean_retention": null
+    }
+  ],
+  "fixed_grid": [
+    16,
+    32,
+    48,
+    64,
+    96,
+    128
+  ]
+}

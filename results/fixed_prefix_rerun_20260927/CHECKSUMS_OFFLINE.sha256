@@ -1,0 +1,9 @@
+# fixed_prefix_rerun_20260927: files of this run that are NOT in this repository (generation/feature shards, or over 20 MB).
+# They are archived offline; the hashes let a copy be verified.
+3c5af86c12f2a0cd4d3c0413dab473a9de280040a91dc3df59f6ec5c28c5174b  posthoc_20260927/prompt_end_states.pt
+1d0394a31f10d1be6edc3d8c2ba13120a972b289413c30c6de0e35dc2566c15f  run1_shard_off2400.pt
+cd6c99e551fc9d6f198a65b84c23faa691830df6278bdf78ddfe8566c6169cb7  run1_shard_off2500.pt
+551debdc36b721febcdad815801029d68fe5e967e306633d16a9ba14a608779e  run1_shard_off2600.pt
+d0ffaf9b18bccd489828592427cfda19a7c95cd8f56d24753b1527e4de13b504  run1_shard_off2700.pt
+248c16f8d0b39e5e7dc9ff0ded1b048a3c6cb3d04ad0c41834cb50e12fa4e0c5  run1_shard_off2800.pt
+1ebe886f2d5c739e8545198a2b96d708bd8a8d4c0686c8de4988dcc3f111bc2d  run1_shard_off2900.pt

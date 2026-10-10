@@ -1,0 +1,8 @@
+# prompt_only_horizon_20260926: files of this run that are in this repository. Check: cd into this directory, sha256sum -c CHECKSUMS.sha256
+# Files of the run that are not in the repository are listed in CHECKSUMS_OFFLINE.sha256; the two lists together cover the full run.
+4222ca627868905827e9b97718ae8e79c448a4b89d11107303faa4501b0e11f5  PLAN.md
+6ae07c72173975d3ca7864606fb26dda0ff1d800ffd86b6244818d34a5e28f64  PLAN.sha256
+6a720499260a9f465bcc7410625c1bb114fe2175ede5e7a54d6664655c9430d6  SHA256SUMS
+e6f0cd8d66ea85f4a5f0b399ce52fc7923e9b4dbb9905e21112f132194e1affb  heldout_predictions.json
+269d246d85d1e42d8f767e791a9ea032a302f94c9dded3579196f179bd6da31f  results.json
+90c1b8860fba6960b885a7cb037ab233dcf879ac69081a2a1078114a28cf2f3b  run_prompt_only.py

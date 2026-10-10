@@ -1,0 +1,137 @@
+start 2026-10-03T09:55:17+02:00
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00, 11.93it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 12.84it/s]
+[run3] shard 0: 1/100 tasks, 55s
+[run3] shard 0: 10/100 tasks, 354s
+[run3] shard 0: 20/100 tasks, 662s
+[run3] shard 0: 30/100 tasks, 1005s
+[run3] shard 0: 40/100 tasks, 1324s
+[run3] shard 0: 50/100 tasks, 1659s
+[run3] shard 0: 60/100 tasks, 1992s
+[run3] shard 0: 70/100 tasks, 2343s
+[run3] shard 0: 80/100 tasks, 2660s
+[run3] shard 0: 90/100 tasks, 2975s
+[run3] shard 0: 100/100 tasks, 3300s
+[run3] wrote run3_shard_000.pt: 400 records, 0 errors, equivalence max 0.0, tf max 3.4303060392204543e-09
+[run3] shard 100: 1/100 tasks, 43s
+[run3] shard 100: 10/100 tasks, 344s
+[run3] shard 100: 20/100 tasks, 654s
+[run3] shard 100: 30/100 tasks, 974s
+[run3] shard 100: 40/100 tasks, 1287s
+[run3] shard 100: 50/100 tasks, 1573s
+[run3] shard 100: 60/100 tasks, 1900s
+[run3] shard 100: 70/100 tasks, 2209s
+[run3] shard 100: 80/100 tasks, 2516s
+[run3] shard 100: 90/100 tasks, 2816s
+[run3] shard 100: 100/100 tasks, 3070s
+[run3] wrote run3_shard_100.pt: 400 records, 0 errors, equivalence max 0.0, tf max 4.592647762091673e-09
+[run3] shard 200: 1/100 tasks, 31s
+[run3] shard 200: 10/100 tasks, 319s
+[run3] shard 200: 20/100 tasks, 611s
+[run3] shard 200: 30/100 tasks, 881s
+[run3] shard 200: 40/100 tasks, 1154s
+[run3] shard 200: 50/100 tasks, 1460s
+[run3] shard 200: 60/100 tasks, 1720s
+[run3] shard 200: 70/100 tasks, 2019s
+[run3] shard 200: 80/100 tasks, 2322s
+[run3] shard 200: 90/100 tasks, 2624s
+[run3] shard 200: 100/100 tasks, 2927s
+[run3] wrote run3_shard_200.pt: 400 records, 0 errors, equivalence max 0.0, tf max 3.0838904763186292e-09
+[run3] shard 300: 1/100 tasks, 32s
+[run3] shard 300: 10/100 tasks, 305s
+[run3] shard 300: 20/100 tasks, 604s
+[run3] shard 300: 30/100 tasks, 863s
+[run3] shard 300: 40/100 tasks, 1174s
+[run3] shard 300: 50/100 tasks, 1499s
+[run3] shard 300: 60/100 tasks, 1824s
+[run3] shard 300: 70/100 tasks, 2134s
+[run3] shard 300: 80/100 tasks, 2429s
+[run3] shard 300: 90/100 tasks, 2727s
+[run3] shard 300: 100/100 tasks, 3001s
+[run3] wrote run3_shard_300.pt: 400 records, 0 errors, equivalence max 0.0, tf max 3.1429153446449476e-09
+[run3] shard 400: 1/100 tasks, 23s
+[run3] shard 400: 10/100 tasks, 270s
+[run3] shard 400: 20/100 tasks, 590s
+[run3] shard 400: 30/100 tasks, 903s
+[run3] shard 400: 40/100 tasks, 1167s
+[run3] shard 400: 50/100 tasks, 1543s
+[run3] shard 400: 60/100 tasks, 1842s
+[run3] shard 400: 70/100 tasks, 2133s
+[run3] shard 400: 80/100 tasks, 2429s
+[run3] shard 400: 90/100 tasks, 2737s
+[run3] shard 400: 100/100 tasks, 3043s
+[run3] wrote run3_shard_400.pt: 400 records, 0 errors, equivalence max 0.0, tf max 7.60038432190413e-09
+[run3] shard 500: 1/100 tasks, 43s
+[run3] shard 500: 10/100 tasks, 273s
+[run3] shard 500: 20/100 tasks, 546s
+[run3] shard 500: 30/100 tasks, 815s
+[run3] shard 500: 40/100 tasks, 1150s
+[run3] shard 500: 50/100 tasks, 1443s
+[run3] shard 500: 60/100 tasks, 1748s
+[run3] shard 500: 70/100 tasks, 2055s
+[run3] shard 500: 80/100 tasks, 2323s
+[run3] shard 500: 90/100 tasks, 2583s
+[run3] shard 500: 100/100 tasks, 2897s
+[run3] wrote run3_shard_500.pt: 400 records, 0 errors, equivalence max 0.0, tf max 2.7322849815991646e-09
+gen exit 0 2026-10-03T14:59:26+02:00
+{
+  "integrity": {
+    "n_records": 2400,
+    "n_tasks": 600,
+    "tasks_missing": 0,
+    "errors": [],
+    "disjoint_from_published_170": true,
+    "splits_match_split_for": true,
+    "decode_roundtrip_all": true
+  },
+  "n_star": 96,
+  "answer_free_fraction_train": {
+    "16": 0.9850993377483444,
+    "32": 0.9536423841059603,
+    "48": 0.9337748344370861,
+    "64": 0.8882450331125827,
+    "96": 0.820364238410596,
+    "128": 0.6895695364238411,
+    "160": 0.5364238410596026,
+    "192": 0.38741721854304634,
+    "256": 0.1630794701986755
+  },
+  "answer_free_fraction_by_split": {
+    "train": {
+      "16": 0.9851,
+      "32": 0.9536,
+      "48": 0.9338,
+      "64": 0.8882,
+      "96": 0.8204,
+      "128": 0.6896,
+      "160": 0.5364,
+      "192": 0.3874,
+      "256": 0.1631
+    },
+    "val": {
+      "16": 0.9836,
+      "32": 0.9696,
+      "48": 0.9346,
+      "64": 0.9042,
+      "96": 0.8037,
+      "128": 0.6939,
+      "160": 0.5818,
+      "192": 0.4229,
+      "256": 0.1752
+    },
+    "heldout": {
+      "16": 0.9843,
+      "32": 0.9503,
+      "48": 0.928,
+      "64": 0.8914,
+      "96": 0.7866,
+      "128": 0.6728,
+      "160": 0.538,
+      "192": 0.3691,
+      "256": 0.1623
+    }
+  },
+  "parseable_fraction": 0.9695833333333334,
+  "hit_max_tokens_fraction": 0.13666666666666666
+}
+audit exit 0 2026-10-03T14:59:32+02:00
+full exit 0 2026-10-03T16:12:36+02:00

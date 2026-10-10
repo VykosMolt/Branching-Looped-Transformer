@@ -1,0 +1,76 @@
+start 2026-09-27T02:05:46+02:00
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 34.19it/s]
+[run1] shard 2400: 1/100 tasks, 35s
+[run1] shard 2400: 10/100 tasks, 309s
+[run1] shard 2400: 20/100 tasks, 606s
+[run1] shard 2400: 30/100 tasks, 925s
+[run1] shard 2400: 40/100 tasks, 1303s
+[run1] shard 2400: 50/100 tasks, 1623s
+[run1] shard 2400: 60/100 tasks, 1959s
+[run1] shard 2400: 70/100 tasks, 2195s
+[run1] shard 2400: 80/100 tasks, 2522s
+[run1] shard 2400: 90/100 tasks, 2843s
+[run1] shard 2400: 100/100 tasks, 3109s
+[run1] wrote run1_shard_off2400.pt: 400 records, 0 errors, equivalence max 0.0
+[run1] shard 2500: 1/100 tasks, 42s
+[run1] shard 2500: 10/100 tasks, 315s
+[run1] shard 2500: 20/100 tasks, 663s
+[run1] shard 2500: 30/100 tasks, 975s
+[run1] shard 2500: 40/100 tasks, 1288s
+[run1] shard 2500: 50/100 tasks, 1601s
+[run1] shard 2500: 60/100 tasks, 1864s
+[run1] shard 2500: 70/100 tasks, 2134s
+[run1] shard 2500: 80/100 tasks, 2342s
+[run1] shard 2500: 90/100 tasks, 2618s
+[run1] shard 2500: 100/100 tasks, 2915s
+[run1] wrote run1_shard_off2500.pt: 400 records, 0 errors, equivalence max 0.0
+[run1] shard 2600: 1/100 tasks, 25s
+[run1] shard 2600: 10/100 tasks, 342s
+[run1] shard 2600: 20/100 tasks, 688s
+[run1] shard 2600: 30/100 tasks, 976s
+[run1] shard 2600: 40/100 tasks, 1267s
+[run1] shard 2600: 50/100 tasks, 1575s
+[run1] shard 2600: 60/100 tasks, 1905s
+[run1] shard 2600: 70/100 tasks, 2210s
+[run1] shard 2600: 80/100 tasks, 2485s
+[run1] shard 2600: 90/100 tasks, 2819s
+[run1] shard 2600: 100/100 tasks, 3056s
+[run1] wrote run1_shard_off2600.pt: 400 records, 0 errors, equivalence max 0.0
+[run1] shard 2700: 1/100 tasks, 42s
+[run1] shard 2700: 10/100 tasks, 334s
+[run1] shard 2700: 20/100 tasks, 626s
+[run1] shard 2700: 30/100 tasks, 978s
+[run1] shard 2700: 40/100 tasks, 1311s
+[run1] shard 2700: 50/100 tasks, 1593s
+[run1] shard 2700: 60/100 tasks, 1786s
+[run1] shard 2700: 70/100 tasks, 2098s
+[run1] shard 2700: 80/100 tasks, 2375s
+[run1] shard 2700: 90/100 tasks, 2582s
+[run1] shard 2700: 100/100 tasks, 2894s
+[run1] wrote run1_shard_off2700.pt: 400 records, 0 errors, equivalence max 0.0
+[run1] shard 2800: 1/100 tasks, 35s
+[run1] shard 2800: 10/100 tasks, 320s
+[run1] shard 2800: 20/100 tasks, 610s
+[run1] shard 2800: 30/100 tasks, 918s
+[run1] shard 2800: 40/100 tasks, 1217s
+[run1] shard 2800: 50/100 tasks, 1495s
+[run1] shard 2800: 60/100 tasks, 1756s
+[run1] shard 2800: 70/100 tasks, 1986s
+[run1] shard 2800: 80/100 tasks, 2234s
+[run1] shard 2800: 90/100 tasks, 2544s
+[run1] shard 2800: 100/100 tasks, 2855s
+[run1] wrote run1_shard_off2800.pt: 400 records, 0 errors, equivalence max 0.0
+[run1] shard 2900: 1/100 tasks, 26s
+[run1] shard 2900: 10/100 tasks, 300s
+[run1] shard 2900: 20/100 tasks, 613s
+[run1] shard 2900: 30/100 tasks, 907s
+[run1] shard 2900: 40/100 tasks, 1215s
+[run1] shard 2900: 50/100 tasks, 1528s
+[run1] shard 2900: 60/100 tasks, 1833s
+[run1] shard 2900: 70/100 tasks, 2128s
+[run1] shard 2900: 80/100 tasks, 2450s
+[run1] ERROR synthlogic::synthetic_propositional::1406: CUDA out of memory. Tried to allocate 12.00 MiB. GPU 0 has a total capacity of 11.59 GiB of which 17.44 MiB is free. Including non-PyTorch memory, this process has 11.56 GiB memory in use. Of the allocated memory 9.09 GiB is allocated by PyTorch, and 2.27 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+[run1] shard 2900: 90/100 tasks, 2719s
+[run1] shard 2900: 100/100 tasks, 3021s
+[run1] wrote run1_shard_off2900.pt: 396 records, 1 errors, equivalence max 0.0
+run1 exit 0 2026-09-27T07:03:26+02:00

@@ -1,0 +1,9 @@
+cohort,family,validation_auroc,selected,status
+horizon_new_only,V0,,False,NOT_RUN_INVENTORY_GATE_FAILURE
+horizon_new_only,V1,,False,NOT_RUN_INVENTORY_GATE_FAILURE
+horizon_new_only,V2,,False,NOT_RUN_INVENTORY_GATE_FAILURE
+horizon_new_only,V3,,False,NOT_RUN_INVENTORY_GATE_FAILURE
+horizon_pooled,V0,,False,NOT_RUN_INVENTORY_GATE_FAILURE
+horizon_pooled,V1,,False,NOT_RUN_INVENTORY_GATE_FAILURE
+horizon_pooled,V2,,False,NOT_RUN_INVENTORY_GATE_FAILURE
+horizon_pooled,V3,,False,NOT_RUN_INVENTORY_GATE_FAILURE

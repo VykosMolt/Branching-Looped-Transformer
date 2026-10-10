@@ -1,0 +1,4 @@
+# Output of reader_ho.py, re-run 2026-10-04 by the main session
+C (0.7000547877416846, 1.0) held-out across AUROC 0.65
+held-out within-question reader: {'estimate': 0.7534246575342466, 'ci95': [0.6376811594202898, 0.8507462686567164], 'n_mixed_tasks': 43, 'n_pairs': 73}
+paired hidden - reader on the 73 held-out pairs: -0.014 [-0.137, 0.116]

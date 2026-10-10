@@ -1,0 +1,12 @@
+{
+  "HV_minus_V_ci95": null,
+  "H_minus_V0_ci95": null,
+  "classifier_fits": 0,
+  "generation_calls": 0,
+  "reason": "no held-out score pairs exist",
+  "replay_calls": 0,
+  "replicates_preregistered": null,
+  "replicates_run": 0,
+  "status": "NOT_RUN_INVENTORY_GATE_FAILURE",
+  "verdict": "FIXED_PREFIX_HORIZON_NOT_ADJUDICABLE"
+}

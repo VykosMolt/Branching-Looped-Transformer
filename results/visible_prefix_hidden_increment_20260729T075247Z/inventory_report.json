@@ -1,0 +1,954 @@
+{
+  "cohorts": {
+    "gsm8k": {
+      "artifact_fields": {
+        "hidden_features": {
+          "field": "preanswer_feat",
+          "shape": [
+            3,
+            4,
+            2048
+          ],
+          "status": "PRESERVED"
+        },
+        "labels_task_ids": {
+          "fields": [
+            "correct",
+            "task_id"
+          ],
+          "status": "PRESERVED"
+        },
+        "original_prompts": {
+          "source": "/home/moloch/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866/gsm8k-test.arrow",
+          "status": "RECONSTRUCTIBLE_FROM_DATASET"
+        },
+        "partitions": {
+          "status": "ABSENT_ORIGINAL_GROUPED_CV_ONLY"
+        },
+        "published_heldout_predictions": {
+          "status": "ABSENT_NO_ORIGINAL_HELDOUT_SPLIT"
+        },
+        "raw_hidden_scores": {
+          "source": "/home/moloch/ouro_project/artifacts/reports/paper_verification/fable_hardening_checks_20260710_175017/preanswer_oof_predictions.csv",
+          "status": "HISTORICAL_OOF_ONLY"
+        },
+        "strict_cut": {
+          "field": "n_pre_tok",
+          "status": "PRESERVED_LENGTH_ONLY"
+        },
+        "strict_pre_cut_shortcuts": {
+          "fields": [
+            "n_pre_tok",
+            "lp_mean_logprob",
+            "lp_mean_entropy",
+            "lp_last_entropy",
+            "prompt_tok",
+            "question_chars"
+          ],
+          "status": "PRESERVED"
+        },
+        "tokenizer": {
+          "id": "ByteDance/Ouro-2.6B",
+          "revision": "1ed04250da1a9936042725d302e81c8fa2ab5abd",
+          "status": "PRESERVED_AND_REVISION_IDENTIFIED"
+        },
+        "trajectory": {
+          "status": "ABSENT"
+        }
+      },
+      "exact_prefix_inventory_gate": "FAIL",
+      "hv_inventory_gate": "FAIL",
+      "inventory_status": "INCOMPLETE",
+      "n_candidates": 680,
+      "n_tasks": 170,
+      "partition_inventory_gate": "FAIL",
+      "reason": "The strict-preanswer artifact preserves hidden features and cut lengths but not generated token IDs, rendered trajectories, or visible-prefix text. The original evaluation used grouped cross-validation and did not preserve a train/validation/held-out partition. Exact prefixes and the required partition cannot be reconstructed without changing the estimand.",
+      "record_keys": [
+        "domain",
+        "n_correct",
+        "n_samples",
+        "prompt_only_feat",
+        "prompt_tok",
+        "question_chars",
+        "samples",
+        "task_id"
+      ],
+      "sample_keys": [
+        "correct",
+        "gen_tok",
+        "has_preanswer",
+        "lp_last_entropy",
+        "lp_mean_entropy",
+        "lp_mean_logprob",
+        "lp_n",
+        "n_pre_tok",
+        "parsed",
+        "preanswer_feat",
+        "preanswer_reason",
+        "sample"
+      ]
+    },
+    "horizon_new_only": {
+      "artifact_fields": {
+        "hidden_features": {
+          "field": "preanswer_features",
+          "shape": [
+            3,
+            4,
+            2048
+          ],
+          "status": "PRESERVED_ALL_SPLITS"
+        },
+        "labels_task_ids": {
+          "fields": [
+            "success",
+            "task_uid"
+          ],
+          "status": "PRESERVED"
+        },
+        "original_head": {
+          "failure_rule": "must match published held-out hidden scores without held-out fitting",
+          "status": "DETERMINISTIC_REPRODUCTION_SPEC_PRESERVED_WEIGHTS_ABSENT"
+        },
+        "original_prompts": {
+          "evidence": [
+            "/home/moloch/ouro_project/data/branch_training_logic_expansion_v1/processed/logic_tasks.jsonl",
+            "/home/moloch/ouro_project/utilities/tests/manual/bg_v2_overnight_horizon_generate.py"
+          ],
+          "status": "RECONSTRUCTIBLE_EXACTLY"
+        },
+        "partitions": {
+          "field": "split",
+          "status": "PRESERVED"
+        },
+        "raw_hidden_scores": {
+          "evidence": [
+            "/home/moloch/ouro_project/artifacts/reports/paper1_v2_overnight_20260724/horizon_logic/raw_predictions_heldout.json",
+            "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/raw_predictions_heldout_v3.json"
+          ],
+          "status": "HELDOUT_ONLY"
+        },
+        "record_keys": [
+          "candidate_idx",
+          "category",
+          "found_final_marker",
+          "generated_text",
+          "gold_answer",
+          "gold_letter",
+          "hit_max_tokens",
+          "malformed",
+          "mean_logprob_pre",
+          "min_logprob_pre",
+          "n_gen_tok",
+          "n_pre_tok",
+          "options",
+          "parsed_answer",
+          "preanswer_features",
+          "prompt_only_features",
+          "prompt_tok",
+          "proof_depth",
+          "seed",
+          "split",
+          "success",
+          "task_uid"
+        ],
+        "strict_cut": {
+          "field": "n_pre_tok",
+          "status": "PRESERVED"
+        },
+        "strict_pre_cut_shortcuts": {
+          "allowed_fields": [
+            "n_pre_tok",
+            "mean_logprob_pre",
+            "min_logprob_pre"
+          ],
+          "explicitly_disallowed": [
+            "hit_max_tokens",
+            "malformed",
+            "parsed_answer",
+            "found_final_marker"
+          ],
+          "status": "PRESERVED_WITH_DISALLOWED_FIELDS_FILTERED_LATER"
+        },
+        "tokenizer": {
+          "id": "ByteDance/Ouro-2.6B",
+          "local_path": "/home/moloch/ouro_project/models/ouro_rltt_local",
+          "revision": "1ed04250da1a9936042725d302e81c8fa2ab5abd",
+          "status": "PRESERVED_AND_REVISION_IDENTIFIED",
+          "tokenizer_sha256": "fcb808fe5e7642f5299be28aea07fc7f6d4f4364c3ac5e408e15a772cbc8fa8d"
+        },
+        "trajectory": {
+          "field": "generated_text",
+          "status": "PRESERVED_EXACT_RENDERED"
+        }
+      },
+      "exact_prefix_inventory_gate": "PASS",
+      "hv_inventory_gate": "PENDING_EXACT_HEAD_REPRODUCTION",
+      "inventory_status": "CONDITIONALLY_COMPLETE",
+      "partition_inventory_gate": "PASS",
+      "reason": "Exact rendered trajectories, stored token cut indices, source prompts, tokenizer revision, frozen hidden features, splits, labels, task IDs, and held-out published scores exist. Hidden-only train/validation scores must be cross-fitted from the preserved original head specification.",
+      "shards": [
+        {
+          "feature_shape": [
+            3,
+            4,
+            2048
+          ],
+          "model": "models/ouro_rltt_local",
+          "num_loops": 4,
+          "path": "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/horizon_logic/horizon_generation_v3_off170.pt",
+          "payload_keys": [
+            "budget_hit",
+            "budget_seconds",
+            "category",
+            "depth_range",
+            "elapsed_seconds",
+            "errors",
+            "feature_shape",
+            "k_per_task",
+            "max_new_tokens",
+            "model",
+            "n_candidates",
+            "n_tasks_completed",
+            "n_tasks_requested",
+            "num_loops",
+            "records",
+            "seed",
+            "tag",
+            "tap_layers",
+            "task_offset",
+            "temperature",
+            "top_p"
+          ],
+          "record_count": 680,
+          "record_keys": [
+            "candidate_idx",
+            "category",
+            "found_final_marker",
+            "generated_text",
+            "gold_answer",
+            "gold_letter",
+            "hit_max_tokens",
+            "malformed",
+            "mean_logprob_pre",
+            "min_logprob_pre",
+            "n_gen_tok",
+            "n_pre_tok",
+            "options",
+            "parsed_answer",
+            "preanswer_features",
+            "prompt_only_features",
+            "prompt_tok",
+            "proof_depth",
+            "seed",
+            "split",
+            "success",
+            "task_uid"
+          ],
+          "seed": 20260724,
+          "tap_layers": [
+            24,
+            36,
+            47
+          ],
+          "task_offset": 170
+        },
+        {
+          "feature_shape": [
+            3,
+            4,
+            2048
+          ],
+          "model": "models/ouro_rltt_local",
+          "num_loops": 4,
+          "path": "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/horizon_logic/horizon_generation_v3_off340.pt",
+          "payload_keys": [
+            "budget_hit",
+            "budget_seconds",
+            "category",
+            "depth_range",
+            "elapsed_seconds",
+            "errors",
+            "feature_shape",
+            "k_per_task",
+            "max_new_tokens",
+            "model",
+            "n_candidates",
+            "n_tasks_completed",
+            "n_tasks_requested",
+            "num_loops",
+            "records",
+            "seed",
+            "tag",
+            "tap_layers",
+            "task_offset",
+            "temperature",
+            "top_p"
+          ],
+          "record_count": 680,
+          "record_keys": [
+            "candidate_idx",
+            "category",
+            "found_final_marker",
+            "generated_text",
+            "gold_answer",
+            "gold_letter",
+            "hit_max_tokens",
+            "malformed",
+            "mean_logprob_pre",
+            "min_logprob_pre",
+            "n_gen_tok",
+            "n_pre_tok",
+            "options",
+            "parsed_answer",
+            "preanswer_features",
+            "prompt_only_features",
+            "prompt_tok",
+            "proof_depth",
+            "seed",
+            "split",
+            "success",
+            "task_uid"
+          ],
+          "seed": 20260724,
+          "tap_layers": [
+            24,
+            36,
+            47
+          ],
+          "task_offset": 340
+        },
+        {
+          "feature_shape": [
+            3,
+            4,
+            2048
+          ],
+          "model": "models/ouro_rltt_local",
+          "num_loops": 4,
+          "path": "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/horizon_logic/horizon_generation_v3_off510.pt",
+          "payload_keys": [
+            "budget_hit",
+            "budget_seconds",
+            "category",
+            "depth_range",
+            "elapsed_seconds",
+            "errors",
+            "feature_shape",
+            "k_per_task",
+            "max_new_tokens",
+            "model",
+            "n_candidates",
+            "n_tasks_completed",
+            "n_tasks_requested",
+            "num_loops",
+            "records",
+            "seed",
+            "tag",
+            "tap_layers",
+            "task_offset",
+            "temperature",
+            "top_p"
+          ],
+          "record_count": 680,
+          "record_keys": [
+            "candidate_idx",
+            "category",
+            "found_final_marker",
+            "generated_text",
+            "gold_answer",
+            "gold_letter",
+            "hit_max_tokens",
+            "malformed",
+            "mean_logprob_pre",
+            "min_logprob_pre",
+            "n_gen_tok",
+            "n_pre_tok",
+            "options",
+            "parsed_answer",
+            "preanswer_features",
+            "prompt_only_features",
+            "prompt_tok",
+            "proof_depth",
+            "seed",
+            "split",
+            "success",
+            "task_uid"
+          ],
+          "seed": 20260724,
+          "tap_layers": [
+            24,
+            36,
+            47
+          ],
+          "task_offset": 510
+        }
+      ],
+      "split_summary": {
+        "candidate_counts_all_rows": {
+          "heldout": 580,
+          "train": 1064,
+          "val": 396
+        },
+        "cohort": "horizon_new_only",
+        "crossing_task_ids": [],
+        "n_unique_tasks": 510,
+        "task_counts": {
+          "heldout": 145,
+          "train": 266,
+          "val": 99
+        },
+        "task_split_sha256": "395e9694b93defe707afd64fa7982986359a8a93865b4ec0d9ff5d6aaa916a55",
+        "zero_task_crossing": true
+      }
+    },
+    "horizon_pooled": {
+      "artifact_fields": {
+        "hidden_features": {
+          "field": "preanswer_features",
+          "shape": [
+            3,
+            4,
+            2048
+          ],
+          "status": "PRESERVED_ALL_SPLITS"
+        },
+        "labels_task_ids": {
+          "fields": [
+            "success",
+            "task_uid"
+          ],
+          "status": "PRESERVED"
+        },
+        "original_head": {
+          "failure_rule": "must match published held-out hidden scores without held-out fitting",
+          "status": "DETERMINISTIC_REPRODUCTION_SPEC_PRESERVED_WEIGHTS_ABSENT"
+        },
+        "original_prompts": {
+          "evidence": [
+            "/home/moloch/ouro_project/data/branch_training_logic_expansion_v1/processed/logic_tasks.jsonl",
+            "/home/moloch/ouro_project/utilities/tests/manual/bg_v2_overnight_horizon_generate.py"
+          ],
+          "status": "RECONSTRUCTIBLE_EXACTLY"
+        },
+        "partitions": {
+          "field": "split",
+          "status": "PRESERVED"
+        },
+        "raw_hidden_scores": {
+          "evidence": [
+            "/home/moloch/ouro_project/artifacts/reports/paper1_v2_overnight_20260724/horizon_logic/raw_predictions_heldout.json",
+            "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/raw_predictions_heldout_v3.json"
+          ],
+          "status": "HELDOUT_ONLY"
+        },
+        "record_keys": [
+          "candidate_idx",
+          "category",
+          "found_final_marker",
+          "generated_text",
+          "gold_answer",
+          "gold_letter",
+          "hit_max_tokens",
+          "malformed",
+          "mean_logprob_pre",
+          "min_logprob_pre",
+          "n_gen_tok",
+          "n_pre_tok",
+          "options",
+          "parsed_answer",
+          "preanswer_features",
+          "prompt_only_features",
+          "prompt_tok",
+          "proof_depth",
+          "seed",
+          "split",
+          "success",
+          "task_uid"
+        ],
+        "strict_cut": {
+          "field": "n_pre_tok",
+          "status": "PRESERVED"
+        },
+        "strict_pre_cut_shortcuts": {
+          "allowed_fields": [
+            "n_pre_tok",
+            "mean_logprob_pre",
+            "min_logprob_pre"
+          ],
+          "explicitly_disallowed": [
+            "hit_max_tokens",
+            "malformed",
+            "parsed_answer",
+            "found_final_marker"
+          ],
+          "status": "PRESERVED_WITH_DISALLOWED_FIELDS_FILTERED_LATER"
+        },
+        "tokenizer": {
+          "id": "ByteDance/Ouro-2.6B",
+          "local_path": "/home/moloch/ouro_project/models/ouro_rltt_local",
+          "revision": "1ed04250da1a9936042725d302e81c8fa2ab5abd",
+          "status": "PRESERVED_AND_REVISION_IDENTIFIED",
+          "tokenizer_sha256": "fcb808fe5e7642f5299be28aea07fc7f6d4f4364c3ac5e408e15a772cbc8fa8d"
+        },
+        "trajectory": {
+          "field": "generated_text",
+          "status": "PRESERVED_EXACT_RENDERED"
+        }
+      },
+      "exact_prefix_inventory_gate": "PASS",
+      "hv_inventory_gate": "PENDING_EXACT_HEAD_REPRODUCTION",
+      "inventory_status": "CONDITIONALLY_COMPLETE",
+      "partition_inventory_gate": "PASS",
+      "reason": "The pooled v2+v3 arm has the same complete rendered-text, cut, split, feature, and reproduction evidence as the new-only arm.",
+      "shards": [
+        {
+          "feature_shape": [
+            3,
+            4,
+            2048
+          ],
+          "model": "models/ouro_rltt_local",
+          "num_loops": 4,
+          "path": "/home/moloch/ouro_project/artifacts/reports/paper1_v2_overnight_20260724/horizon_logic/horizon_generation_main_off0.pt",
+          "payload_keys": [
+            "budget_hit",
+            "budget_seconds",
+            "category",
+            "depth_range",
+            "elapsed_seconds",
+            "errors",
+            "feature_shape",
+            "k_per_task",
+            "max_new_tokens",
+            "model",
+            "n_candidates",
+            "n_tasks_completed",
+            "n_tasks_requested",
+            "num_loops",
+            "records",
+            "seed",
+            "tag",
+            "tap_layers",
+            "task_offset",
+            "temperature",
+            "top_p"
+          ],
+          "record_count": 680,
+          "record_keys": [
+            "candidate_idx",
+            "category",
+            "found_final_marker",
+            "generated_text",
+            "gold_answer",
+            "gold_letter",
+            "hit_max_tokens",
+            "malformed",
+            "mean_logprob_pre",
+            "min_logprob_pre",
+            "n_gen_tok",
+            "n_pre_tok",
+            "options",
+            "parsed_answer",
+            "preanswer_features",
+            "prompt_only_features",
+            "prompt_tok",
+            "proof_depth",
+            "seed",
+            "split",
+            "success",
+            "task_uid"
+          ],
+          "seed": 20260724,
+          "tap_layers": [
+            24,
+            36,
+            47
+          ],
+          "task_offset": 0
+        },
+        {
+          "feature_shape": [
+            3,
+            4,
+            2048
+          ],
+          "model": "models/ouro_rltt_local",
+          "num_loops": 4,
+          "path": "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/horizon_logic/horizon_generation_v3_off170.pt",
+          "payload_keys": [
+            "budget_hit",
+            "budget_seconds",
+            "category",
+            "depth_range",
+            "elapsed_seconds",
+            "errors",
+            "feature_shape",
+            "k_per_task",
+            "max_new_tokens",
+            "model",
+            "n_candidates",
+            "n_tasks_completed",
+            "n_tasks_requested",
+            "num_loops",
+            "records",
+            "seed",
+            "tag",
+            "tap_layers",
+            "task_offset",
+            "temperature",
+            "top_p"
+          ],
+          "record_count": 680,
+          "record_keys": [
+            "candidate_idx",
+            "category",
+            "found_final_marker",
+            "generated_text",
+            "gold_answer",
+            "gold_letter",
+            "hit_max_tokens",
+            "malformed",
+            "mean_logprob_pre",
+            "min_logprob_pre",
+            "n_gen_tok",
+            "n_pre_tok",
+            "options",
+            "parsed_answer",
+            "preanswer_features",
+            "prompt_only_features",
+            "prompt_tok",
+            "proof_depth",
+            "seed",
+            "split",
+            "success",
+            "task_uid"
+          ],
+          "seed": 20260724,
+          "tap_layers": [
+            24,
+            36,
+            47
+          ],
+          "task_offset": 170
+        },
+        {
+          "feature_shape": [
+            3,
+            4,
+            2048
+          ],
+          "model": "models/ouro_rltt_local",
+          "num_loops": 4,
+          "path": "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/horizon_logic/horizon_generation_v3_off340.pt",
+          "payload_keys": [
+            "budget_hit",
+            "budget_seconds",
+            "category",
+            "depth_range",
+            "elapsed_seconds",
+            "errors",
+            "feature_shape",
+            "k_per_task",
+            "max_new_tokens",
+            "model",
+            "n_candidates",
+            "n_tasks_completed",
+            "n_tasks_requested",
+            "num_loops",
+            "records",
+            "seed",
+            "tag",
+            "tap_layers",
+            "task_offset",
+            "temperature",
+            "top_p"
+          ],
+          "record_count": 680,
+          "record_keys": [
+            "candidate_idx",
+            "category",
+            "found_final_marker",
+            "generated_text",
+            "gold_answer",
+            "gold_letter",
+            "hit_max_tokens",
+            "malformed",
+            "mean_logprob_pre",
+            "min_logprob_pre",
+            "n_gen_tok",
+            "n_pre_tok",
+            "options",
+            "parsed_answer",
+            "preanswer_features",
+            "prompt_only_features",
+            "prompt_tok",
+            "proof_depth",
+            "seed",
+            "split",
+            "success",
+            "task_uid"
+          ],
+          "seed": 20260724,
+          "tap_layers": [
+            24,
+            36,
+            47
+          ],
+          "task_offset": 340
+        },
+        {
+          "feature_shape": [
+            3,
+            4,
+            2048
+          ],
+          "model": "models/ouro_rltt_local",
+          "num_loops": 4,
+          "path": "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/horizon_logic/horizon_generation_v3_off510.pt",
+          "payload_keys": [
+            "budget_hit",
+            "budget_seconds",
+            "category",
+            "depth_range",
+            "elapsed_seconds",
+            "errors",
+            "feature_shape",
+            "k_per_task",
+            "max_new_tokens",
+            "model",
+            "n_candidates",
+            "n_tasks_completed",
+            "n_tasks_requested",
+            "num_loops",
+            "records",
+            "seed",
+            "tag",
+            "tap_layers",
+            "task_offset",
+            "temperature",
+            "top_p"
+          ],
+          "record_count": 680,
+          "record_keys": [
+            "candidate_idx",
+            "category",
+            "found_final_marker",
+            "generated_text",
+            "gold_answer",
+            "gold_letter",
+            "hit_max_tokens",
+            "malformed",
+            "mean_logprob_pre",
+            "min_logprob_pre",
+            "n_gen_tok",
+            "n_pre_tok",
+            "options",
+            "parsed_answer",
+            "preanswer_features",
+            "prompt_only_features",
+            "prompt_tok",
+            "proof_depth",
+            "seed",
+            "split",
+            "success",
+            "task_uid"
+          ],
+          "seed": 20260724,
+          "tap_layers": [
+            24,
+            36,
+            47
+          ],
+          "task_offset": 510
+        }
+      ],
+      "split_summary": {
+        "candidate_counts_all_rows": {
+          "heldout": 816,
+          "train": 1384,
+          "val": 520
+        },
+        "cohort": "horizon_pooled",
+        "crossing_task_ids": [],
+        "n_unique_tasks": 680,
+        "task_counts": {
+          "heldout": 204,
+          "train": 346,
+          "val": 130
+        },
+        "task_split_sha256": "cfc43af83f0effe677be8b92fb74f3de9bf86dcdada5c15f367d16e0a7dfc906",
+        "zero_task_crossing": true
+      }
+    }
+  },
+  "experiment_id": "visible_prefix_hidden_increment_20260729T075247Z",
+  "inventory_timestamp_utc": "2026-07-29T07:59:35.356511+00:00",
+  "label_blind_attestation": "This inventory program inspected schemas, IDs, splits, counts, and hashes only; it did not access correctness values or held-out metrics.",
+  "missing_required_paths": [],
+  "runtime": {
+    "pid": 272476,
+    "platform": "Linux-7.1.5-1-cachyos-x86_64-with-glibc2.44",
+    "python": "3.14.6 (main, Jun 15 2026, 11:36:54) [GCC 16.1.1 20260430]",
+    "torch": "2.12.0.dev20260407+cu128"
+  },
+  "schema_version": 1,
+  "signature_scheme": "SHA-256 detached content digest",
+  "signer": "Codex /root",
+  "source_files": [
+    {
+      "bytes": 135772040,
+      "exists": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/proto_introspection/within_domain_recapture.pt",
+      "role": "GSM8K frozen hidden features and row metadata",
+      "sha256": "f0e44d7e859cb08c6423a1422f0899fe62a40ebec13dcb1a457952d5a04fab82"
+    },
+    {
+      "bytes": 467,
+      "exists": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/proto_introspection/within_domain_recapture_index.json",
+      "role": "GSM8K light index",
+      "sha256": "d4f58d0167e971af43444edc2c1fa6ca51a60647e7db8eb9dc839e5687769c55"
+    },
+    {
+      "bytes": 714584,
+      "exists": true,
+      "path": "/home/moloch/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866/gsm8k-test.arrow",
+      "role": "GSM8K source test dataset",
+      "sha256": "45965b000311d1550e5619b60b5bf31cf76edebfd8b8eddc62a876fbf8c9be95"
+    },
+    {
+      "bytes": 35770,
+      "exists": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/paper_verification/fable_hardening_checks_20260710_175017/preanswer_oof_predictions.csv",
+      "role": "GSM8K published/recreated OOF predictions",
+      "sha256": "3942f08431fd337afde9a06836ce83f2df2b88bcd6c4aa9d164d6beedb5adb59"
+    },
+    {
+      "bytes": 46914076,
+      "exists": true,
+      "path": "/home/moloch/ouro_project/data/branch_training_logic_expansion_v1/processed/logic_tasks.jsonl",
+      "role": "Horizon exact source tasks",
+      "sha256": "d5503195c4eb6ac3e45b5baef0761690b2b6c120f8df2a5d80ada3f7224e881d"
+    },
+    {
+      "bytes": 134988245,
+      "exists": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/paper1_v2_overnight_20260724/horizon_logic/horizon_generation_main_off0.pt",
+      "role": "Horizon v2 frozen cohort shard",
+      "sha256": "0a4b21818e449ba89f25f50f6c13af6e758ee7c1afc1adf9f7646084343cd8c5"
+    },
+    {
+      "bytes": 134991509,
+      "exists": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/horizon_logic/horizon_generation_v3_off170.pt",
+      "role": "Horizon v3 prospective frozen cohort shard",
+      "sha256": "6df69c5615c8c13fff7a373dbcde21712756836eb181b60303cb7fccbe402e1c"
+    },
+    {
+      "bytes": 135001173,
+      "exists": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/horizon_logic/horizon_generation_v3_off340.pt",
+      "role": "Horizon v3 prospective frozen cohort shard",
+      "sha256": "ee642bff5a66551ae105834908480bbbd0b48dfa235684bd31ef396a0ee5fb84"
+    },
+    {
+      "bytes": 134966101,
+      "exists": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/horizon_logic/horizon_generation_v3_off510.pt",
+      "role": "Horizon v3 prospective frozen cohort shard",
+      "sha256": "ea704bc8489faefaec9dca0717d95f761fd000d1e4490327d7e8d7baaff8a73e"
+    },
+    {
+      "bytes": 22254,
+      "exists": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/paper1_v2_overnight_20260724/horizon_logic/raw_predictions_heldout.json",
+      "role": "Horizon v2 published held-out predictions",
+      "sha256": "c85b8fb27468514dc4b5a1eb25d01835c2bae361beeff5801a8278c199e0dc4c"
+    },
+    {
+      "bytes": 308269,
+      "exists": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/raw_predictions_heldout_v3.json",
+      "role": "Horizon v3 published held-out predictions",
+      "sha256": "7362f9a517dd6e9fd20d8b32d1e0aa8754a2e1edb1f1b3c06982ad01db7c07d6"
+    },
+    {
+      "bytes": 13996,
+      "exists": true,
+      "path": "/home/moloch/ouro_project/utilities/tests/manual/bg_v2_overnight_horizon_generate.py",
+      "role": "Horizon prompt/cut reconstruction implementation",
+      "sha256": "2a73963fc0fe3e78d99ec59676649b2e76303657bdd687df6ef97e93c8d6a7e2"
+    },
+    {
+      "bytes": 18929,
+      "exists": true,
+      "path": "/home/moloch/ouro_project/utilities/tests/manual/bg_v2_overnight_horizon_analysis.py",
+      "role": "Original Horizon head implementation",
+      "sha256": "33507cfc62743b7b4a68750b482be8f8be3859aa3ebbecb648298004dacc7ac5"
+    },
+    {
+      "bytes": 10870,
+      "exists": true,
+      "path": "/home/moloch/ouro_project/utilities/tests/manual/bg_v3_horizon_power_analysis.py",
+      "role": "Original Horizon power-arm implementation",
+      "sha256": "d1391a5a3e691c869048215c2fdffb8bfd07be6e649f3b9bb652a978ffa7efdb"
+    },
+    {
+      "bytes": 12143,
+      "exists": true,
+      "path": "/home/moloch/ouro_project/utilities/tests/manual/proto_introspection_within_domain_recapture.py",
+      "role": "Original GSM8K recapture implementation",
+      "sha256": "459dcb05a9cf65dc26bc577cc61b6dfb4d24a4f44455603cde5f1b516cd2e6b2"
+    },
+    {
+      "bytes": 8755,
+      "exists": true,
+      "path": "/home/moloch/ouro_project/utilities/tests/manual/proto_introspection_within_domain_analysis.py",
+      "role": "Original GSM8K analysis implementation",
+      "sha256": "9d1e23e644bfbe4577364a3a1b07e9024b6174bb33fe0f07275b302c174be158"
+    },
+    {
+      "bytes": 3522644,
+      "exists": true,
+      "path": "/home/moloch/ouro_project/models/ouro_rltt_local/tokenizer.json",
+      "role": "Original generation tokenizer",
+      "sha256": "fcb808fe5e7642f5299be28aea07fc7f6d4f4364c3ac5e408e15a772cbc8fa8d"
+    },
+    {
+      "bytes": 2198,
+      "exists": true,
+      "path": "/home/moloch/ouro_project/models/ouro_rltt_local/config.json",
+      "role": "Original generation checkpoint config",
+      "sha256": "7d6764dbc8210d023c8d83da4620910808ac5a450532b15550e57d1ef0e4f741"
+    },
+    {
+      "bytes": 578,
+      "exists": true,
+      "path": "/home/moloch/ouro_project/artifacts/hf_cache/hub/models--microsoft--deberta-v3-small/snapshots/a36c739020e01763fe789b4b85e2df55d6180012/config.json",
+      "role": "Frozen visible encoder config",
+      "sha256": "b0bb1caf90a50aa67d1085130508dfbf8646ac5a11928305e280b07a36e100ae"
+    },
+    {
+      "bytes": 2464616,
+      "exists": true,
+      "path": "/home/moloch/ouro_project/artifacts/hf_cache/hub/models--microsoft--deberta-v3-small/snapshots/a36c739020e01763fe789b4b85e2df55d6180012/spm.model",
+      "role": "Frozen visible encoder tokenizer",
+      "sha256": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd"
+    },
+    {
+      "bytes": 286059269,
+      "exists": true,
+      "path": "/home/moloch/ouro_project/artifacts/hf_cache/hub/models--microsoft--deberta-v3-small/snapshots/a36c739020e01763fe789b4b85e2df55d6180012/pytorch_model.bin",
+      "role": "Frozen visible encoder weights",
+      "sha256": "d4b0ebcc7799a2c2dde1a39199cb0ed709f2c6b63a48b8c05133b77955f271a9"
+    }
+  ],
+  "visible_encoder": {
+    "all_required_files_present": true,
+    "local_snapshot": "/home/moloch/ouro_project/artifacts/hf_cache/hub/models--microsoft--deberta-v3-small/snapshots/a36c739020e01763fe789b4b85e2df55d6180012",
+    "model_id": "microsoft/deberta-v3-small",
+    "revision": "a36c739020e01763fe789b4b85e2df55d6180012"
+  },
+  "working_tree_note": "Pre-existing unrelated dirty-worktree changes were observed and left untouched."
+}

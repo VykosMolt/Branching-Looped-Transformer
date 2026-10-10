@@ -1,0 +1,19 @@
+{
+  "checkpoint_mismatch": "NOT_CRYPTOGRAPHICALLY_PINNED_BY_HISTORICAL_PACKAGE",
+  "continuations_retokenized": false,
+  "exact_generated_token_sequences_available": false,
+  "future_token_logprobability_leakage": "NOT_APPLICABLE_NO_MODELS",
+  "heldout_informed_selection": false,
+  "in_sample_fusion_scores": false,
+  "malformedness_leakage": "NOT_APPLICABLE_NO_MODELS",
+  "post_N_feature_leakage": "NOT_APPLICABLE_NO_N",
+  "preprocessing_outside_train": false,
+  "replay_mismatch": "NOT_TESTED_REPLAY_PROHIBITED",
+  "status": "TERMINATED_BEFORE_PREFIX_LEAKAGE_ANALYSIS",
+  "total_length_leakage": "NOT_APPLICABLE_NO_MODELS",
+  "verdict": "FIXED_PREFIX_HORIZON_NOT_ADJUDICABLE",
+  "verifier_leakage": "NOT_APPLICABLE_NO_MODELS",
+  "zero_candidate_crossing": true,
+  "zero_candidate_id_duplication": true,
+  "zero_task_crossing": true
+}

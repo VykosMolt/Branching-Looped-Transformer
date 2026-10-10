@@ -1,0 +1,19 @@
+{
+  "adequacy": null,
+  "cohort": "horizon_new_only",
+  "metrics": {
+    "H": null,
+    "HV": null,
+    "HV_minus_V": null,
+    "H_minus_V": null,
+    "H_minus_V0": null,
+    "V": null,
+    "V0": null,
+    "V1": null,
+    "V2": null,
+    "V3": null,
+    "status": "FIXED_PREFIX_HORIZON_NOT_ADJUDICABLE"
+  },
+  "selected_primary_N": null,
+  "verdict": "FIXED_PREFIX_HORIZON_NOT_ADJUDICABLE"
+}

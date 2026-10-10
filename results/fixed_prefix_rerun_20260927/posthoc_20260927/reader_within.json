@@ -1,0 +1,26 @@
+{
+  "reader_prompt_plus_prefix": {
+    "auroc_across_all": 0.638,
+    "within_question": {
+      "estimate": 0.5980861244019139,
+      "ci95": [
+        0.5196078431372549,
+        0.6777251184834123
+      ],
+      "n_mixed_tasks": 108,
+      "n_pairs": 209
+    }
+  },
+  "reader_prefix_only": {
+    "auroc_across_all": 0.616,
+    "within_question": {
+      "estimate": 0.583732057416268,
+      "ci95": [
+        0.5091743119266054,
+        0.6585365853658537
+      ],
+      "n_mixed_tasks": 108,
+      "n_pairs": 209
+    }
+  }
+}

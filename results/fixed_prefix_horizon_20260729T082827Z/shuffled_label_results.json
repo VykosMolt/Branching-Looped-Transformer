@@ -1,0 +1,9 @@
+{
+  "classifier_fits": 0,
+  "generation_calls": 0,
+  "reason": "no predictive pipeline was fitted",
+  "replay_calls": 0,
+  "replicates_run": 0,
+  "status": "NOT_RUN_INVENTORY_GATE_FAILURE",
+  "verdict": "FIXED_PREFIX_HORIZON_NOT_ADJUDICABLE"
+}

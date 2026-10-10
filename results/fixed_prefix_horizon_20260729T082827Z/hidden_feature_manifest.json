@@ -1,0 +1,46 @@
+{
+  "canonical_definition_inventoried": {
+    "feature_dtype": "float32 on CPU after model forward",
+    "feature_shape": [
+      3,
+      4,
+      2048
+    ],
+    "l2_grid": [
+      1.0,
+      2.0,
+      4.0
+    ],
+    "layers": [
+      24,
+      36,
+      47
+    ],
+    "loop_setting": "force_all_loops=True; total_ut_steps=4; early_exit_threshold=1.0",
+    "pca_grid": [
+      16,
+      24
+    ],
+    "position_selection": "all unmasked prompt-plus-prefix positions",
+    "probe_class": "standardize -> PCA -> L2 logistic regression",
+    "recurrent_steps": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "source": "/home/moloch/ouro_project/src/evaluator/bg_transformer_features.py",
+    "source_sha256": "6294f12f8e4f357a619816af8958eb1b09cab8b083e76931f089c0b00fa3681f",
+    "status": "UNIQUELY_IDENTIFIED_FROM_CURRENT_CANONICAL_SOURCE",
+    "task_grouped_folds": 5,
+    "token_pooling": "attention-mask-weighted mean across all replay input tokens"
+  },
+  "classifier_fits": 0,
+  "feature_shards": [],
+  "features_extracted": 0,
+  "generation_calls": 0,
+  "reason": "replay was prohibited",
+  "replay_calls": 0,
+  "status": "NOT_RUN_INVENTORY_GATE_FAILURE",
+  "verdict": "FIXED_PREFIX_HORIZON_NOT_ADJUDICABLE"
+}

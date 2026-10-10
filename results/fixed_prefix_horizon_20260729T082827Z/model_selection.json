@@ -1,0 +1,10 @@
+{
+  "classifier_fits": 0,
+  "generation_calls": 0,
+  "heldout_used": false,
+  "reason": "no primary boundary or replay features exist",
+  "replay_calls": 0,
+  "selected_visible_family": null,
+  "status": "NOT_RUN_INVENTORY_GATE_FAILURE",
+  "verdict": "FIXED_PREFIX_HORIZON_NOT_ADJUDICABLE"
+}

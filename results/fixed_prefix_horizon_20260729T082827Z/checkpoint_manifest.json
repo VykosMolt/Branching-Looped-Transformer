@@ -1,0 +1,71 @@
+{
+  "current_checkpoint_files": [
+    {
+      "bytes": 1925468800,
+      "exists": true,
+      "historically_sealed": null,
+      "path": "/home/moloch/ouro_project/models/ouro_rltt_local/model-00001.safetensors",
+      "role": "checkpoint/custom-model",
+      "sha256": "9f49e55b0d0ea368f2942cfd3fa256836ea7fa9002c6f860ca2d85ac1de252a1"
+    },
+    {
+      "bytes": 1929715216,
+      "exists": true,
+      "historically_sealed": null,
+      "path": "/home/moloch/ouro_project/models/ouro_rltt_local/model-00002.safetensors",
+      "role": "checkpoint/custom-model",
+      "sha256": "97a0d531a2c624dd98e60c0ebc46a7cc0413642f8cba6df7dac8df01a432df19"
+    },
+    {
+      "bytes": 1480826858,
+      "exists": true,
+      "historically_sealed": null,
+      "path": "/home/moloch/ouro_project/models/ouro_rltt_local/model-00003.safetensors",
+      "role": "checkpoint/custom-model",
+      "sha256": "0bf3d0c111c876ccc7f7ebaeb7cabc8dfccffde30acb4cd780a4c364d3679aad"
+    },
+    {
+      "bytes": 39658,
+      "exists": true,
+      "historically_sealed": null,
+      "path": "/home/moloch/ouro_project/models/ouro_rltt_local/model.safetensors.index.json",
+      "role": "checkpoint/custom-model",
+      "sha256": "e1842668e1ba1568364a4ae7227a5ab80ab5403c95baba37b92205d2cb22a001"
+    },
+    {
+      "bytes": 2198,
+      "exists": true,
+      "historically_sealed": null,
+      "path": "/home/moloch/ouro_project/models/ouro_rltt_local/config.json",
+      "role": "checkpoint/custom-model",
+      "sha256": "7d6764dbc8210d023c8d83da4620910808ac5a450532b15550e57d1ef0e4f741"
+    },
+    {
+      "bytes": 11823,
+      "exists": true,
+      "historically_sealed": null,
+      "path": "/home/moloch/ouro_project/models/ouro_rltt_local/configuration_ouro.py",
+      "role": "checkpoint/custom-model",
+      "sha256": "4c7c6138715351f7b673eed4a8e7553ccccb8a1f1ab93e82e9773ad96c6ee7d6"
+    },
+    {
+      "bytes": 60513,
+      "exists": true,
+      "historically_sealed": null,
+      "path": "/home/moloch/ouro_project/models/ouro_rltt_local/modeling_ouro.py",
+      "role": "checkpoint/custom-model",
+      "sha256": "bcd27ff6a18578feaec168695d70dc76509c57e4d4c377347c9d05d6266d9e82"
+    }
+  ],
+  "historical_environment": {
+    "git_head": "e4776dd41a85cad699ac36f309b5986ab48bd171",
+    "model_path": "models/ouro_rltt_local",
+    "recurrent_depth": 4,
+    "tokenizers": "0.21.4",
+    "torch": "2.12.0.dev20260407+cu128",
+    "transformers": "4.54.1"
+  },
+  "identity_status": "NOT_CRYPTOGRAPHICALLY_PINNED_BY_HISTORICAL_PACKAGE",
+  "reason": "historical manifests record the local path and environment but not model weight/custom-code hashes; generator and extractor were untracked at the recorded Git head",
+  "schema_version": 1
+}

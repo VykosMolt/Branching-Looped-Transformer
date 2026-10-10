@@ -1,0 +1,15 @@
+{
+  "created_after_terminal_gate": true,
+  "gate_state": {
+    "gsm8k": "VISIBLE_PREFIX_NOT_ADJUDICABLE",
+    "horizon_new_only": "VISIBLE_PREFIX_NOT_ADJUDICABLE",
+    "horizon_pooled": "VISIBLE_PREFIX_NOT_ADJUDICABLE"
+  },
+  "purpose": "Deterministic assembly of required NOT_ADJUDICABLE outputs; no fitting, model selection, or held-out adaptation.",
+  "finalizer_path": "utilities/tests/manual/visible_prefix_hidden_increment_finalize.py",
+  "finalizer_sha256": "e5f34dfd9f49e1ee4e6382f35fabdc398db92b90e2bb13b2401191ad5fa10ffb",
+  "full_reproduction_wrapper_path": "utilities/tests/manual/reproduce_visible_prefix_hidden_increment_evidence_package.sh",
+  "full_reproduction_wrapper_sha256": "d2402ee6cb8a9e4a16780438474efe4513c659ee95b5f971879fb1fed046acad",
+  "sealed_analysis_implementation_unchanged": true,
+  "classifier_fits_performed": 0
+}

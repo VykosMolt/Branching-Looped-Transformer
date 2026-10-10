@@ -1,0 +1,236 @@
+{
+  "A_sealed_primary (S = lp mean/min)": {
+    "hyperparams": {
+      "hidden": {
+        "auroc_cv": 0.6510352075669995,
+        "k_pca": 16,
+        "l2": 2.0
+      },
+      "shortcut": {
+        "auroc_cv": 0.5516079873883342,
+        "k_pca": 16,
+        "l2": 1.0
+      },
+      "combined": {
+        "auroc_cv": 0.6510562270099842,
+        "k_pca": 16,
+        "l2": 4.0
+      }
+    },
+    "shortcut_n_features": 2,
+    "auroc_shortcut_only": 0.5149258250075689,
+    "auroc_hidden_only": 0.758340902210112,
+    "auroc_hidden_plus_shortcuts": 0.7582803511958826,
+    "incremental_auroc_combined_minus_shortcut": 0.24335452618831366,
+    "headroom_normalized_increment": 0.5016851828735489,
+    "acc_at_half_combined": 0.8907766938209534,
+    "paired_task_clustered_bootstrap_combined_minus_shortcut": {
+      "n_rounds_used": 2000,
+      "mean_delta": 0.24498100952090676,
+      "ci95": [
+        0.12856081248451812,
+        0.36472760849492153
+      ],
+      "excludes_zero": true
+    },
+    "n_heldout": 412,
+    "n_heldout_tasks": 165,
+    "n_heldout_negatives": 45,
+    "n_trainval": 975
+  },
+  "B_S = lp + prompt length + proof depth": {
+    "hyperparams": {
+      "hidden": {
+        "auroc_cv": 0.6510352075669995,
+        "k_pca": 16,
+        "l2": 2.0
+      },
+      "shortcut": {
+        "auroc_cv": 0.5895638465580663,
+        "k_pca": 16,
+        "l2": 4.0
+      },
+      "combined": {
+        "auroc_cv": 0.6510352075669995,
+        "k_pca": 16,
+        "l2": 2.0
+      }
+    },
+    "shortcut_n_features": 4,
+    "auroc_shortcut_only": 0.6715712988192553,
+    "auroc_hidden_only": 0.758340902210112,
+    "auroc_hidden_plus_shortcuts": 0.758219800181653,
+    "incremental_auroc_combined_minus_shortcut": 0.08664850136239777,
+    "headroom_normalized_increment": 0.26382743362831845,
+    "acc_at_half_combined": 0.8907766938209534,
+    "paired_task_clustered_bootstrap_combined_minus_shortcut": {
+      "n_rounds_used": 2000,
+      "mean_delta": 0.08646653889649096,
+      "ci95": [
+        0.00450971322849214,
+        0.17070439139404658
+      ],
+      "excludes_zero": true
+    },
+    "n_heldout": 412,
+    "n_heldout_tasks": 165,
+    "n_heldout_negatives": 45,
+    "n_trainval": 975
+  },
+  "C_S = prompt length + proof depth only": {
+    "hyperparams": {
+      "hidden": {
+        "auroc_cv": 0.6510352075669995,
+        "k_pca": 16,
+        "l2": 2.0
+      },
+      "shortcut": {
+        "auroc_cv": 0.5852653704676826,
+        "k_pca": 16,
+        "l2": 4.0
+      },
+      "combined": {
+        "auroc_cv": 0.6510562270099842,
+        "k_pca": 16,
+        "l2": 1.0
+      }
+    },
+    "shortcut_n_features": 2,
+    "auroc_shortcut_only": 0.6861035422343325,
+    "auroc_hidden_only": 0.758340902210112,
+    "auroc_hidden_plus_shortcuts": 0.7581592491674235,
+    "incremental_auroc_combined_minus_shortcut": 0.07205570693309105,
+    "headroom_normalized_increment": 0.2295524691358022,
+    "acc_at_half_combined": 0.8907766938209534,
+    "paired_task_clustered_bootstrap_combined_minus_shortcut": {
+      "n_rounds_used": 2000,
+      "mean_delta": 0.07051934766157213,
+      "ci95": [
+        -0.013092376373626369,
+        0.15728765078970275
+      ],
+      "excludes_zero": false
+    },
+    "n_heldout": 412,
+    "n_heldout_tasks": 165,
+    "n_heldout_negatives": 45,
+    "n_trainval": 975
+  },
+  "D_final-line features + 4 shortcuts, SAME cohort": {
+    "hyperparams": {
+      "hidden": {
+        "auroc_cv": 0.7192748292170258,
+        "k_pca": 24,
+        "l2": 4.0
+      },
+      "shortcut": {
+        "auroc_cv": 0.6258486600105098,
+        "k_pca": 16,
+        "l2": 2.0
+      },
+      "combined": {
+        "auroc_cv": 0.719253809774041,
+        "k_pca": 24,
+        "l2": 1.0
+      }
+    },
+    "shortcut_n_features": 4,
+    "auroc_shortcut_only": 0.6690887072358462,
+    "auroc_hidden_only": 0.8239782016348773,
+    "auroc_hidden_plus_shortcuts": 0.8239176506206479,
+    "incremental_auroc_combined_minus_shortcut": 0.1548289433848017,
+    "headroom_normalized_increment": 0.46788655077767616,
+    "acc_at_half_combined": 0.9004854559898376,
+    "paired_task_clustered_bootstrap_combined_minus_shortcut": {
+      "n_rounds_used": 2000,
+      "mean_delta": 0.15561902895465962,
+      "ci95": [
+        0.054314949481948704,
+        0.26519580805295084
+      ],
+      "excludes_zero": true
+    },
+    "n_heldout": 412,
+    "n_heldout_tasks": 165,
+    "n_heldout_negatives": 45,
+    "n_trainval": 975
+  },
+  "E_final-line + 4 shortcuts + depth, same cohort": {
+    "hyperparams": {
+      "hidden": {
+        "auroc_cv": 0.7192748292170258,
+        "k_pca": 24,
+        "l2": 4.0
+      },
+      "shortcut": {
+        "auroc_cv": 0.651408302679979,
+        "k_pca": 16,
+        "l2": 4.0
+      },
+      "combined": {
+        "auroc_cv": 0.7192327903310562,
+        "k_pca": 24,
+        "l2": 2.0
+      }
+    },
+    "shortcut_n_features": 6,
+    "auroc_shortcut_only": 0.7739327883742053,
+    "auroc_hidden_only": 0.8239782016348773,
+    "auroc_hidden_plus_shortcuts": 0.8239782016348773,
+    "incremental_auroc_combined_minus_shortcut": 0.05004541326067202,
+    "headroom_normalized_increment": 0.22137404580152634,
+    "acc_at_half_combined": 0.9004854559898376,
+    "paired_task_clustered_bootstrap_combined_minus_shortcut": {
+      "n_rounds_used": 2000,
+      "mean_delta": 0.04942437909350478,
+      "ci95": [
+        -0.0266469282013323,
+        0.13159927890806078
+      ],
+      "excludes_zero": false
+    },
+    "n_heldout": 412,
+    "n_heldout_tasks": 165,
+    "n_heldout_negatives": 45,
+    "n_trainval": 975
+  },
+  "F_prompt-only features, same cohort, S = lp + depth": {
+    "hyperparams": {
+      "hidden": {
+        "auroc_cv": 0.6260430898581187,
+        "k_pca": 24,
+        "l2": 4.0
+      },
+      "shortcut": {
+        "auroc_cv": 0.5895638465580663,
+        "k_pca": 16,
+        "l2": 4.0
+      },
+      "combined": {
+        "auroc_cv": 0.6259747766684183,
+        "k_pca": 24,
+        "l2": 4.0
+      }
+    },
+    "shortcut_n_features": 4,
+    "auroc_shortcut_only": 0.6715712988192553,
+    "auroc_hidden_only": 0.624856191341205,
+    "auroc_hidden_plus_shortcuts": 0.6248864668483197,
+    "incremental_auroc_combined_minus_shortcut": -0.046684831970935536,
+    "headroom_normalized_increment": -0.14214601769911514,
+    "acc_at_half_combined": 0.8907766938209534,
+    "paired_task_clustered_bootstrap_combined_minus_shortcut": {
+      "n_rounds_used": 2000,
+      "mean_delta": -0.04747668799824181,
+      "ci95": [
+        -0.14311641171895262,
+        0.048205633571487216
+      ],
+      "excludes_zero": false
+    },
+    "n_heldout": 412,
+    "n_heldout_tasks": 165,
+    "n_heldout_negatives": 45,
+    "n_trainval": 975
+  }
+}

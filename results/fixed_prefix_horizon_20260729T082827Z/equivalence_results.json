@@ -1,0 +1,15 @@
+{
+  "ci90": null,
+  "classifier_fits": 0,
+  "equivalence_passed": false,
+  "generation_calls": 0,
+  "margin": [
+    -0.02,
+    0.02
+  ],
+  "not_equivalent_claim": false,
+  "reason": "primary HV-minus-V endpoint does not exist",
+  "replay_calls": 0,
+  "status": "NOT_RUN_INVENTORY_GATE_FAILURE",
+  "verdict": "FIXED_PREFIX_HORIZON_NOT_ADJUDICABLE"
+}

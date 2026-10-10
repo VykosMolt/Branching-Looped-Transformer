@@ -1,0 +1,91 @@
+{
+  "label_changes": {
+    "True->True": 1485,
+    "None->True": 74,
+    "None->None": 454,
+    "False->False": 116,
+    "True->False": 25,
+    "False->True": 51,
+    "True->None": 115,
+    "False->None": 61,
+    "None->False": 15
+  },
+  "primary_strict_labels": {
+    "hyperparams": {
+      "hidden": {
+        "auroc_cv": 0.6486428263679449,
+        "k_pca": 16,
+        "l2": 4.0
+      },
+      "shortcut": {
+        "auroc_cv": 0.5283462587964958,
+        "k_pca": 16,
+        "l2": 2.0
+      },
+      "combined": {
+        "auroc_cv": 0.6486248743357748,
+        "k_pca": 16,
+        "l2": 1.0
+      }
+    },
+    "shortcut_n_features": 2,
+    "auroc_shortcut_only": 0.5117012131053587,
+    "auroc_hidden_only": 0.7511701213105358,
+    "auroc_hidden_plus_shortcuts": 0.7511701213105358,
+    "incremental_auroc_combined_minus_shortcut": 0.2394689082051772,
+    "headroom_normalized_increment": 0.490414710485133,
+    "acc_at_half_combined": 0.9256410002708435,
+    "paired_task_clustered_bootstrap_combined_minus_shortcut": {
+      "n_rounds_used": 2000,
+      "mean_delta": 0.2397891511199836,
+      "ci95": [
+        0.07520780051150888,
+        0.40936361688450823
+      ],
+      "excludes_zero": true
+    },
+    "n_heldout": 390,
+    "n_heldout_tasks": 163,
+    "n_heldout_negatives": 29,
+    "n_trainval": 910
+  },
+  "final_marker_strict_labels": {
+    "hyperparams": {
+      "hidden": {
+        "auroc_cv": 0.7619887278582931,
+        "k_pca": 24,
+        "l2": 2.0
+      },
+      "shortcut": {
+        "auroc_cv": 0.5877938808373591,
+        "k_pca": 16,
+        "l2": 4.0
+      },
+      "combined": {
+        "auroc_cv": 0.7619806763285024,
+        "k_pca": 24,
+        "l2": 1.0
+      }
+    },
+    "shortcut_n_features": 4,
+    "auroc_shortcut_only": 0.6806385869565217,
+    "auroc_hidden_only": 0.836820652173913,
+    "auroc_hidden_plus_shortcuts": 0.8369112318840579,
+    "incremental_auroc_combined_minus_shortcut": 0.15627264492753623,
+    "headroom_normalized_increment": 0.48932851166418484,
+    "acc_at_half_combined": 0.913385808467865,
+    "paired_task_clustered_bootstrap_combined_minus_shortcut": {
+      "n_rounds_used": 2000,
+      "mean_delta": 0.15719108279459226,
+      "ci95": [
+        0.07001582278481011,
+        0.2509634755189629
+      ],
+      "excludes_zero": true
+    },
+    "n_heldout": 508,
+    "n_heldout_tasks": 168,
+    "n_heldout_negatives": 48,
+    "n_trainval": 1258
+  }
+}

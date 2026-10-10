@@ -1,0 +1,8 @@
+# tournament_rerun_depth4_20260927: files of this run that are in this repository. Check: cd into this directory, sha256sum -c CHECKSUMS.sha256
+# Files of the run that are not in the repository are listed in CHECKSUMS_OFFLINE.sha256; the two lists together cover the full run.
+16d18c7dd2229c69b37c9acd8c44a28496705ef2038b27151078ffbaa37967d1  PLAN.md
+a04121a684b14bdef737a038cb0c4227e60c3ecba5fd6078e51bf03245772e25  SEAL.sha256
+f3f91755a3e3fe7b96ad93f894a1a9ed8833291d01370b93b92dc2ebc78f285c  run2.log
+4feeb999f265b3284ce7907f0d09d481c950f770d731b6959401c7ecc1bf73d1  run2_tournament.py
+bb9e7cb8f9a0cd4458de77bea113891c7d5b4224db4a892cf862d57ee5031f19  tournament_results.json
+ad3811fb6eaa20c0bfa0fcda63fcd280b7e179464c480f1269edbb1c602c6cb3  sealed_code/bg_v4_tournament.py

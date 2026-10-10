@@ -1,0 +1,188 @@
+{
+  "composition_train": {
+    "parseable": 967,
+    "kept": 723,
+    "dropped": 244,
+    "err_kept": 0.118,
+    "err_dropped": 0.135
+  },
+  "composition_val": {
+    "parseable": 356,
+    "kept": 252,
+    "dropped": 104,
+    "err_kept": 0.099,
+    "err_dropped": 0.163
+  },
+  "composition_heldout": {
+    "parseable": 530,
+    "kept": 412,
+    "dropped": 118,
+    "err_kept": 0.109,
+    "err_dropped": 0.195
+  },
+  "verdict only": {
+    "hyperparams": {
+      "hidden": {
+        "auroc_cv": 0.6510246978455071,
+        "k_pca": 16,
+        "l2": 2.0
+      },
+      "shortcut": {
+        "auroc_cv": 0.6263426169206516,
+        "k_pca": 16,
+        "l2": 1.0
+      },
+      "combined": {
+        "auroc_cv": 0.6510036784025224,
+        "k_pca": 16,
+        "l2": 4.0
+      }
+    },
+    "shortcut_n_features": 3,
+    "auroc_shortcut_only": 0.7932788374205267,
+    "auroc_hidden_only": 0.7582803511958826,
+    "auroc_hidden_plus_shortcuts": 0.758219800181653,
+    "incremental_auroc_combined_minus_shortcut": -0.035059037238873714,
+    "headroom_normalized_increment": -0.16959578207381348,
+    "acc_at_half_combined": 0.8907766938209534,
+    "paired_task_clustered_bootstrap_combined_minus_shortcut": {
+      "n_rounds_used": 2000,
+      "mean_delta": -0.03430648834229518,
+      "ci95": [
+        -0.12901570048309186,
+        0.06071092278719392
+      ],
+      "excludes_zero": false
+    },
+    "n_heldout": 412,
+    "n_heldout_tasks": 165,
+    "n_heldout_negatives": 45,
+    "n_trainval": 975
+  },
+  "lp + verdict": {
+    "hyperparams": {
+      "hidden": {
+        "auroc_cv": 0.6510246978455071,
+        "k_pca": 16,
+        "l2": 2.0
+      },
+      "shortcut": {
+        "auroc_cv": 0.6391697320021019,
+        "k_pca": 16,
+        "l2": 2.0
+      },
+      "combined": {
+        "auroc_cv": 0.6510457172884918,
+        "k_pca": 16,
+        "l2": 1.0
+      }
+    },
+    "shortcut_n_features": 5,
+    "auroc_shortcut_only": 0.8012110202845898,
+    "auroc_hidden_only": 0.7582803511958826,
+    "auroc_hidden_plus_shortcuts": 0.7582803511958826,
+    "incremental_auroc_combined_minus_shortcut": -0.04293066908870724,
+    "headroom_normalized_increment": -0.21596101127017978,
+    "acc_at_half_combined": 0.8907766938209534,
+    "paired_task_clustered_bootstrap_combined_minus_shortcut": {
+      "n_rounds_used": 2000,
+      "mean_delta": -0.04155779836898131,
+      "ci95": [
+        -0.13726415094339617,
+        0.051300236406619404
+      ],
+      "excludes_zero": false
+    },
+    "n_heldout": 412,
+    "n_heldout_tasks": 165,
+    "n_heldout_negatives": 45,
+    "n_trainval": 975
+  },
+  "lp + depth + prompt + verdict": {
+    "hyperparams": {
+      "hidden": {
+        "auroc_cv": 0.6510246978455071,
+        "k_pca": 16,
+        "l2": 2.0
+      },
+      "shortcut": {
+        "auroc_cv": 0.660304781923279,
+        "k_pca": 16,
+        "l2": 4.0
+      },
+      "combined": {
+        "auroc_cv": 0.6510457172884918,
+        "k_pca": 16,
+        "l2": 4.0
+      }
+    },
+    "shortcut_n_features": 7,
+    "auroc_shortcut_only": 0.8201634877384196,
+    "auroc_hidden_only": 0.7582803511958826,
+    "auroc_hidden_plus_shortcuts": 0.7580381471389646,
+    "incremental_auroc_combined_minus_shortcut": -0.06212534059945507,
+    "headroom_normalized_increment": -0.3454545454545456,
+    "acc_at_half_combined": 0.8907766938209534,
+    "paired_task_clustered_bootstrap_combined_minus_shortcut": {
+      "n_rounds_used": 2000,
+      "mean_delta": -0.06130515308083958,
+      "ci95": [
+        -0.14603887857770836,
+        0.02543136749935615
+      ],
+      "excludes_zero": false
+    },
+    "n_heldout": 412,
+    "n_heldout_tasks": 165,
+    "n_heldout_negatives": 45,
+    "n_trainval": 975
+  },
+  "margin commits in tokens 49-64": {
+    "n": 30,
+    "neg": 3,
+    "auroc_both": 0.691358024691358,
+    "auroc_hidden": 0.691358024691358,
+    "auroc_surface": 0.5679012345679012,
+    "boot": {
+      "n_rounds_used": 1926,
+      "mean_delta": 0.11725735718542679,
+      "ci95": [
+        -0.24137931034482762,
+        0.59375
+      ],
+      "excludes_zero": false
+    }
+  },
+  "margin commits in tokens 65-128": {
+    "n": 139,
+    "neg": 13,
+    "auroc_both": 0.8772893772893773,
+    "auroc_hidden": 0.8772893772893773,
+    "auroc_surface": 0.4652014652014652,
+    "boot": {
+      "n_rounds_used": 2000,
+      "mean_delta": 0.41174380827121326,
+      "ci95": [
+        0.18925964546402507,
+        0.6149825783972126
+      ],
+      "excludes_zero": true
+    }
+  },
+  "margin no commitment through 160": {
+    "n": 183,
+    "neg": 24,
+    "auroc_both": 0.7036163522012578,
+    "auroc_hidden": 0.7036163522012578,
+    "auroc_surface": 0.5055031446540881,
+    "boot": {
+      "n_rounds_used": 2000,
+      "mean_delta": 0.1960810790437617,
+      "ci95": [
+        0.0349367088607595,
+        0.35909090909090907
+      ],
+      "excludes_zero": true
+    }
+  }
+}

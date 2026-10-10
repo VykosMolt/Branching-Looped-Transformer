@@ -1,0 +1,31 @@
+{
+  "generation_checkpoint": {
+    "local_path": "models/ouro_rltt_local",
+    "model_id": "ByteDance/Ouro-2.6B",
+    "revision": "1ed04250da1a9936042725d302e81c8fa2ab5abd",
+    "tokenizer_id": "ByteDance/Ouro-2.6B",
+    "tokenizer_revision": "1ed04250da1a9936042725d302e81c8fa2ab5abd",
+    "tokenizer_sha256": "fcb808fe5e7642f5299be28aea07fc7f6d4f4364c3ac5e408e15a772cbc8fa8d"
+  },
+  "input_format": "Prompt:\\n{original prompt}\\n\\nVisible reasoning prefix:\\n{strict prefix}",
+  "truncation": {
+    "maximum_sequence_length": 512,
+    "pair_special_tokens": 3,
+    "prefix_allocation": 253,
+    "prefix_policy": "retain most recent tokens",
+    "prompt_allocation": 256,
+    "prompt_policy": "retain first tokens"
+  },
+  "visible_encoder": {
+    "device": "cpu",
+    "local_snapshot": "artifacts/hf_cache/hub/models--microsoft--deberta-v3-small/snapshots/a36c739020e01763fe789b4b85e2df55d6180012",
+    "model_id": "microsoft/deberta-v3-small",
+    "pooling": "attention-mask-weighted mean of final hidden layer",
+    "precision": "float32",
+    "revision": "a36c739020e01763fe789b4b85e2df55d6180012",
+    "tokenizer_id": "microsoft/deberta-v3-small",
+    "tokenizer_revision": "a36c739020e01763fe789b4b85e2df55d6180012",
+    "weights_frozen_for_v2": true,
+    "weights_frozen_for_v3": false
+  }
+}

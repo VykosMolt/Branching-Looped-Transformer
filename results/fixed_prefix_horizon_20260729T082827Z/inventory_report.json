@@ -1,0 +1,945 @@
+{
+  "candidate_sequence_inventory": {
+    "all_record_keys": [
+      "candidate_idx",
+      "category",
+      "found_final_marker",
+      "generated_text",
+      "gold_answer",
+      "gold_letter",
+      "hit_max_tokens",
+      "malformed",
+      "mean_logprob_pre",
+      "min_logprob_pre",
+      "n_gen_tok",
+      "n_pre_tok",
+      "options",
+      "parsed_answer",
+      "preanswer_features",
+      "prompt_only_features",
+      "prompt_tok",
+      "proof_depth",
+      "seed",
+      "split",
+      "success",
+      "task_uid"
+    ],
+    "candidates_with_generated_token_count": 2720,
+    "candidates_with_generated_token_ids": 0,
+    "candidates_with_rendered_text": 2720,
+    "generator_disposition": "out.sequences -> local seqs -> new_ids_full -> decoded text; IDs not stored in record; local tensors deleted after task",
+    "index_token_fields_found": {
+      "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/horizon_logic/horizon_generation_v3_off170_index.json": [],
+      "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/horizon_logic/horizon_generation_v3_off340_index.json": [],
+      "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/horizon_logic/horizon_generation_v3_off510_index.json": [],
+      "/home/moloch/ouro_project/artifacts/reports/paper1_v2_overnight_20260724/horizon_logic/horizon_generation_main_off0_index.json": []
+    },
+    "new_only_candidates": 2040,
+    "pooled_candidates": 2720,
+    "terminal_pool_record_count": 680,
+    "terminal_pool_record_keys": [
+      "candidate_idx",
+      "category",
+      "found_final_marker",
+      "full_features",
+      "generated_text",
+      "gold_answer",
+      "gold_letter",
+      "hit_max_tokens",
+      "malformed",
+      "mean_logprob_pre",
+      "min_logprob_pre",
+      "n_gen_tok",
+      "n_pre_tok",
+      "options",
+      "parsed_answer",
+      "preanswer_features",
+      "prompt_only_features",
+      "prompt_tok",
+      "proof_depth",
+      "seed",
+      "split",
+      "success",
+      "task_uid"
+    ],
+    "terminal_pool_token_fields_found": [],
+    "terminal_pool_token_ids_present": false,
+    "token_fields_found": {},
+    "token_fields_searched": [
+      "continuation_ids",
+      "continuation_token_ids",
+      "gen_ids",
+      "generated_ids",
+      "generated_token_ids",
+      "new_ids",
+      "new_ids_full",
+      "sequence_ids",
+      "sequences"
+    ],
+    "total_candidates": 2720
+  },
+  "canonical_hidden_specification": {
+    "feature_dtype": "float32 on CPU after model forward",
+    "feature_shape": [
+      3,
+      4,
+      2048
+    ],
+    "l2_grid": [
+      1.0,
+      2.0,
+      4.0
+    ],
+    "layers": [
+      24,
+      36,
+      47
+    ],
+    "loop_setting": "force_all_loops=True; total_ut_steps=4; early_exit_threshold=1.0",
+    "pca_grid": [
+      16,
+      24
+    ],
+    "position_selection": "all unmasked prompt-plus-prefix positions",
+    "probe_class": "standardize -> PCA -> L2 logistic regression",
+    "recurrent_steps": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "source": "/home/moloch/ouro_project/src/evaluator/bg_transformer_features.py",
+    "source_sha256": "6294f12f8e4f357a619816af8958eb1b09cab8b083e76931f089c0b00fa3681f",
+    "status": "UNIQUELY_IDENTIFIED_FROM_CURRENT_CANONICAL_SOURCE",
+    "task_grouped_folds": 5,
+    "token_pooling": "attention-mask-weighted mean across all replay input tokens"
+  },
+  "canonical_shortcuts": {
+    "historical_fields": [
+      "n_pre_tok",
+      "mean_logprob_pre",
+      "min_logprob_pre",
+      "hit_max_tokens"
+    ],
+    "repaired_boundary_status": "NOT_COMPUTABLE_EXACTLY because first-N token identities and token-level generation scores were not preserved"
+  },
+  "checkpoint_identity": "NOT_CRYPTOGRAPHICALLY_PINNED_BY_HISTORICAL_PACKAGE",
+  "environment": {
+    "device_used": "cpu inventory only",
+    "platform": "Linux-7.1.5-1-cachyos-x86_64-with-glibc2.44",
+    "python": "3.14.6 (main, Jun 15 2026, 11:36:54) [GCC 16.1.1 20260430]",
+    "torch": "2.12.0.dev20260407+cu128",
+    "transformers": "4.54.1"
+  },
+  "experiment_id": "fixed_prefix_horizon_20260729T082827Z",
+  "gate": {
+    "classifier_fits": 0,
+    "generation_calls": 0,
+    "load_bearing_reason": "complete preserved generated-token ID sequences are absent for every candidate; exact fixed-N replay is forbidden without them",
+    "retokenized_continuations": 0,
+    "status": "FAIL",
+    "stopped_before_preregistration": true,
+    "stopped_before_replay": true,
+    "verdict": "FIXED_PREFIX_HORIZON_NOT_ADJUDICABLE"
+  },
+  "inventory_timestamp_utc": "2026-07-29T08:44:08.662540+00:00",
+  "labels_and_verifier": {
+    "class_counts_all_preserved_candidates": {
+      "correct": 1820,
+      "incorrect": 900
+    },
+    "class_counts_by_cohort": {
+      "horizon_new_only_primary": {
+        "correct": 1366,
+        "incorrect": 674
+      },
+      "horizon_original_historical_component": {
+        "correct": 454,
+        "incorrect": 226
+      },
+      "horizon_pooled_secondary": {
+        "correct": 1820,
+        "incorrect": 900
+      }
+    },
+    "committed_answers_present": true,
+    "eventual_labels_present": true,
+    "gold_answers_present": true,
+    "malformed_equivalence_mismatches": [],
+    "status": "PASS",
+    "verifier_equivalence_mismatches": []
+  },
+  "partitions_and_order": {
+    "candidate_count": 2720,
+    "candidate_counts_by_split": {
+      "heldout": 816,
+      "train": 1384,
+      "val": 520
+    },
+    "candidate_crossings": [],
+    "cohorts": {
+      "horizon_new_only_primary": {
+        "candidate_count": 2040,
+        "candidate_counts_by_split": {
+          "heldout": 580,
+          "train": 1064,
+          "val": 396
+        },
+        "class_counts": {
+          "correct": 1366,
+          "incorrect": 674
+        },
+        "task_count": 510,
+        "task_counts_by_split": {
+          "heldout": 145,
+          "train": 266,
+          "val": 99
+        }
+      },
+      "horizon_original_historical_component": {
+        "candidate_count": 680,
+        "candidate_counts_by_split": {
+          "heldout": 236,
+          "train": 320,
+          "val": 124
+        },
+        "class_counts": {
+          "correct": 454,
+          "incorrect": 226
+        },
+        "task_count": 170,
+        "task_counts_by_split": {
+          "heldout": 59,
+          "train": 80,
+          "val": 31
+        }
+      },
+      "horizon_pooled_secondary": {
+        "candidate_count": 2720,
+        "candidate_counts_by_split": {
+          "heldout": 816,
+          "train": 1384,
+          "val": 520
+        },
+        "class_counts": {
+          "correct": 1820,
+          "incorrect": 900
+        },
+        "task_count": 680,
+        "task_counts_by_split": {
+          "heldout": 204,
+          "train": 346,
+          "val": 130
+        }
+      }
+    },
+    "crossing_task_ids": [],
+    "duplicate_candidate_ids": [],
+    "schema_version": 1,
+    "source_offset_order_checks": {
+      "v2_original_source_index_0": {
+        "actual_task_order_sha256": "8a06d055f10b7728ee42746ce25e53ea6002d3f6f435bddc93307b20958c3a8b",
+        "exact_task_order_matches": true,
+        "expected_task_order_sha256": "8a06d055f10b7728ee42746ce25e53ea6002d3f6f435bddc93307b20958c3a8b",
+        "n_actual": 170,
+        "n_expected": 170
+      },
+      "v3_prospective_source_index_1": {
+        "actual_task_order_sha256": "801dd7cd202c2c7571c815f01d111867e752b3a7cf9ac852a27ff4433848be5a",
+        "exact_task_order_matches": true,
+        "expected_task_order_sha256": "801dd7cd202c2c7571c815f01d111867e752b3a7cf9ac852a27ff4433848be5a",
+        "n_actual": 170,
+        "n_expected": 170
+      },
+      "v3_prospective_source_index_2": {
+        "actual_task_order_sha256": "0b13ddc62de6578ce89ef13f1352e049dc19f8186a449203ccc11a94627cf645",
+        "exact_task_order_matches": true,
+        "expected_task_order_sha256": "0b13ddc62de6578ce89ef13f1352e049dc19f8186a449203ccc11a94627cf645",
+        "n_actual": 170,
+        "n_expected": 170
+      },
+      "v3_prospective_source_index_3": {
+        "actual_task_order_sha256": "14625a27ef2fbe8e827489976cd5cfc834f4b1d422e59161348d2db5c9979ca4",
+        "exact_task_order_matches": true,
+        "expected_task_order_sha256": "14625a27ef2fbe8e827489976cd5cfc834f4b1d422e59161348d2db5c9979ca4",
+        "n_actual": 170,
+        "n_expected": 170
+      }
+    },
+    "split_function_mismatch_candidate_ids": [],
+    "task_count": 680,
+    "task_counts_by_split": {
+      "heldout": 204,
+      "train": 346,
+      "val": 130
+    },
+    "task_split_sha256": "8ee237162de7fc2c92a6aa4b60c77d856b96c8436c049570f3507d2004889186",
+    "zero_candidate_crossing": true,
+    "zero_candidate_id_duplication": true,
+    "zero_task_crossing": true
+  },
+  "prompts": {
+    "exact_prompt_reconstruction_status": "PASS",
+    "prompt_token_count_mismatches": [],
+    "source_tasks_missing": []
+  },
+  "schema_version": 1,
+  "scope": [
+    "horizon_new_only",
+    "horizon_pooled"
+  ],
+  "shards": [
+    {
+      "expected_offset": 0,
+      "generation_metadata": {
+        "budget_hit": false,
+        "category": "synthetic_propositional",
+        "depth_range": [
+          2,
+          4
+        ],
+        "elapsed_seconds": 4368.9,
+        "errors": [],
+        "feature_shape": [
+          3,
+          4,
+          2048
+        ],
+        "k_per_task": 4,
+        "max_new_tokens": 448,
+        "model": "models/ouro_rltt_local",
+        "n_candidates": 680,
+        "n_tasks_completed": 170,
+        "n_tasks_requested": 170,
+        "num_loops": 4,
+        "seed": 20260724,
+        "tag": "main",
+        "tap_layers": [
+          24,
+          36,
+          47
+        ],
+        "task_offset": 0,
+        "temperature": 0.7,
+        "top_p": 0.95
+      },
+      "path": "/home/moloch/ouro_project/artifacts/reports/paper1_v2_overnight_20260724/horizon_logic/horizon_generation_main_off0.pt",
+      "payload_keys": [
+        "budget_hit",
+        "budget_seconds",
+        "category",
+        "depth_range",
+        "elapsed_seconds",
+        "errors",
+        "feature_shape",
+        "k_per_task",
+        "max_new_tokens",
+        "model",
+        "n_candidates",
+        "n_tasks_completed",
+        "n_tasks_requested",
+        "num_loops",
+        "records",
+        "seed",
+        "tag",
+        "tap_layers",
+        "task_offset",
+        "temperature",
+        "top_p"
+      ],
+      "record_count": 680,
+      "record_keys": [
+        "candidate_idx",
+        "category",
+        "found_final_marker",
+        "generated_text",
+        "gold_answer",
+        "gold_letter",
+        "hit_max_tokens",
+        "malformed",
+        "mean_logprob_pre",
+        "min_logprob_pre",
+        "n_gen_tok",
+        "n_pre_tok",
+        "options",
+        "parsed_answer",
+        "preanswer_features",
+        "prompt_only_features",
+        "prompt_tok",
+        "proof_depth",
+        "seed",
+        "split",
+        "success",
+        "task_uid"
+      ],
+      "source": "v2_original"
+    },
+    {
+      "expected_offset": 170,
+      "generation_metadata": {
+        "budget_hit": false,
+        "category": "synthetic_propositional",
+        "depth_range": [
+          2,
+          4
+        ],
+        "elapsed_seconds": 5390.7,
+        "errors": [],
+        "feature_shape": [
+          3,
+          4,
+          2048
+        ],
+        "k_per_task": 4,
+        "max_new_tokens": 448,
+        "model": "models/ouro_rltt_local",
+        "n_candidates": 680,
+        "n_tasks_completed": 170,
+        "n_tasks_requested": 170,
+        "num_loops": 4,
+        "seed": 20260724,
+        "tag": "v3",
+        "tap_layers": [
+          24,
+          36,
+          47
+        ],
+        "task_offset": 170,
+        "temperature": 0.7,
+        "top_p": 0.95
+      },
+      "path": "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/horizon_logic/horizon_generation_v3_off170.pt",
+      "payload_keys": [
+        "budget_hit",
+        "budget_seconds",
+        "category",
+        "depth_range",
+        "elapsed_seconds",
+        "errors",
+        "feature_shape",
+        "k_per_task",
+        "max_new_tokens",
+        "model",
+        "n_candidates",
+        "n_tasks_completed",
+        "n_tasks_requested",
+        "num_loops",
+        "records",
+        "seed",
+        "tag",
+        "tap_layers",
+        "task_offset",
+        "temperature",
+        "top_p"
+      ],
+      "record_count": 680,
+      "record_keys": [
+        "candidate_idx",
+        "category",
+        "found_final_marker",
+        "generated_text",
+        "gold_answer",
+        "gold_letter",
+        "hit_max_tokens",
+        "malformed",
+        "mean_logprob_pre",
+        "min_logprob_pre",
+        "n_gen_tok",
+        "n_pre_tok",
+        "options",
+        "parsed_answer",
+        "preanswer_features",
+        "prompt_only_features",
+        "prompt_tok",
+        "proof_depth",
+        "seed",
+        "split",
+        "success",
+        "task_uid"
+      ],
+      "source": "v3_prospective"
+    },
+    {
+      "expected_offset": 340,
+      "generation_metadata": {
+        "budget_hit": false,
+        "category": "synthetic_propositional",
+        "depth_range": [
+          2,
+          4
+        ],
+        "elapsed_seconds": 5709.8,
+        "errors": [],
+        "feature_shape": [
+          3,
+          4,
+          2048
+        ],
+        "k_per_task": 4,
+        "max_new_tokens": 448,
+        "model": "models/ouro_rltt_local",
+        "n_candidates": 680,
+        "n_tasks_completed": 170,
+        "n_tasks_requested": 170,
+        "num_loops": 4,
+        "seed": 20260724,
+        "tag": "v3",
+        "tap_layers": [
+          24,
+          36,
+          47
+        ],
+        "task_offset": 340,
+        "temperature": 0.7,
+        "top_p": 0.95
+      },
+      "path": "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/horizon_logic/horizon_generation_v3_off340.pt",
+      "payload_keys": [
+        "budget_hit",
+        "budget_seconds",
+        "category",
+        "depth_range",
+        "elapsed_seconds",
+        "errors",
+        "feature_shape",
+        "k_per_task",
+        "max_new_tokens",
+        "model",
+        "n_candidates",
+        "n_tasks_completed",
+        "n_tasks_requested",
+        "num_loops",
+        "records",
+        "seed",
+        "tag",
+        "tap_layers",
+        "task_offset",
+        "temperature",
+        "top_p"
+      ],
+      "record_count": 680,
+      "record_keys": [
+        "candidate_idx",
+        "category",
+        "found_final_marker",
+        "generated_text",
+        "gold_answer",
+        "gold_letter",
+        "hit_max_tokens",
+        "malformed",
+        "mean_logprob_pre",
+        "min_logprob_pre",
+        "n_gen_tok",
+        "n_pre_tok",
+        "options",
+        "parsed_answer",
+        "preanswer_features",
+        "prompt_only_features",
+        "prompt_tok",
+        "proof_depth",
+        "seed",
+        "split",
+        "success",
+        "task_uid"
+      ],
+      "source": "v3_prospective"
+    },
+    {
+      "expected_offset": 510,
+      "generation_metadata": {
+        "budget_hit": false,
+        "category": "synthetic_propositional",
+        "depth_range": [
+          2,
+          4
+        ],
+        "elapsed_seconds": 5426.0,
+        "errors": [],
+        "feature_shape": [
+          3,
+          4,
+          2048
+        ],
+        "k_per_task": 4,
+        "max_new_tokens": 448,
+        "model": "models/ouro_rltt_local",
+        "n_candidates": 680,
+        "n_tasks_completed": 170,
+        "n_tasks_requested": 170,
+        "num_loops": 4,
+        "seed": 20260724,
+        "tag": "v3",
+        "tap_layers": [
+          24,
+          36,
+          47
+        ],
+        "task_offset": 510,
+        "temperature": 0.7,
+        "top_p": 0.95
+      },
+      "path": "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/horizon_logic/horizon_generation_v3_off510.pt",
+      "payload_keys": [
+        "budget_hit",
+        "budget_seconds",
+        "category",
+        "depth_range",
+        "elapsed_seconds",
+        "errors",
+        "feature_shape",
+        "k_per_task",
+        "max_new_tokens",
+        "model",
+        "n_candidates",
+        "n_tasks_completed",
+        "n_tasks_requested",
+        "num_loops",
+        "records",
+        "seed",
+        "tag",
+        "tap_layers",
+        "task_offset",
+        "temperature",
+        "top_p"
+      ],
+      "record_count": 680,
+      "record_keys": [
+        "candidate_idx",
+        "category",
+        "found_final_marker",
+        "generated_text",
+        "gold_answer",
+        "gold_letter",
+        "hit_max_tokens",
+        "malformed",
+        "mean_logprob_pre",
+        "min_logprob_pre",
+        "n_gen_tok",
+        "n_pre_tok",
+        "options",
+        "parsed_answer",
+        "preanswer_features",
+        "prompt_only_features",
+        "prompt_tok",
+        "proof_depth",
+        "seed",
+        "split",
+        "success",
+        "task_uid"
+      ],
+      "source": "v3_prospective"
+    }
+  ],
+  "source_artifact_checksum_verification": {
+    "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/horizon_logic/horizon_generation_v3_off170.pt": {
+      "actual_sha256": "6df69c5615c8c13fff7a373dbcde21712756836eb181b60303cb7fccbe402e1c",
+      "expected_sha256": "6df69c5615c8c13fff7a373dbcde21712756836eb181b60303cb7fccbe402e1c",
+      "matches": true
+    },
+    "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/horizon_logic/horizon_generation_v3_off340.pt": {
+      "actual_sha256": "ee642bff5a66551ae105834908480bbbd0b48dfa235684bd31ef396a0ee5fb84",
+      "expected_sha256": "ee642bff5a66551ae105834908480bbbd0b48dfa235684bd31ef396a0ee5fb84",
+      "matches": true
+    },
+    "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/horizon_logic/horizon_generation_v3_off510.pt": {
+      "actual_sha256": "ea704bc8489faefaec9dca0717d95f761fd000d1e4490327d7e8d7baaff8a73e",
+      "expected_sha256": "ea704bc8489faefaec9dca0717d95f761fd000d1e4490327d7e8d7baaff8a73e",
+      "matches": true
+    },
+    "/home/moloch/ouro_project/artifacts/reports/paper1_v2_overnight_20260724/horizon_logic/horizon_generation_main_off0.pt": {
+      "actual_sha256": "0a4b21818e449ba89f25f50f6c13af6e758ee7c1afc1adf9f7646084343cd8c5",
+      "expected_sha256": "0a4b21818e449ba89f25f50f6c13af6e758ee7c1afc1adf9f7646084343cd8c5",
+      "matches": true
+    }
+  },
+  "source_files": [
+    {
+      "bytes": 46914076,
+      "exists": true,
+      "historically_sealed": false,
+      "path": "/home/moloch/ouro_project/data/branch_training_logic_expansion_v1/processed/logic_tasks.jsonl",
+      "role": "exact Horizon task source",
+      "sha256": "d5503195c4eb6ac3e45b5baef0761690b2b6c120f8df2a5d80ada3f7224e881d"
+    },
+    {
+      "bytes": 134988245,
+      "exists": true,
+      "historically_sealed": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/paper1_v2_overnight_20260724/horizon_logic/horizon_generation_main_off0.pt",
+      "role": "original v2 candidate shard",
+      "sha256": "0a4b21818e449ba89f25f50f6c13af6e758ee7c1afc1adf9f7646084343cd8c5"
+    },
+    {
+      "bytes": 134991509,
+      "exists": true,
+      "historically_sealed": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/horizon_logic/horizon_generation_v3_off170.pt",
+      "role": "prospective v3 candidate shard",
+      "sha256": "6df69c5615c8c13fff7a373dbcde21712756836eb181b60303cb7fccbe402e1c"
+    },
+    {
+      "bytes": 135001173,
+      "exists": true,
+      "historically_sealed": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/horizon_logic/horizon_generation_v3_off340.pt",
+      "role": "prospective v3 candidate shard",
+      "sha256": "ee642bff5a66551ae105834908480bbbd0b48dfa235684bd31ef396a0ee5fb84"
+    },
+    {
+      "bytes": 134966101,
+      "exists": true,
+      "historically_sealed": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/horizon_logic/horizon_generation_v3_off510.pt",
+      "role": "prospective v3 candidate shard",
+      "sha256": "ea704bc8489faefaec9dca0717d95f761fd000d1e4490327d7e8d7baaff8a73e"
+    },
+    {
+      "bytes": 248580,
+      "exists": true,
+      "historically_sealed": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/paper1_v2_overnight_20260724/horizon_logic/horizon_generation_main_off0_index.json",
+      "role": "v2 candidate index",
+      "sha256": "1010a4961817126f3c4d7c02227cc5f9c1629eff8ae4a17198a7e991d7c61426"
+    },
+    {
+      "bytes": 248550,
+      "exists": true,
+      "historically_sealed": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/horizon_logic/horizon_generation_v3_off170_index.json",
+      "role": "v3 candidate index",
+      "sha256": "15c95ad2cadde7647711a631a83575153e7fed7fc2c8257bdb6645ec965a3462"
+    },
+    {
+      "bytes": 248484,
+      "exists": true,
+      "historically_sealed": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/horizon_logic/horizon_generation_v3_off340_index.json",
+      "role": "v3 candidate index",
+      "sha256": "aeeba1c0e92e16cb3704eb26b1b4691f6b6f18fd7d3493be355ed0da62f4cb97"
+    },
+    {
+      "bytes": 248605,
+      "exists": true,
+      "historically_sealed": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/horizon_logic/horizon_generation_v3_off510_index.json",
+      "role": "v3 candidate index",
+      "sha256": "0a27fb81831d27de8cd2a7b2e872e50f8943952cb20228a32d28a59013600d0b"
+    },
+    {
+      "bytes": 202002451,
+      "exists": true,
+      "historically_sealed": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/paper1_v2_overnight_20260724/terminal_selection/terminal_pool.pt",
+      "role": "v2 derived terminal pool",
+      "sha256": "18287cc4d6ecfd5ca8ec31e047602ce91bc56d21fc65dddc4c14f84a16bf8117"
+    },
+    {
+      "bytes": 3965,
+      "exists": true,
+      "historically_sealed": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/paper1_v2_overnight_20260724/SHA256SUMS",
+      "role": "v2 historical checksum manifest",
+      "sha256": "3d8a1402650c9428fc8d866663cd4be74fed430773b4f9389132917ba509a3a8"
+    },
+    {
+      "bytes": 1050,
+      "exists": true,
+      "historically_sealed": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/SHA256SUMS",
+      "role": "v3 historical checksum manifest",
+      "sha256": "84ae1591359e20bdc1216107eec7a2a3d54f9d1bd31969efbdf0c3c8695ad95e"
+    },
+    {
+      "bytes": 621,
+      "exists": true,
+      "historically_sealed": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/paper1_v2_overnight_20260724/ENVIRONMENT.json",
+      "role": "v2 historical environment manifest",
+      "sha256": "0091af76cb5bbacaf0acbecc1d2060185514a69ac17500b808922b00020c0ace"
+    },
+    {
+      "bytes": 261,
+      "exists": true,
+      "historically_sealed": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/ENVIRONMENT.json",
+      "role": "v3 historical environment manifest",
+      "sha256": "8cf240d5d256b13079ed71e3d49ce848028d8778cd02c3ca7dae887701262159"
+    },
+    {
+      "bytes": 4168,
+      "exists": true,
+      "historically_sealed": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/paper1_v2_overnight_20260724/MASTER_RUN_MANIFEST.json",
+      "role": "v2 historical run manifest",
+      "sha256": "123cd6e4d6d58d3b6c83b943d4ebfd140cc43e561fabf01adb722c8199614fcb"
+    },
+    {
+      "bytes": 22398,
+      "exists": true,
+      "historically_sealed": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/paper1_v2_overnight_20260724/horizon_logic/task_manifest.json",
+      "role": "v2 historical Horizon task manifest",
+      "sha256": "e54d320ab1f1c28516ec32ea829fe7efb923022c77397df8c32a1eb0e1c86908"
+    },
+    {
+      "bytes": 265,
+      "exists": true,
+      "historically_sealed": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/paper1_v2_overnight_20260724/horizon_logic/split_integrity.json",
+      "role": "v2 historical split-integrity report",
+      "sha256": "418cea66c34cc7f59302abcdb579fee2230cd1a265c71e9dc2b286d2d6f80624"
+    },
+    {
+      "bytes": 529,
+      "exists": true,
+      "historically_sealed": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/paper1_v2_overnight_20260724/horizon_logic/cut_integrity.json",
+      "role": "v2 historical cut-integrity report",
+      "sha256": "6f7a62e776f66fe5798f3bc6e004ff63433d05394f4edbdf3649290e1d36b0ea"
+    },
+    {
+      "bytes": 22254,
+      "exists": true,
+      "historically_sealed": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/paper1_v2_overnight_20260724/horizon_logic/raw_predictions_heldout.json",
+      "role": "v2 published held-out predictions",
+      "sha256": "c85b8fb27468514dc4b5a1eb25d01835c2bae361beeff5801a8278c199e0dc4c"
+    },
+    {
+      "bytes": 308269,
+      "exists": true,
+      "historically_sealed": true,
+      "path": "/home/moloch/ouro_project/artifacts/reports/horizon_power_v3_20260726/raw_predictions_heldout_v3.json",
+      "role": "v3 published held-out predictions",
+      "sha256": "7362f9a517dd6e9fd20d8b32d1e0aa8754a2e1edb1f1b3c06982ad01db7c07d6"
+    },
+    {
+      "bytes": 13996,
+      "exists": true,
+      "historically_sealed": false,
+      "path": "/home/moloch/ouro_project/utilities/tests/manual/bg_v2_overnight_horizon_generate.py",
+      "role": "canonical generator source currently present",
+      "sha256": "2a73963fc0fe3e78d99ec59676649b2e76303657bdd687df6ef97e93c8d6a7e2"
+    },
+    {
+      "bytes": 2010,
+      "exists": true,
+      "historically_sealed": false,
+      "path": "/home/moloch/ouro_project/utilities/tests/manual/bg_v3_horizon_power_generate.py",
+      "role": "v3 generator wrapper currently present",
+      "sha256": "4ca95d30358e88db3225850feb93bd2b647051ed29c98c78c8bf23c0e6832590"
+    },
+    {
+      "bytes": 18929,
+      "exists": true,
+      "historically_sealed": false,
+      "path": "/home/moloch/ouro_project/utilities/tests/manual/bg_v2_overnight_horizon_analysis.py",
+      "role": "canonical hidden-probe analysis currently present",
+      "sha256": "33507cfc62743b7b4a68750b482be8f8be3859aa3ebbecb648298004dacc7ac5"
+    },
+    {
+      "bytes": 13296,
+      "exists": true,
+      "historically_sealed": false,
+      "path": "/home/moloch/ouro_project/src/evaluator/bg_transformer_features.py",
+      "role": "canonical hidden feature extractor currently present",
+      "sha256": "6294f12f8e4f357a619816af8958eb1b09cab8b083e76931f089c0b00fa3681f"
+    },
+    {
+      "bytes": 1925468800,
+      "exists": true,
+      "historically_sealed": false,
+      "path": "/home/moloch/ouro_project/models/ouro_rltt_local/model-00001.safetensors",
+      "role": "current local frozen checkpoint file",
+      "sha256": "9f49e55b0d0ea368f2942cfd3fa256836ea7fa9002c6f860ca2d85ac1de252a1"
+    },
+    {
+      "bytes": 1929715216,
+      "exists": true,
+      "historically_sealed": false,
+      "path": "/home/moloch/ouro_project/models/ouro_rltt_local/model-00002.safetensors",
+      "role": "current local frozen checkpoint file",
+      "sha256": "97a0d531a2c624dd98e60c0ebc46a7cc0413642f8cba6df7dac8df01a432df19"
+    },
+    {
+      "bytes": 1480826858,
+      "exists": true,
+      "historically_sealed": false,
+      "path": "/home/moloch/ouro_project/models/ouro_rltt_local/model-00003.safetensors",
+      "role": "current local frozen checkpoint file",
+      "sha256": "0bf3d0c111c876ccc7f7ebaeb7cabc8dfccffde30acb4cd780a4c364d3679aad"
+    },
+    {
+      "bytes": 39658,
+      "exists": true,
+      "historically_sealed": false,
+      "path": "/home/moloch/ouro_project/models/ouro_rltt_local/model.safetensors.index.json",
+      "role": "current local frozen checkpoint file",
+      "sha256": "e1842668e1ba1568364a4ae7227a5ab80ab5403c95baba37b92205d2cb22a001"
+    },
+    {
+      "bytes": 2198,
+      "exists": true,
+      "historically_sealed": false,
+      "path": "/home/moloch/ouro_project/models/ouro_rltt_local/config.json",
+      "role": "current local frozen checkpoint file",
+      "sha256": "7d6764dbc8210d023c8d83da4620910808ac5a450532b15550e57d1ef0e4f741"
+    },
+    {
+      "bytes": 11823,
+      "exists": true,
+      "historically_sealed": false,
+      "path": "/home/moloch/ouro_project/models/ouro_rltt_local/configuration_ouro.py",
+      "role": "current local frozen checkpoint file",
+      "sha256": "4c7c6138715351f7b673eed4a8e7553ccccb8a1f1ab93e82e9773ad96c6ee7d6"
+    },
+    {
+      "bytes": 60513,
+      "exists": true,
+      "historically_sealed": false,
+      "path": "/home/moloch/ouro_project/models/ouro_rltt_local/modeling_ouro.py",
+      "role": "current local frozen checkpoint file",
+      "sha256": "bcd27ff6a18578feaec168695d70dc76509c57e4d4c377347c9d05d6266d9e82"
+    },
+    {
+      "bytes": 3522644,
+      "exists": true,
+      "historically_sealed": false,
+      "path": "/home/moloch/ouro_project/models/ouro_rltt_local/tokenizer.json",
+      "role": "current local tokenizer file",
+      "sha256": "fcb808fe5e7642f5299be28aea07fc7f6d4f4364c3ac5e408e15a772cbc8fa8d"
+    },
+    {
+      "bytes": 3710,
+      "exists": true,
+      "historically_sealed": false,
+      "path": "/home/moloch/ouro_project/models/ouro_rltt_local/tokenizer_config.json",
+      "role": "current local tokenizer file",
+      "sha256": "7936619f224ec48539a38f8d7dbc64b3c1ba397f4c4b753397d52116cf71dcd8"
+    },
+    {
+      "bytes": 800656,
+      "exists": true,
+      "historically_sealed": false,
+      "path": "/home/moloch/ouro_project/models/ouro_rltt_local/vocab.json",
+      "role": "current local tokenizer file",
+      "sha256": "7b9de3f47796abf8d00ab96be299fea0dc9afdf1827f34e7e0b9fb44593efe5c"
+    },
+    {
+      "bytes": 466391,
+      "exists": true,
+      "historically_sealed": false,
+      "path": "/home/moloch/ouro_project/models/ouro_rltt_local/merges.txt",
+      "role": "current local tokenizer file",
+      "sha256": "0b54e8aa4e53d5383e2e4bc635a56b43f9647f7b13832d5d9ecd8f82dac4f510"
+    },
+    {
+      "bytes": 857,
+      "exists": true,
+      "historically_sealed": false,
+      "path": "/home/moloch/ouro_project/models/ouro_rltt_local/special_tokens_map.json",
+      "role": "current local tokenizer file",
+      "sha256": "aadabc9bd7e3f4738bc1160ef0aa932ba09401c1f11271bd269a21ba987b353b"
+    }
+  ]
+}

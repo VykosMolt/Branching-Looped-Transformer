@@ -1,0 +1,7 @@
+N,status,training_candidates_with_exact_ids,training_strict_clean_fraction,training_retained_tasks,training_correct_candidates,training_incorrect_candidates,selected
+16,NOT_EVALUABLE_GENERATED_TOKEN_IDS_ABSENT,0,,,,,False
+32,NOT_EVALUABLE_GENERATED_TOKEN_IDS_ABSENT,0,,,,,False
+48,NOT_EVALUABLE_GENERATED_TOKEN_IDS_ABSENT,0,,,,,False
+64,NOT_EVALUABLE_GENERATED_TOKEN_IDS_ABSENT,0,,,,,False
+96,NOT_EVALUABLE_GENERATED_TOKEN_IDS_ABSENT,0,,,,,False
+128,NOT_EVALUABLE_GENERATED_TOKEN_IDS_ABSENT,0,,,,,False

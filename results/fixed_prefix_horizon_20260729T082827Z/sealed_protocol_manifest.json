@@ -1,0 +1,28 @@
+{
+  "artifact_reproduction_wrapper": "reproduce.sh",
+  "artifact_reproduction_wrapper_sha256": "461c4f2b3605a268d1d688b317a1979d85be7d8934775f3a43c4e42c194fc6b2",
+  "classifier_fits": 0,
+  "continuation_retokenization_calls": 0,
+  "detector_sealed": false,
+  "fixed_grid_not_evaluated": [
+    16,
+    32,
+    48,
+    64,
+    96,
+    128
+  ],
+  "generation_calls": 0,
+  "heldout_predictive_metrics_opened": false,
+  "inventory_report_sha256": "990b6e6f590ca0487d51a9f1b8db92c33bfc7cbf89964bb804f520b94e900797",
+  "inventory_script": "utilities/tests/manual/fixed_prefix_horizon_inventory.py",
+  "inventory_script_sha256": "7039d654e3ccdcb673fe85c3892fda6ee824e03e12310d959a3dc6efa607c184",
+  "replay_performed": false,
+  "reproduction_wrapper": "utilities/tests/manual/reproduce_fixed_prefix_horizon_gate.sh",
+  "reproduction_wrapper_sha256": "2b8ec69985a0faf446c4f82bde26f3e7859905731f0d76f9fed96f58cf7b9045",
+  "selected_primary_N": null,
+  "status": "TERMINAL_INVENTORY_GATE_MANIFEST_NOT_PREDICTIVE_PROTOCOL",
+  "terminal_finalizer": "utilities/tests/manual/fixed_prefix_horizon_finalize.py",
+  "terminal_finalizer_sha256": "f4179020b11dc25a94f4061eef088623976c0145d8cf54a705ed72c4fa28d1c6",
+  "verdict": "FIXED_PREFIX_HORIZON_NOT_ADJUDICABLE"
+}

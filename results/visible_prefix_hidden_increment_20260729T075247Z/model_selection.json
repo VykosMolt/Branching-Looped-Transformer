@@ -1,0 +1,6 @@
+{
+  "heldout_used_for_selection": false,
+  "reason": "all arms were terminally non-adjudicable before classifier fitting; selection was not permitted",
+  "selected_visible_family": null,
+  "status": "NOT_RUN_UPSTREAM_VISIBLE_PREFIX_GATE"
+}

@@ -1,0 +1,26 @@
+{
+  "captured_before_fitting": true,
+  "cpu_count": 24,
+  "cuda_driver_available": false,
+  "device": "cpu",
+  "filesystem": "Linux-7.1.5-1-cachyos-x86_64-with-glibc2.44",
+  "packages": {
+    "matplotlib": "3.10.9",
+    "numpy": "2.4.4",
+    "pandas": "3.0.2",
+    "pyarrow": "24.0.0",
+    "python": "3.14.6",
+    "scikit-learn": "1.7.2",
+    "scipy": "1.18.0",
+    "sentencepiece": "0.2.1",
+    "tokenizers": "0.21.4",
+    "torch": "2.12.0.dev20260407+cu128",
+    "transformers": "4.54.1"
+  },
+  "precision": {
+    "frozen_embedding": "float32",
+    "linear_models": "float64 where supported",
+    "v3": "float32"
+  },
+  "timezone": "Europe/Zagreb"
+}

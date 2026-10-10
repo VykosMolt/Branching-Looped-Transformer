@@ -1,0 +1,62 @@
+{
+  "conference_HV_minus_V": {
+    "gsm8k": {
+      "ci95": null,
+      "replicates_preregistered": 10000,
+      "replicates_run": 0,
+      "status": "NOT_RUN_NOT_ADJUDICABLE"
+    },
+    "horizon_new_only": {
+      "ci95": null,
+      "replicates_preregistered": 10000,
+      "replicates_run": 0,
+      "status": "NOT_RUN_NOT_ADJUDICABLE"
+    },
+    "horizon_pooled": {
+      "ci95": null,
+      "replicates_preregistered": 10000,
+      "replicates_run": 0,
+      "status": "NOT_RUN_NOT_ADJUDICABLE"
+    }
+  },
+  "historical_sensitivity_only": {
+    "gsm8k": {
+      "ci95": [
+        0.020706818478552536,
+        0.1122539274800343
+      ],
+      "construction": "historical grouped-OOF hidden+length/logprob result; no visible-prefix reader and no original held-out split",
+      "delta": 0.06579006579006585,
+      "hidden_plus_shortcut_auroc": 0.796973296973297,
+      "n_examples": 680,
+      "n_tasks": 170,
+      "shortcut_auroc": 0.7311832311832311
+    },
+    "horizon_new_only": {
+      "ci95": [
+        0.0376443260230922,
+        0.15685096153846156
+      ],
+      "construction": "historical four-shortcut result; includes disallowed post-cut hit_max_tokens and is not the conference endpoint",
+      "delta": 0.09527879527879535,
+      "hidden_only_auroc": 0.7724053724053724,
+      "hidden_plus_shortcut_auroc": 0.7725274725274726,
+      "n_heldout": 443,
+      "n_heldout_tasks": 145,
+      "shortcut_auroc": 0.6772486772486772
+    },
+    "horizon_pooled": {
+      "ci95": [
+        0.05628860828488369,
+        0.1689460544882232
+      ],
+      "construction": "historical four-shortcut result; includes disallowed post-cut hit_max_tokens and is not the conference endpoint",
+      "delta": 0.11142183288409713,
+      "hidden_only_auroc": 0.7634097035040431,
+      "hidden_plus_shortcut_auroc": 0.7633872416891285,
+      "n_heldout": 614,
+      "n_heldout_tasks": 201,
+      "shortcut_auroc": 0.6519654088050314
+    }
+  }
+}

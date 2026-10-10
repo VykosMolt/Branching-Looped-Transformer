@@ -1,0 +1,45 @@
+{
+  "hyperparams": {
+    "hidden": {
+      "auroc_cv": 0.608155002891845,
+      "k_pca": 24,
+      "l2": 4.0
+    },
+    "shortcut": {
+      "auroc_cv": 0.5212108797635113,
+      "k_pca": 16,
+      "l2": 4.0
+    },
+    "combined": {
+      "auroc_cv": 0.6081148383779963,
+      "k_pca": 24,
+      "l2": 2.0
+    }
+  },
+  "shortcut_n_features": 2,
+  "auroc_shortcut_only": 0.5267399267399268,
+  "auroc_hidden_only": 0.6237891737891738,
+  "auroc_hidden_plus_shortcuts": 0.6237484737484738,
+  "incremental_auroc_combined_minus_shortcut": 0.097008547008547,
+  "headroom_normalized_increment": 0.20497936016511867,
+  "acc_at_half_combined": 0.8532731533050537,
+  "paired_task_clustered_bootstrap_combined_minus_shortcut": {
+    "n_rounds_used": 2000,
+    "mean_delta": 0.09451991810372591,
+    "ci95": [
+      -0.005950248756218857,
+      0.19898499558693727
+    ],
+    "excludes_zero": false
+  },
+  "baseline_features": [
+    "prompt_tok",
+    "proof_depth"
+  ],
+  "hidden_features": "prompt_only_features flattened (layers 24/36/47 x 4 loops x 2048)",
+  "n_heldout": 443,
+  "n_heldout_tasks": 145,
+  "n_heldout_negatives": 65,
+  "heldout_base_rate": 0.8532731533050537,
+  "gate": "PASSED"
+}

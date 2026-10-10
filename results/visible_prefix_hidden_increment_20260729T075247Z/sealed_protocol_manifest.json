@@ -1,0 +1,27 @@
+{
+  "experiment_id": "visible_prefix_hidden_increment_20260729T075247Z",
+  "sealed_at_utc": "2026-07-29T08:10:00Z",
+  "status": "SEALED_BEFORE_LABEL_DEPENDENT_FITTING_AND_HELDOUT_METRICS",
+  "inventory_report_sha256": "879fd166fd2d2512dd4f2527a3cc483808bfaf946adc400c143c14e4b6a6c84a",
+  "inventory_program_sha256": "0a639e609f94ae398300c918ff38081676865bacf79233922c45e7f82d704acc",
+  "source_manifest_sha256": "87fd7111a23bd74c15804a2938b434eaf4ac28f95eb75b28af4d19f0203bc8ed",
+  "split_manifest_sha256": "19a9244cbd1da68d09cc9b4111699e4cecc485d72b92b9d0c7d42ea79f2e588c",
+  "implementation_path": "utilities/tests/manual/visible_prefix_hidden_increment_experiment.py",
+  "implementation_sha256": "37f59771f681046cf923c705ae70c478fe8078d9345fd7251c70e1897fc46211",
+  "wrapper_path": "utilities/tests/manual/reproduce_visible_prefix_hidden_increment.sh",
+  "wrapper_sha256": "63cc67d525533d14561406a69c02fee8c33e3a380492b6487bdf6cdf3fda8a20",
+  "fixed_seeds": [
+    20260729,
+    20260730,
+    20260731
+  ],
+  "bootstrap_seed": 20260729,
+  "bootstrap_replicates": 10000,
+  "shuffle_replicates": 1000,
+  "smallest_effect_of_interest_auroc": 0.02,
+  "primary_endpoint": "horizon_new_only: AUROC(HV)-AUROC(V)",
+  "replication_endpoint": "gsm8k: AUROC(HV)-AUROC(V)",
+  "secondary_precision_endpoint": "horizon_pooled: AUROC(HV)-AUROC(V)",
+  "heldout_opening_rule": "only after preregistration hash is written and verified",
+  "arxiv_write_prohibited": true
+}

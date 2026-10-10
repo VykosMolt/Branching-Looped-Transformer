@@ -1,0 +1,4808 @@
+{
+  "created_at_utc": "2026-07-29T07:59:35.356511+00:00",
+  "gsm8k": {
+    "n_candidates": 680,
+    "n_tasks": 170,
+    "reason": "historical task-grouped CV only; no original train/val/heldout",
+    "status": "NOT_PRESERVED"
+  },
+  "horizon_new_only": {
+    "candidate_counts_all_rows": {
+      "heldout": 580,
+      "train": 1064,
+      "val": 396
+    },
+    "cohort": "horizon_new_only",
+    "crossing_task_ids": [],
+    "n_unique_tasks": 510,
+    "task_counts": {
+      "heldout": 145,
+      "train": 266,
+      "val": 99
+    },
+    "task_split_rows": [
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::102"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1024"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1038"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1047"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1054"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1070"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1122"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1143"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1162"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1164"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1175"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1183"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1199"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1201"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::122"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1224"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1233"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::124"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1266"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::127"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1278"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1279"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1285"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1302"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1303"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1347"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1355"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1377"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::138"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1382"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1383"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::139"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1407"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1433"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1451"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::149"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1498"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1528"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::156"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1572"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1577"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1587"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1614"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1622"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1635"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1637"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1671"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1689"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1692"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1698"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::170"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1700"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1717"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::173"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1747"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1755"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1756"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1769"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1778"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::178"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1788"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1792"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1794"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1797"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::182"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1829"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1843"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1846"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1862"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1870"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1885"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1893"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1895"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1937"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1960"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1967"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1971"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1972"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1975"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1991"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1996"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1999"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::2001"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::201"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2036"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::206"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::207"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2078"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2081"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2085"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2091"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2096"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2099"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2109"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2112"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2115"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2127"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2128"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2152"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2158"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2159"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2176"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2187"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2194"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2212"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2220"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::2231"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::2233"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2236"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2242"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2243"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::2297"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2302"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2316"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::2317"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2384"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::2398"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::2405"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2420"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2434"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2435"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2437"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::244"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2457"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2489"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2498"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2499"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2510"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2550"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2557"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2566"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2587"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2609"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2618"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2633"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2645"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2656"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2678"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2687"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2697"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2703"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::272"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::273"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::2730"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2752"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2755"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2756"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2783"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::279"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::2804"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2807"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2809"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::2810"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2812"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2816"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2836"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2857"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2867"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2873"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2875"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::289"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2901"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2903"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2918"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2938"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2950"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2951"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::296"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2972"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3007"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3013"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3027"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::304"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3044"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3048"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3050"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3060"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3067"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::309"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3106"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3172"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3175"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3178"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3185"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3189"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3190"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3193"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3195"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3199"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3201"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3215"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3216"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3218"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3236"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3257"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3258"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3260"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3274"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3295"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3297"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3304"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3358"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3365"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3367"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::337"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3380"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3387"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3434"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3449"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3459"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3460"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3464"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::347"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3505"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3515"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3527"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3530"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3538"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3577"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3603"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3612"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3630"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3642"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3643"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3646"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::368"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3694"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3734"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3750"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3797"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3800"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3821"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3839"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::384"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3850"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3855"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3868"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3870"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3887"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3891"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3892"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3905"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3914"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3931"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3953"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3965"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4000"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4006"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4023"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4043"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4062"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4090"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4104"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4153"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4179"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4180"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4185"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4197"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4206"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4222"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4224"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4229"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4238"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4243"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4254"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4264"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4269"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4271"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4294"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4298"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4305"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4320"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4339"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4353"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4376"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4396"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4424"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4444"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4454"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4459"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4471"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4477"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4480"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4495"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::45"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4509"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4522"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4541"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4544"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4564"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4579"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::458"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4588"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4589"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4592"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4597"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4620"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4622"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4640"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4648"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4668"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4689"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4718"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4742"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4761"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4770"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4773"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4778"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4814"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4826"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4827"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4829"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4834"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4862"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4907"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4919"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4926"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::493"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4935"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4941"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4942"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::497"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4979"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::500"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5002"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5037"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5061"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5077"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5078"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::508"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5082"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5088"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5089"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5092"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5094"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5116"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5129"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::513"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5154"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5158"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5160"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5163"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5165"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5176"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5178"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5205"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5208"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5222"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5227"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5256"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5260"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5274"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5279"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5286"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5287"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5308"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5316"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::533"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5337"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5354"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5355"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5381"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5382"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5385"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5404"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5433"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5445"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5457"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::546"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5488"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5508"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5517"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5525"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5549"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5592"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5600"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5631"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5639"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::566"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5683"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::569"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5699"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5718"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5719"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5729"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::574"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5750"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5775"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::580"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5805"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5807"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5825"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5829"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5834"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5861"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5873"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5874"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5885"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5915"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5938"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5945"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5953"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5966"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6008"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6031"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6034"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6040"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6042"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::605"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6050"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6080"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6090"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6175"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6176"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6183"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6191"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6212"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6217"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6222"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6237"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6245"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6255"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6263"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6273"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6276"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6277"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::628"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6287"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6288"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6289"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6297"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6318"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6344"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6358"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6374"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6381"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6420"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6438"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6451"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6455"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6469"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::649"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6491"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6503"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6506"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6548"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6550"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6559"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6571"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6589"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6591"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6592"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6600"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6610"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6628"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6648"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6649"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6652"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6653"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6655"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6675"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6683"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6692"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6703"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6707"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6708"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6722"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6726"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6737"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6752"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6754"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6758"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6769"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6777"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6778"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6787"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6795"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6807"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6809"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::683"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6859"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::686"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6865"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6886"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6890"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6905"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::717"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::721"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::733"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::756"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::767"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::77"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::785"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::793"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::798"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::799"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::814"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::830"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::866"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::877"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::88"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::903"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::920"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::938"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::945"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::952"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::953"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::980"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::986"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::997"
+      }
+    ],
+    "task_split_sha256": "395e9694b93defe707afd64fa7982986359a8a93865b4ec0d9ff5d6aaa916a55",
+    "zero_task_crossing": true
+  },
+  "horizon_pooled": {
+    "candidate_counts_all_rows": {
+      "heldout": 816,
+      "train": 1384,
+      "val": 520
+    },
+    "cohort": "horizon_pooled",
+    "crossing_task_ids": [],
+    "n_unique_tasks": 680,
+    "task_counts": {
+      "heldout": 204,
+      "train": 346,
+      "val": 130
+    },
+    "task_split_rows": [
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::102"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1024"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1031"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1038"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1047"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1051"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1054"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1069"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1070"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1076"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1100"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1103"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1122"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1135"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1143"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1156"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1162"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1164"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1175"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1183"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1199"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1201"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1202"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::122"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1224"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1227"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1233"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::124"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1266"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::127"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1278"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1279"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1285"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1302"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1303"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::134"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1347"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1355"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1363"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1377"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::138"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1382"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1383"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::139"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1390"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::140"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1407"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::142"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1433"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1451"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1483"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::149"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1498"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1499"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1503"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1520"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1528"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::156"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1572"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1577"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1587"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::159"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::160"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1614"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1622"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1635"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1637"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1645"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1671"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1689"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1692"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1698"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::170"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1700"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1717"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1725"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1728"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::173"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1747"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1755"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1756"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1769"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1771"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1778"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::178"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1788"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1792"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1794"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1797"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::182"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1820"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1829"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1835"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1838"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1843"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1846"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1862"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1866"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1870"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1885"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1893"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1895"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1911"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1931"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1937"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1952"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1960"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1967"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1971"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1972"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::1975"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1991"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1996"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::1998"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::1999"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::2001"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::201"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2036"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::206"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::207"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2077"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2078"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2081"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2085"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2091"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2096"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2099"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2109"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2112"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2115"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2127"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2128"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2133"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2148"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2152"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2158"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2159"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2176"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2187"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2194"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2212"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2220"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::2231"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::2233"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2236"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2242"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2243"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2247"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::2261"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::229"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::2297"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2302"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2316"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::2317"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::238"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2384"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2393"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::2398"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::2405"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2420"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2431"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2434"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2435"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2437"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::244"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2441"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2457"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2489"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2492"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2498"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2499"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2510"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2517"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2550"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2557"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2565"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2566"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2587"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2590"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2609"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2618"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2633"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2645"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2656"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2678"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2687"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2697"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2703"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2708"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::272"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::273"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::2730"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2752"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2755"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2756"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2783"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::279"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::2804"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2807"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2809"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::2810"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2812"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2816"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::2829"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2835"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2836"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::284"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2857"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2858"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2866"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2867"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2869"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2873"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2875"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::289"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::29"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::290"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2901"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2903"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::2913"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2918"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2931"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2938"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2948"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2950"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::2951"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::296"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::2972"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::299"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3007"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3013"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3027"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::304"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3041"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3044"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3047"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3048"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3050"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3060"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3067"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::309"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3106"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3128"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3167"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3172"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3175"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3178"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3185"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3189"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3190"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3193"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3195"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3199"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3201"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3215"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3216"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3218"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3236"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3257"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3258"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3260"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3265"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3274"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3295"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3297"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3304"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3358"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3365"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3367"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3369"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::337"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3380"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3387"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3434"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3449"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3459"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3460"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3464"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::347"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3475"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3496"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3505"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3515"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3527"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::353"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3530"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3538"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3552"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3577"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3586"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3588"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3603"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3604"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3609"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3610"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3612"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3630"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3642"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3643"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3646"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3663"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::368"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3694"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::37"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3730"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3734"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3744"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3750"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3777"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3797"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3800"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3809"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3821"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3822"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3831"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3839"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::384"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3850"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3855"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3868"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3870"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3887"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3891"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::3892"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3905"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::3914"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3931"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3953"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::3965"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4000"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4006"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4023"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4043"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4062"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4086"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4090"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4104"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4153"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4167"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4179"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4180"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4183"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4185"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4197"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::42"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4206"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4222"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4224"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4229"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4238"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4243"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4254"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4264"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4269"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4271"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4286"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4294"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4298"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4305"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4320"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4323"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4330"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4339"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::435"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4353"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4376"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4396"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4403"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4424"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4428"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4444"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4454"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4459"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4469"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4471"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4477"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4480"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4491"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4495"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::45"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4509"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4518"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4522"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4541"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4544"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4564"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4577"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4579"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::458"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4588"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4589"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4592"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4597"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4620"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4622"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4640"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4648"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4651"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4652"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4668"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4689"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4713"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4718"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4742"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4743"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4761"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4770"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4773"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4778"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::478"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4783"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4793"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4797"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4814"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4826"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4827"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4829"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4834"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4848"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4858"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4862"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4876"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4893"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4907"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4919"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4922"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::4926"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::493"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4935"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4936"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4941"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4942"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::4969"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::497"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::4979"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::50"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::500"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5002"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5008"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5037"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5061"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5077"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5078"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::508"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5081"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5082"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5088"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5089"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5092"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5094"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5096"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5116"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5123"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5129"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::513"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5154"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5158"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5160"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5163"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5165"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5176"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5178"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5196"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5205"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5208"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5222"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5227"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5247"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5248"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5256"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5260"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5274"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5279"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5286"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5287"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5308"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5315"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5316"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::533"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5337"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5354"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5355"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5381"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5382"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5385"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5397"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5404"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5426"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5433"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5438"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5445"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5452"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5457"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::546"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5473"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5488"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5494"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5508"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5517"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5522"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5525"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5549"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5576"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5592"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5600"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5605"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5631"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5639"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5655"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::566"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5665"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5683"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::569"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5699"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5718"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5719"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5720"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5729"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::574"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::575"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5750"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5751"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5775"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::580"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5801"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5805"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5807"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5825"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5829"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5834"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5842"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5861"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5873"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5874"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5885"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5909"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5915"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5938"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5944"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5945"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5950"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::5953"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::5955"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::5966"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6008"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6031"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6034"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6040"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6042"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::605"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6050"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6080"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6089"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6090"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6095"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6163"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6175"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6176"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6183"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6191"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6210"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6212"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6217"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6222"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6235"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6237"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6240"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6245"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6253"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6255"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6263"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6273"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6276"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6277"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::628"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6287"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6288"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6289"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6297"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6308"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6318"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6344"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6345"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6358"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6374"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6377"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6381"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6420"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6433"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6438"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6451"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6455"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6469"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6478"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::649"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6491"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6503"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6506"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6517"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6548"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6550"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6559"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6571"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6589"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6591"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6592"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6600"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6610"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6624"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6628"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6648"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6649"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6652"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6653"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6655"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6667"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6675"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6683"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6692"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6703"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6707"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6708"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6722"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6726"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6733"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6737"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6752"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6754"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6758"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6760"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6769"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::677"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6777"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6778"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6787"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::679"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6795"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6807"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6809"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6811"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::683"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6837"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6852"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6854"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6857"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6859"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::686"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6865"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::6886"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::6890"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::6905"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::717"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::721"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::733"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::756"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::767"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::77"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::782"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::785"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::793"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::798"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::799"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::814"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::828"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::830"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::851"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::866"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::876"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::877"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::88"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::903"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::920"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::938"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::945"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::949"
+      },
+      {
+        "split": "val",
+        "task_id": "synthlogic::synthetic_propositional::952"
+      },
+      {
+        "split": "train",
+        "task_id": "synthlogic::synthetic_propositional::953"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::980"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::986"
+      },
+      {
+        "split": "heldout",
+        "task_id": "synthlogic::synthetic_propositional::997"
+      }
+    ],
+    "task_split_sha256": "cfc43af83f0effe677be8b92fb74f3de9bf86dcdada5c15f367d16e0a7dfc906",
+    "zero_task_crossing": true
+  },
+  "schema_version": 1
+}

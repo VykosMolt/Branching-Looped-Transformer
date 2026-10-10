@@ -1,0 +1,85 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 58.41it/s]
+[run6] shard 0: 1/100 tasks, 90s
+[run6] shard 0: 10/100 tasks, 622s
+[run6] shard 0: 20/100 tasks, 1411s
+[run6] shard 0: 30/100 tasks, 2090s
+[run6] shard 0: 40/100 tasks, 2741s
+[run6] shard 0: 50/100 tasks, 3406s
+[run6] shard 0: 60/100 tasks, 4249s
+[run6] shard 0: 70/100 tasks, 5128s
+[run6] shard 0: 80/100 tasks, 5767s
+[run6] shard 0: 90/100 tasks, 6503s
+[run6] shard 0: 100/100 tasks, 7274s
+[run6] wrote run6_shard_0000.pt: 400 records, 0 errors, equivalence max 0.0
+[run6] shard 300: 1/100 tasks, 59s
+[run6] shard 300: 10/100 tasks, 667s
+[run6] shard 300: 20/100 tasks, 1341s
+[run6] shard 300: 30/100 tasks, 2101s
+[run6] shard 300: 40/100 tasks, 2826s
+[run6] shard 300: 50/100 tasks, 3576s
+[run6] shard 300: 60/100 tasks, 4385s
+[run6] shard 300: 70/100 tasks, 5076s
+[run6] shard 300: 80/100 tasks, 5909s
+[run6] shard 300: 90/100 tasks, 6683s
+[run6] shard 300: 100/100 tasks, 7425s
+[run6] wrote run6_shard_0300.pt: 400 records, 0 errors, equivalence max 0.0
+[run6] shard 600: 1/100 tasks, 121s
+[run6] shard 600: 10/100 tasks, 803s
+[run6] shard 600: 20/100 tasks, 1465s
+[run6] shard 600: 30/100 tasks, 2303s
+[run6] shard 600: 40/100 tasks, 3044s
+[run6] shard 600: 50/100 tasks, 3575s
+[run6] shard 600: 60/100 tasks, 4368s
+[run6] shard 600: 70/100 tasks, 5094s
+[run6] shard 600: 80/100 tasks, 5794s
+[run6] shard 600: 90/100 tasks, 6472s
+[run6] shard 600: 100/100 tasks, 7229s
+[run6] wrote run6_shard_0600.pt: 400 records, 0 errors, equivalence max 0.0
+[run6] shard 900: 1/100 tasks, 53s
+[run6] shard 900: 10/100 tasks, 671s
+[run6] shard 900: 20/100 tasks, 1428s
+[run6] shard 900: 30/100 tasks, 2044s
+[run6] shard 900: 40/100 tasks, 2889s
+[run6] shard 900: 50/100 tasks, 3755s
+[run6] shard 900: 60/100 tasks, 4355s
+[run6] shard 900: 70/100 tasks, 5092s
+[run6] shard 900: 80/100 tasks, 5955s
+[run6] shard 900: 90/100 tasks, 6672s
+[run6] shard 900: 100/100 tasks, 7340s
+[run6] wrote run6_shard_0900.pt: 400 records, 0 errors, equivalence max 0.0
+[run6] shard 1200: 1/100 tasks, 60s
+[run6] shard 1200: 10/100 tasks, 795s
+[run6] shard 1200: 20/100 tasks, 1589s
+[run6] shard 1200: 30/100 tasks, 2305s
+[run6] shard 1200: 40/100 tasks, 3157s
+[run6] shard 1200: 50/100 tasks, 3914s
+[run6] shard 1200: 60/100 tasks, 4624s
+[run6] shard 1200: 70/100 tasks, 5556s
+[run6] shard 1200: 80/100 tasks, 6373s
+[run6] shard 1200: 90/100 tasks, 7007s
+[run6] shard 1200: 100/100 tasks, 7681s
+[run6] wrote run6_shard_1200.pt: 400 records, 0 errors, equivalence max 0.0
+[run6] shard 1500: 1/100 tasks, 93s
+[run6] shard 1500: 10/100 tasks, 751s
+[run6] shard 1500: 20/100 tasks, 1441s
+[run6] shard 1500: 30/100 tasks, 2143s
+[run6] shard 1500: 40/100 tasks, 2909s
+[run6] shard 1500: 50/100 tasks, 3686s
+[run6] shard 1500: 60/100 tasks, 4530s
+[run6] shard 1500: 70/100 tasks, 5205s
+[run6] shard 1500: 80/100 tasks, 5831s
+[run6] shard 1500: 90/100 tasks, 6598s
+[run6] shard 1500: 100/100 tasks, 7353s
+[run6] wrote run6_shard_1500.pt: 400 records, 0 errors, equivalence max 0.0
+[run6] shard 1800: 1/100 tasks, 55s
+[run6] shard 1800: 10/100 tasks, 813s
+[run6] shard 1800: 20/100 tasks, 1524s
+[run6] shard 1800: 30/100 tasks, 2267s
+[run6] shard 1800: 40/100 tasks, 2925s
+[run6] shard 1800: 50/100 tasks, 3454s
+[run6] shard 1800: 60/100 tasks, 3938s
+[run6] shard 1800: 70/100 tasks, 4359s
+[run6] shard 1800: 80/100 tasks, 4876s
+[run6] shard 1800: 90/100 tasks, 5328s
+[run6] shard 1800: 100/100 tasks, 5804s
+[run6] wrote run6_shard_1800.pt: 400 records, 0 errors, equivalence max 0.0

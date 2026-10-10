@@ -1,0 +1,81 @@
+{
+  "arms": {
+    "horizon_new_only": {
+      "heldout": {
+        "fraction_truncated": 0.21670428893905191,
+        "mean_prefix_tokens_original": 136.8374717832957,
+        "mean_prefix_tokens_retained": 120.79006772009029,
+        "mean_prompt_tokens_original": 120.25959367945823,
+        "mean_prompt_tokens_retained": 120.25959367945823,
+        "n": 443,
+        "n_prefix_truncated": 96,
+        "n_prompt_truncated": 0,
+        "n_truncated": 96
+      },
+      "train": {
+        "fraction_truncated": 0.20393120393120392,
+        "mean_prefix_tokens_original": 138.3918918918919,
+        "mean_prefix_tokens_retained": 124.60810810810811,
+        "mean_prompt_tokens_original": 119.47911547911548,
+        "mean_prompt_tokens_retained": 119.47911547911548,
+        "n": 814,
+        "n_prefix_truncated": 166,
+        "n_prompt_truncated": 0,
+        "n_truncated": 166
+      },
+      "val": {
+        "fraction_truncated": 0.23,
+        "mean_prefix_tokens_original": 133.98666666666668,
+        "mean_prefix_tokens_retained": 117.63666666666667,
+        "mean_prompt_tokens_original": 118.53333333333333,
+        "mean_prompt_tokens_retained": 118.53333333333333,
+        "n": 300,
+        "n_prefix_truncated": 69,
+        "n_prompt_truncated": 0,
+        "n_truncated": 69
+      }
+    },
+    "horizon_pooled": {
+      "heldout": {
+        "fraction_truncated": 0.2182410423452769,
+        "mean_prefix_tokens_original": 136.35667752442995,
+        "mean_prefix_tokens_retained": 120.45114006514657,
+        "mean_prompt_tokens_original": 119.99348534201954,
+        "mean_prompt_tokens_retained": 119.99348534201954,
+        "n": 614,
+        "n_prefix_truncated": 134,
+        "n_prompt_truncated": 0,
+        "n_truncated": 134
+      },
+      "train": {
+        "fraction_truncated": 0.19394512771996217,
+        "mean_prefix_tokens_original": 137.1759697256386,
+        "mean_prefix_tokens_retained": 123.46073793755913,
+        "mean_prompt_tokens_original": 119.26679280983917,
+        "mean_prompt_tokens_retained": 119.26679280983917,
+        "n": 1057,
+        "n_prefix_truncated": 205,
+        "n_prompt_truncated": 0,
+        "n_truncated": 205
+      },
+      "val": {
+        "fraction_truncated": 0.20959595959595959,
+        "mean_prefix_tokens_original": 130.32070707070707,
+        "mean_prefix_tokens_retained": 115.09848484848484,
+        "mean_prompt_tokens_original": 118.92676767676768,
+        "mean_prompt_tokens_retained": 118.92676767676768,
+        "n": 396,
+        "n_prefix_truncated": 83,
+        "n_prompt_truncated": 0,
+        "n_truncated": 83
+      }
+    }
+  },
+  "fixed_prefix_allocation": 253,
+  "fixed_prompt_allocation": 256,
+  "maximum_sequence_length": 512,
+  "model_id": "microsoft/deberta-v3-small",
+  "pair_special_tokens": 3,
+  "revision": "a36c739020e01763fe789b4b85e2df55d6180012",
+  "rule": "retain the first 256 prompt tokens and the most recent 253 visible-prefix tokens, with three pair-special tokens; never right-truncate the prefix end"
+}

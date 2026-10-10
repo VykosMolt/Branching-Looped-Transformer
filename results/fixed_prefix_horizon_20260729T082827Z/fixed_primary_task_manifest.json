@@ -1,0 +1,10 @@
+{
+  "classifier_fits": 0,
+  "generation_calls": 0,
+  "reason": "no primary N was selectable",
+  "replay_calls": 0,
+  "selected_primary_N": null,
+  "status": "NOT_RUN_INVENTORY_GATE_FAILURE",
+  "tasks": [],
+  "verdict": "FIXED_PREFIX_HORIZON_NOT_ADJUDICABLE"
+}

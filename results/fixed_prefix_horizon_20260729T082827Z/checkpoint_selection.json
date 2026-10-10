@@ -1,0 +1,19 @@
+{
+  "classifier_fits": 0,
+  "failure_stage": "PRE_SELECTION_ARTIFACT_GATE",
+  "fixed_grid": [
+    16,
+    32,
+    48,
+    64,
+    96,
+    128
+  ],
+  "generation_calls": 0,
+  "reason": "fixed grid cannot be applied to absent generated token IDs",
+  "replay_calls": 0,
+  "selected_primary_N": null,
+  "status": "NOT_RUN_INVENTORY_GATE_FAILURE",
+  "training_only_rule_applied": false,
+  "verdict": "FIXED_PREFIX_HORIZON_NOT_ADJUDICABLE"
+}

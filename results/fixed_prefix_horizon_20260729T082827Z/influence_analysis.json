@@ -1,0 +1,10 @@
+{
+  "classifier_fits": 0,
+  "generation_calls": 0,
+  "reason": "no held-out endpoint exists",
+  "replay_calls": 0,
+  "source_family_influence": null,
+  "status": "NOT_RUN_INVENTORY_GATE_FAILURE",
+  "task_influence": null,
+  "verdict": "FIXED_PREFIX_HORIZON_NOT_ADJUDICABLE"
+}

@@ -1,0 +1,10 @@
+{
+  "classifier_fits": 0,
+  "fraction_truncated": null,
+  "generation_calls": 0,
+  "maximum_sequence_length": null,
+  "reason": "semantic-model inputs were never constructed",
+  "replay_calls": 0,
+  "status": "NOT_RUN_INVENTORY_GATE_FAILURE",
+  "verdict": "FIXED_PREFIX_HORIZON_NOT_ADJUDICABLE"
+}

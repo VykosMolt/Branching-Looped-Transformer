@@ -1,0 +1,9 @@
+{
+  "bands": null,
+  "classifier_fits": 0,
+  "generation_calls": 0,
+  "reason": "checkpoint curve was not run",
+  "replay_calls": 0,
+  "status": "NOT_RUN_INVENTORY_GATE_FAILURE",
+  "verdict": "FIXED_PREFIX_HORIZON_NOT_ADJUDICABLE"
+}

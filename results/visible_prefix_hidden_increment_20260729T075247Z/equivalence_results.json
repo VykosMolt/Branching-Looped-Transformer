@@ -1,0 +1,32 @@
+{
+  "gsm8k": {
+    "ci90": null,
+    "clustered_tost_alpha": 0.05,
+    "equivalent": false,
+    "smallest_effect_of_interest": [
+      -0.02,
+      0.02
+    ],
+    "status": "NOT_RUN_NOT_ADJUDICABLE"
+  },
+  "horizon_new_only": {
+    "ci90": null,
+    "clustered_tost_alpha": 0.05,
+    "equivalent": false,
+    "smallest_effect_of_interest": [
+      -0.02,
+      0.02
+    ],
+    "status": "NOT_RUN_NOT_ADJUDICABLE"
+  },
+  "horizon_pooled": {
+    "ci90": null,
+    "clustered_tost_alpha": 0.05,
+    "equivalent": false,
+    "smallest_effect_of_interest": [
+      -0.02,
+      0.02
+    ],
+    "status": "NOT_RUN_NOT_ADJUDICABLE"
+  }
+}

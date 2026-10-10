@@ -1,0 +1,91 @@
+{
+  "label_changes": {
+    "True->True": 1539,
+    "None->True": 81,
+    "None->None": 447,
+    "False->False": 129,
+    "True->False": 25,
+    "False->True": 52,
+    "True->None": 61,
+    "False->None": 47,
+    "None->False": 15
+  },
+  "primary_strict_labels": {
+    "hyperparams": {
+      "hidden": {
+        "auroc_cv": 0.6611143113159242,
+        "k_pca": 16,
+        "l2": 4.0
+      },
+      "shortcut": {
+        "auroc_cv": 0.5371863799283154,
+        "k_pca": 16,
+        "l2": 1.0
+      },
+      "combined": {
+        "auroc_cv": 0.6611143113159242,
+        "k_pca": 16,
+        "l2": 1.0
+      }
+    },
+    "shortcut_n_features": 2,
+    "auroc_shortcut_only": 0.5232059645852749,
+    "auroc_hidden_only": 0.7771668219944082,
+    "auroc_hidden_plus_shortcuts": 0.7771668219944082,
+    "incremental_auroc_combined_minus_shortcut": 0.2539608574091333,
+    "headroom_normalized_increment": 0.532642689601251,
+    "acc_at_half_combined": 0.927318274974823,
+    "paired_task_clustered_bootstrap_combined_minus_shortcut": {
+      "n_rounds_used": 2000,
+      "mean_delta": 0.2544086922830618,
+      "ci95": [
+        0.10492227979274615,
+        0.40703192407247624
+      ],
+      "excludes_zero": true
+    },
+    "n_heldout": 399,
+    "n_heldout_tasks": 163,
+    "n_heldout_negatives": 29,
+    "n_trainval": 940
+  },
+  "final_marker_strict_labels": {
+    "hyperparams": {
+      "hidden": {
+        "auroc_cv": 0.7476225285435811,
+        "k_pca": 24,
+        "l2": 2.0
+      },
+      "shortcut": {
+        "auroc_cv": 0.5846177944862155,
+        "k_pca": 16,
+        "l2": 1.0
+      },
+      "combined": {
+        "auroc_cv": 0.7476294903926483,
+        "k_pca": 24,
+        "l2": 2.0
+      }
+    },
+    "shortcut_n_features": 4,
+    "auroc_shortcut_only": 0.674951664876477,
+    "auroc_hidden_only": 0.842749731471536,
+    "auroc_hidden_plus_shortcuts": 0.8428356605800215,
+    "incremental_auroc_combined_minus_shortcut": 0.1678839957035445,
+    "headroom_normalized_increment": 0.516489326548146,
+    "acc_at_half_combined": 0.9141221642494202,
+    "paired_task_clustered_bootstrap_combined_minus_shortcut": {
+      "n_rounds_used": 2000,
+      "mean_delta": 0.16887106336869637,
+      "ci95": [
+        0.08218198077353012,
+        0.2637060041407868
+      ],
+      "excludes_zero": true
+    },
+    "n_heldout": 524,
+    "n_heldout_tasks": 168,
+    "n_heldout_negatives": 49,
+    "n_trainval": 1317
+  }
+}

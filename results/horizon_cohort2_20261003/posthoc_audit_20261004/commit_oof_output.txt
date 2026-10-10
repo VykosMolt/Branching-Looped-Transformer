@@ -1,0 +1,5 @@
+# Output of commit_oof.py, re-run 2026-10-04 by the main session (after extract4.py rebuilt r4cache from the SSD shards)
+pairs 237 | AUROC of 'commits later': 0.781
+correct commits later 185 {'hidden': 0.762, 'combined': 0.768, 'surface': 0.573, 'reader': 0.805}
+correct commits earlier 52 {'hidden': 0.519, 'combined': 0.577, 'surface': 0.558, 'reader': 0.596}
+# "commits" = character position of the strict final-answer label in the full generation (a future event, after the 48-token window).

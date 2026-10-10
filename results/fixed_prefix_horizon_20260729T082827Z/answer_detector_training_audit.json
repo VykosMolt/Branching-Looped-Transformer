@@ -1,0 +1,12 @@
+{
+  "classifier_fits": 0,
+  "detector_code_corrections": [],
+  "false_negative_count": null,
+  "false_positive_count": null,
+  "generation_calls": 0,
+  "reason": "exact first-N generated-token prefixes do not exist",
+  "replay_calls": 0,
+  "status": "NOT_RUN_INVENTORY_GATE_FAILURE",
+  "training_rows_reviewed": 0,
+  "verdict": "FIXED_PREFIX_HORIZON_NOT_ADJUDICABLE"
+}

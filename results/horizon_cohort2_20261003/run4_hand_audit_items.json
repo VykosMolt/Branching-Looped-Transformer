@@ -1,0 +1,245 @@
+{
+ "n_star": 48,
+ "items": [
+  {
+   "task_uid": "synthlogic::synthetic_propositional::9057",
+   "cand": 3,
+   "own_strict_answer": "B",
+   "options": {
+    "A": "True",
+    "B": "False",
+    "C": "Unknown"
+   },
+   "statement": "the fan is running.",
+   "prefix": "\nD. True or False\nE.\n\nFINAL ANSW\n\nThe user's question involves determining the truth value of a statement based on given facts and rules. The fact provided is that the gate is open. The rules"
+  },
+  {
+   "task_uid": "synthlogic::synthetic_propositional::11047",
+   "cand": 0,
+   "own_strict_answer": "A",
+   "options": {
+    "A": "True",
+    "B": "False",
+    "C": "Unknown"
+   },
+   "statement": "the gate is open.",
+   "prefix": "\n\nFINAL ANSWLet me think. The user is asking whether the gate is open based on the given facts and rules. The fact is that the battery is not charged. The rules are:\n\n1. If the fan is"
+  },
+  {
+   "task_uid": "synthlogic::synthetic_propositional::10211",
+   "cand": 2,
+   "own_strict_answer": "A",
+   "options": {
+    "A": "True",
+    "B": "False",
+    "C": "Unknown"
+   },
+   "statement": "the fan is running.",
+   "prefix": "\n\nPlease reason step by by step,\n\nFirst, let's list the facts and rules:\n\nFacts:\n1. It is not the system that the pump is active. (\u00acP)\n2. The signal"
+  },
+  {
+   "task_uid": "synthlogic::synthetic_propositional::5268",
+   "cand": 2,
+   "own_strict_answer": "B",
+   "options": {
+    "A": "True",
+    "B": "False",
+    "C": "Unknown"
+   },
+   "statement": "the door is locked.",
+   "prefix": "\n\nFINAL ANSW\ufe0f\n\nPlease write the step-by-step solution.\n\n\nOkay, let's see. The problem gives us some facts and rules, and we need to determine if the door is"
+  },
+  {
+   "task_uid": "synthlogic::synthetic_propositional::7041",
+   "cand": 0,
+   "own_strict_answer": "A",
+   "options": {
+    "A": "True",
+    "B": "False",
+    "C": "Unknown"
+   },
+   "statement": "the signal is sent.",
+   "prefix": "\nD.\n\nReasoning Process:\n\nSolution:\n\nOkay, let's see. The problem gives some facts and rules, and I need to determine if the statement \"the signal is sent\" is True, False"
+  },
+  {
+   "task_uid": "synthlogic::synthetic_propositional::3563",
+   "cand": 3,
+   "own_strict_answer": "B",
+   "options": {
+    "A": "True",
+    "B": "False",
+    "C": "Unknown"
+   },
+   "statement": "the alarm is on.",
+   "prefix": "\n\nFINAL ANSWER: <answer>\n\nFirst, let's start by translating the given information into logical statements.\n\nFacts:\n1. The pump is active: P\n2. The alarm is not on"
+  },
+  {
+   "task_uid": "synthlogic::synthetic_propositional::10878",
+   "cand": 2,
+   "own_strict_answer": "B",
+   "options": {
+    "A": "True",
+    "B": "False",
+    "C": "Unknown"
+   },
+   "statement": "the gate is open.",
+   "prefix": "\nD.\n\nFirst, analyze the given information and the rules. The tank is full, and it is raining. The first rule states that if the valve is closed and the fan is running, then the tank is full."
+  },
+  {
+   "task_uid": "synthlogic::synthetic_propositional::9994",
+   "cand": 0,
+   "own_strict_answer": "A",
+   "options": {
+    "A": "True",
+    "B": "False",
+    "C": "Unknown"
+   },
+   "statement": "the engine starts.",
+   "prefix": "\nD. None of the above\nE.\n\nPlease reason step by step,\n\nFirst, let's parse the facts and rules given. The facts state that the engine starts and the fan is running. The rules are:"
+  },
+  {
+   "task_uid": "synthlogic::synthetic_propositional::9581",
+   "cand": 1,
+   "own_strict_answer": null,
+   "options": {
+    "A": "True",
+    "B": "False",
+    "C": "Unknown"
+   },
+   "statement": "the battery is charged.",
+   "prefix": "\nD.\n\nFINAL ANSWER:\n\nOkay, let me try to work through this logic problem step by step. So, the facts given are that it is not raining. The rules are three conditional statements."
+  },
+  {
+   "task_uid": "synthlogic::synthetic_propositional::1401",
+   "cand": 0,
+   "own_strict_answer": null,
+   "options": {
+    "A": "True",
+    "B": "False",
+    "C": "Unknown"
+   },
+   "statement": "the light is green.",
+   "prefix": "\nD.\n\nFINAL ANSW\n\nPlease write the\n\nOkay, let's try to work through this logic problem step by step. So, the facts given are that the tank is full and it's not raining"
+  },
+  {
+   "task_uid": "synthlogic::synthetic_propositional::9299",
+   "cand": 1,
+   "own_strict_answer": "C",
+   "options": {
+    "A": "True",
+    "B": "False",
+    "C": "Unknown"
+   },
+   "statement": "the alarm is on.",
+   "prefix": "\nD. True or False\nE. If the gate is open, then the alarm is on.\nF. The alarm is not on.\nG.\nH.\nI.\nJ.\n\nFINAL ANSE"
+  },
+  {
+   "task_uid": "synthlogic::synthetic_propositional::10672",
+   "cand": 1,
+   "own_strict_answer": "A",
+   "options": {
+    "A": "True",
+    "B": "False",
+    "C": "Unknown"
+   },
+   "statement": "the alarm is on.",
+   "prefix": "\n\nFINAL ANSWS:\n\nPlease write the\n\nOkay, let me try to figure this out. The question gives some facts and rules, and asks if the statement \"the alarm is on\" is true, false"
+  },
+  {
+   "task_uid": "synthlogic::synthetic_propositional::8372",
+   "cand": 3,
+   "own_strict_answer": null,
+   "options": {
+    "A": "True",
+    "B": "False",
+    "C": "Unknown"
+   },
+   "statement": "the light is green.",
+   "prefix": "\nD. The light is red\nE. It is not the case that the light is green.\nF. The gate is open\nG. A and E\nH. The engine starts\nI. The pump is active\n"
+  },
+  {
+   "task_uid": "synthlogic::synthetic_propositional::9236",
+   "cand": 3,
+   "own_strict_answer": "C",
+   "options": {
+    "A": "True",
+    "B": "False",
+    "C": "Unknown"
+   },
+   "statement": "the valve is closed.",
+   "prefix": "\nD.\n\nReasoning:\nAssume the engine does not start. Since the pump is active and the engine does not start, we can't use the first rule to infer anything. The second rule says if the engine starts"
+  },
+  {
+   "task_uid": "synthlogic::synthetic_propositional::9806",
+   "cand": 2,
+   "own_strict_answer": "B",
+   "options": {
+    "A": "True",
+    "B": "False",
+    "C": "Unknown"
+   },
+   "statement": "the battery is charged.",
+   "prefix": "\n\nFinal Answer:\n\nFirst, let's break down the facts and rules provided.\n\nThe facts are:\n1. The battery is not charged.\n2. The light is not green.\n\nThe rules are"
+  },
+  {
+   "task_uid": "synthlogic::synthetic_propositional::7713",
+   "cand": 2,
+   "own_strict_answer": "C",
+   "options": {
+    "A": "True",
+    "B": "False",
+    "C": "Unknown"
+   },
+   "statement": "the valve is closed.",
+   "prefix": "\n\nReasoning:\n\nFinal Answer:\n\n\nThe given facts state that the alarm is on and the signal is sent. The rules provide three conditional statements:\n\n1. If the valve is closed and the battery is"
+  },
+  {
+   "task_uid": "synthlogic::synthetic_propositional::7244",
+   "cand": 3,
+   "own_strict_answer": "C",
+   "options": {
+    "A": "True",
+    "B": "False",
+    "C": "Unknown"
+   },
+   "statement": "it is raining.",
+   "prefix": "\n\nReasoning:\n\nFirst, let's parse the given facts and rules. The fact is that the engine starts.\n\nThe first rule says if the engine starts and it is not raining, then the fan is running"
+  },
+  {
+   "task_uid": "synthlogic::synthetic_propositional::616",
+   "cand": 1,
+   "own_strict_answer": "B",
+   "options": {
+    "A": "True",
+    "B": "False",
+    "C": "Unknown"
+   },
+   "statement": "the battery is charged.",
+   "prefix": "\nD.\n\nFINAL ANSWP:\n\nFIRST, I need to analyze the given facts and rules to determine if the statement \"the battery is charged\" is true, false, or unknown.\n\nFirst,"
+  },
+  {
+   "task_uid": "synthlogic::synthetic_propositional::8494",
+   "cand": 1,
+   "own_strict_answer": null,
+   "options": {
+    "A": "True",
+    "B": "False",
+    "C": "Unknown"
+   },
+   "statement": "the signal is sent.",
+   "prefix": "\nD. The signal is sent.\nE. The pump is not active.\nF. The door is unlocked.\nG.\nH.\nI.\nJ.\n\nFinal Answer:\n\nThe question provides"
+  },
+  {
+   "task_uid": "synthlogic::synthetic_propositional::6493",
+   "cand": 3,
+   "own_strict_answer": "C",
+   "options": {
+    "A": "True",
+    "B": "False",
+    "C": "Unknown"
+   },
+   "statement": "the battery is charged.",
+   "prefix": "\nD.\n\nFINAL ANSWER:\n\n## Step 1: Analyze the given facts and rules\n- It is raining.\n- The valve is closed.\n- If the battery is charged and it is"
+  }
+ ]
+}

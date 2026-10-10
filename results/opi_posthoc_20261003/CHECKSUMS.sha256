@@ -1,0 +1,6 @@
+# opi_posthoc_20261003: files of this run that are in this repository. Check: cd into this directory, sha256sum -c CHECKSUMS.sha256
+# Files of the run that are not in the repository are listed in CHECKSUMS_OFFLINE.sha256; the two lists together cover the full run.
+a8fca77324b3665e582ade850fb819cd90b022907b6d15c5f7df2bf2937df445  strict_labels_run1.json
+acfef4e1a787c8cc1a852ee7b8b5d57805713b0f3e2b28a759f64b0f47b138df  strict_labels_run1.py
+f71603b605a65a1619386f2b98af3f0e8f7fd928bf677743eb728dfbfb866ff0  strict_labels_run1_final_rule.json
+f9dfcefc9800c707e552510abc922c5380dd480ea2a28502c2e1abbc3cc8c7bb  strict_labels_run1_final_rule.py
