@@ -1,0 +1,15 @@
+# horizon_thinking_20261010: files of this run that are NOT in this repository (generation shards).
+# They are archived offline; the hashes let a copy be verified. Hashes were taken on the generation pod and verified after copying.
+e07c576fc1a81f0fe1c8fc04e997512f75602bc689669fe26913fdb1dd975abf  ./run8_shard_0000.pt
+a7a6500231250a76a5e89bb8aa9f3cd4fb40940bfdaad5c5a0a999cf656b2828  ./run8_shard_0100.pt
+613f29ca7df84fa08aac0b1d9b725410f936610a675cf93694ac38c05772e068  ./run8_shard_0200.pt
+3ac2b7acb9e0d89d76cb45ebad063e54b2612bcb9eeb7a557db36a103943389d  ./run8_shard_0300.pt
+bf6fb897fc2cdbdc66914cc0c1ea479e59474cbc4bbe1b62fbbd4b1c730eecbb  ./run8_shard_0400.pt
+de154cd26564e88cd4659739e04f88dcd82809d1740c92e04297bd438a6af4d1  ./run8_shard_0500.pt
+4e62fee0a3c635f6b17bdfbc0c63062fe9772f773eb4a07f7a153bd096355953  ./run8_shard_0600.pt
+f81ed339ca10f88e46f6d2409d0efd9519d92bf86c87da3dc1d4315dfa8b964e  ./run8_shard_0700.pt
+e9abec3cb1bf69b63026f55509a7cbee4507ce8d529e5ea4709458afbb3f90b4  ./run8_shard_0800.pt
+8a861c6ead5049a8776d28af5758ca9e50a006145533d387155d0a2e671459dd  ./run8_shard_0900.pt
+a8f9e13013f146cce9bec0d3f473d204c78dc115582f02d461ca8df64d4e674c  ./run8_shard_1000.pt
+69a281cdaca565c9a5d9e3c635ce050a48f47bfee2e7c0918fd15a0efff464f2  ./run8_shard_1100.pt
+57060186528b5478284ab165bed20a1dbb6c6d7be1c82794c47b8e0f22893bec  ./smoke/run8_shard_0000.pt

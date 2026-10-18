@@ -1,0 +1,8 @@
+# gsm8k_rest_20261010: files of this run that are in this repository. Check: cd into this directory, sha256sum -c CHECKSUMS.sha256
+04eca0691112616de97128cd31afb55e2e1a5e7188b6663cfccdcd7eb3b11da1  ./analyze_run7.py
+b3d73812c418b92ac94ba5372117a31aaa5499a52825a490537b1cbc9330fcc2  ./gen_run7.py
+276535c37346151dde4f6f887df704e98efc0bf641ce0daa81c8de235a22cb65  ./PLAN.md
+48e0f37db2914703f94b98b4083523d65f6d7616ee281d30a6d538cf4f4af730  ./README.md
+5274982f9145370c23d6e94c48e7cd670f6396b61ee5090412947848e8c7699d  ./seal_run7.sh
+7bcf50c60dcdf3e60dae0201d3a12109378fa574848c84e882369a6ded85a9b8  ./test_run7.py
+f004529f6bfded61e463154f89fc6870b47a26b6746c04c508884561c0a71404  ./within_oof.py

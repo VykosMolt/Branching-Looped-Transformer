@@ -1,0 +1,26 @@
+# horizon_thinking_20261010: files of this run that are in this repository. Check: cd into this directory, sha256sum -c CHECKSUMS.sha256
+# Files of the run that are not in the repository are listed in CHECKSUMS_OFFLINE.sha256; the two lists together cover the full run. __pycache__/ bytecode caches are not listed.
+7695cc3e7bf881882aff86c0f9ac7643129f5ab1e236fa84d3ce62269f24d1cb  ./analyze_run8.py
+5e026f49be7a5b768ecdb7dc5588e06adc2ab327c7bb88c236ae3f4766aff16d  ./audit_stage.json
+53727888e32d7e5ea50fc2d5674f9ef9a1a6980b4a08e3d9a2cc8836abbb8237  ./cloud_logs/run8_audit.log
+efe4326fe6ca44aeb3109e6c20765e3a8417c2fdfb26c17d25e7817a2fd479dd  ./cloud_logs/run8_gen_0.log
+105a58ce7376e99510b04e9e0d8e59f5e20075e07b410d9f96e9ef9fbc799c42  ./cloud_logs/run8_gen_1.log
+4d3b5569098bf7989a36947d3750c16f38fbe0645048a52bf9a8d3ae47ca8ac1  ./cloud_logs/run8_gen_2.log
+d85251a9fdf3deb68841340d0d8701800c2bc5387a19cf6bf8409b160dd672a7  ./cloud_logs/run8.pids
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  ./cloud_logs/run8_runjob.log
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  ./cloud_logs/run8_runjob_restart.log
+f9ebcc653cb7d43d1a30dc3baf0c889fafa503cc0e20719b398bdc70fa5996bb  ./cloud_logs/run8_smoke_check.log
+a64e949115ad2cb45716e2f1ee46b2f805713a9f0b6afa9a2648416d38f72b71  ./cloud_logs/run8_smoke.log
+c8f966f8a0ac709bade6ea219a01fd00c50b7e3b6747b6fc1872ca9356a50b19  ./cloud_logs/run8.status
+1f691dcc0120221be21bc56ae355a1e118fc62e9a3968084ac4f9405a579abcf  ./full.log
+b1c9ace34d3faf755d6ff51ba955305fb65594688b6b3d01b519d6f011f5711b  ./full_stage_started.txt
+637e28a0226fd1158fa6d1d836cce50de0d7de2b869381d18ec4a6c6d6ec81c6  ./gen_run8.py
+f73927b0d17e875a61f596ea6f85a608fbec76dc2d0e6bb816d98cdb4837026d  ./hand_audit.md
+0be829eb3a4f670f1e15686f2186a865bf4f6bdebd0714203c0633c7a9c5dba7  ./hand_audit_review.md
+84f4a55cdde6fa2f152be619dcf6edb5f08f9f1bf168dc176c3989376d3a8374  ./modeling_ouro_shim.py
+5f4ce16a45d039f8e45a19c897169e04a100379bdb64fe7d35fc04067442a6b5  ./PLAN.md
+47121fc38850df1eace94d9e1c67822fb8323a8b817ba06ad1a618015dfee4b4  ./results.json
+90d4197b40af567bded593953449f305ead07be2c9997bb2130080b45733b9ad  ./RESULTS.md
+30e318d28a3cb7f90aa1d0d902936a5c6aec4993a3457588bf43a56fb298928c  ./seal_run8.sh
+d391e7cf525c0675a6fb79f77fe8345e232e2699d990e535cc1b7687863eef70  ./SEAL.sha256
+ac446e75a5faabc7beeaa24e3d1247995201a6b7ea045afcc63353af48b71c19  ./test_run8.py

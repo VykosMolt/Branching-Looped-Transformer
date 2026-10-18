@@ -1,0 +1,7 @@
+# posthoc_exitgate_20261018: files of this run that are in this repository. Check: cd into this directory, sha256sum -c CHECKSUMS.sha256
+0a249257afa27e871e68c8c503ea009cf50d7e6f4bccef9aad34f0e207e539ef  ./exitgate.py
+6563b4f029106dff0875debc1da1086d2f493b8db44fdeea95b7680d8bf3a3ed  ./README.md
+d6320d02bc17ef8de2e5afd381de2e753beb98b2f0f0674f7e01cfff3333177c  ./results_run4.json
+8b7272a229bff6b771fe3b2bfb5e1857c59771d600847b4d6c7e3c56530f2d50  ./results_run8.json
+65b75e019c4aa9665c8da2c7f396c32770a302f48c25a063a08675cc91a46599  ./run4.log
+b7bfc54e43fc2436c14564eedb7d79500d4946650815fbed69a9b72b25b75c7f  ./run8.log
