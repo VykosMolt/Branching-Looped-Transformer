@@ -1,0 +1,11 @@
+[gate A] rltt: 32 files, 19200 rows, mismatching files: none
+[gate B] rltt: compared ['macro', 'paired_deltas', 'verdict_labels', 'best_late_loop_early_layer_cell', 'draws', 'seed', 'cluster']; 70 paired deltas; mismatches: 0
+[gate A] base26: 32 files, 19200 rows, mismatching files: none
+[gate B] base26: compared ['macro', 'paired_deltas', 'verdict_labels', 'best_late_loop_early_layer_cell', 'draws', 'seed', 'cluster']; 70 paired deltas; mismatches: 0
+[gate A] thinking26: 32 files, 19200 rows, mismatching files: none
+[gate B] thinking26: compared ['macro', 'paired_deltas', 'verdict_labels', 'best_late_loop_early_layer_cell', 'draws', 'seed', 'cluster']; 70 paired deltas; mismatches: 0
+[gate A] ouro14b: 32 files, 19200 rows, mismatching files: none
+[gate B] ouro14b: compared ['paired_deltas', 'points', 'reference_cells']; 58 paired deltas; mismatches: 0
+[gate A] huginn: 25 files, 15000 rows, mismatching files: none
+[gate B] huginn: compared ['paired_deltas', 'points', 'reference_cells']; 32 paired deltas; mismatches: 0
+results.json sha256 85f0259f3c2021f713e56a72a08f2fa6a05bea351fa356634d52081511e8fc86

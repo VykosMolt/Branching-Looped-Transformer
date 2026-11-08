@@ -1,0 +1,15 @@
+gate passed: published controls.json part 3 reproduced exactly
+{
+ "n_questions": 110,
+ "n_pairs": 214,
+ "share_tracking_own_verdict": 0.5444,
+ "ci95": [
+  0.4737,
+  0.6126
+ ],
+ "chance": 0.5,
+ "both_comparisons_hold": 0.4252,
+ "neither_holds": 0.3364,
+ "first_term_holds": 0.5327,
+ "second_term_holds": 0.5561
+}
